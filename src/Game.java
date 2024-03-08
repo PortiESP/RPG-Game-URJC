@@ -8,7 +8,7 @@ import src.equipment.*;
 
 public class Game {
     private List<User> users = new ArrayList<>();
-    private User loggedUser;
+    private User loggedUser = null;
     private List<Challenge> challenges = new ArrayList<>();
     private List<Armor> armorsAvailable = new ArrayList<>();
     private List<Weapon> weaponsAvailable = new ArrayList<>();

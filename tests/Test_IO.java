@@ -41,8 +41,6 @@ public class Test_IO {
         // hola
         String str = IOManager.readString();
         assertEquals("hola", str);
-
-        assertTrue(true);
     }
 
     public void setInput(String input) {

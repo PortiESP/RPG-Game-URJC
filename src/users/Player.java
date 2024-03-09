@@ -5,7 +5,7 @@ import src.challenges.Challenge;
 import src.characters.CharacterSelection;
 import src.equipment.Armor;
 import src.equipment.Weapon;
-import utils.Constants;
+import utils.Const;
 
 public class Player extends User {
     private String id;
@@ -25,7 +25,7 @@ public class Player extends User {
         this.pendingChallenge = null;
         this.pendingNotification = false;
         this.banned = false;
-        this.gold = Constants.INITIAL_GOLD;
+        this.gold = Const.INITIAL_GOLD;
         this.lastLostFight = 0;
         this.currentCharacter = null;
         this.armor = null;

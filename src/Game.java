@@ -40,7 +40,7 @@ public class Game {
     // Method to load the game
     private void load() {
         // Load the game from the file
-        Game game = FileManager.readFile(Constants.DATA_PATH);
+        Game game = FileManager.readFile(Const.DATA_PATH);
 
         // Replace the game settings
         if (game != null) this.replaceSettings(game);

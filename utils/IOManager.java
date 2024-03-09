@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Scanner;
 
-import utils.Const;
-
 /**
  * This class manages the input and output of the game. It contains methods to print messages, read inputs and change the language.
  * 
@@ -22,7 +20,7 @@ import utils.Const;
  * 
  * <h4>Message padding</h4>
  * <p>
- * The printed values are <strong>padded</strong> with {@code Const.PRINT_PADDING} to make the output more readable and stand out from the rest of the terminal lines.
+ * The printed values are <strong>padded</strong> with {@code PRINT_PADDING} to make the output more readable and stand out from the rest of the terminal lines.
  * </p>
  * 
  * <h4>Debug messages</h4>
@@ -40,6 +38,7 @@ public class IOManager implements Serializable {
   private static boolean debug = false; // Enables debug mode to print debug messages (True = on, False = off)
   private static LanguageManager languageManager = new LanguageManager(); // Language manager to get the messages from the language files
   private static Scanner scanner = new Scanner(System.in);
+  private static String PRINT_PADDING = "|    "; // Padding for the printed messages
 
   /**
    * Print a raw message (<em>without checking the messages map</em>), basically a wrapper for {@code System.out.print()}.
@@ -47,7 +46,7 @@ public class IOManager implements Serializable {
    * @param msg The message to print 
    */
   public static void print(String msg) {
-    System.out.print(Const.PRINT_PADDING + msg);
+    System.out.print(PRINT_PADDING + msg);
   }
 
   /**
@@ -309,4 +308,13 @@ public class IOManager implements Serializable {
   public static void setScanner(Scanner scanner) {
     IOManager.scanner = scanner;
   }
+
+  public static String getPRINT_PADDING() {
+    return PRINT_PADDING;
+  }
+
+  public static void setPRINT_PADDING(String p) {
+    PRINT_PADDING = p;
+  }
+
 }

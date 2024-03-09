@@ -15,7 +15,7 @@ public class FileManager {
     public static void saveFile(Game game) {
 
         // Create finalPath with actualDate
-        String filePath = Constants.DATA_PATH;
+        String filePath = Const.DATA_PATH;
         String finalPath = getFilePath(filePath);
 
         // Try to save the file

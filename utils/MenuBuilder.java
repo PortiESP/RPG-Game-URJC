@@ -28,6 +28,18 @@ public class MenuBuilder {
   private static boolean configFormUniqueValues = false; // If true, the form will not allow repeated values
   private static boolean configLastAsZero = false; // If true, the last option of the menus will be 0 instead of N
 
+  // Strings
+  private static String HINT = "Type a number from the list below and press <ENTER>";
+  private static String CHOOSE_OPTION = "Choose an option";
+  private static String WARN = "Advertisement";
+  private static String INVALID_OPTION = "Invalid option!";
+  private static String MUST_BE_A_NUMBER = "The entered value must be a number";
+  private static String MUST_NOT_BE_EMPTY = "The input value must not be empty";
+  private static String ASK_YES_NO = "Yes=[1] / No=[0]";
+  private static String MUST_BE_YES_NO = "The entered value must be 1 (Yes) or 0 (No)";
+  private static String MUST_BE_POSITIVE = "The entered value must be a positive number";
+  private static String FIELD_NOT_UNIQUE = "The entered value must be unique";
+
   /**
    * Build a menu.
    * 
@@ -50,12 +62,6 @@ public class MenuBuilder {
     if (clean)
       IOManager.cls();
 
-    // Translate the title and options if possible
-    title = IOManager.getMsg(title);
-    // Translate the options if possible
-    for (int i = 0; i < options.length; i++)
-      options[i] = IOManager.getMsg(options[i]);
-
     // Print the top
     IOManager.print("\n");
     IOManager.print("\n");
@@ -68,7 +74,8 @@ public class MenuBuilder {
 
     // Print the hint
     IOManager.print(String.format("║%s║\n",
-        leftString("[i] " + String.format(IOManager.getMsg("MENU_HINT"), 1, numOptions), MENU_WIDTH - 2, 4)));
+        leftString("[i] " + String.format(HINT, 1, numOptions),
+            MENU_WIDTH - 2, 4)));
     IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
 
     // Print the options
@@ -95,17 +102,17 @@ public class MenuBuilder {
       String prompt;
       // Range from 1 to N
       if (configLastAsZero == false)
-        prompt = String.format("║    %s (%d-%d) >>> ", IOManager.getMsg("PROMPT_OPTION"), 1, numOptions);
+        prompt = String.format("║    %s (%d-%d) >>> ", CHOOSE_OPTION, 1, numOptions);
       // Range from 0 to (N-1)
       else
-        prompt = String.format("║    %s (%d-%d) >>> ", IOManager.getMsg("PROMPT_OPTION"), 0, numOptions - 1);
+        prompt = String.format("║    %s (%d-%d) >>> ", CHOOSE_OPTION, 0, numOptions - 1);
       // Ask for the option
       setClean(true);
       int option = IOManager.readInt(prompt);
 
       // Try again if the option is invalid
       if (option < (configLastAsZero ? 0 : 1) || option > numOptions) {
-        alert("WARN", "INVALID_OPTION");
+        alert(WARN, INVALID_OPTION);
         return menu(title, options);
       }
 
@@ -115,7 +122,7 @@ public class MenuBuilder {
       return option;
 
     } catch (NumberFormatException e) {
-      alert("WARN", "MUST_BE_NUMBER");
+      alert(WARN, MUST_BE_A_NUMBER);
       return menu(title, options);
     }
 
@@ -133,9 +140,6 @@ public class MenuBuilder {
     if (clean)
       IOManager.cls();
 
-    // Translate the prompt if possible
-    prompt = IOManager.getMsg(prompt);
-
     // Print frame
     IOManager.print("\n");
     IOManager.print("\n");
@@ -149,7 +153,7 @@ public class MenuBuilder {
     String input = IOManager.readString(String.format("║ > "));
     // Try again if the input is empty
     if (input == null || input.length() == 0) {
-      alert("WARN", "MUST_NOT_BE_EMPTY");
+      alert(WARN, MUST_NOT_BE_EMPTY);
       return readString(prompt);
     }
     // Valid the input
@@ -172,9 +176,6 @@ public class MenuBuilder {
     if (clean)
       IOManager.cls();
 
-    // Translate the prompt if possible
-    prompt = IOManager.getMsg(prompt);
-
     // Print frame
     IOManager.print("\n");
     IOManager.print("\n");
@@ -184,7 +185,7 @@ public class MenuBuilder {
     IOManager.print(String.format("║ %s ║\n", " ".repeat(MENU_WIDTH - 4)));
     IOManager.print(String.format("╠%s╣\n", "═".repeat(MENU_WIDTH - 2)));
     IOManager.print(String.format("║ %s ║\n", " ".repeat(MENU_WIDTH - 4)));
-    IOManager.print(String.format("║%s║\n", centerString(IOManager.getMsg("ASK_YES_NO"), MENU_WIDTH - 2)));
+    IOManager.print(String.format("║%s║\n", centerString(ASK_YES_NO, MENU_WIDTH - 2)));
     IOManager.print(String.format("║ %s ║\n", " ".repeat(MENU_WIDTH - 4)));
     IOManager.print(String.format("║%s║\n", centerString("[   ]", MENU_WIDTH - 2)));
     IOManager.print(String.format("║ %s ║\n", " ".repeat(MENU_WIDTH - 4)));
@@ -196,7 +197,7 @@ public class MenuBuilder {
     String input = IOManager.readString(String.format("║%s", " ".repeat(MENU_WIDTH / 2 - 3) + "[ "));
     // Try again if the input is empty
     if (input == null || input.length() == 0) {
-      alert("WARN", "MUST_NOT_BE_EMPTY");
+      alert(WARN, MUST_NOT_BE_EMPTY);
       return askYesNo(prompt);
     }
 
@@ -216,7 +217,7 @@ public class MenuBuilder {
       }
       // INVALID
       else {
-        alert("WARN", "MUST_BE_YES_NO");
+        alert(WARN, MUST_BE_YES_NO);
         return askYesNo(prompt);
       }
     }
@@ -234,9 +235,6 @@ public class MenuBuilder {
     if (clean)
       IOManager.cls();
 
-    // Translate the prompt if possible
-    prompt = IOManager.getMsg(prompt);
-
     // Print frame
     IOManager.print("\n");
     IOManager.print("\n");
@@ -252,7 +250,7 @@ public class MenuBuilder {
       int val = Integer.parseInt(input);
       // Try again if the value is negative
       if (val < 0) {
-        alert("WARN", "MUST_BE_POSITIVE");
+        alert(WARN, MUST_BE_POSITIVE);
         return readInt(prompt);
       }
       // Reset the settings
@@ -262,7 +260,7 @@ public class MenuBuilder {
     }
     // If the input is not a number, show an alert and try again
     catch (NumberFormatException e) {
-      alert("WARN", "MUST_BE_NUMBER");
+      alert(WARN, MUST_BE_A_NUMBER);
       return readInt(prompt);
     }
   }
@@ -278,7 +276,7 @@ public class MenuBuilder {
   public static int readInt(String prompt, int min, int max) {
     int val = readInt(prompt);
     if (val < min || val > max) {
-      alert("WARN", "INVALID_OPTION");
+      alert(WARN, INVALID_OPTION);
       return readInt(prompt, min, max);
     }
     return val;
@@ -294,11 +292,6 @@ public class MenuBuilder {
     // Clear the screen
     if (clean)
       IOManager.cls();
-
-    // Translate the title if possible
-    title = IOManager.getMsg(title);
-    // Translate the message if possible
-    msg = IOManager.getMsg(msg);
 
     IOManager.print("\n");
     IOManager.print("\n");
@@ -326,9 +319,6 @@ public class MenuBuilder {
     // Clear the screen
     if (clean)
       IOManager.cls();
-
-    // Translate the title if possible
-    title = IOManager.getMsg(title);
 
     IOManager.print(String.format("╔%s╗\n", "═".repeat(MENU_WIDTH - 2)));
     IOManager.print(String.format("║%s║\n", leftString(title, MENU_WIDTH - 2, 4)));
@@ -358,9 +348,6 @@ public class MenuBuilder {
     // Clear the screen
     if (clean)
       IOManager.cls();
-
-    // Translate the title if possible
-    title = IOManager.getMsg(title);
 
     // Print the top
     IOManager.print("\n");
@@ -394,12 +381,12 @@ public class MenuBuilder {
       // --- Validate input ---
       // If the value is empty, try again
       if (name == null || name.length() == 0) {
-        alert("WARN", "MUST_NOT_BE_EMPTY");
+        alert(WARN, MUST_NOT_BE_EMPTY);
         return form(title, labels);
       }
       // If the value is not unique, try again
       else if (configFormUniqueValues && Arrays.asList(MenuBuilder.formValues).contains(name)) {
-        alert("WARN", "NAME_ALREADY_TAKEN");
+        alert(WARN, FIELD_NOT_UNIQUE);
         return form(title, labels);
       }
 

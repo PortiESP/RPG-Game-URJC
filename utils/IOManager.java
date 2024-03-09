@@ -9,13 +9,13 @@ import java.util.Scanner;
  * 
  * <h4>Language</h4>
  * <p>
- * The language of the game is loaded from the {@code Const.LANGUAGES_PATH} directory. The default language is {@code "English"}.
+ * The language of the game is loaded from the {@code LANGUAGES_PATH} directory. Use the method {@Code setLAGUAGE_PATH(String)} to change its value. The default language is {@code "English"}.
  * </p>
  * <p>
  * Every message will be tried to be loaded from the language file. If the message is not found, the message id will be printed instead.
  * </p>
  * <p>
- * The language of the game can be changed with the method {@code setLanguage(String language)}. The language must be the filename of one of the language files in the {@code Const.LANGUAGES_PATH} directory.
+ * The language of the game can be changed with the method {@code setLanguage(String language)}. The language must be the filename of one of the language files in the {@code LANGUAGES_PATH} directory.
  * </p>
  * 
  * <h4>Message padding</h4>
@@ -36,7 +36,6 @@ import java.util.Scanner;
  */
 public class IOManager implements Serializable {
   private static boolean debug = false; // Enables debug mode to print debug messages (True = on, False = off)
-  private static LanguageManager languageManager = new LanguageManager(); // Language manager to get the messages from the language files
   private static Scanner scanner = new Scanner(System.in);
   private static String PRINT_PADDING = "|    "; // Padding for the printed messages
 
@@ -47,55 +46,6 @@ public class IOManager implements Serializable {
    */
   public static void print(String msg) {
     System.out.print(PRINT_PADDING + msg);
-  }
-
-  /**
-   * Print a message in the current language. If the message is not found, the message id will be printed instead.
-   * 
-   * @param id The message id. Example: {@code "NEW_GAME"}
-   */
-  public static void printMsg(String id) {
-    String msg = IOManager.languageManager.get(id); // Print the message, if it exists, otherwise use the id as the message
-    if (msg == null)
-      msg = id;
-    print(msg);
-  }
-
-  /**
-   * Print a message in the current language with a new line. If the message is not found, the message id will be printed instead.
-   * 
-   * @param id The message id. Example: {@code "NEW_GAME"}
-   */
-  public static void printlnMsg(String id) {
-    String msg = IOManager.languageManager.get(id); // Print the message, if it exists, otherwise use the id as the message
-    if (msg == null)
-      msg = id;
-    print(msg + '\n');
-  }
-
-  /**
-   * Print a formatted message in the current language with a new line. If the message is not found, the message id will first format the id and then print the result printed.
-   * 
-   * @param id The message id. Example: {@code "NEW_GAME"}
-   * @param params The parameters of the message.
-   */
-  public static void printlnMsg(String id, Object... params) {
-    print(String.format(getMsg(id), (Object[]) params) + '\n');
-  }
-
-  /**
-   * Returns the message in the current language based on the message id. If the message is not found, the message id will be returned instead.
-   * 
-   * @param id The message id. Example: {@code "NEW_GAME"}
-   * @return The message in the current language, or the message id if the message is not found.
-   */
-  public static String getMsg(String id) throws RuntimeException {
-    String msg = IOManager.languageManager.get(id);
-
-    if (msg == null)
-      return id;
-
-    return msg;
   }
 
   /**
@@ -157,9 +107,9 @@ public class IOManager implements Serializable {
   public static boolean askYesNo(String prompt) {
     IOManager.print("\n");
 
-    print(String.format("%s (%s=[1] / %s=[0])?\n", getMsg(prompt), getMsg("YES"), getMsg("NO")));
+    print(String.format("%s (%s=[1] / %s=[0])?\n", prompt, "Yes", "No"));
 
-    int option = readInt("PROMPT_OPTION", 0, 1);
+    int option = readInt("Choose an option: ", 0, 1);
 
     return option == 1;
   }
@@ -174,7 +124,7 @@ public class IOManager implements Serializable {
    */
   public static void pause() {
 
-    printMsg("PRESS_ENTER");
+    print("Press Enter to continue...");
     System.out.print("\033[8m\033[?25l"); // Hide the cursor and disable echo 
     scanner.nextLine();
     System.out.print("\033[28m\033[?25h"); // Reset the cursor and enable echo 
@@ -220,7 +170,7 @@ public class IOManager implements Serializable {
   public static int readInt(String prompt, int min, int max) throws NumberFormatException {
     int option = readInt(prompt);
     while (option < min || option > max) {
-      printlnMsg("INVALID_OPTION");
+      print("Invalid option. Please try again.\n");
       option = readInt(prompt);
     }
     return option;
@@ -232,12 +182,19 @@ public class IOManager implements Serializable {
    * @param prompt The message ID that will be printed before reading the input.
    * @return The string typed by the user.
    */
+  public static String readString() {
+    return readString("");
+  }
+
+  /**
+   * Read an input (string). 
+   * 
+   * @param prompt The message ID that will be printed before reading the input.
+   * @return The string typed by the user.
+   */
   public static String readString(String prompt) {
-    // Try to translate the prompt if it exists, otherwise use the prompt as the message
-    prompt = getMsg(prompt);
     // Print the prompt
     print(prompt);
-
     return IOManager.scanner.nextLine();
   }
 
@@ -249,7 +206,7 @@ public class IOManager implements Serializable {
    * @return The string typed by the user.
    */
   public static String readString(String prompt, Object... params) {
-    return readString(String.format(getMsg(prompt), (Object[]) params));
+    return readString(String.format(prompt, (Object[]) params));
   }
 
   /**
@@ -271,26 +228,9 @@ public class IOManager implements Serializable {
     }
   }
 
-  /**
-   * Change the language loaded in the map of messages. 
-   * 
-   * <p>
-   * The language must be the filename of one of the language files in the {@code Const.LANGUAGES_PATH} directory.
-   * </p>
-   * 
-   * @param language The language to load. Example: {@code "English"}
-   */
-  public static void setLanguage(String language) {
-    IOManager.languageManager.load(language);
-  }
-
   // ---------------------------------------- Getters and Setters ----------------------------------------
   public static boolean isDebug() {
     return debug;
-  }
-
-  public static LanguageManager getLanguageManager() {
-    return languageManager;
   }
 
   public static Scanner getScanner() {
@@ -299,10 +239,6 @@ public class IOManager implements Serializable {
 
   public static void setDebug(boolean debug) {
     IOManager.debug = debug;
-  }
-
-  public static void setLanguageManager(LanguageManager languageManager) {
-    IOManager.languageManager = languageManager;
   }
 
   public static void setScanner(Scanner scanner) {

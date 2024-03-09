@@ -2,12 +2,8 @@ package utils;
 
 /*
     Auxiliary class containing the methods to save and read files
-
     - saveFile: Method to save a game in a file
     - readFile: Method to read a game from a file
-    - getActualDate: Method to get the actual date in the format YYYY-MM-DD_hh-mm-ss
-
-    Actual date is used as a file name to avoid overwriting files errors
 */
 
 import src.Game;

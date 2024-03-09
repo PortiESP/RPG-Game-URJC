@@ -59,8 +59,6 @@ public class FileManager {
             return game;
 
         } catch (IOException e) {
-            System.out.println("Error");
-            System.out.println(e);
             return null;
         }
     }

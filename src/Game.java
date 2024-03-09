@@ -5,6 +5,7 @@ import java.util.*;
 import src.users.*;
 import src.challenges.*;
 import src.equipment.*;
+import utils.*;
 
 public class Game {
     private List<User> users = new ArrayList<>();
@@ -14,18 +15,77 @@ public class Game {
     private List<Weapon> weaponsAvailable = new ArrayList<>();
 
     // Constructor ========================================================================================================
-    public Game() {
-
-    }
+    public Game() {}
 
     // Public Methods =====================================================================================================
 
     // Method to play the game
     public void play() {
+        // Load the game
+        this.load();
         System.out.println("Playing...");
+
+        // Main Loop
+        // while (true) {
+            // Print the main menu
+            this.menu();
+        
+            // Save the game
+            this.save();
+        // }
     }
 
     // Private Methods ====================================================================================================
+
+    // Method to load the game
+    private void load() {
+        // Load the game from the file
+        Game game = FileManager.readFile(Constants.DATA_PATH);
+
+        // Replace the game settings
+        if (game != null) this.replaceSettings(game);
+    }
+
+    // Method to replace the game settings
+    private void replaceSettings(Game game) {
+        // Set the game attributes
+        this.setUsers(game.getUsers());
+        this.setLoggedUser(game.getLoggedUser());
+        this.setChallenges(game.getChallenges());
+        this.setArmorsAvailable(game.getArmorsAvailable());
+        this.setWeaponsAvailable(game.getWeaponsAvailable());
+    }
+
+    // Method to save the game
+    private void save() {
+        // Save the game to the file
+        FileManager.saveFile(this);
+    }
+
+    // Method to print the main menu
+    private void menu() {
+        if (this.loggedUser == null)
+            this.notLoggedMenu();
+        else if (this.loggedUser instanceof Player)
+            this.loggedPlayerMenu();
+        else if (this.loggedUser instanceof Admin)
+            this.loggedAdminMenu();
+    }
+    
+    // Method to print the not logged menu options
+    private void notLoggedMenu() {
+        System.out.println("Not Logged Menu");
+    }
+
+    // Method to print the logged admin menu options
+    private void loggedPlayerMenu() {
+        System.out.println("Logged Player Menu");
+    }
+    
+    // Method to print the logged player menu options
+    private void loggedAdminMenu() {
+        System.out.println("Logged Admin Menu");
+    }
 
     // Getters & Setters ==================================================================================================
     public List<User> getUsers() {

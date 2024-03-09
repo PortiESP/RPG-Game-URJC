@@ -29,7 +29,7 @@ public class LanguageManager {
    */
   public void load(String filename) {
 
-    if (Const.LANGUAGES_PATH == null) {
+    if (LANGUAGES_PATH == null) {
       throw new RuntimeException("[!] The language path is not set in the Conts file");
     }
 

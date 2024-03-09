@@ -3,6 +3,7 @@ package tests;
 import org.junit.Test;
 
 import utils.IOManager;
+import utils.MenuBuilder;
 
 import static org.junit.Assert.*;
 
@@ -27,7 +28,7 @@ public class Test_IO {
     /*
      * Test input methods
      */
-    public void testInput() {
+    public void testIOManager() {
         // Inputs are read from the standard input
         setInput("0", "1", "hola");
 
@@ -42,6 +43,26 @@ public class Test_IO {
         String str = IOManager.readString();
         assertEquals("hola", str);
     }
+
+    @Test
+    /*
+     * Test the MenuBuilder
+     */
+    public void testMenuBuilder_Menu() {
+        // Inputs are read from the standard input
+        setInput("1", "0", "", "2");
+
+        // Test menu
+        String options[] = { "Option 1", "Option 2", "Option 3" };
+        int opt = MenuBuilder.menu("TITLE", options);
+        assertEquals(1, opt);
+
+        // Test menu with an invalid option
+        int opt2 = MenuBuilder.menu("TITLE", options);
+        assertEquals(2, opt2);
+    }
+
+    //  --------------------- Utils ---------------------
 
     public void setInput(String input) {
         input += "\n";

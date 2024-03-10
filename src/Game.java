@@ -74,7 +74,51 @@ public class Game {
     
     // Method to print the not logged menu options
     private void notLoggedMenu() {
-        System.out.println("Not Logged Menu");
+        String [] options = {"Login", "Register", "Exit"};
+        int answer = MenuBuilder.menu("Welcome to RPG Game", options);
+
+        if (answer == 1) this.login();
+    }
+
+    // Login Methods ======================================================================================================
+
+    // Method to login the user by credentials
+    private void login() {
+        while (this.loggedUser == null) {
+            // Get the user credentials
+            String [] credentials = this.getUserCredentials();
+
+            // Retrieve the user by credentials
+            User user = this.retrUser(credentials[0], credentials[1]);
+
+            // Alert the user if the credentials are invalid || Set the logged user if the credentials are valid
+            if (user == null) {
+                MenuBuilder.alert("Invalid Credentials", "The username or password are invalid. Please try again.");
+                boolean answer = MenuBuilder.askYesNo("Do you want to try again?");
+                if (!answer) break;
+
+            } else this.loggedUser = user;
+        }
+    }
+
+    // Method to get the user credentials
+    private String[] getUserCredentials() {
+        String [] labels = {"Username", "Password"};
+        return MenuBuilder.form("Login", labels);
+    }
+
+    // Method to retrieve the user by credentials
+    private User retrUser(String username, String password) {
+        for (User user : this.users) {
+            if (validateUser(user, username, password)) return user;
+        }
+
+        return null;
+    }
+
+    // Method to validate the user credentials
+    private boolean validateUser(User user, String username, String password) {
+        return user.getName().equals(username) && user.getPassword().equals(password);
     }
 
     // Method to print the logged admin menu options

@@ -38,6 +38,13 @@ public class Player extends User {
         this.weapons[1] = null;
     }
 
+    // Public Methods =====================================================================================================
+
+    // Method to get the score
+    public int getScore() {
+        return this.gold;
+    }
+
     // Getters & Setters ==================================================================================================
     public String getId() {
         return id;

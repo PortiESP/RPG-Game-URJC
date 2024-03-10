@@ -17,6 +17,11 @@ public abstract class User {
         this.password = password;
     }
 
+    // Public Methods =====================================================================================================
+
+    // Abstract method to get the score
+    public abstract int getScore();
+
     // Getters & Setters ==================================================================================================
     public String getName() {
         return name;

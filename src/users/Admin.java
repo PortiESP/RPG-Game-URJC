@@ -11,4 +11,11 @@ public class Admin extends User {
     public Admin(String name, String nick, String password) {
         super(name, nick, password);
     }
+
+    // Public Methods =====================================================================================================
+
+    // Method to get the score
+    public int getScore() {
+        return 0;
+    }
 }

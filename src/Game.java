@@ -26,13 +26,13 @@ public class Game {
         System.out.println("Playing...");
 
         // Main Loop
-        // while (true) {
-            // Print the main menu
+        while (true) {
+            // Print the menu
             this.menu();
         
             // Save the game
             this.save();
-        // }
+        }
     }
 
     // Private Methods ====================================================================================================
@@ -78,6 +78,18 @@ public class Game {
         int answer = MenuBuilder.menu("Welcome to RPG Game", options);
 
         if (answer == 1) this.login();
+        else if (answer == 2) this.register();
+        else System.exit(0);
+    }
+
+    // Method to print the logged admin menu options
+    private void loggedPlayerMenu() {
+        System.out.println("Logged Player Menu");
+    }
+
+    // Method to print the logged player menu options
+    private void loggedAdminMenu() {
+        System.out.println("Logged Admin Menu");
     }
 
     // Login Methods ======================================================================================================
@@ -121,14 +133,56 @@ public class Game {
         return user.getName().equals(username) && user.getPassword().equals(password);
     }
 
-    // Method to print the logged admin menu options
-    private void loggedPlayerMenu() {
-        System.out.println("Logged Player Menu");
+    // Register Methods ===================================================================================================
+
+    // Method to register a new user
+    private void register() {
+        // Get the user data
+        String [] userData = this.getUserData();
+
+        // Ask for the user type Player (1) || Admin (2)
+        int userType = this.getUserType();
+
+        // Create the user
+        User user = this.createUser(userData, userType);
+
+        // Add the user to the users list
+        this.users.add(user);
     }
-    
-    // Method to print the logged player menu options
-    private void loggedAdminMenu() {
-        System.out.println("Logged Admin Menu");
+
+    // Method to get the user data
+    private String[] getUserData() {
+        // Get basic user data
+        String [] labels = {"Username", "Nick", "Password", "Confirm Password"};
+        String [] data = MenuBuilder.form("Register", labels);
+
+        // Validate the password
+        while (!data[2].equals(data[3])) {
+            MenuBuilder.alert("Invalid Password", "The passwords do not match. Please try again.");
+            data = MenuBuilder.form("Register", labels);
+        }
+
+        return data;
+    }
+
+    // Method to get the user type Player (1) || Admin (2)
+    private int getUserType() {
+        String [] options = {"Player", "Admin"};
+        return MenuBuilder.menu("Select User Type", options);
+    }
+
+    // Method to create the user
+    private User createUser(String[] userData, int userType) {
+        if (userType == 1) return new Player(userData[0], userData[1], userData[2], this.generatePlayerId());
+        else return new Admin(userData[0], userData[1], userData[2]);
+    }
+
+    // Method to generate the plaer id
+    private String generatePlayerId() {
+        int usersSize = this.users.size();
+
+        // ID Format LNLLN (L: Letter, N: Number)
+        return "P" + (usersSize) + "A" + (char) (65 + usersSize) + (char) (65 + usersSize) + (usersSize + 1);
     }
 
     // Getters & Setters ==================================================================================================

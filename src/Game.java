@@ -50,7 +50,6 @@ public class Game {
     private void replaceSettings(Game game) {
         // Set the game attributes
         this.setUsers(game.getUsers());
-        this.setLoggedUser(game.getLoggedUser());
         this.setChallenges(game.getChallenges());
         this.setArmorsAvailable(game.getArmorsAvailable());
         this.setWeaponsAvailable(game.getWeaponsAvailable());

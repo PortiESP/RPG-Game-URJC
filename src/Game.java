@@ -84,7 +84,8 @@ public class Game {
     // Method to print the logged admin menu options
     private void loggedPlayerMenu() {
         String [] options = {"Challenge", "Modify Active Equipment", "Change Character", "Battle History", "Ranking", "Delete Account", "Log Out"};
-        int answer = MenuBuilder.menu("Logged Player Menu", options);
+        String nickName = this.loggedUser.getNick();
+        int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
 
         if (answer == 1) this.challenge();
         else if (answer == 2) this.modifyActiveEquipment();

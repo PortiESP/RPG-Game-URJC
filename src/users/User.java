@@ -6,6 +6,11 @@ public abstract class User {
     private String password;
 
     // Constructor ========================================================================================================
+
+    // Zero Constructor
+    public User() {}
+
+    // Constructor with parameters
     public User(String name, String nick, String password) {
         this.name = name;
         this.nick = nick;

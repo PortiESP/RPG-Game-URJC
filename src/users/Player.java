@@ -19,6 +19,11 @@ public class Player extends User {
     private Weapon [] weapons = new Weapon[2];
 
     // Constructor ========================================================================================================
+
+    // Zero Constructor
+    public Player() {}
+
+    // Constructor with parameters
     public Player(String name, String nick, String password, String id) {
         super(name, nick, password);
         this.id = id;

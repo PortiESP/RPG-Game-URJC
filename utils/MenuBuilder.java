@@ -329,6 +329,9 @@ public class MenuBuilder {
     IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
     IOManager.print(String.format("╚%s╝\n", "═".repeat(MENU_WIDTH - 2)));
 
+    // Wait for the user to press enter
+    IOManager.pause();
+    
     // Reset the settings
     resetSettings();
   }

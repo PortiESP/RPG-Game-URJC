@@ -222,9 +222,29 @@ public class Game {
 
     // Method to check the ranking
     private void checkRanking() {
-        System.out.println("Checking Ranking...");
+        // Sort the users by score
+        this.users.sort((u1, u2) -> u2.getScore() - u1.getScore());
 
-        // TODO: Implement the checkRanking method
+        // Create the ranking data table
+        String [] data = new String[this.users.size()];
+
+        for (int i = 0; i < this.users.size(); i++) {
+            User user = this.users.get(i);
+
+            if (user instanceof Admin) {
+                data[i] = user.getNick() + user.getName() + " ->> ADMIN";
+
+            } else {
+                Player player = (Player) user;
+                String playerData = player.getNick() + "#" + player.getId();
+
+                if (player.isBanned()) data[i] = playerData + " ->> BANNED";
+                else data[i] = playerData + " ->> " + player.getScore();
+            }
+        }
+
+        // Print the ranking
+        MenuBuilder.doc("Ranking", data);
     }
 
     // Method to delete the account
@@ -232,8 +252,8 @@ public class Game {
         boolean answer = MenuBuilder.askYesNo("Are you sure you want to delete your account?");
 
         if (answer) {
-            this.signOff();
             this.users.remove(this.loggedUser);
+            this.signOff();
             MenuBuilder.alert("Account Deleted", "Your account has been deleted successfully.");
         }
     }

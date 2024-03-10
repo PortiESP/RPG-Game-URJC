@@ -117,7 +117,7 @@ public class Game {
                 boolean answer = MenuBuilder.askYesNo("Do you want to try again?");
                 if (!answer) break;
 
-            } else this.loggedUser = user;
+            } else this.setLoggedUser(user);
         }
     }
 

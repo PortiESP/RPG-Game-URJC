@@ -84,7 +84,16 @@ public class Game {
 
     // Method to print the logged admin menu options
     private void loggedPlayerMenu() {
-        System.out.println("Logged Player Menu");
+        String [] options = {"Challenge", "Modify Active Equipment", "Change Character", "Battle History", "Ranking", "Delete Account", "Log Out"};
+        int answer = MenuBuilder.menu("Logged Player Menu", options);
+
+        if (answer == 1) this.challenge();
+        else if (answer == 2) this.modifyActiveEquipment();
+        else if (answer == 3) this.changeCharacter();
+        else if (answer == 4) this.checkBattleHistory();
+        else if (answer == 5) this.checkRanking();
+        else if (answer == 6) this.deleteAccount();
+        else this.signOff();
     }
 
     // Method to print the logged player menu options
@@ -183,6 +192,55 @@ public class Game {
 
         // ID Format LNLLN (L: Letter, N: Number)
         return "P" + (usersSize) + "A" + (char) (65 + usersSize) + (char) (65 + usersSize) + (usersSize + 1);
+    }
+
+    // Logged Player Methods ==============================================================================================
+
+    // Method to challenge another player
+    private void challenge() {
+        System.out.println("Challenging...");
+        // TODO: Implement the challenge method
+    }
+
+    // Method to modify the active equipment
+    private void modifyActiveEquipment() {
+        System.out.println("Modifying Active Equipment...");
+        // TODO: Implement the modifyActiveEquipment method
+    }
+
+    // Method to change the character
+    private void changeCharacter() {
+        System.out.println("Changing Character...");
+        // TODO: Implement the changeCharacter method
+    }
+
+    // Method to check the battle history
+    private void checkBattleHistory() {
+        System.out.println("Checking Battle History...");
+        // TODO: Implement the checkBattleHistory method
+    }
+
+    // Method to check the ranking
+    private void checkRanking() {
+        System.out.println("Checking Ranking...");
+
+        // TODO: Implement the checkRanking method
+    }
+
+    // Method to delete the account
+    private void deleteAccount() {
+        boolean answer = MenuBuilder.askYesNo("Are you sure you want to delete your account?");
+
+        if (answer) {
+            this.signOff();
+            this.users.remove(this.loggedUser);
+            MenuBuilder.alert("Account Deleted", "Your account has been deleted successfully.");
+        }
+    }
+
+    // Method to sign off
+    private void signOff() {
+        this.loggedUser = null;
     }
 
     // Getters & Setters ==================================================================================================

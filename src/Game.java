@@ -5,6 +5,7 @@ import java.util.*;
 import src.users.*;
 import src.challenges.*;
 import src.equipment.*;
+import src.characters.*;
 import utils.*;
 
 public class Game {
@@ -210,8 +211,50 @@ public class Game {
 
     // Method to change the character
     private void changeCharacter() {
-        System.out.println("Changing Character...");
-        // TODO: Implement the changeCharacter method
+        Player player = (Player) this.loggedUser;
+        
+        // Get the character selection
+        CharacterSelection characterSelection = player.getCurrentCharacter();
+
+        // Print the current character selection
+        String output = "Your current character is " + characterSelection + ".";
+        MenuBuilder.alert("Current Character", output);
+
+        // Generate the character options
+        String [] options = new String[CharacterSelection.values().length];
+
+        for (int i = 0; i < CharacterSelection.values().length; i++) {
+            options[i] = CharacterSelection.values()[i].toString();
+        }
+
+        // Set menu title
+        String title = "Change Character";
+
+        // Print the character selection menu and get the answer
+        int answer = MenuBuilder.menu(title, options);
+
+        // Get the character selected from the menu
+        CharacterSelection selection = CharacterSelection.values()[answer - 1];
+
+        // Format the string question
+        if (characterSelection == null) {
+            output = "%s has been selected.";
+            output = String.format(output, selection.toString());
+
+        } else if (characterSelection == selection) {
+            output = "Your character has not been changed. You are still %s.";
+            output = String.format(output, selection.toString());
+
+        } else {
+            output = "Your character has been changed from %s to %s.";
+            output = String.format(output, characterSelection, selection.toString());
+        }
+        
+        // Print an alert message with the result of the operation
+        MenuBuilder.alert(title, (output));
+
+        // Set the new character selection
+        player.setCurrentCharacter(selection);
     }
 
     // Method to check the battle history

@@ -20,3 +20,7 @@
     - `checkBattleHistory()`
     - `checkRanking()`
 - Added some private methods for modularization
+
+## User Class Changes
+- Added `challenges` attribute to the `Player` class.
+- Added `hasChallenges()` method to the `Player` class.

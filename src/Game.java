@@ -216,8 +216,27 @@ public class Game {
 
     // Method to check the battle history
     private void checkBattleHistory() {
-        System.out.println("Checking Battle History...");
-        // TODO: Implement the checkBattleHistory method
+        Player player = (Player) this.loggedUser;
+
+        // Check if the user has at least one battle
+        if (!player.hasChallenges()) {
+            MenuBuilder.alert("No Battle History", "You have not participated in any battle yet.");
+            return;
+        }
+
+        // Create the battle history data table
+        String [] data = new String[player.getChallenges().size()];
+
+        for (int i = 0; i < player.getChallenges().size(); i++) {
+            Challenge challenge = player.getChallenges().get(i);
+            String result = "TIE";
+            if (challenge.getResult() != null)
+                result = challenge.getWinner() == player ? "WIN" : "LOSE";
+            data[i] = challenge.getOpponent(player).getNick() + " ->> " + result;
+        }
+
+        // Print the battle history
+        MenuBuilder.doc("Battle History", data);
     }
 
     // Method to check the ranking

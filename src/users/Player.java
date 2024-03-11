@@ -1,6 +1,7 @@
 package src.users;
 
 // Import statements
+import java.util.*;
 import src.challenges.Challenge;
 import src.characters.CharacterSelection;
 import src.equipment.Armor;
@@ -17,6 +18,7 @@ public class Player extends User {
     private CharacterSelection currentCharacter;
     private Armor armor;
     private Weapon [] weapons = new Weapon[2];
+    private List<Challenge> challenges = new ArrayList<>();
 
     // Constructor ========================================================================================================
 
@@ -39,6 +41,16 @@ public class Player extends User {
     }
 
     // Public Methods =====================================================================================================
+
+    // Method to add a challenge
+    public void addChallenge(Challenge challenge) {
+        this.challenges.add(challenge);
+    }
+
+    // Method to check if the player has at least one challenge
+    public boolean hasChallenges() {
+        return !this.challenges.isEmpty();
+    }
 
     // Method to get the score
     public int getScore() {
@@ -116,5 +128,13 @@ public class Player extends User {
 
     public void setWeapons(Weapon[] weapons) {
         this.weapons = weapons;
+    }
+
+    public List<Challenge> getChallenges() {
+        return challenges;
+    }
+
+    public void setChallenges(List<Challenge> challenges) {
+        this.challenges = challenges;
     }
 }

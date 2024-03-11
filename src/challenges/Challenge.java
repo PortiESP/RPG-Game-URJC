@@ -22,6 +22,17 @@ public class Challenge {
         this.winner = null;
     }
 
+    // Public Methods =====================================================================================================
+
+    // Method to get the opponent
+    public Player getOpponent(Player player) {
+        if (player.equals(this.players[0])) {
+            return this.players[1];
+        } else {
+            return this.players[0];
+        }
+    }
+
     // Getters & Setters ==================================================================================================
     public int getGold() {
         return gold;

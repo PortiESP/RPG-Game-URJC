@@ -150,6 +150,12 @@ public class Game {
         // Get the user data
         String [] userData = this.getUserData();
 
+        // Check if the username is already taken
+        while (this.isUsernameTaken(userData[0])) {
+            MenuBuilder.alert("Username Taken", "The username is already taken. Please try again.");
+            userData = this.getUserData();
+        }
+
         // Ask for the user type Player (1) || Admin (2)
         int userType = this.getUserType();
 
@@ -173,6 +179,15 @@ public class Game {
         }
 
         return data;
+    }
+
+    // Method to check if the username is already taken
+    private boolean isUsernameTaken(String username) {
+        for (User user : this.users) {
+            if (user.getName().equals(username)) return true;
+        }
+
+        return false;
     }
 
     // Method to get the user type Player (1) || Admin (2)

@@ -1,0 +1,25 @@
+# Developing Notes and TODOs
+- [ ] Search a way to offer a default weapons set.
+- [ ] Search a way to offer a default armor set.
+- [ ] Make a player to select a character selection when registering.
+- [ ] Implement battle system.
+- [ ] Check the way the score is calculated.
+- [ ] Implement a way to manage account settings.
+  - [ ] Change password.
+  - [ ] Change name.
+  - [ ] Change nickname.
+- [ ] Implement Player menu.
+  - [ ] Challenge a player.
+  - [ ] Modify active equipment.
+  - [X] Change character.
+  - [X] Check battle history.
+  - [X] Check ranking.
+  - [ ] Manage account settings.
+  - [X] Sign off.
+- [ ] Implement Admin menu.
+  - [ ] Manage users.
+  - [ ] Manage characters.
+  - [ ] Manage challenges.
+  - [ ] Check ranking.
+  - [ ] Manage account settings.
+  - [ ] Sign off.

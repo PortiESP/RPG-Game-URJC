@@ -311,16 +311,19 @@ public class Game {
     // Method to manage the users
     private void manageUsers() {
         System.out.println("Managing Users...");
+        // TODO: Implement the manageUsers method
     }
 
     // Method to manage the characters
     private void manageCharacters() {
         System.out.println("Managing Characters...");
+        // TODO: Implement the manageCharacters method
     }
 
     // Method to manage the challenges
     private void manageChallenges() {
         System.out.println("Managing Challenges...");
+        // TODO: Implement the manageChallenges method
     }
 
     // General Logged Methods =============================================================================================

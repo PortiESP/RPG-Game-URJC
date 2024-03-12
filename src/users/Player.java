@@ -17,13 +17,14 @@ public class Player extends User {
     private long lastLostFight;
     private CharacterSelection currentCharacter;
     private Armor armor;
-    private Weapon [] weapons = new Weapon[2];
+    private Weapon[] weapons = new Weapon[2];
     private List<Challenge> challenges = new ArrayList<>();
 
     // Constructor ========================================================================================================
 
     // Zero Constructor
-    public Player() {}
+    public Player() {
+    }
 
     // Constructor with parameters
     public Player(String name, String nick, String password, String id) {
@@ -130,6 +131,7 @@ public class Player extends User {
         this.weapons = weapons;
     }
 
+    // TODO: Implement as an iterator
     public List<Challenge> getChallenges() {
         return challenges;
     }

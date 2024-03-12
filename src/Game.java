@@ -8,6 +8,13 @@ import src.equipment.*;
 import src.characters.*;
 import utils.*;
 
+/**
+ * Main class of the game.
+ * 
+ * <p>
+ * Its main purpose is to create a new Game object and call the {@Code play()} method to start the game.
+ * </p>
+ */
 public class Game {
     private List<User> users = new ArrayList<>();
     private User loggedUser = null;
@@ -15,12 +22,23 @@ public class Game {
     private List<Armor> armorsAvailable = new ArrayList<>();
     private List<Weapon> weaponsAvailable = new ArrayList<>();
 
-    // Constructor ========================================================================================================
-    public Game() {}
+    // ============================================================================================[ Constructor ]>>>
+    public Game() {
+    }
 
-    // Public Methods =====================================================================================================
+    // ============================================================================================[ Public Methods ]>>>
 
-    // Method to play the game
+    /**
+     * Method to play the game.
+     * 
+     * <p>
+     * This method is the main loop of the game. Firstly, it will load the game and then start a loop where it will print the main, and save the game.
+     * </p>
+     * 
+     * @see #load()
+     * @see #menu()
+     * @see #save()
+     */
     public void play() {
         // Load the game
         this.load();
@@ -30,24 +48,51 @@ public class Game {
         while (true) {
             // Print the menu
             this.menu();
-        
+
             // Save the game
             this.save();
         }
     }
 
-    // Private Methods ====================================================================================================
+    // ============================================================================================[ Private Methods ]>>>
 
-    // Method to load the game
+    /**
+     * Method to load the game
+     * 
+     * <p>
+     * This method will read the game from a file determined by the {@Code Const.DATA_PATH} constant. 
+     * If the file does not exist, it will create a new game. If the file exists, it will replace the game settings.
+     * </p>
+     * 
+     * @see FileManager#readFile(String)
+     * @see #replaceSettings(Game)
+     * 
+     */
     private void load() {
         // Load the game from the file
         Game game = FileManager.readFile(Const.DATA_PATH);
 
         // Replace the game settings
-        if (game != null) this.replaceSettings(game);
+        if (game != null)
+            this.replaceSettings(game);
     }
 
-    // Method to replace the game settings
+    /**
+     * Method to replace the game settings
+     * 
+     * <p>
+     * This method will replace the game settings with the settings of the game passed as a parameter.
+     * This method is used after loading the game from a file, this method will take the {@Code game} object 
+     * readed from the file and replace the settings of the current game with the settings of the readed game.
+     * </p>
+     * 
+     * @param game The game to replace the settings with.
+     * 
+     * @see #setUsers(List)
+     * @see #setChallenges(List)
+     * @see #setArmorsAvailable(List)
+     * @see #setWeaponsAvailable(List)
+     */
     private void replaceSettings(Game game) {
         // Set the game attributes
         this.setUsers(game.getUsers());
@@ -56,13 +101,34 @@ public class Game {
         this.setWeaponsAvailable(game.getWeaponsAvailable());
     }
 
-    // Method to save the game
+    /**
+     * Method to save the game
+     * 
+     * <p>
+     * This method will save the game to a file determined by the {@Code Const.DATA_PATH} constant.
+     * </p>
+     * 
+     * @see FileManager#saveFile(Game)
+     *
+     */
     private void save() {
         // Save the game to the file
         FileManager.saveFile(this);
     }
 
-    // Method to print the main menu
+    /**
+     * Method to print the main menu
+     * 
+     * <p>
+     * This method will print the main menu of the game. The options of the menu will depend on the user type.
+     * </p>
+     * 
+     * @see #notLoggedMenu()
+     * @see #loggedPlayerMenu()
+     * @see #loggedAdminMenu()
+     * 
+     * // TODO: Refactor this method to use the State Pattern
+     */
     private void menu() {
         if (this.loggedUser == null)
             this.notLoggedMenu();
@@ -71,115 +137,260 @@ public class Game {
         else if (this.loggedUser instanceof Admin)
             this.loggedAdminMenu();
     }
-    
-    // Method to print the not logged menu options
+
+    /**
+     * Method to print the not logged menu options
+     * 
+     * <p>
+     * This method will print the menu for users not currently logged in. The options are: Login, Register, and Exit.
+     * </p>
+     * 
+     * @see MenuBuilder#menu(String, String[])
+     * @see #login()
+     * @see #register()
+     * @see System#exit(int)
+     * 
+     */
     private void notLoggedMenu() {
-        String [] options = {"Login", "Register", "Exit"};
+        // Prepare the options, print the menu and get the answer
+        String[] options = { "Login", "Register", "Exit" };
         int answer = MenuBuilder.menu("Welcome to RPG Game", options);
 
-        if (answer == 1) this.login();
-        else if (answer == 2) this.register();
-        else System.exit(0);
+        // Determine the action to take depending on the answer
+        if (answer == 1)
+            this.login();
+        else if (answer == 2)
+            this.register();
+        else
+            System.exit(0);
     }
 
-    // Method to print the logged admin menu options
+    /**
+     * Method to print the logged player menu options
+     * 
+     * <p>
+     * This method will print the menu for players currently logged in. <br/>
+     * The options are:
+     * <ul>
+     * <li>{@link #challenge() Challenge}</li>
+     * <li>{@link #modifyActiveEquipment() Modify Active Equipment}</li>
+     * <li>{@link #changeCharacter() Change Character}</li>
+     * <li>{@link #checkBattleHistory() Battle History}</li>
+     * <li>{@link #checkRanking() Ranking}</li>
+     * <li>{@link #manageAccount() Manage Account}</li>
+     * <li>{@link #logOut() Log Out}</li>
+     * </ul>
+     * </p>
+     * 
+     */
     private void loggedPlayerMenu() {
-        String [] options = {"Challenge", "Modify Active Equipment", "Change Character", "Battle History", "Ranking", "Manage Account", "Log Out"};
+        // Prepare the options, print the menu and get the answer
+        String[] options = { "Challenge", "Modify Active Equipment", "Change Character", "Battle History", "Ranking",
+                "Manage Account", "Log Out" };
         String nickName = this.loggedUser.getNick();
         int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
 
-        if (answer == 1) this.challenge();
-        else if (answer == 2) this.modifyActiveEquipment();
-        else if (answer == 3) this.changeCharacter();
-        else if (answer == 4) this.checkBattleHistory();
-        else if (answer == 5) this.checkRanking();
-        else if (answer == 6) this.manageAccount();
-        else this.signOff();
+        // Determine the action to take depending on the answer
+        if (answer == 1)
+            this.challenge();
+        else if (answer == 2)
+            this.modifyActiveEquipment();
+        else if (answer == 3)
+            this.changeCharacter();
+        else if (answer == 4)
+            this.checkBattleHistory();
+        else if (answer == 5)
+            this.checkRanking();
+        else if (answer == 6)
+            this.manageAccount();
+        else
+            this.logOut();
     }
 
-    // Method to print the logged player menu options
+    /**
+     * Method to print the logged admin menu options
+     * 
+     * <p>
+     * This method will print the menu for admins currently logged in. <br/>
+     * The options are:
+     * <ul>
+     * <li>{@link #manageUsers() Manage Users}</li>
+     * <li>{@link #manageCharacters() Manage Characters}</li>
+     * <li>{@link #manageChallenges() Manage Challenges}</li>
+     * <li>{@link #checkRanking() Ranking}</li>
+     * <li>{@link #manageAccount() Manage Account}</li>
+     * <li>{@link #logOut() Log Out}</li>
+     * </ul>
+     * </p>
+     */
     private void loggedAdminMenu() {
-        String [] options = {"Manage Users", "Manage Characters", "Manage Challenges", "Check Ranking", "Manage Account", "Log Out"};
+        // Prepare the options, print the menu and get the answer
+        String[] options = { "Manage Users", "Manage Characters", "Manage Challenges", "Check Ranking",
+                "Manage Account", "Log Out" };
         String nickName = this.loggedUser.getNick();
         int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
 
-        if (answer == 1) this.manageUsers();
-        else if (answer == 2) this.manageCharacters();
-        else if (answer == 3) this.manageChallenges();
-        else if (answer == 4) this.checkRanking();
-        else if (answer == 5) this.manageAccount();
-        else this.signOff();
+        // Determine the action to take depending on the answer
+        if (answer == 1)
+            this.manageUsers();
+        else if (answer == 2)
+            this.manageCharacters();
+        else if (answer == 3)
+            this.manageChallenges();
+        else if (answer == 4)
+            this.checkRanking();
+        else if (answer == 5)
+            this.manageAccount();
+        else
+            this.logOut();
     }
 
-    // Login Methods ======================================================================================================
+    // ============================================================================================[ Login Methods ]>>>
 
-    // Method to login the user by credentials
+    /**
+     * Method to login the user by credentials
+     * 
+     * <p>
+     * This method will ask the user for the credentials and then retrieve the user by credentials. <br/>
+     * If the credentials are invalid, it will alert the user and ask if they want to try again. <br/>
+     * If the credentials are valid, it will set the attribute {@Code loggedUser} with the user retrieved.
+     * </p>
+     * 
+     * @see #getUserCredentials()
+     * @see #retrUser(String, String)
+     * @see #validateUser(User, String, String)
+     * @see MenuBuilder#alert(String, String)
+     * @see MenuBuilder#askYesNo(String)
+     * 
+     */
     private void login() {
+        // Loop until the user is logged
         while (this.loggedUser == null) {
             // Get the user credentials
-            String [] credentials = this.getUserCredentials();
+            String[] credentials = this.getUserCredentials();
 
             // Retrieve the user by credentials
             User user = this.retrUser(credentials[0], credentials[1]);
 
-            // Alert the user if the credentials are invalid || Set the logged user if the credentials are valid
-            if (user == null) {
+            // Validate the user
+            if (user == null) { // Alert the user and ask if they want to try again
                 MenuBuilder.alert("Invalid Credentials", "The username or password are invalid. Please try again.");
                 boolean answer = MenuBuilder.askYesNo("Do you want to try again?");
-                if (!answer) break;
+                if (!answer) {
+                    break;
+                }
 
-            } else this.setLoggedUser(user);
+            } else { // Set the logged user
+                this.setLoggedUser(user);
+            }
         }
     }
 
-    // Method to get the user credentials
+    /**
+     * Method to read the user credentials
+     * 
+     * <p>
+     * This method will ask the user for the credentials, <em>username</em> and <em>password</em>, and return them as an array of strings.
+     * </p>
+     * 
+     * @return An array of strings with the user credentials: {@Code [username, password]}.
+     */
     private String[] getUserCredentials() {
-        String [] labels = {"Username", "Password"};
+        String[] labels = { "Username", "Password" };
         return MenuBuilder.form("Login", labels);
     }
 
-    // Method to retrieve the user by credentials
+    /**
+     * Method to retrieve the logged user by its credentials
+     * 
+     * <p>
+     * This method will look for the user by its credentials. If the user is found, it will return the user. If the user is not found, it will return null.
+     * </p>
+     * 
+     * @param username Username of the user we want to retrieve
+     * @param password Password of the user we want to retrieve
+     * @return The user retrieved by its credentials. If the user is not found, it will return null.
+     * @see #validateUser(User, String, String)
+     */
     private User retrUser(String username, String password) {
         for (User user : this.users) {
-            if (validateUser(user, username, password)) return user;
+            if (validateUser(user, username, password)) {
+                return user;
+            }
         }
 
         return null;
     }
 
-    // Method to validate the user credentials
+    /**
+     * Method to validate the user credentials
+     * 
+     * <p>
+     * This method will validate the user credentials. It will check if the username and password entered by the input, match the given user credentials.
+     * </p>
+     * 
+     * @param user The user to validate
+     * @param username The username to validate against the user
+     * @param password The password to validate against the user
+     * @return True if the username and password match the user credentials. False otherwise.
+     */
     private boolean validateUser(User user, String username, String password) {
         return user.getName().equals(username) && user.getPassword().equals(password);
     }
 
-    // Register Methods ===================================================================================================
+    // ============================================================================================[ Register Methods ]>>>
 
-    // Method to register a new user
+    /**
+     * Method to register a new user
+     * 
+     * <p>
+     * This method will ask the user for the data to register a new user. <br/>
+     * It will check if the username is already taken. If the username is already taken, it will alert the user and ask for the data again. <br/>
+     * If the username is not taken, it will ask for the user type, create the user, and add it to the users list.
+     * </p>
+     * 
+     * @see #isUsernameTaken(String)
+     * @see #createUser(String[], int)
+     * @see #generatePlayerId()
+     * @see #readUserData()
+     * @see #readUserType()
+     * @see MenuBuilder#alert(String, String)
+     * @see MenuBuilder#form(String, String[])
+     * @see MenuBuilder#menu(String, String[])
+     * 
+     */
     private void register() {
-        // Get the user data
-        String [] userData = this.getUserData();
+        // Read the new user data from the input
+        String[] userData = this.readUserData();
 
-        // Check if the username is already taken
+        // Check if the username is already taken, if so, ask for the data again
         while (this.isUsernameTaken(userData[0])) {
             MenuBuilder.alert("Username Taken", "The username is already taken. Please try again.");
-            userData = this.getUserData();
+            userData = this.readUserData();
         }
 
-        // Ask for the user type Player (1) || Admin (2)
-        int userType = this.getUserType();
+        // Ask for the new user type: Player (1) || Admin (2)
+        int userType = this.readUserType();
 
-        // Create the user
+        // Create the new user
         User user = this.createUser(userData, userType);
 
-        // Add the user to the users list
+        // Add the new user to the users list
         this.users.add(user);
     }
 
-    // Method to get the user data
-    private String[] getUserData() {
+    /**
+     * Method print and validate the form to register a new user
+     * 
+     * <p>
+     * This method will print a form to register a new user and then validate the data entered by the user if the password and confirm password match.
+     * </p>
+     * @return An array of strings with the user data: {@Code [username, nick, password, confirm password]}.
+     */
+    private String[] readUserData() {
         // Get basic user data
-        String [] labels = {"Username", "Nick", "Password", "Confirm Password"};
-        String [] data = MenuBuilder.form("Register", labels);
+        String[] labels = { "Username", "Nick", "Password", "Confirm Password" };
+        String[] data = MenuBuilder.form("Register", labels);
 
         // Validate the password
         while (!data[2].equals(data[3])) {
@@ -190,27 +401,61 @@ public class Game {
         return data;
     }
 
-    // Method to check if the username is already taken
+    /**
+     * Method to check if the username is already taken
+     * 
+     * <p>
+     * This method will check if the username is already taken. It will look for the username in the users list.
+     * </p>
+     * 
+     * @param username The username to check if it is already taken
+     * @return True if the username is already taken. False otherwise.
+     */
     private boolean isUsernameTaken(String username) {
         for (User user : this.users) {
-            if (user.getName().equals(username)) return true;
+            if (user.getName().equals(username))
+                return true;
         }
 
         return false;
     }
 
+    /**
+     * Method to print a menu to select the user type
+     * 
+     * <p>
+     * This method will print a menu to select the user type among two options: Player (1) or Admin (2), and return the answer.
+     * </p>
+     * 
+     * @return The user type selected: Player (1) or Admin (2).
+     */
     // Method to get the user type Player (1) || Admin (2)
-    private int getUserType() {
-        String [] options = {"Player", "Admin"};
+    private int readUserType() {
+        String[] options = { "Player", "Admin" };
         return MenuBuilder.menu("Select User Type", options);
     }
 
-    // Method to create the user
+    /**
+     * Method to create a new user
+     * 
+     * <p>
+     * This method will create a new user depending on the user type selected. <br/>
+     * If the user type is 1, it will create a new player. If the user type is 2, it will create a new admin.
+     * </p>
+     * 
+     * @param userData The user data to create the user {@Code [username, nick, password]}
+     * @param userType The user type to create the user {@Code 1: Player, 2: Admin}
+     * @return The new user created.
+     * @see #generatePlayerId()
+     */
     private User createUser(String[] userData, int userType) {
-        if (userType == 1) return new Player(userData[0], userData[1], userData[2], this.generatePlayerId());
-        else return new Admin(userData[0], userData[1], userData[2]);
+        if (userType == 1)
+            return new Player(userData[0], userData[1], userData[2], this.generatePlayerId());
+        else
+            return new Admin(userData[0], userData[1], userData[2]);
     }
 
+    // TODO Document this method, explain the process of generating the player id in detail
     // Method to generate the plaer id
     private String generatePlayerId() {
         int usersSize = this.users.size();
@@ -219,7 +464,7 @@ public class Game {
         return "P" + (usersSize) + "A" + (char) (65 + usersSize) + (char) (65 + usersSize) + (usersSize + 1);
     }
 
-    // Logged Player Methods ==============================================================================================
+    // ============================================================================================[ Logged Player Methods ]>>>
 
     // Method to challenge another player
     private void challenge() {
@@ -233,81 +478,93 @@ public class Game {
         // TODO: Implement the modifyActiveEquipment method
     }
 
+    /**
+     * Method to change the character
+     * 
+     * <p>
+     * This method will change the character of the player. It will print the current character selection and then print a menu to select the new character. <br/>
+     * </p>
+     * 
+     */
     // Method to change the character
     private void changeCharacter() {
+        // Get the current player object
         Player player = (Player) this.loggedUser;
-        
-        // Get the character selection
-        CharacterSelection characterSelection = player.getCurrentCharacter();
+
+        // Get the character of the player
+        CharacterSelection playerCharacter = player.getCurrentCharacter();
 
         // Print the current character selection
-        String output = "Your current character is " + characterSelection + ".";
+        String output = "Your current character is " + playerCharacter + ".";
         MenuBuilder.alert("Current Character", output);
 
-        // Generate the character options
-        String [] options = new String[CharacterSelection.values().length];
-
+        // Generate the character options [LYCANTHROPE, VAMPIRE, HUNTER]
+        String[] options = new String[CharacterSelection.values().length];
         for (int i = 0; i < CharacterSelection.values().length; i++) {
             options[i] = CharacterSelection.values()[i].toString();
         }
-
         // Set menu title
         String title = "Change Character";
-
         // Print the character selection menu and get the answer
         int answer = MenuBuilder.menu(title, options);
 
         // Get the character selected from the menu
-        CharacterSelection selection = CharacterSelection.values()[answer - 1];
+        CharacterSelection selectedCharacter = CharacterSelection.values()[answer - 1];
 
-        // Format the string question
-        if (characterSelection == null) {
-            output = "%s has been selected.";
-            output = String.format(output, selection.toString());
+        // Inform the user of the character selected
+        output = "%s has been selected.";
+        output = String.format(output, selectedCharacter.toString());
 
-        } else if (characterSelection == selection) {
-            output = "Your character has not been changed. You are still %s.";
-            output = String.format(output, selection.toString());
-
-        } else {
-            output = "Your character has been changed from %s to %s.";
-            output = String.format(output, characterSelection, selection.toString());
-        }
-        
         // Print an alert message with the result of the operation
-        MenuBuilder.alert(title, (output));
+        MenuBuilder.alert(title, output);
 
         // Set the new character selection
-        player.setCurrentCharacter(selection);
+        player.setCurrentCharacter(selectedCharacter);
     }
 
-    // Method to check the battle history
+    /**
+     * Method to check the battle history
+     * 
+     * <p>
+     * This method will check the battle history of the player. It will print the battle history of the player.
+     * </p>
+     * 
+     * @see Player#hasChallenges()
+     * @see Player#getChallenges()
+     * @see Challenge#getOpponent(Player)
+     * @see Challenge#getWinner()
+     * @see MenuBuilder#doc(String, String[])
+     * 
+     */
     private void checkBattleHistory() {
+        // Get the current player object
         Player player = (Player) this.loggedUser;
 
-        // Check if the user has at least one battle
+        // Check if the user has at least one battle, if not, alert the user and return
         if (!player.hasChallenges()) {
             MenuBuilder.alert("No Battle History", "You have not participated in any battle yet.");
             return;
         }
 
-        // Create the battle history data table
-        String [] data = new String[player.getChallenges().size()];
-
+        // Create the battle history report
+        String[] data = new String[player.getChallenges().size()];
+        // Fill the data array with the battle history
         for (int i = 0; i < player.getChallenges().size(); i++) {
+            // Get a certain challenge
             Challenge challenge = player.getChallenges().get(i);
+
+            // Get the result of the challenge
             String result = "TIE";
             if (challenge.getResult() != null)
                 result = challenge.getWinner() == player ? "WIN" : "LOSE";
-            data[i] = challenge.getOpponent(player).getNick() + " ->> " + result;
+            data[i] = challenge.getOpponent(player).getNick() + " --> " + result;
         }
 
         // Print the battle history
         MenuBuilder.doc("Battle History", data);
     }
 
-    // Logged Admin Methods ===============================================================================================
-
+    // ============================================================================================[ Logged Admin Methods ]>>>
     // Method to manage the users
     private void manageUsers() {
         System.out.println("Managing Users...");
@@ -326,28 +583,35 @@ public class Game {
         // TODO: Implement the manageChallenges method
     }
 
-    // General Logged Methods =============================================================================================
+    // ============================================================================================[ General Logged Methods ]>>> 
 
     // Method to check the ranking
     private void checkRanking() {
-        // Sort the users by score
+        // Sort the users by their score
         this.users.sort((u1, u2) -> u2.getScore() - u1.getScore());
 
         // Create the ranking data table
-        String [] data = new String[this.users.size()];
-
+        String[] data = new String[this.users.size()];
+        // Fill the data array with the ranking
+        // TODO: Refactor this loop to use a the iterator syntax: `for (User user : this.users)`, the resize the data array to fit the size of the users list
         for (int i = 0; i < this.users.size(); i++) {
+            // Get a certain user
             User user = this.users.get(i);
 
-            if (user instanceof Admin) {
-                data[i] = user.getNick() + user.getName() + " ->> ADMIN";
-
+            // Print the 
+            if (user instanceof Admin) { // If the user is an admin, print the user data with the ADMIN tag
+                // TODO: Refactor this to avoid printing admin users in the ranking
+                data[i] = user.getNick() + user.getName() + " --> ADMIN";
             } else {
+                // If the user is a player, print the user Nick and score as: `Nick#Id --> Score`
                 Player player = (Player) user;
                 String playerData = player.getNick() + "#" + player.getId();
 
-                if (player.isBanned()) data[i] = playerData + " ->> BANNED";
-                else data[i] = playerData + " ->> " + player.getScore();
+                // If the player is banned, print the user data with the BANNED tag, otherwise, print the user data with the score
+                if (player.isBanned())
+                    data[i] = playerData + " --> BANNED";
+                else
+                    data[i] = playerData + " --> " + player.getScore();
             }
         }
 
@@ -355,33 +619,59 @@ public class Game {
         MenuBuilder.doc("Ranking", data);
     }
 
-    // Method to manage the account settings
+    /**
+     * Method to manage the account settings
+     * 
+     * <p>
+     * This method will print a menu to manage the account settings. The options are: Change Nick, Change Password, Delete Account, and Back.
+     * </p>
+     * 
+     * @see #changeNick()
+     * @see #changePassword()
+     * @see #deleteAccount()
+     * @see MenuBuilder#menu(String, String[])
+     * 
+     */
     private void manageAccount() {
         int answer = 0;
-        
+
         while (answer != 4) {
-            String [] options = {"Change Nick", "Change Password", "Delete Account", "Back"};
+            String[] options = { "Change Nick", "Change Password", "Delete Account", "Back" };
             answer = MenuBuilder.menu("Account Settings", options);
-            if (answer == 1) this.changeNick();
-            else if (answer == 2) this.changePassword();
-            else if (answer == 3) this.deleteAccount();
+            if (answer == 1)
+                this.changeNick();
+            else if (answer == 2)
+                this.changePassword();
+            else if (answer == 3)
+                this.deleteAccount();
         }
     }
 
-    // Method to change the nick
+    /**
+     * Method to change the nick of the user
+     * 
+     * <p>
+     * This method will change the nick of the user. It will ask the user for the new nick and then set the new nick to the user.
+     * </p>
+     */
     private void changeNick() {
-        String [] labels = {"New Nick"};
-        String[] data = MenuBuilder.form("Change Nick", labels);
+        String data = MenuBuilder.readString("Change Nick");
 
-        if (data[0] != null) {
-            this.loggedUser.setNick(data[0]);
+        if (data != null) {
+            this.loggedUser.setNick(data);
             MenuBuilder.alert("Nick Changed", "Your nick has been changed successfully.");
         }
     }
 
-    // Method to change the password
+    /**
+     * Method to change the password of the user
+     * 
+     * <p>
+     * This method will change the password of the user. It will ask the user for the new password and then set the new password to the user.
+     * </p>
+     */
     private void changePassword() {
-        String [] labels = {"New Password", "Confirm Password"};
+        String[] labels = { "New Password", "Confirm Password" };
         String[] data = MenuBuilder.form("Change Password", labels);
 
         if (data[0].equals(data[1])) {
@@ -394,50 +684,74 @@ public class Game {
         }
     }
 
-    // Method to delete the account
+    /**
+     * Method to delete the account
+     * 
+     * <p>
+     * This method will delete the account of the user. It will ask the user if they are sure they want to delete the account. <br/>
+     * If the user is sure, it will remove the user from the users list and then log out the user.
+     * </p>
+     * 
+     * @see #logOut()
+     */
     private void deleteAccount() {
         boolean answer = MenuBuilder.askYesNo("Are you sure you want to delete your account?");
 
         if (answer) {
             this.users.remove(this.loggedUser);
-            this.signOff();
+            this.logOut();
             MenuBuilder.alert("Account Deleted", "Your account has been deleted successfully.");
         }
     }
 
-    // Method to sign off
-    private void signOff() {
+    /**
+     * Method to log out the user
+     * 
+     * <p>
+     * This method will log out the user. It will set the attribute {@Code loggedUser} to null.
+     * </p>
+     */
+    private void logOut() {
         this.loggedUser = null;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public List<User> getUsers() {
         return users;
     }
+
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
     public User getLoggedUser() {
         return loggedUser;
     }
+
     public void setLoggedUser(User loggedUser) {
         this.loggedUser = loggedUser;
     }
+
     public List<Challenge> getChallenges() {
         return challenges;
     }
+
     public void setChallenges(List<Challenge> challenges) {
         this.challenges = challenges;
     }
+
     public List<Armor> getArmorsAvailable() {
         return armorsAvailable;
     }
+
     public void setArmorsAvailable(List<Armor> armorsAvailable) {
         this.armorsAvailable = armorsAvailable;
     }
+
     public List<Weapon> getWeaponsAvailable() {
         return weaponsAvailable;
     }
+
     public void setWeaponsAvailable(List<Weapon> weaponsAvailable) {
         this.weaponsAvailable = weaponsAvailable;
     }

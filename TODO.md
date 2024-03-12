@@ -4,10 +4,10 @@
 - [ ] Make a player to select a character selection when registering.
 - [ ] Implement battle system.
 - [ ] Check the way the score is calculated.
-- [ ] Implement a way to manage account settings.
-  - [ ] Change password.
-  - [ ] Change name.
-  - [ ] Change nickname.
+- [X] Implement a way to manage account settings.
+  - [X] Change password.
+  - [X] Change name.
+  - [X] Change nickname.
 - [ ] Implement Player menu.
   - [ ] Challenge a player.
   - [ ] Modify active equipment.

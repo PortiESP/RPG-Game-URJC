@@ -10,6 +10,7 @@
 - [ ] Search a way to offer a default armor set.
 - [ ] Make a player to select a character selection when registering.
 - [ ] Implement battle system.
+  - [ ] Implement the notification system.
 - [ ] Check the way the score is calculated.
 - [X] Implement a way to manage account settings.
   - [X] Change password.

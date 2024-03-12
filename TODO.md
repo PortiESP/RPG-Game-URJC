@@ -20,6 +20,6 @@
   - [ ] Manage users.
   - [ ] Manage characters.
   - [ ] Manage challenges.
-  - [ ] Check ranking.
-  - [ ] Manage account settings.
-  - [ ] Sign off.
+  - [X] Check ranking.
+  - [X] Manage account settings.
+  - [X] Sign off.

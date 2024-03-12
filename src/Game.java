@@ -99,7 +99,16 @@ public class Game {
 
     // Method to print the logged player menu options
     private void loggedAdminMenu() {
-        System.out.println("Logged Admin Menu");
+        String [] options = {"Manage Users", "Manage Characters", "Manage Challenges", "Check Ranking", "Manage Account", "Log Out"};
+        String nickName = this.loggedUser.getNick();
+        int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
+
+        if (answer == 1) this.manageUsers();
+        else if (answer == 2) this.manageCharacters();
+        else if (answer == 3) this.manageChallenges();
+        else if (answer == 4) this.checkRanking();
+        else if (answer == 5) this.manageAccount();
+        else this.signOff();
     }
 
     // Login Methods ======================================================================================================
@@ -296,6 +305,25 @@ public class Game {
         // Print the battle history
         MenuBuilder.doc("Battle History", data);
     }
+
+    // Logged Admin Methods ===============================================================================================
+
+    // Method to manage the users
+    private void manageUsers() {
+        System.out.println("Managing Users...");
+    }
+
+    // Method to manage the characters
+    private void manageCharacters() {
+        System.out.println("Managing Characters...");
+    }
+
+    // Method to manage the challenges
+    private void manageChallenges() {
+        System.out.println("Managing Challenges...");
+    }
+
+    // General Logged Methods =============================================================================================
 
     // Method to check the ranking
     private void checkRanking() {

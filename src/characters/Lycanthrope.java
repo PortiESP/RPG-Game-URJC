@@ -9,8 +9,8 @@ import src.modifiers.Modifier;
 public class Lycanthrope extends Character {
     private int rage;
     private Don don;
-    
-    // Constructor ========================================================================================================
+
+    // ============================================================================================[ Constructor ]>>>
     public Lycanthrope(String name, int health, int power, Modifier[] modifiers, Minion[] minions,
             Equipment[] equipment, int rage, Don don) {
         super(name, health, power, modifiers, minions, equipment);
@@ -34,6 +34,5 @@ public class Lycanthrope extends Character {
     public void setDon(Don don) {
         this.don = don;
     }
-    
-    
+
 }

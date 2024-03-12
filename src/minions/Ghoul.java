@@ -2,8 +2,8 @@ package src.minions;
 
 public class Ghoul extends Minion {
     private int dependency;
-    
-    // Constructor ========================================================================================================
+
+    // ============================================================================================[ Constructor ]>>>
     public Ghoul(String name, int health, int dependency) {
         super(name, health);
         this.dependency = dependency;
@@ -17,5 +17,5 @@ public class Ghoul extends Minion {
     public void setDependency(int dependency) {
         this.dependency = dependency;
     }
-    
+
 }

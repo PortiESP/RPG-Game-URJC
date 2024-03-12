@@ -2,8 +2,8 @@ package src.modifiers;
 
 public class Strength extends Modifier {
     private int effectiveness;
-    
-    // Constructor ========================================================================================================
+
+    // ============================================================================================[ Constructor ]>>>
     public Strength(String name, int effectiveness) {
         super(name);
         this.effectiveness = effectiveness;
@@ -14,10 +14,8 @@ public class Strength extends Modifier {
         return effectiveness;
     }
 
-
     public void setEffectiveness(int effectiveness) {
         this.effectiveness = effectiveness;
     }
 
-    
 }

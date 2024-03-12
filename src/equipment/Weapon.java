@@ -3,7 +3,7 @@ package src.equipment;
 public class Weapon extends Equipment {
     private int handsRequired;
 
-    // Constructor ========================================================================================================
+    // ============================================================================================[ Constructor ]>>>
     public Weapon(String name, int attackModifier, int defenseModifier, int handsRequired) {
         super(name, attackModifier, defenseModifier);
         this.handsRequired = handsRequired;

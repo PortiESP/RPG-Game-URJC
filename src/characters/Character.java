@@ -13,8 +13,9 @@ public abstract class Character {
     private Minion[] minions;
     private Equipment[] equipment;
 
-    // Constructor ========================================================================================================
-    public Character(String name, int health, int power, Modifier[] modifiers, Minion[] minions, Equipment[] equipment) {
+    // ============================================================================================[ Constructor ]>>>
+    public Character(String name, int health, int power, Modifier[] modifiers, Minion[] minions,
+            Equipment[] equipment) {
         this.name = name;
         this.health = health;
         this.power = power;
@@ -22,16 +23,17 @@ public abstract class Character {
         this.minions = minions;
         this.equipment = equipment;
     }
-    
-    // Public Methods =====================================================================================================
-    public void attack(Character Character){}
-    public boolean hasActiveEquipment(){
+
+    // ============================================================================================[ Public Methods ]>>>
+    public void attack(Character Character) {
+    }
+
+    public boolean hasActiveEquipment() {
         return true;
     }
 
-
-    // Private Methods ====================================================================================================
-    public int calculateAttackPower(){
+    // ============================================================================================[ Private Methods ]>>>
+    public int calculateAttackPower() {
         return -1;
     }
 
@@ -83,6 +85,5 @@ public abstract class Character {
     public void setEquipment(Equipment[] equipment) {
         this.equipment = equipment;
     }
-    
-       
+
 }

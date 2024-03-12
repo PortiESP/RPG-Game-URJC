@@ -20,7 +20,7 @@ public class Player extends User {
     private Weapon[] weapons = new Weapon[2];
     private List<Challenge> challenges = new ArrayList<>();
 
-    // Constructor ========================================================================================================
+    // ============================================================================================[ Constructor ]>>>
 
     // Zero Constructor
     public Player() {
@@ -41,7 +41,7 @@ public class Player extends User {
         this.weapons[1] = null;
     }
 
-    // Public Methods =====================================================================================================
+    // ============================================================================================[ Public Methods ]>>>
 
     // Method to add a challenge
     public void addChallenge(Challenge challenge) {

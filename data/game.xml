@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="21.0.1" class="java.beans.XMLDecoder">
- <object class="src.Game"/>
+<java version="20.0.2" class="java.beans.XMLDecoder">
+ <object class="src.Game" id="Game0">
+  <void property="loggedUser">
+   <object class="src.users.Player" id="Player0">
+    <void property="gold">
+     <int>500</int>
+    </void>
+    <void property="id">
+     <string>P0AAA1</string>
+    </void>
+    <void property="name">
+     <string>pepe</string>
+    </void>
+    <void property="nick">
+     <string>pedrod</string>
+    </void>
+    <void property="password">
+     <string>123</string>
+    </void>
+   </object>
+  </void>
+  <void property="users">
+   <void method="add">
+    <object idref="Player0"/>
+   </void>
+  </void>
+ </object>
 </java>

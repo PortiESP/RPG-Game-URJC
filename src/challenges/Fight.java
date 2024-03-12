@@ -7,10 +7,11 @@ public class Fight {
     private int rounds;
     private String date;
 
-    // Constructor ========================================================================================================
-    public Fight() {}
+    // ============================================================================================[ Constructor ]>>>
+    public Fight() {
+    }
 
-    // Public Methods =====================================================================================================
+    // ============================================================================================[ Public Methods ]>>>
 
     // Method to generate a fight between two players and return the winner
     public Player generateFight(Player player1, Player player2) {

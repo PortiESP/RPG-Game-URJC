@@ -7,11 +7,11 @@ public class Challenge {
     private int gold;
     private boolean accepted;
     private boolean approved;
-    private Player [] players = new Player[2];
+    private Player[] players = new Player[2];
     private Fight result;
     private Player winner;
 
-    // Constructor ========================================================================================================
+    // ============================================================================================[ Constructor ]>>>
     public Challenge(Player player1, Player player2, int gold) {
         this.gold = gold;
         this.accepted = false;
@@ -22,7 +22,7 @@ public class Challenge {
         this.winner = null;
     }
 
-    // Public Methods =====================================================================================================
+    // ============================================================================================[ Public Methods ]>>>
 
     // Method to get the opponent
     public Player getOpponent(Player player) {

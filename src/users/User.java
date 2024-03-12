@@ -5,10 +5,11 @@ public abstract class User {
     private String nick;
     private String password;
 
-    // Constructor ========================================================================================================
+    // ============================================================================================[ Constructor ]>>>
 
     // Zero Constructor
-    public User() {}
+    public User() {
+    }
 
     // Constructor with parameters
     public User(String name, String nick, String password) {
@@ -17,7 +18,7 @@ public abstract class User {
         this.password = password;
     }
 
-    // Public Methods =====================================================================================================
+    // ============================================================================================[ Public Methods ]>>>
 
     // Abstract method to get the score
     public abstract int getScore();

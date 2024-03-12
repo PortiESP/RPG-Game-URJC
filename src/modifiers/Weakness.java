@@ -3,7 +3,7 @@ package src.modifiers;
 public class Weakness extends Modifier {
     private int sensitivity;
 
-    // Constructor ========================================================================================================
+    // ============================================================================================[ Constructor ]>>>
     public Weakness(String name, int sensitivity) {
         super(name);
         this.sensitivity = sensitivity;
@@ -17,6 +17,5 @@ public class Weakness extends Modifier {
     public void setSensitivity(int sensitivity) {
         this.sensitivity = sensitivity;
     }
-    
 
 }

@@ -4,7 +4,7 @@ public abstract class Minion {
     private String name;
     private int health;
 
-    // Constructor ========================================================================================================
+    // ============================================================================================[ Constructor ]>>>
     public Minion(String name, int health) {
         this.name = name;
         this.health = health;
@@ -26,5 +26,5 @@ public abstract class Minion {
     public void setHealth(int health) {
         this.health = health;
     }
-     
+
 }

@@ -10,7 +10,7 @@ public class Hunter extends Character {
     private int willpower;
     private Talent talent;
 
-    // Constructor ========================================================================================================
+    // ============================================================================================[ Constructor ]>>>
     public Hunter(String name, int health, int power, Modifier[] modifiers, Minion[] minions, Equipment[] equipment,
             int willpower, Talent talent) {
         super(name, health, power, modifiers, minions, equipment);

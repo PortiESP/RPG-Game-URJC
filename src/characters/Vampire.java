@@ -10,8 +10,8 @@ public class Vampire extends Character {
     private int age;
     private int blood;
     private Discipline discipline;
-    
-    // Constructor ========================================================================================================
+
+    // ============================================================================================[ Constructor ]>>>
     public Vampire(String name, int health, int power, Modifier[] modifiers, Minion[] minions, Equipment[] equipment,
             int age, int blood, Discipline discipline) {
         super(name, health, power, modifiers, minions, equipment);
@@ -44,6 +44,5 @@ public class Vampire extends Character {
     public void setDiscipline(Discipline discipline) {
         this.discipline = discipline;
     }
-    
-    
+
 }

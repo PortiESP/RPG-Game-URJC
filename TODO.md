@@ -14,7 +14,7 @@
   - [X] Change character.
   - [X] Check battle history.
   - [X] Check ranking.
-  - [ ] Manage account settings.
+  - [X] Manage account settings.
   - [X] Sign off.
 - [ ] Implement Admin menu.
   - [ ] Manage users.

@@ -84,7 +84,7 @@ public class Game {
 
     // Method to print the logged admin menu options
     private void loggedPlayerMenu() {
-        String [] options = {"Challenge", "Modify Active Equipment", "Change Character", "Battle History", "Ranking", "Delete Account", "Log Out"};
+        String [] options = {"Challenge", "Modify Active Equipment", "Change Character", "Battle History", "Ranking", "Manage Account", "Log Out"};
         String nickName = this.loggedUser.getNick();
         int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
 
@@ -93,7 +93,7 @@ public class Game {
         else if (answer == 3) this.changeCharacter();
         else if (answer == 4) this.checkBattleHistory();
         else if (answer == 5) this.checkRanking();
-        else if (answer == 6) this.deleteAccount();
+        else if (answer == 6) this.manageAccount();
         else this.signOff();
     }
 
@@ -322,6 +322,45 @@ public class Game {
 
         // Print the ranking
         MenuBuilder.doc("Ranking", data);
+    }
+
+    // Method to manage the account settings
+    private void manageAccount() {
+        int answer = 0;
+        
+        while (answer != 4) {
+            String [] options = {"Change Nick", "Change Password", "Delete Account", "Back"};
+            answer = MenuBuilder.menu("Account Settings", options);
+            if (answer == 1) this.changeNick();
+            else if (answer == 2) this.changePassword();
+            else if (answer == 3) this.deleteAccount();
+        }
+    }
+
+    // Method to change the nick
+    private void changeNick() {
+        String [] labels = {"New Nick"};
+        String[] data = MenuBuilder.form("Change Nick", labels);
+
+        if (data[0] != null) {
+            this.loggedUser.setNick(data[0]);
+            MenuBuilder.alert("Nick Changed", "Your nick has been changed successfully.");
+        }
+    }
+
+    // Method to change the password
+    private void changePassword() {
+        String [] labels = {"New Password", "Confirm Password"};
+        String[] data = MenuBuilder.form("Change Password", labels);
+
+        if (data[0].equals(data[1])) {
+            this.loggedUser.setPassword(data[0]);
+            MenuBuilder.alert("Password Changed", "Your password has been changed successfully.");
+
+        } else {
+            MenuBuilder.alert("Invalid Password", "The passwords do not match. Please try again.");
+            this.changePassword();
+        }
     }
 
     // Method to delete the account

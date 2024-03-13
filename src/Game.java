@@ -21,6 +21,7 @@ public class Game {
     private List<Challenge> challenges = new ArrayList<>();
     private List<Armor> armorsAvailable = new ArrayList<>();
     private List<Weapon> weaponsAvailable = new ArrayList<>();
+    private String lastId = null;
 
     // ============================================================================================[ Constructor ]>>>
     public Game() {
@@ -95,10 +96,11 @@ public class Game {
      */
     private void replaceSettings(Game game) {
         // Set the game attributes
-        this.setUsers(game.getUsers());
-        this.setChallenges(game.getChallenges());
-        this.setArmorsAvailable(game.getArmorsAvailable());
-        this.setWeaponsAvailable(game.getWeaponsAvailable());
+        users = game.users;
+        challenges = game.challenges;
+        armorsAvailable = game.armorsAvailable;
+        weaponsAvailable = game.weaponsAvailable;
+        lastId = game.lastId;
     }
 
     /**
@@ -455,13 +457,66 @@ public class Game {
             return new Admin(userData[0], userData[1], userData[2]);
     }
 
-    // TODO Document this method, explain the process of generating the player id in detail
-    // Method to generate the plaer id
+    /**
+     * Method to generate the player id
+     * 
+     * <p>
+     * This method will generate the player id. The id format is: LNLLN (L: Letter, N: Number).
+     * </p>
+     * 
+     * @return The new player id generated.
+     */
     private String generatePlayerId() {
-        int usersSize = this.users.size();
 
-        // ID Format LNLLN (L: Letter, N: Number)
-        return "P" + (usersSize) + "A" + (char) (65 + usersSize) + (char) (65 + usersSize) + (usersSize + 1);
+        // If the lastId is null (any users created yet), set the lastId to "A0AA0" and return it
+        if (this.lastId == null) {
+            this.lastId = "A0AA0";
+            return this.lastId;
+        }
+
+        // Split the lastId into an array of strings
+        String[] parts = this.lastId.split("");
+
+        // Generate an array of integers from the parts array using the ASCII code of the characters
+        int[] partsInt = new int[5];
+        for (int i = 0; i < parts.length; i++) {
+            partsInt[i] = parts[i].codePointAt(0);
+        }
+
+        // Increment Id parts
+        // Increment the last part of the id, if it is greater than 9, set it to 0 and increment the previous part
+        partsInt[4]++;
+        if (partsInt[4] > 57) { // 5th part exceeds 9
+            partsInt[4] = 48; // Set the 5th part to 0 and increment the 4th part
+            partsInt[3]++;
+            if (partsInt[3] > 90) { // 4th part exceeds Z
+                partsInt[3] = 65; // Set the 4th part to A and increment the 3rd part
+                partsInt[2]++;
+                if (partsInt[2] > 90) { // 3rd part exceeds Z
+                    partsInt[2] = 65; // Set the 3rd part to A and increment the 2nd part
+                    partsInt[1]++;
+                    if (partsInt[1] > 57) { // 2nd part exceeds 9
+                        partsInt[1] = 48; // Set the 2nd part to 0 and increment the 1st part
+                        partsInt[0]++;
+                        if (partsInt[0] > 90) { // 1st part exceeds Z
+                            throw new RuntimeException("ID limit reached");
+                        }
+                    }
+                }
+            }
+        }
+
+        // Convert the partsInt to a string array using the ASCII code of the integers
+        for (int i = 0; i < partsInt.length; i++) {
+            parts[i] = String.valueOf((char) partsInt[i]);
+        }
+
+        // Convert the partsInt to a string and set the lastId to the new id
+        String newId = String.format("%s%s%s%s%s", parts[0], parts[1], parts[2], parts[3], parts[4]);
+        this.lastId = newId;
+
+        return newId;
+
     }
 
     // ============================================================================================[ Logged Player Methods ]>>>
@@ -754,5 +809,13 @@ public class Game {
 
     public void setWeaponsAvailable(List<Weapon> weaponsAvailable) {
         this.weaponsAvailable = weaponsAvailable;
+    }
+
+    public String getLastId() {
+        return lastId;
+    }
+
+    public void setLastId(String lastId) {
+        this.lastId = lastId;
     }
 }

@@ -158,12 +158,14 @@ public class Game {
         int answer = MenuBuilder.menu("Welcome to RPG Game", options);
 
         // Determine the action to take depending on the answer
-        if (answer == 1)
+        if (answer == 1) {
             this.login();
-        else if (answer == 2)
+        } else if (answer == 2) {
             this.register();
-        else
+            this.changeCharacter();
+        } else {
             System.exit(0);
+        }
     }
 
     /**
@@ -545,13 +547,6 @@ public class Game {
         // Get the current player object
         Player player = (Player) this.loggedUser;
 
-        // Get the character of the player
-        CharacterSelection playerCharacter = player.getCurrentCharacter();
-
-        // Print the current character selection
-        String output = "Your current character is " + playerCharacter + ".";
-        MenuBuilder.alert("Current Character", output);
-
         // Generate the character options [LYCANTHROPE, VAMPIRE, HUNTER]
         String[] options = new String[CharacterSelection.values().length];
         for (int i = 0; i < CharacterSelection.values().length; i++) {
@@ -566,7 +561,7 @@ public class Game {
         CharacterSelection selectedCharacter = CharacterSelection.values()[answer - 1];
 
         // Inform the user of the character selected
-        output = "%s has been selected.";
+        String output = "%s has been selected.";
         output = String.format(output, selectedCharacter.toString());
 
         // Print an alert message with the result of the operation

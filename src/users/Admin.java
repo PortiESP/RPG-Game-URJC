@@ -44,7 +44,7 @@ public class Admin extends User {
         player2.manageEquipment();
 
         // Adjust the gold of the challenge
-        if (player2.getGold() < challenge.getGold()) {
+        if (!player2.canAfford(challenge.getGold())) {
             challenge.setGold(player2.getGold());
             String msg = String.format("The bet has been adjusted to %d", challenge.getGold());
             MenuBuilder.alert("Challenge warning", msg);

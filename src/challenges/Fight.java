@@ -6,21 +6,26 @@ import src.users.Player;
 public class Fight {
     private int rounds;
     private String date;
+    private Player winner;
+    private String[] log;
 
     // ============================================================================================[ Constructor ]>>>
     public Fight() {
     }
 
-    // ============================================================================================[ Public Methods ]>>>
-
     // Method to generate a fight between two players and return the winner
-    public Player generateFight(Player player1, Player player2) {
+    public Fight(Player player1, Player player2) {
         // Fight logic
-        // If there is a tie, return null
-        // If player1 wins, return player1
-        // If player2 wins, return player2
+        // If there is a tie, winner = null
+        // If player1 wins, winner = player1
+        // If player2 wins, winner = player2
+        // TODO: Implement the fight logic
 
-        return null;
+    }
+
+    // ============================================================================================[ Public Methods ]>>>
+    public Player getWinner() {
+        return winner;
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

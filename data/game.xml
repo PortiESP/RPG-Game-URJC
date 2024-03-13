@@ -35,6 +35,9 @@
      <void property="password">
       <string>2</string>
      </void>
+     <void property="pendingNotification">
+      <boolean>true</boolean>
+     </void>
     </object>
    </void>
    <void method="add">

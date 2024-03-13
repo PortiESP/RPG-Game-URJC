@@ -160,6 +160,8 @@ public class Game {
         // Determine the action to take depending on the answer
         if (answer == 1) {
             this.login();
+            if (loggedUser instanceof Player)
+                ((Player) loggedUser).manageNotifications();
         } else if (answer == 2) {
             this.register();
             if (loggedUser instanceof Player)
@@ -276,15 +278,23 @@ public class Game {
             // Retrieve the user by credentials
             User user = this.retrUser(credentials[0], credentials[1]);
 
-            // Validate the user
+            // Check the user credentials
             if (user == null) { // Alert the user and ask if they want to try again
                 MenuBuilder.alert("Invalid Credentials", "The username or password are invalid. Please try again.");
                 boolean answer = MenuBuilder.askYesNo("Do you want to try again?");
                 if (!answer) {
-                    break;
+                    return;
                 }
 
-            } else { // Set the logged user
+            }
+            // If the user has been banned, alert the user and return
+            else if (user instanceof Player && ((Player) user).isBanned()) {
+                String msg = "You have been banned. Please contact the admin for more information.";
+                MenuBuilder.alert("Banned User", msg);
+                return;
+            }
+            // Set the logged user
+            else {
                 this.setLoggedUser(user);
             }
         }
@@ -542,7 +552,7 @@ public class Game {
         // Ask the user the ammount of gold to bet
         int gold = MenuBuilder.readInt("Enter the ammount of gold to bet");
         // Check if the user has enough gold to bet
-        if (gold > currPlayer.getGold()) {
+        if (!currPlayer.canAfford(gold)) {
             MenuBuilder.alert("Invalid Gold", "You do not have enough gold to bet.");
             return;
         }
@@ -580,8 +590,7 @@ public class Game {
 
     // Method to modify the active equipment
     private void modifyActiveEquipment() {
-        System.out.println("Modifying Active Equipment...");
-        // TODO: Implement the modifyActiveEquipment method
+        ((Player) this.loggedUser).manageEquipment();
     }
 
     /**

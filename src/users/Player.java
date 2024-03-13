@@ -7,6 +7,7 @@ import src.characters.CharacterSelection;
 import src.equipment.Armor;
 import src.equipment.Weapon;
 import utils.Const;
+import utils.MenuBuilder;
 
 public class Player extends User {
     private String id;
@@ -82,6 +83,37 @@ public class Player extends User {
     public void notifyChallenge(Challenge challenge) {
         this.pendingNotification = true;
         this.pendingChallenge = challenge;
+    }
+
+    // Method to manage the notifications
+    public void manageNotifications() {
+
+        // If the player has no pending notifications, do nothing
+        if (!this.pendingNotification) {
+            return;
+        }
+
+        // If the player has a pending challenge, ask if he wants to accept it
+        String message = "You have a pending challenge. Do you want to accept it?";
+        boolean yORn = utils.MenuBuilder.askYesNo(message);
+        if (yORn) {
+            this.pendingChallenge.accept();
+            this.pendingChallenge.startFight();
+        } else {
+            String msg = "The challenge has been rejected. You will have to pay a 10% fee of the bet.";
+            MenuBuilder.alert("Challenge warning", msg);
+            this.pendingChallenge.reject();
+        }
+
+    }
+
+    public void goldTransaction(int amount, Player player) {
+        this.gold += amount;
+        player.gold -= amount;
+    }
+
+    public boolean canAfford(int amount) {
+        return this.gold >= amount;
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

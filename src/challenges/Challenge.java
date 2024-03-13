@@ -78,6 +78,33 @@ public class Challenge {
         this.approved = true;
     }
 
+    // Accept the challenge
+    public void accept() {
+        this.accepted = true;
+    }
+
+    // Decline the challenge
+    public void reject() {
+        this.accepted = false;
+        this.winner = this.getChallengerPlayer();
+        Player loser = this.getChallengedPlayer();
+        int fee = (int) (this.gold * 0.1);
+        if (loser.canAfford(fee)) {
+            this.winner.goldTransaction(fee, loser);
+        } else {
+            String msg = "The challenged player does not have enough funds to pay the fee. The player will be banned.";
+            MenuBuilder.alert("Insufficient funds", msg);
+            this.winner.goldTransaction(loser.getGold(), loser);
+            loser.ban();
+        }
+    }
+
+    // Start the fight
+    public void startFight() {
+        this.result = new Fight(this.players[0], this.players[1]);
+        this.winner = this.result.getWinner();
+    }
+
     // ============================================================================================[ Getters & Setters ]>>>
     public int getGold() {
         return gold;

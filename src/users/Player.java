@@ -145,4 +145,8 @@ public class Player extends User {
     public void setChallenges(List<Challenge> challenges) {
         this.challenges = challenges;
     }
+
+    public boolean hasPendingChallenge() {
+        return this.pendingChallenge != null;
+    }
 }

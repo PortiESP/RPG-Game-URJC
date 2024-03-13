@@ -4,6 +4,19 @@
   <void property="lastId">
    <string>B0AA0</string>
   </void>
+  <void property="loggedUser">
+   <object class="src.users.Admin" id="Admin0">
+    <void property="name">
+     <string>a</string>
+    </void>
+    <void property="nick">
+     <string>a</string>
+    </void>
+    <void property="password">
+     <string>a</string>
+    </void>
+   </object>
+  </void>
   <void property="users">
    <void method="add">
     <object class="src.users.Player">
@@ -61,6 +74,9 @@
       <string>5</string>
      </void>
     </object>
+   </void>
+   <void method="add">
+    <object idref="Admin0"/>
    </void>
   </void>
  </object>

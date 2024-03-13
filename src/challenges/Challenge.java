@@ -42,7 +42,7 @@ public class Challenge {
             return false;
         }
         // Check if the opponent has already been challenged
-        else if (opponent.hasChallenges()) {
+        else if (opponent.hasPendingChallenge()) {
             MenuBuilder.alert("Invalid Opponent", "The opponent has already been challenged.");
             return false;
         }

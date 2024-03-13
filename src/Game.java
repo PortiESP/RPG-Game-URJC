@@ -679,7 +679,9 @@ public class Game {
     // Method to manage the challenges
     private void manageChallenges() {
         for (Challenge challenge : this.challenges) {
-            ((Admin) this.loggedUser).manageChallenge(challenge);
+            if (!challenge.isApproved()) {
+                ((Admin) this.loggedUser).manageChallenge(challenge);
+            }
         }
     }
 

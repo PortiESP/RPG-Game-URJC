@@ -380,6 +380,9 @@ public class Game {
 
         // Add the new user to the users list
         this.users.add(user);
+
+        // Log the user in
+        this.setLoggedUser(user);
     }
 
     /**
@@ -684,7 +687,7 @@ public class Game {
     private void manageAccount() {
         int answer = 0;
 
-        while (answer != 4) {
+        while (answer != 4 && this.loggedUser != null) {
             String[] options = { "Change Nick", "Change Password", "Delete Account", "Back" };
             answer = MenuBuilder.menu("Account Settings", options);
             if (answer == 1)

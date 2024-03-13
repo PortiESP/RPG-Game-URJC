@@ -678,8 +678,9 @@ public class Game {
 
     // Method to manage the challenges
     private void manageChallenges() {
-        System.out.println("Managing Challenges...");
-        // TODO: Implement the manageChallenges method
+        for (Challenge challenge : this.challenges) {
+            ((Admin) this.loggedUser).manageChallenge(challenge);
+        }
     }
 
     // ============================================================================================[ General Logged Methods ]>>> 

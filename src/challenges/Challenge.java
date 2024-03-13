@@ -63,6 +63,21 @@ public class Challenge {
         return true;
     }
 
+    // Get the challenged player
+    public Player getChallengedPlayer() {
+        return this.players[1];
+    }
+
+    // Get the challenger player
+    public Player getChallengerPlayer() {
+        return this.players[0];
+    }
+
+    // Approve the challenge
+    public void approve() {
+        this.approved = true;
+    }
+
     // ============================================================================================[ Getters & Setters ]>>>
     public int getGold() {
         return gold;

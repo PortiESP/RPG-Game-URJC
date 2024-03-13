@@ -64,6 +64,26 @@ public class Player extends User {
         return (System.currentTimeMillis() - this.lastLostFight) < dayInMillis;
     }
 
+    // Ban player
+    public void ban() {
+        this.banned = true;
+
+        // Remove all pending challenges and notifications
+        this.pendingChallenge = null;
+        this.pendingNotification = false;
+    }
+
+    // Manage the equipment
+    public void manageEquipment() {
+        // TODO: Implement
+    }
+
+    // Notify the player about a challenge
+    public void notifyChallenge(Challenge challenge) {
+        this.pendingNotification = true;
+        this.pendingChallenge = challenge;
+    }
+
     // ============================================================================================[ Getters & Setters ]>>>
     public String getId() {
         return id;

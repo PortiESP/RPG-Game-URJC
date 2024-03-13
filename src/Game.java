@@ -524,8 +524,57 @@ public class Game {
 
     // Method to challenge another player
     private void challenge() {
-        System.out.println("Challenging...");
-        // TODO: Implement the challenge method
+        Player currPlayer = (Player) this.loggedUser;
+        Player[] players = this.getPlayers();
+
+        // Set the menu title and options
+        String title = "Challenge Menu";
+        String[] options = new String[players.length];
+        for (int i = 0; i < players.length; i++) {
+            options[i] = players[i].getNick();
+        }
+        int answer = MenuBuilder.menu(title, options);
+
+        // Get the opponent selected from the menu
+        Player opponent = (Player) this.users.get(answer - 1);
+
+        // Ask the user the ammount of gold to bet
+        int gold = MenuBuilder.readInt("Enter the ammount of gold to bet");
+        // Check if the user has enough gold to bet
+        if (gold > currPlayer.getGold()) {
+            MenuBuilder.alert("Invalid Gold", "You do not have enough gold to bet.");
+            return;
+        }
+
+        // Verifications before challenging the opponent
+        Challenge challenge = new Challenge(currPlayer, opponent, gold);
+        if (!challenge.isValid(currPlayer, opponent)) {
+            MenuBuilder.alert("Challenge warning", "The challenge was not created. Please try again.");
+            return;
+        }
+
+        // Ask the user to choose the equipment
+        this.modifyActiveEquipment();
+
+        // Create the new challenge
+        currPlayer.setPendingChallenge(challenge);
+
+        // Alert the user that the challenge has been created
+        MenuBuilder.alert("Challenge Created", "The challenge has been created successfully.");
+
+        // Add the challenge to the challenges list
+        this.challenges.add(challenge);
+
+    }
+
+    private Player[] getPlayers() {
+        List<Player> players = new ArrayList<>();
+        for (User user : this.users) {
+            if (user instanceof Player) {
+                players.add((Player) user);
+            }
+        }
+        return players.toArray(new Player[players.size()]);
     }
 
     // Method to modify the active equipment

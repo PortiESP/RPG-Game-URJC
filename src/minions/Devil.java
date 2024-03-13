@@ -11,7 +11,7 @@ public class Devil extends Minion {
         this.minions = minions;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public String getCovenant() {
         return covenant;
     }

@@ -17,7 +17,7 @@ public class Hunter extends Character {
         this.willpower = willpower;
         this.talent = talent;
     }
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
 
     public int getWillpower() {
         return willpower;

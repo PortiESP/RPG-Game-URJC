@@ -9,7 +9,7 @@ public class Strength extends Modifier {
         this.effectiveness = effectiveness;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public int getEffectiveness() {
         return effectiveness;
     }

@@ -8,9 +8,10 @@
 
 - [ ] Search a way to offer a default weapons set.
 - [ ] Search a way to offer a default armor set.
-- [ ] Make a player to select a character selection when registering.
+- [X] Make a player to select a character selection when registering.
 - [ ] Implement battle system.
   - [ ] Implement the notification system.
+  - [ ] Check if the user have active challenges on login.
 - [ ] Check the way the score is calculated.
 - [X] Implement a way to manage account settings.
   - [X] Change password.

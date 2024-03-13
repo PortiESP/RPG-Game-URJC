@@ -9,7 +9,7 @@ public class Weapon extends Equipment {
         this.handsRequired = handsRequired;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public int getHandsRequired() {
         return handsRequired;
     }

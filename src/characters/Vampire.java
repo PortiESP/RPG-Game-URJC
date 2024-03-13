@@ -19,7 +19,7 @@ public class Vampire extends Character {
         this.blood = blood;
         this.discipline = discipline;
     }
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
 
     public int getAge() {
         return age;

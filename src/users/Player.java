@@ -58,7 +58,13 @@ public class Player extends User {
         return this.gold;
     }
 
-    // Getters & Setters ==================================================================================================
+    // Return if the user has been defeated in the last 24 hours
+    public boolean defeatedRecently() {
+        long dayInMillis = 24 * 60 * 60 * 1000;
+        return (System.currentTimeMillis() - this.lastLostFight) < dayInMillis;
+    }
+
+    // ============================================================================================[ Getters & Setters ]>>>
     public String getId() {
         return id;
     }

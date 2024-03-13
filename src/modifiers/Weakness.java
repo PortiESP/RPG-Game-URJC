@@ -9,7 +9,7 @@ public class Weakness extends Modifier {
         this.sensitivity = sensitivity;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public int getSensitivity() {
         return sensitivity;
     }

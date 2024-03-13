@@ -12,7 +12,7 @@ public abstract class Equipment {
         this.defenseModifier = defenseModifier;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
         return name;
     }

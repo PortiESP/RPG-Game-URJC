@@ -18,7 +18,7 @@ public class Lycanthrope extends Character {
         this.don = don;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public int getRage() {
         return rage;
     }

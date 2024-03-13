@@ -9,7 +9,7 @@ public class Human extends Minion {
         this.loyalty = loyalty;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public LoyaltyEnum getLoyalty() {
         return loyalty;
     }

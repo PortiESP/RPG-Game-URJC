@@ -10,7 +10,7 @@ public abstract class Minion {
         this.health = health;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
         return name;
     }

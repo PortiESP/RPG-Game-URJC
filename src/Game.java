@@ -129,7 +129,6 @@ public class Game {
      * @see #loggedPlayerMenu()
      * @see #loggedAdminMenu()
      * 
-     * // TODO: Refactor this method to use the State Pattern
      */
     private void menu() {
         if (this.loggedUser == null)

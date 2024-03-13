@@ -10,6 +10,9 @@
 - [ ] Search a way to offer a default armor set.
 - [X] Make a player to select a character selection when registering.
 - [ ] Implement battle system.
+  - [X] Challenge part 1 (created, unverified)
+  - [ ] Challenge part 2 (verified, waiting for acceptance)
+  - [ ] Challenge part 3 (accepted or not, finished)
   - [ ] Implement the notification system.
   - [ ] Check if the user have active challenges on login.
 - [ ] Check the way the score is calculated.

@@ -162,7 +162,8 @@ public class Game {
             this.login();
         } else if (answer == 2) {
             this.register();
-            this.changeCharacter();
+            if (loggedUser instanceof Player)
+                this.changeCharacter();
         } else {
             System.exit(0);
         }
@@ -528,7 +529,7 @@ public class Game {
         Player[] players = this.getPlayers();
 
         // Set the menu title and options
-        String title = "Challenge Menu";
+        String title = "Choose a player to challenge";
         String[] options = new String[players.length];
         for (int i = 0; i < players.length; i++) {
             options[i] = players[i].getNick();

@@ -22,7 +22,7 @@ public class Fight {
 
         return null;
     }
-
+    
     // Getters & Setters ==================================================================================================
     public int getRounds() {
         return rounds;

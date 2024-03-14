@@ -3,6 +3,7 @@ package src.characters;
 //Import Statements
 import src.abilities.*;
 import src.equipment.Equipment;
+import src.equipment.Weapon;
 import src.minions.Minion;
 import src.modifiers.Modifier;
 
@@ -17,6 +18,15 @@ public class Hunter extends Character {
         this.willpower = willpower;
         this.talent = talent;
     }
+    
+    // ============================================================================================[ Private Methods ]>>>
+
+    int calculateAttackPower(SpecialAbility talent, Weapon weapons){
+        int totalPower = talent.getAttack() + willpower + getPower() + weapons.getAttackModifier();
+        return totalPower;
+    }
+
+
     // Getters & Setters ==================================================================================================
 
     public int getWillpower() {
@@ -34,4 +44,6 @@ public class Hunter extends Character {
     public void setTalent(Talent talent) {
         this.talent = talent;
     }
+
+    
 }

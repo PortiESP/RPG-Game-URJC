@@ -3,6 +3,7 @@ package src.characters;
 //Import Statements
 import src.abilities.*;
 import src.equipment.Equipment;
+import src.equipment.Weapon;
 import src.minions.Minion;
 import src.modifiers.Modifier;
 
@@ -18,6 +19,11 @@ public class Lycanthrope extends Character {
         this.don = don;
     }
 
+    // ============================================================================================[ Private Methods ]>>>
+    int calculateAttackPower(SpecialAbility don, Weapon weapons){
+        int totalPower = don.getAttack() + rage + getPower() + weapons.getAttackModifier();
+        return totalPower;
+    }
     // Getters & Setters ==================================================================================================
     public int getRage() {
         return rage;

@@ -3,6 +3,7 @@ package src.characters;
 //Import Statements
 import src.abilities.*;
 import src.equipment.Equipment;
+import src.equipment.Weapon;
 import src.minions.Minion;
 import src.modifiers.Modifier;
 
@@ -18,6 +19,16 @@ public class Vampire extends Character {
         this.age = age;
         this.blood = blood;
         this.discipline = discipline;
+    }
+    // ============================================================================================[ Private Methods ]>>>
+    int calculateAttackPower(SpecialAbility discipline, Weapon weapons){
+        int totalPower;
+        if (blood >= 5) {
+            totalPower = discipline.getAttack() + getPower() + weapons.getAttackModifier() + 2;
+        }else{
+            totalPower = discipline.getAttack() + getPower() + weapons.getAttackModifier();
+        }
+        return totalPower;
     }
     // Getters & Setters ==================================================================================================
 

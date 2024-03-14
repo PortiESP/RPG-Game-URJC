@@ -3,6 +3,7 @@ package src.characters;
 // Import statements
 import src.modifiers.*;
 import src.minions.*;
+import src.abilities.SpecialAbility;
 import src.equipment.*;
 
 public abstract class Character {
@@ -32,10 +33,8 @@ public abstract class Character {
         return true;
     }
 
-    // ============================================================================================[ Private Methods ]>>>
-    public int calculateAttackPower() {
-        return -1;
-    }
+    // ============================================================================================[ Abstracts Methods ]>>>
+    abstract int calculateAttackPower(SpecialAbility specialAbility, Weapon weapon);
 
     // Getters & Setters ==================================================================================================
     public String getName() {

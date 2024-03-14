@@ -2,8 +2,7 @@ package src.characters;
 
 //Import Statements
 import src.abilities.*;
-import src.equipment.Equipment;
-import src.equipment.Weapon;
+import src.equipment.*;
 import src.minions.Minion;
 import src.modifiers.Modifier;
 
@@ -20,9 +19,15 @@ public class Lycanthrope extends Character {
     }
 
     // ============================================================================================[ Private Methods ]>>>
-    int calculateAttackPower(SpecialAbility don, Weapon weapons){
-        int totalPower = don.getAttack() + rage + getPower() + weapons.getAttackModifier();
-        return totalPower;
+    int calculateAttackPower(SpecialAbility don, Weapon weapons, Armor armor){
+        int totalAttack = don.getAttack() + rage + getPower() + 
+                        weapons.getAttackModifier() + armor.getAttackModifier() ;
+        return totalAttack;
+    }
+    int calculateDefensePower(SpecialAbility don, Weapon weapons, Armor armor){
+        int totalDefense = don.getDefense() + rage + getPower() + 
+                        weapons.getDefenseModifier() + armor.getDefenseModifier() ;
+        return totalDefense;
     }
     // Getters & Setters ==================================================================================================
     public int getRage() {

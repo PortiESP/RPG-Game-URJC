@@ -34,7 +34,8 @@ public abstract class Character {
     }
 
     // ============================================================================================[ Abstracts Methods ]>>>
-    abstract int calculateAttackPower(SpecialAbility specialAbility, Weapon weapon);
+    abstract int calculateAttackPower(SpecialAbility specialAbility, Weapon weapon, Armor armor);
+    abstract int calculateDefensePower(SpecialAbility specialAbility,Weapon weapon, Armor armor);
 
     // Getters & Setters ==================================================================================================
     public String getName() {

@@ -2,8 +2,7 @@ package src.characters;
 
 //Import Statements
 import src.abilities.*;
-import src.equipment.Equipment;
-import src.equipment.Weapon;
+import src.equipment.*;
 import src.minions.Minion;
 import src.modifiers.Modifier;
 
@@ -21,12 +20,17 @@ public class Hunter extends Character {
     
     // ============================================================================================[ Private Methods ]>>>
 
-    int calculateAttackPower(SpecialAbility talent, Weapon weapons){
-        int totalPower = talent.getAttack() + willpower + getPower() + weapons.getAttackModifier();
+    int calculateAttackPower(SpecialAbility talent, Weapon weapons, Armor armor){
+        int totalPower = talent.getAttack() + willpower + getPower() + 
+                        weapons.getAttackModifier() + armor.getAttackModifier();
         return totalPower;
     }
 
-
+    int calculateDefensePower(SpecialAbility talent, Weapon weapons, Armor armor){
+        int totalDefense = talent.getDefense() + willpower + getPower() + 
+                        weapons.getDefenseModifier() + armor.getDefenseModifier();
+        return totalDefense;
+    }
     // Getters & Setters ==================================================================================================
 
     public int getWillpower() {

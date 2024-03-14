@@ -2,8 +2,7 @@ package src.characters;
 
 //Import Statements
 import src.abilities.*;
-import src.equipment.Equipment;
-import src.equipment.Weapon;
+import src.equipment.*;
 import src.minions.Minion;
 import src.modifiers.Modifier;
 
@@ -21,14 +20,27 @@ public class Vampire extends Character {
         this.discipline = discipline;
     }
     // ============================================================================================[ Private Methods ]>>>
-    int calculateAttackPower(SpecialAbility discipline, Weapon weapons){
-        int totalPower;
+    int calculateAttackPower(SpecialAbility discipline, Weapon weapons, Armor armor){
+        int totalAttack;
         if (blood >= 5) {
-            totalPower = discipline.getAttack() + getPower() + weapons.getAttackModifier() + 2;
+            totalAttack = discipline.getAttack() + getPower() + 
+                        weapons.getAttackModifier() + armor.getAttackModifier() + 2;
         }else{
-            totalPower = discipline.getAttack() + getPower() + weapons.getAttackModifier();
+            totalAttack = discipline.getAttack() + getPower() + 
+                        weapons.getAttackModifier() + armor.getAttackModifier();
         }
-        return totalPower;
+        return totalAttack;
+    }
+    int calculateDefensePower(SpecialAbility discipline, Weapon weapons, Armor armor){
+        int totalDefense;
+        if (blood >= 5) {
+            totalDefense = discipline.getAttack() + getPower() + 
+                        weapons.getAttackModifier() + armor.getAttackModifier() + 2;
+        }else{
+            totalDefense = discipline.getAttack() + getPower() + 
+                        weapons.getAttackModifier() + armor.getAttackModifier();
+        }
+        return totalDefense;
     }
     // Getters & Setters ==================================================================================================
 

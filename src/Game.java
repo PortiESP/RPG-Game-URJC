@@ -164,8 +164,6 @@ public class Game {
                 ((Player) loggedUser).manageNotifications();
         } else if (answer == 2) {
             this.register();
-            if (loggedUser instanceof Player)
-                this.changeCharacter();
         } else {
             System.exit(0);
         }
@@ -389,6 +387,14 @@ public class Game {
         // Create the new user
         User user = this.createUser(userData, userType);
 
+        // Auto-login the user
+        this.setLoggedUser(user);
+
+        // If the user is a player, ask the user to choose the character
+        if (user instanceof Player) {
+            this.changeCharacter();
+        }
+
         // Add the new user to the users list
         this.users.add(user);
     }
@@ -547,7 +553,7 @@ public class Game {
         int answer = MenuBuilder.menu(title, options);
 
         // Get the opponent selected from the menu
-        Player opponent = (Player) this.users.get(answer - 1);
+        Player opponent = (Player) players[answer - 1];
 
         // Ask the user the ammount of gold to bet
         int gold = MenuBuilder.readInt("Enter the ammount of gold to bet");
@@ -692,6 +698,8 @@ public class Game {
                 ((Admin) this.loggedUser).manageChallenge(challenge);
             }
         }
+
+        MenuBuilder.alert("Challenges Manager", "All challenges have been managed successfully");
     }
 
     // ============================================================================================[ General Logged Methods ]>>> 

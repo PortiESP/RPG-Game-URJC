@@ -2,23 +2,47 @@ package src.characters;
 
 //Import Statements
 import src.abilities.*;
-import src.equipment.Equipment;
-import src.minions.Minion;
-import src.modifiers.Modifier;
 
 public class Vampire extends Character {
     private int age;
     private int blood;
     private Discipline discipline;
 
+    // CONSTANTS
+    public final int MAX_BLOOD = 10;
+    public final int MIN_BLOOD = 1;
+
     // ============================================================================================[ Constructor ]>>>
-    public Vampire(String name, int health, int power, Modifier[] modifiers, Minion[] minions, Equipment[] equipment,
-            int age, int blood, Discipline discipline) {
-        super(name, health, power, modifiers, minions, equipment);
-        this.age = age;
-        this.blood = blood;
-        this.discipline = discipline;
+    public Vampire() {
+        super();
+        age = 0;
+        blood = MAX_BLOOD;
+        this.loadSpecial();
+        this.loadMinions();
     }
+
+    // ============================================================================================[ Public Methods ]>>>
+
+    @Override
+    public int calcAttackPower() {
+        if (blood >= 5) {
+            return calcBaseAttackPower() + 2;
+        } else {
+            return calcBaseAttackPower();
+        }
+    }
+
+    @Override
+    public void loadMinions() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void loadSpecial() {
+        this.special = new Discipline();
+    }
+
     // ============================================================================================[ Getters & Setters ]>>>
 
     public int getAge() {

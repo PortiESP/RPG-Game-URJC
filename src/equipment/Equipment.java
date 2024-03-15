@@ -2,14 +2,14 @@ package src.equipment;
 
 public abstract class Equipment {
     private String name;
-    private int attackModifier;
-    private int defenseModifier;
+    private int attack;
+    private int defense;
 
     // ============================================================================================[ Constructor ]>>>
     public Equipment(String name, int attackModifier, int defenseModifier) {
         this.name = name;
-        this.attackModifier = attackModifier;
-        this.defenseModifier = defenseModifier;
+        this.attack = attackModifier;
+        this.defense = defenseModifier;
     }
 
     // ============================================================================================[ Getters & Setters ]>>>
@@ -21,19 +21,19 @@ public abstract class Equipment {
         this.name = name;
     }
 
-    public int getAttackModifier() {
-        return attackModifier;
+    public int getAttack() {
+        return attack;
     }
 
-    public void setAttackModifier(int attackModifier) {
-        this.attackModifier = attackModifier;
+    public void setAttack(int attackModifier) {
+        this.attack = attackModifier;
     }
 
-    public int getDefenseModifier() {
-        return defenseModifier;
+    public int getDefense() {
+        return defense;
     }
 
-    public void setDefenseModifier(int defenseModifier) {
-        this.defenseModifier = defenseModifier;
+    public void setDefense(int defenseModifier) {
+        this.defense = defenseModifier;
     }
 }

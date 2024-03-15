@@ -2,20 +2,34 @@ package src.characters;
 
 //Import Statements
 import src.abilities.*;
-import src.equipment.Equipment;
-import src.minions.Minion;
-import src.modifiers.Modifier;
 
 public class Lycanthrope extends Character {
     private int rage;
     private Don don;
 
+    // CONSTANTS
+    public final int MAX_RAGE = 3;
+
     // ============================================================================================[ Constructor ]>>>
-    public Lycanthrope(String name, int health, int power, Modifier[] modifiers, Minion[] minions,
-            Equipment[] equipment, int rage, Don don) {
-        super(name, health, power, modifiers, minions, equipment);
-        this.rage = rage;
-        this.don = don;
+    public Lycanthrope() {
+        super();
+        rage = 0;
+        this.loadSpecial();
+        this.loadMinions();
+    }
+
+    // ============================================================================================[ Public Methods ]>>>
+
+    @Override
+    public void loadMinions() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void loadSpecial() {
+        this.special = new Don();
+
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

@@ -76,6 +76,7 @@ public class Challenge {
     // Approve the challenge
     public void approve() {
         this.approved = true;
+        this.getChallengedPlayer().setPendingChallenge(this);
     }
 
     // Accept the challenge

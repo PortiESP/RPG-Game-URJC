@@ -1,5 +1,8 @@
 package src.abilities;
 
-public abstract class SpecialAbility {
-    
+public interface SpecialAbility {
+  public int getAttack();
+
+  public int getDefense();
+
 }

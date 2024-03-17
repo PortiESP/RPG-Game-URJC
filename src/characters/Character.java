@@ -40,7 +40,54 @@ public abstract class Character {
     public abstract void loadMinions();
 
     // ============================================================================================[ Public Methods ]>>>
-    public void attack(Character Character) {
+    public int getAttackPower() {
+        int success = 0;
+        int attackPower = calcAttackPower();
+        for (int i = 0; i < attackPower; i++) {
+            int roll = rollDice();
+            if (roll >= 5) {
+                success++;
+            }
+        }
+
+        return success;
+    }
+
+    public int getDefensePower() {
+        int success = 0;
+        int defensePower = calcDefensePower();
+        for (int i = 0; i < defensePower; i++) {
+            int roll = rollDice();
+            if (roll >= 5) {
+                success++;
+            }
+        }
+
+        return success;
+
+    }
+
+    public int attack(Character target) {
+        int damage = getAttackPower();
+        int defense = target.getDefensePower();
+        int remainingHealth = health - (damage - defense);
+
+        if (remainingHealth < 0) {
+            health = 0;
+        } else {
+            health = remainingHealth;
+        }
+
+        return health;
+    }
+
+    // Get a random number between 1 and 6
+    public int rollDice() {
+        return (int) (Math.random() * 6) + 1;
+    }
+
+    public boolean isDead() {
+        return health == 0;
     }
 
     // Load the character's modifiers
@@ -109,6 +156,11 @@ public abstract class Character {
     // Calculate total attack power of the character
     public int calcAttackPower() {
         return calcBaseAttackPower();
+    }
+
+    // Calculate total defense power of the character
+    public int calcDefensePower() {
+        return calcBaseDefensePower();
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

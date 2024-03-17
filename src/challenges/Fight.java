@@ -32,6 +32,9 @@ public class Fight {
         this.start();
     }
 
+    public Fight() {
+    }
+
     // ============================================================================================[ Public Methods ]>>>
     public Player getWinner() {
         return winner;
@@ -123,5 +126,41 @@ public class Fight {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
+    }
+
+    public ArrayList<String> getLog() {
+        return log;
+    }
+
+    public void setLog(ArrayList<String> log) {
+        this.log = log;
+    }
+
+    public Character getC1() {
+        return c1;
+    }
+
+    public void setC1(Character c1) {
+        this.c1 = c1;
+    }
+
+    public Character getC2() {
+        return c2;
+    }
+
+    public void setC2(Character c2) {
+        this.c2 = c2;
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Player[] players) {
+        this.players = players;
     }
 }

@@ -9,10 +9,10 @@ public abstract class Equipment {
     public Equipment() {
     }
 
-    public Equipment(String name, int attackModifier, int defenseModifier) {
+    public Equipment(String name, int attack, int defeated) {
         this.name = name;
-        this.attack = attackModifier;
-        this.defense = defenseModifier;
+        this.attack = attack;
+        this.defense = defense;
     }
 
     // ============================================================================================[ Getters & Setters ]>>>
@@ -28,15 +28,15 @@ public abstract class Equipment {
         return attack;
     }
 
-    public void setAttack(int attackModifier) {
-        this.attack = attackModifier;
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     public int getDefense() {
         return defense;
     }
 
-    public void setDefense(int defenseModifier) {
-        this.defense = defenseModifier;
+    public void setDefense(int defense) {
+        this.defense = defense;
     }
 }

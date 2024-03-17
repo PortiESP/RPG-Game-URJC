@@ -8,8 +8,8 @@ public class Weapon extends Equipment {
         super();
     }
 
-    public Weapon(String name, int attackModifier, int defenseModifier, int handsRequired) {
-        super(name, attackModifier, defenseModifier);
+    public Weapon(String name, int attack, int defense, int handsRequired) {
+        super(name, attack, defense);
         this.handsRequired = handsRequired;
     }
 

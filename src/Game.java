@@ -599,7 +599,8 @@ public class Game {
 
     // Method to modify the active equipment
     private void modifyActiveEquipment() {
-        ((Player) this.loggedUser).manageEquipment();
+        Player currPlayer = (Player) this.loggedUser;
+        currPlayer.manageEquipment();
     }
 
     /**
@@ -732,8 +733,10 @@ public class Game {
         boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this armor?");
 
         // If the user confirms, add the new armor to the armors available
-        if (answer) this.armorsAvailable.add(armor);
-        else MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
+        if (answer)
+            this.armorsAvailable.add(armor);
+        else
+            MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
     }
 
     // Method to remove an armor
@@ -837,7 +840,8 @@ public class Game {
     private void manageChallenges() {
         for (Challenge challenge : this.challenges) {
             if (!challenge.isApproved()) {
-                ((Admin) this.loggedUser).manageChallenge(challenge);
+                Admin admin = (Admin) this.loggedUser;
+                admin.manageChallenge(challenge);
             }
         }
 

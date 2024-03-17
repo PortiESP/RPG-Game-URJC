@@ -16,20 +16,23 @@
      <int>500</int>
     </void>
     <void property="id">
-     <string>A0AA1</string>
+     <string>A0AA0</string>
     </void>
     <void property="name">
-     <string>2</string>
+     <string>1</string>
     </void>
     <void property="nick">
-     <string>2</string>
+     <string>1</string>
     </void>
     <void property="password">
-     <string>2</string>
+     <string>1</string>
     </void>
    </object>
   </void>
   <void property="users">
+   <void method="add">
+    <object idref="Player0"/>
+   </void>
    <void method="add">
     <object class="src.users.Player">
      <void property="currentCharacter">
@@ -39,21 +42,18 @@
       <int>500</int>
      </void>
      <void property="id">
-      <string>A0AA0</string>
+      <string>A0AA1</string>
      </void>
      <void property="name">
-      <string>1</string>
+      <string>2</string>
      </void>
      <void property="nick">
-      <string>1</string>
+      <string>2</string>
      </void>
      <void property="password">
-      <string>1</string>
+      <string>2</string>
      </void>
     </object>
-   </void>
-   <void method="add">
-    <object idref="Player0"/>
    </void>
    <void method="add">
     <object class="src.users.Admin">

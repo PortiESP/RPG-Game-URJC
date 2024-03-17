@@ -935,6 +935,7 @@ public class Game {
 
         while (answer != 4 && this.loggedUser != null) {
             String[] options = { "Change Nick", "Change Password", "Delete Account", "Back" };
+            MenuBuilder.setConfigLastAsZero(true);
             answer = MenuBuilder.menu("Account Settings", options);
             if (answer == 1)
                 this.changeNick();

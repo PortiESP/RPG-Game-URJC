@@ -160,9 +160,10 @@ public class Game {
         // Determine the action to take depending on the answer
         if (answer == 1) {
             this.login();
+            if (loggedUser instanceof Player)
+                ((Player) loggedUser).manageNotifications();
         } else if (answer == 2) {
             this.register();
-            this.changeCharacter();
         } else {
             System.exit(0);
         }
@@ -275,15 +276,23 @@ public class Game {
             // Retrieve the user by credentials
             User user = this.retrUser(credentials[0], credentials[1]);
 
-            // Validate the user
+            // Check the user credentials
             if (user == null) { // Alert the user and ask if they want to try again
                 MenuBuilder.alert("Invalid Credentials", "The username or password are invalid. Please try again.");
                 boolean answer = MenuBuilder.askYesNo("Do you want to try again?");
                 if (!answer) {
-                    break;
+                    return;
                 }
 
-            } else { // Set the logged user
+            }
+            // If the user has been banned, alert the user and return
+            else if (user instanceof Player && ((Player) user).isBanned()) {
+                String msg = "You have been banned. Please contact the admin for more information.";
+                MenuBuilder.alert("Banned User", msg);
+                return;
+            }
+            // Set the logged user
+            else {
                 this.setLoggedUser(user);
             }
         }
@@ -377,6 +386,14 @@ public class Game {
 
         // Create the new user
         User user = this.createUser(userData, userType);
+
+        // Auto-login the user
+        this.setLoggedUser(user);
+
+        // If the user is a player, ask the user to choose the character
+        if (user instanceof Player) {
+            this.changeCharacter();
+        }
 
         // Add the new user to the users list
         this.users.add(user);
@@ -527,14 +544,62 @@ public class Game {
 
     // Method to challenge another player
     private void challenge() {
-        System.out.println("Challenging...");
-        // TODO: Implement the challenge method
+        Player currPlayer = (Player) this.loggedUser;
+        Player[] players = this.getPlayers();
+
+        // Set the menu title and options
+        String title = "Choose a player to challenge";
+        String[] options = new String[players.length];
+        for (int i = 0; i < players.length; i++) {
+            options[i] = players[i].getNick();
+        }
+        int answer = MenuBuilder.menu(title, options);
+
+        // Get the opponent selected from the menu
+        Player opponent = (Player) players[answer - 1];
+
+        // Ask the user the ammount of gold to bet
+        int gold = MenuBuilder.readInt("Enter the ammount of gold to bet");
+        // Check if the user has enough gold to bet
+        if (!currPlayer.canAfford(gold)) {
+            MenuBuilder.alert("Invalid Gold", "You do not have enough gold to bet.");
+            return;
+        }
+
+        // Verifications before challenging the opponent
+        Challenge challenge = new Challenge(currPlayer, opponent, gold);
+        if (!challenge.isValid(currPlayer, opponent)) {
+            MenuBuilder.alert("Challenge warning", "The challenge was not created. Please try again.");
+            return;
+        }
+
+        // Ask the user to choose the equipment
+        this.modifyActiveEquipment();
+
+        // Create the new challenge
+        currPlayer.setPendingChallenge(challenge);
+
+        // Alert the user that the challenge has been created
+        MenuBuilder.alert("Challenge Created", "The challenge has been created successfully.");
+
+        // Add the challenge to the challenges list
+        this.challenges.add(challenge);
+
+    }
+
+    private Player[] getPlayers() {
+        List<Player> players = new ArrayList<>();
+        for (User user : this.users) {
+            if (user instanceof Player) {
+                players.add((Player) user);
+            }
+        }
+        return players.toArray(new Player[players.size()]);
     }
 
     // Method to modify the active equipment
     private void modifyActiveEquipment() {
-        System.out.println("Modifying Active Equipment...");
-        // TODO: Implement the modifyActiveEquipment method
+        ((Player) this.loggedUser).manageEquipment();
     }
 
     /**
@@ -670,8 +735,13 @@ public class Game {
 
     // Method to manage the challenges
     private void manageChallenges() {
-        System.out.println("Managing Challenges...");
-        // TODO: Implement the manageChallenges method
+        for (Challenge challenge : this.challenges) {
+            if (!challenge.isApproved()) {
+                ((Admin) this.loggedUser).manageChallenge(challenge);
+            }
+        }
+
+        MenuBuilder.alert("Challenges Manager", "All challenges have been managed successfully");
     }
 
     // ============================================================================================[ General Logged Methods ]>>> 

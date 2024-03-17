@@ -2,6 +2,7 @@ package src.challenges;
 
 // Import statements
 import src.users.Player;
+import utils.MenuBuilder;
 
 public class Challenge {
     private int gold;
@@ -33,7 +34,79 @@ public class Challenge {
         }
     }
 
-    // Getters & Setters ==================================================================================================
+    // Verify if the challenge is valid
+    public boolean isValid(Player loggedUser, Player opponent) {
+        // Check if the opponent is the same as the logged user
+        if (opponent == loggedUser) {
+            MenuBuilder.alert("Invalid Opponent", "You cannot challenge yourself.");
+            return false;
+        }
+        // Check if the opponent has already been challenged
+        else if (opponent.hasPendingChallenge()) {
+            MenuBuilder.alert("Invalid Opponent", "The opponent has already been challenged.");
+            return false;
+        }
+        // Check if the opponent is banned
+        else if (opponent.isBanned()) {
+            MenuBuilder.alert("Invalid Opponent", "The opponent is banned.");
+            return false;
+        }
+        // Check if the opponent has recently battled
+        else if (opponent.defeatedRecently()) {
+            boolean yORn = MenuBuilder
+                    .askYesNo("The opponent has recently lost a battle, are you sure you want to continue?");
+            if (!yORn) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Get the challenged player
+    public Player getChallengedPlayer() {
+        return this.players[1];
+    }
+
+    // Get the challenger player
+    public Player getChallengerPlayer() {
+        return this.players[0];
+    }
+
+    // Approve the challenge
+    public void approve() {
+        this.approved = true;
+        this.getChallengedPlayer().setPendingChallenge(this);
+    }
+
+    // Accept the challenge
+    public void accept() {
+        this.accepted = true;
+    }
+
+    // Decline the challenge
+    public void reject() {
+        this.accepted = false;
+        this.winner = this.getChallengerPlayer();
+        Player loser = this.getChallengedPlayer();
+        int fee = (int) (this.gold * 0.1);
+        if (loser.canAfford(fee)) {
+            this.winner.goldTransaction(fee, loser);
+        } else {
+            String msg = "The challenged player does not have enough funds to pay the fee. The player will be banned.";
+            MenuBuilder.alert("Insufficient funds", msg);
+            this.winner.goldTransaction(loser.getGold(), loser);
+            loser.ban();
+        }
+    }
+
+    // Start the fight
+    public void startFight() {
+        this.result = new Fight(this.players[0], this.players[1]);
+        this.winner = this.result.getWinner();
+    }
+
+    // ============================================================================================[ Getters & Setters ]>>>
     public int getGold() {
         return gold;
     }

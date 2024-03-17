@@ -2,21 +2,28 @@ package src.characters;
 
 //Import Statements
 import src.abilities.*;
+<<<<<<< HEAD
 import src.equipment.*;
 import src.minions.Minion;
 import src.modifiers.Modifier;
+=======
+>>>>>>> challenge
 
 public class Hunter extends Character {
     private int willpower;
     private Talent talent;
 
+    // CONSTANTS
+    public final int MAX_WILLPOWER = 3;
+
     // ============================================================================================[ Constructor ]>>>
-    public Hunter(String name, int health, int power, Modifier[] modifiers, Minion[] minions, Equipment[] equipment,
-            int willpower, Talent talent) {
-        super(name, health, power, modifiers, minions, equipment);
-        this.willpower = willpower;
-        this.talent = talent;
+    public Hunter() {
+        super();
+        willpower = MAX_WILLPOWER;
+        this.loadSpecial();
+        this.loadMinions();
     }
+<<<<<<< HEAD
     
     // ============================================================================================[ Private Methods ]>>>
 
@@ -32,6 +39,23 @@ public class Hunter extends Character {
         return totalDefense;
     }
     // Getters & Setters ==================================================================================================
+=======
+
+    // ============================================================================================[ Public Methods ]>>>
+
+    @Override
+    public void loadMinions() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void loadSpecial() {
+        this.special = new Talent();
+    }
+
+    // ============================================================================================[ Getters & Setters ]>>>
+>>>>>>> challenge
 
     public int getWillpower() {
         return willpower;

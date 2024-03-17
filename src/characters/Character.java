@@ -12,32 +12,164 @@ public abstract class Character {
     private int power;
     private Modifier[] modifiers;
     private Minion[] minions;
-    private Equipment[] equipment;
+    protected Equipment[] equipment;
+    protected SpecialAbility special;
+
+    // CONSTANTS
+    public final int MAX_HEALTH = 5;
+    public final int MAX_POWER = 5;
+    public final int MIN_POWER = 1;
+    public final int INIT_MINIONS = 3;
 
     // ============================================================================================[ Constructor ]>>>
-    public Character(String name, int health, int power, Modifier[] modifiers, Minion[] minions,
-            Equipment[] equipment) {
-        this.name = name;
-        this.health = health;
-        this.power = power;
-        this.modifiers = modifiers;
-        this.minions = minions;
-        this.equipment = equipment;
+    public Character() {
+        health = MAX_HEALTH;
+        power = MAX_POWER;
+        modifiers = new Modifier[2];
+        minions = new Minion[INIT_MINIONS];
+        equipment = new Equipment[3];
+        loadModifiers();
     }
 
+    // ============================================================================================[ Abstract Methods ]>>>
+
+    // Load the character's special ability
+    public abstract void loadSpecial();
+
+    // Load the character's minions
+    public abstract void loadMinions();
+
     // ============================================================================================[ Public Methods ]>>>
-    public void attack(Character Character) {
+    public int getAttackPower() {
+        int success = 0;
+        int attackPower = calcAttackPower();
+        for (int i = 0; i < attackPower; i++) {
+            int roll = rollDice();
+            if (roll >= 5) {
+                success++;
+            }
+        }
+
+        return success;
+    }
+
+    public int getDefensePower() {
+        int success = 0;
+        int defensePower = calcDefensePower();
+        for (int i = 0; i < defensePower; i++) {
+            int roll = rollDice();
+            if (roll >= 5) {
+                success++;
+            }
+        }
+
+        return success;
+
+    }
+
+    public int attack(Character target) {
+        int damage = getAttackPower();
+        int defense = target.getDefensePower();
+        int remainingHealth = health - (damage - defense);
+
+        if (remainingHealth < 0) {
+            health = 0;
+        } else {
+            health = remainingHealth;
+        }
+
+        return health;
+    }
+
+    // Get a random number between 1 and 6
+    public int rollDice() {
+        return (int) (Math.random() * 6) + 1;
+    }
+
+    public boolean isDead() {
+        return health == 0;
+    }
+
+    // Load the character's modifiers
+    public void loadModifiers() {
+        Modifier[] mods = { new Strength(), new Weakness() };
+        this.modifiers = mods;
     }
 
     public boolean hasActiveEquipment() {
         return true;
     }
 
+<<<<<<< HEAD
     // ============================================================================================[ Abstracts Methods ]>>>
     abstract int calculateAttackPower(SpecialAbility specialAbility, Weapon weapon, Armor armor);
     abstract int calculateDefensePower(SpecialAbility specialAbility,Weapon weapon, Armor armor);
+=======
+    public int calcEquipmentAttack() {
 
-    // Getters & Setters ==================================================================================================
+        int cumPower = 0;
+        for (Equipment e : this.equipment) {
+            cumPower += e.getAttack();
+        }
+
+        return cumPower;
+    }
+>>>>>>> challenge
+
+    public int calcEquipmentDefense() {
+        int cumDefense = 0;
+        for (Equipment e : this.equipment) {
+            cumDefense += e.getDefense();
+        }
+
+        return cumDefense;
+    }
+
+    public int calcModifiersAttack() {
+        Strength s = (Strength) this.modifiers[0];
+        return s.getEffectiveness();
+    }
+
+    public int calcMinionsDefense() {
+        int cumHealth = 0;
+        for (Minion m : this.minions) {
+            cumHealth += m.getHealth();
+        }
+
+        return cumHealth;
+    }
+
+    public int calcBaseAttackPower() {
+        int cumAtt = 0;
+
+        cumAtt += calcEquipmentAttack();
+        cumAtt += calcModifiersAttack();
+        cumAtt += this.special.getAttack();
+
+        return cumAtt;
+    }
+
+    public int calcBaseDefensePower() {
+        int cumDef = 0;
+
+        cumDef += calcEquipmentDefense();
+        cumDef += calcMinionsDefense();
+        cumDef += this.special.getDefense();
+
+        return cumDef;
+    }
+
+    // Calculate total attack power of the character
+    public int calcAttackPower() {
+        return calcBaseAttackPower();
+    }
+
+    // Calculate total defense power of the character
+    public int calcDefensePower() {
+        return calcBaseDefensePower();
+    }
+
+    // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
         return name;
     }

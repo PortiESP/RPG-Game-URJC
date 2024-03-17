@@ -9,7 +9,7 @@ public class Ghoul extends Minion {
         this.dependency = dependency;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public int getDependency() {
         return dependency;
     }

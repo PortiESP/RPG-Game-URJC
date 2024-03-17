@@ -8,9 +8,13 @@
 
 - [ ] Search a way to offer a default weapons set.
 - [ ] Search a way to offer a default armor set.
-- [ ] Make a player to select a character selection when registering.
+- [X] Make a player to select a character selection when registering.
 - [ ] Implement battle system.
+  - [X] Challenge part 1 (created, unverified)
+  - [X] Challenge part 2 (verified, waiting for acceptance)
+  - [ ] Challenge part 3 (accepted or not, finished)
   - [ ] Implement the notification system.
+  - [ ] Check if the user have active challenges on login.
 - [ ] Check the way the score is calculated.
 - [X] Implement a way to manage account settings.
   - [X] Change password.
@@ -32,11 +36,12 @@
   - [X] Manage account settings.
   - [X] Sign off.
   
-## Inline TODO notes
+## Refactor for review
 
 > 📆 Review the following TODOs in the code `// TODO` and decide what to do
 
 - [ ] In `Game` class, implement `menu` method using the State pattern.
+- [ ] In the `Game` class, the `manageChallenge` and similar methods should be moved to the `Admin` class, or managed using the State pattern.
 
 ## Syntax and format
 

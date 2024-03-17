@@ -23,7 +23,7 @@ public abstract class User {
     // Abstract method to get the score
     public abstract int getScore();
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
         return name;
     }

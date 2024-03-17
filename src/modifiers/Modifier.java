@@ -4,11 +4,14 @@ public abstract class Modifier {
     private String name;
 
     // ============================================================================================[ Constructor ]>>>
+    public Modifier() {
+    }
+
     public Modifier(String name) {
         this.name = name;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
         return name;
     }

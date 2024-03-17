@@ -2,11 +2,39 @@
 <java version="20.0.2" class="java.beans.XMLDecoder">
  <object class="src.Game" id="Game0">
   <void property="lastId">
-   <string>B0AA0</string>
+   <string>A0AA1</string>
+  </void>
+  <void property="loggedUser">
+   <object class="src.users.Player" id="Player0">
+    <void property="currentCharacter">
+     <object class="java.lang.Enum" id="CharacterSelection0" method="valueOf">
+      <class>src.characters.CharacterSelection</class>
+      <string>LYCANTHROPE</string>
+     </object>
+    </void>
+    <void property="gold">
+     <int>500</int>
+    </void>
+    <void property="id">
+     <string>A0AA1</string>
+    </void>
+    <void property="name">
+     <string>2</string>
+    </void>
+    <void property="nick">
+     <string>2</string>
+    </void>
+    <void property="password">
+     <string>2</string>
+    </void>
+   </object>
   </void>
   <void property="users">
    <void method="add">
     <object class="src.users.Player">
+     <void property="currentCharacter">
+      <object idref="CharacterSelection0"/>
+     </void>
      <void property="gold">
       <int>500</int>
      </void>
@@ -14,25 +42,6 @@
       <string>A0AA0</string>
      </void>
      <void property="name">
-      <string>2</string>
-     </void>
-     <void property="nick">
-      <string>2</string>
-     </void>
-     <void property="password">
-      <string>2</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="src.users.Player">
-     <void property="gold">
-      <int>500</int>
-     </void>
-     <void property="id">
-      <string>A0AA1</string>
-     </void>
-     <void property="name">
       <string>1</string>
      </void>
      <void property="nick">
@@ -44,21 +53,18 @@
     </object>
    </void>
    <void method="add">
-    <object class="src.users.Player">
-     <void property="gold">
-      <int>500</int>
-     </void>
-     <void property="id">
-      <string>B0AA0</string>
-     </void>
+    <object idref="Player0"/>
+   </void>
+   <void method="add">
+    <object class="src.users.Admin">
      <void property="name">
-      <string>5</string>
+      <string>a</string>
      </void>
      <void property="nick">
-      <string>5</string>
+      <string>a</string>
      </void>
      <void property="password">
-      <string>5</string>
+      <string>a</string>
      </void>
     </object>
    </void>

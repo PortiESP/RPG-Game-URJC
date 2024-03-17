@@ -4,12 +4,15 @@ public class Weakness extends Modifier {
     private int sensitivity;
 
     // ============================================================================================[ Constructor ]>>>
+    public Weakness() {
+    }
+
     public Weakness(String name, int sensitivity) {
         super(name);
         this.sensitivity = sensitivity;
     }
 
-    // Getters & Setters ==================================================================================================
+    // ============================================================================================[ Getters & Setters ]>>>
     public int getSensitivity() {
         return sensitivity;
     }

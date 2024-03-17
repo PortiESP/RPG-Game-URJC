@@ -885,29 +885,26 @@ public class Game {
         // Sort the users by their score
         this.users.sort((u1, u2) -> u2.getScore() - u1.getScore());
 
-        // Create the ranking data table
-        String[] data = new String[this.users.size()];
         // Fill the data array with the ranking
-        // TODO: Refactor this loop to use a the iterator syntax: `for (User user : this.users)`, the resize the data array to fit the size of the users list
-        for (int i = 0; i < this.users.size(); i++) {
-            // Get a certain user
-            User user = this.users.get(i);
+        Player[] players = this.getPlayers();
 
-            // Print the 
-            if (user instanceof Admin) { // If the user is an admin, print the user data with the ADMIN tag
-                // TODO: Refactor this to avoid printing admin users in the ranking
-                data[i] = user.getNick() + user.getName() + " --> ADMIN";
+        // Create the ranking data table
+        String[] data = new String[players.length];
+
+        for (int i = 0; i < players.length; i++) {
+            Player player = players[i];
+
+            // If the user is a player, print the user Nick and score as: `Nick#Id --> Score`
+            String playerData = player.getNick() + "#" + player.getId();
+
+            // If the player is banned, print the user data with the BANNED tag, otherwise, print the user data with the score
+            if (player.isBanned()) {
+                playerData += " --> BANNED";
             } else {
-                // If the user is a player, print the user Nick and score as: `Nick#Id --> Score`
-                Player player = (Player) user;
-                String playerData = player.getNick() + "#" + player.getId();
-
-                // If the player is banned, print the user data with the BANNED tag, otherwise, print the user data with the score
-                if (player.isBanned())
-                    data[i] = playerData + " --> BANNED";
-                else
-                    data[i] = playerData + " --> " + player.getScore();
+                playerData += " --> " + player.getScore();
             }
+
+            data[i] = playerData;
         }
 
         // Print the ranking

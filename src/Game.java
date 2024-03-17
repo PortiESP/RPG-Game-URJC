@@ -599,7 +599,8 @@ public class Game {
 
     // Method to modify the active equipment
     private void modifyActiveEquipment() {
-        ((Player) this.loggedUser).manageEquipment();
+        Player currPlayer = (Player) this.loggedUser;
+        currPlayer.manageEquipment();
     }
 
     /**
@@ -693,8 +694,10 @@ public class Game {
         String[] options = new String[] { "Manage Armors", "Manage Weapons", "Back" };
         int answer = MenuBuilder.menu("Manage Equipment", options);
 
-        if (answer == 1) this.manageArmors();
-        else if (answer == 2) this.manageWeapons();
+        if (answer == 1)
+            this.manageArmors();
+        else if (answer == 2)
+            this.manageWeapons();
     }
 
     // Method to manage the armors
@@ -702,8 +705,10 @@ public class Game {
         String[] options = new String[] { "Add Armor", "Remove Armor", "Back" };
         int answer = MenuBuilder.menu("Manage Armors", options);
 
-        if (answer == 1) this.addArmor();
-        else if (answer == 2) this.removeArmor();
+        if (answer == 1)
+            this.addArmor();
+        else if (answer == 2)
+            this.removeArmor();
     }
 
     // Method to add an armor
@@ -718,8 +723,10 @@ public class Game {
         boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this armor?");
 
         // If the user confirms, add the new armor to the armors available
-        if (answer) this.armorsAvailable.add(armor);
-        else MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
+        if (answer)
+            this.armorsAvailable.add(armor);
+        else
+            MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
     }
 
     // Method to remove an armor
@@ -737,7 +744,8 @@ public class Game {
     private void manageChallenges() {
         for (Challenge challenge : this.challenges) {
             if (!challenge.isApproved()) {
-                ((Admin) this.loggedUser).manageChallenge(challenge);
+                Admin admin = (Admin) this.loggedUser;
+                admin.manageChallenge(challenge);
             }
         }
 

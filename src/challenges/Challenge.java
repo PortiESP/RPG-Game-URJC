@@ -13,6 +13,9 @@ public class Challenge {
     private Player winner;
 
     // ============================================================================================[ Constructor ]>>>
+    public Challenge() {
+    }
+
     public Challenge(Player player1, Player player2, int gold) {
         this.gold = gold;
         this.accepted = false;

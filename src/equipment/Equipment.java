@@ -6,6 +6,9 @@ public abstract class Equipment {
     private int defense;
 
     // ============================================================================================[ Constructor ]>>>
+    public Equipment() {
+    }
+
     public Equipment(String name, int attackModifier, int defenseModifier) {
         this.name = name;
         this.attack = attackModifier;

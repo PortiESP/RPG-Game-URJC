@@ -155,6 +155,7 @@ public class Game {
     private void notLoggedMenu() {
         // Prepare the options, print the menu and get the answer
         String[] options = { "Login", "Register", "Exit" };
+        MenuBuilder.setConfigLastAsZero(true);
         int answer = MenuBuilder.menu("Welcome to RPG Game", options);
 
         // Determine the action to take depending on the answer
@@ -192,6 +193,7 @@ public class Game {
         String[] options = { "Challenge", "Modify Active Equipment", "Change Character", "Battle History", "Ranking",
                 "Manage Account", "Log Out" };
         String nickName = this.loggedUser.getNick();
+        MenuBuilder.setConfigLastAsZero(true);
         int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
 
         // Determine the action to take depending on the answer
@@ -232,6 +234,7 @@ public class Game {
         String[] options = { "Manage Users", "Manage Equipment", "Manage Challenges", "Check Ranking",
                 "Manage Account", "Log Out" };
         String nickName = this.loggedUser.getNick();
+        MenuBuilder.setConfigLastAsZero(true);
         int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
 
         // Determine the action to take depending on the answer
@@ -693,6 +696,7 @@ public class Game {
     private void manageEquipment() {
         while (true) {
             String[] options = new String[] { "Manage Armors", "Manage Weapons", "Back" };
+            MenuBuilder.setConfigLastAsZero(true);
             int answer = MenuBuilder.menu("Manage Equipment", options);
     
             if (answer == 1)
@@ -708,6 +712,7 @@ public class Game {
     private void manageArmors() {
         while (true) {
             String[] options = new String[] { "Add Armor", "Remove Armor", "Show Armors", "Back" };
+            MenuBuilder.setConfigLastAsZero(true);
             int answer = MenuBuilder.menu("Manage Armors", options);
 
             if (answer == 1)
@@ -789,6 +794,7 @@ public class Game {
     private void manageWeapons() {
         while (true) {
             String[] options = new String[] { "Add Weapon", "Remove Weapon", "Show Weapons", "Back" };
+            MenuBuilder.setConfigLastAsZero(true);
             int answer = MenuBuilder.menu("Manage Weapons", options);
 
             if (answer == 1)

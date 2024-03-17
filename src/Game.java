@@ -218,7 +218,7 @@ public class Game {
      * The options are:
      * <ul>
      * <li>{@link #manageUsers() Manage Users}</li>
-     * <li>{@link #manageCharacters() Manage Characters}</li>
+     * <li>{@link #manageEquipment() Manage Equipment}</li>
      * <li>{@link #manageChallenges() Manage Challenges}</li>
      * <li>{@link #checkRanking() Ranking}</li>
      * <li>{@link #manageAccount() Manage Account}</li>
@@ -237,7 +237,7 @@ public class Game {
         if (answer == 1)
             this.manageUsers();
         else if (answer == 2)
-            this.manageCharacters();
+            this.manageEquipment();
         else if (answer == 3)
             this.manageChallenges();
         else if (answer == 4)
@@ -623,10 +623,10 @@ public class Game {
         // TODO: Implement the manageUsers method
     }
 
-    // Method to manage the characters
-    private void manageCharacters() {
+    // Method to manage the equipment
+    private void manageEquipment() {
         System.out.println("Managing Characters...");
-        // TODO: Implement the manageCharacters method
+        // TODO: Implement the manageEquipment method
     }
 
     // Method to manage the challenges

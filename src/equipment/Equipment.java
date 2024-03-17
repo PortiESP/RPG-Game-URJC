@@ -9,7 +9,7 @@ public abstract class Equipment {
     public Equipment() {
     }
 
-    public Equipment(String name, int attack, int defeated) {
+    public Equipment(String name, int attack, int defense) {
         this.name = name;
         this.attack = attack;
         this.defense = defense;

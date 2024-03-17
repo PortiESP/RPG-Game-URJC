@@ -30,7 +30,7 @@
   - [X] Sign off.
 - [ ] Implement Admin menu.
   - [ ] Manage users.
-  - [ ] Manage characters.
+  - [X] Manage equipment.
   - [ ] Manage challenges.
   - [X] Check ranking.
   - [X] Manage account settings.

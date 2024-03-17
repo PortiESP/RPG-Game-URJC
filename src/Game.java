@@ -698,7 +698,7 @@ public class Game {
             String[] options = new String[] { "Manage Armors", "Manage Weapons", "Back" };
             MenuBuilder.setConfigLastAsZero(true);
             int answer = MenuBuilder.menu("Manage Equipment", options);
-
+    
             if (answer == 1)
                 this.manageArmors();
             else if (answer == 2)
@@ -731,17 +731,31 @@ public class Game {
         String[] labels = { "Name", "Defense Modifier", "Attack Modifier" };
         String[] dataInput = MenuBuilder.form("Add Armor", labels);
 
-        // Create the new armor
-        Armor armor = new Armor(dataInput[0], Integer.parseInt(dataInput[1]), Integer.parseInt(dataInput[2]));
+        int defenseModifier = 0;
+        int attackModifier = 0;
 
-        // Ask for user confirmation
-        boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this armor?");
+        // Check if the defense and attack modifiers are integers
+        try {
+            defenseModifier = Integer.parseInt(dataInput[1]);
+            attackModifier = Integer.parseInt(dataInput[2]);
+            
+            // Create the new armor
+            Armor armor = new Armor(dataInput[0], defenseModifier, attackModifier);
+    
+            // Ask for user confirmation
+            boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this armor?");
+    
+            // If the user confirms, add the new armor to the armors available
+            if (answer)
+                this.armorsAvailable.add(armor);
+            else
+                MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
 
-        // If the user confirms, add the new armor to the armors available
-        if (answer)
-            this.armorsAvailable.add(armor);
-        else
-            MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
+        // If the defense and attack modifiers are not integers, alert the user and ask for the data again
+        } catch (NumberFormatException e) {
+            MenuBuilder.alert("Invalid Input", "The defense and attack modifiers must be integers.");
+            this.addArmor();
+        }
     }
 
     // Method to remove an armor
@@ -757,17 +771,15 @@ public class Game {
         boolean confirm = MenuBuilder.askYesNo("Are you sure you want to remove this armor?");
 
         // If the user confirms, remove the armor from the armors available
-        if (confirm)
-            this.armorsAvailable.remove(answer);
-        else
-            MenuBuilder.alert("Operation Canceled", "The armor has not been removed.");
+        if (confirm) this.armorsAvailable.remove(answer);
+        else MenuBuilder.alert("Operation Canceled", "The armor has not been removed.");        
     }
 
     // Method to show the armors
     private void showArmors() {
         // Create the armors data table
         String[] data = new String[this.armorsAvailable.size()];
-
+        
         // Fill the data array with the armors
         for (int i = 0; i < this.armorsAvailable.size(); i++) {
             Armor armor = this.armorsAvailable.get(i);
@@ -801,18 +813,31 @@ public class Game {
         String[] labels = { "Name", "Defense Modifier", "Attack Modifier", "Hands Required" };
         String[] dataInput = MenuBuilder.form("Add Weapon", labels);
 
-        // Create the new weapon
-        Weapon weapon = new Weapon(dataInput[0], Integer.parseInt(dataInput[1]), Integer.parseInt(dataInput[2]),
-                Integer.parseInt(dataInput[3]));
+        int defenseModifier = 0;
+        int attackModifier = 0;
+        int handsRequired = 0;
 
-        // Ask for user confirmation
-        boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this weapon?");
+        // Check if the defense, attack modifiers and hands required are integers
+        try {
+            defenseModifier = Integer.parseInt(dataInput[1]);
+            attackModifier = Integer.parseInt(dataInput[2]);
+            handsRequired = Integer.parseInt(dataInput[3]);
 
-        // If the user confirms, add the new weapon to the weapons available
-        if (answer)
-            this.weaponsAvailable.add(weapon);
-        else
-            MenuBuilder.alert("Operation Canceled", "The weapon has not been added.");
+            // Create the new weapon
+            Weapon weapon = new Weapon(dataInput[0], defenseModifier, attackModifier, handsRequired);
+    
+            // Ask for user confirmation
+            boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this weapon?");
+    
+            // If the user confirms, add the new weapon to the weapons available
+            if (answer) this.weaponsAvailable.add(weapon);
+            else MenuBuilder.alert("Operation Canceled", "The weapon has not been added.");
+
+        // If the defense, attack modifiers and hands required are not integers, alert the user and ask for the data again
+        } catch (NumberFormatException e) {
+            MenuBuilder.alert("Invalid Input", "The defense, attack modifiers and hands required must be integers.");
+            this.addWeapon();
+        }
     }
 
     // Method to remove a weapon
@@ -828,10 +853,8 @@ public class Game {
         boolean confirm = MenuBuilder.askYesNo("Are you sure you want to remove this weapon?");
 
         // If the user confirms, remove the weapon from the weapons available
-        if (confirm)
-            this.weaponsAvailable.remove(answer);
-        else
-            MenuBuilder.alert("Operation Canceled", "The weapon has not been removed.");
+        if (confirm) this.weaponsAvailable.remove(answer);
+        else MenuBuilder.alert("Operation Canceled", "The weapon has not been removed.");
     }
 
     // Method to show the weapons
@@ -842,8 +865,7 @@ public class Game {
         // Fill the data array with the weapons
         for (int i = 0; i < this.weaponsAvailable.size(); i++) {
             Weapon weapon = this.weaponsAvailable.get(i);
-            data[i] = weapon.getName() + " --> Defense: " + weapon.getDefense() + " | Attack: " + weapon.getAttack()
-                    + " | Hands Required: " + weapon.getHandsRequired();
+            data[i] = weapon.getName() + " --> Defense: " + weapon.getDefense() + " | Attack: " + weapon.getAttack() + " | Hands Required: " + weapon.getHandsRequired();
         }
 
         // Print the weapons
@@ -869,29 +891,26 @@ public class Game {
         // Sort the users by their score
         this.users.sort((u1, u2) -> u2.getScore() - u1.getScore());
 
-        // Create the ranking data table
-        String[] data = new String[this.users.size()];
         // Fill the data array with the ranking
-        // TODO: Refactor this loop to use a the iterator syntax: `for (User user : this.users)`, the resize the data array to fit the size of the users list
-        for (int i = 0; i < this.users.size(); i++) {
-            // Get a certain user
-            User user = this.users.get(i);
+        Player[] players = this.getPlayers();
 
-            // Print the 
-            if (user instanceof Admin) { // If the user is an admin, print the user data with the ADMIN tag
-                // TODO: Refactor this to avoid printing admin users in the ranking
-                data[i] = user.getNick() + user.getName() + " --> ADMIN";
+        // Create the ranking data table
+        String[] data = new String[players.length];
+
+        for (int i = 0; i < players.length; i++) {
+            Player player = players[i];
+
+            // If the user is a player, print the user Nick and score as: `Nick#Id --> Score`
+            String playerData = player.getNick() + "#" + player.getId();
+
+            // If the player is banned, print the user data with the BANNED tag, otherwise, print the user data with the score
+            if (player.isBanned()) {
+                playerData += " --> BANNED";
             } else {
-                // If the user is a player, print the user Nick and score as: `Nick#Id --> Score`
-                Player player = (Player) user;
-                String playerData = player.getNick() + "#" + player.getId();
-
-                // If the player is banned, print the user data with the BANNED tag, otherwise, print the user data with the score
-                if (player.isBanned())
-                    data[i] = playerData + " --> BANNED";
-                else
-                    data[i] = playerData + " --> " + player.getScore();
+                playerData += " --> " + player.getScore();
             }
+
+            data[i] = playerData;
         }
 
         // Print the ranking
@@ -912,11 +931,10 @@ public class Game {
      * 
      */
     private void manageAccount() {
-        int answer = -1;
+        int answer = 0;
 
-        while (answer != 0 && this.loggedUser != null) {
+        while (answer != 4 && this.loggedUser != null) {
             String[] options = { "Change Nick", "Change Password", "Delete Account", "Back" };
-            MenuBuilder.setConfigLastAsZero(true);
             answer = MenuBuilder.menu("Account Settings", options);
             if (answer == 1)
                 this.changeNick();

@@ -625,8 +625,47 @@ public class Game {
 
     // Method to manage the equipment
     private void manageEquipment() {
-        System.out.println("Managing Characters...");
-        // TODO: Implement the manageEquipment method
+        String[] options = new String[] { "Manage Armors", "Manage Weapons", "Back" };
+        int answer = MenuBuilder.menu("Manage Equipment", options);
+
+        if (answer == 1) this.manageArmors();
+        else if (answer == 2) this.manageWeapons();
+    }
+
+    // Method to manage the armors
+    private void manageArmors() {
+        String[] options = new String[] { "Add Armor", "Remove Armor", "Back" };
+        int answer = MenuBuilder.menu("Manage Armors", options);
+
+        if (answer == 1) this.addArmor();
+        else if (answer == 2) this.removeArmor();
+    }
+
+    // Method to add an armor
+    private void addArmor() {
+        String[] labels = { "Name", "Defense Modifier", "Attack Modifier" };
+        String[] dataInput = MenuBuilder.form("Add Armor", labels);
+
+        // Create the new armor
+        Armor armor = new Armor(dataInput[0], Integer.parseInt(dataInput[1]), Integer.parseInt(dataInput[2]));
+
+        // Ask for user confirmation
+        boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this armor?");
+
+        // If the user confirms, add the new armor to the armors available
+        if (answer) this.armorsAvailable.add(armor);
+        else MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
+    }
+
+    // Method to remove an armor
+    private void removeArmor() {
+        // TODO: Implement the removeArmor method
+    }
+
+    // Method to manage the weapons
+    private void manageWeapons() {
+        System.out.println("Managing Weapons...");
+        // TODO: Implement the manageWeapons method
     }
 
     // Method to manage the challenges

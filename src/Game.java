@@ -229,7 +229,7 @@ public class Game {
      */
     private void loggedAdminMenu() {
         // Prepare the options, print the menu and get the answer
-        String[] options = { "Manage Users", "Manage Characters", "Manage Challenges", "Check Ranking",
+        String[] options = { "Manage Users", "Manage Equipment", "Manage Challenges", "Check Ranking",
                 "Manage Account", "Log Out" };
         String nickName = this.loggedUser.getNick();
         int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
@@ -690,20 +690,34 @@ public class Game {
 
     // Method to manage the equipment
     private void manageEquipment() {
-        String[] options = new String[] { "Manage Armors", "Manage Weapons", "Back" };
-        int answer = MenuBuilder.menu("Manage Equipment", options);
-
-        if (answer == 1) this.manageArmors();
-        else if (answer == 2) this.manageWeapons();
+        while (true) {
+            String[] options = new String[] { "Manage Armors", "Manage Weapons", "Back" };
+            int answer = MenuBuilder.menu("Manage Equipment", options);
+    
+            if (answer == 1)
+                this.manageArmors();
+            else if (answer == 2)
+                this.manageWeapons();
+            else
+                break;
+        }
     }
 
     // Method to manage the armors
     private void manageArmors() {
-        String[] options = new String[] { "Add Armor", "Remove Armor", "Back" };
-        int answer = MenuBuilder.menu("Manage Armors", options);
+        while (true) {
+            String[] options = new String[] { "Add Armor", "Remove Armor", "Show Armors", "Back" };
+            int answer = MenuBuilder.menu("Manage Armors", options);
 
-        if (answer == 1) this.addArmor();
-        else if (answer == 2) this.removeArmor();
+            if (answer == 1)
+                this.addArmor();
+            else if (answer == 2)
+                this.removeArmor();
+            else if (answer == 3)
+                this.showArmors();
+            else
+                break;
+        }
     }
 
     // Method to add an armor
@@ -724,13 +738,99 @@ public class Game {
 
     // Method to remove an armor
     private void removeArmor() {
-        // TODO: Implement the removeArmor method
+        // Prepare the options, print the menu and get the answer
+        String[] options = new String[this.armorsAvailable.size()];
+        for (int i = 0; i < this.armorsAvailable.size(); i++) {
+            options[i] = this.armorsAvailable.get(i).getName();
+        }
+        int answer = MenuBuilder.menu("Remove Armor", options) - 1;
+
+        // Ask for user confirmation
+        boolean confirm = MenuBuilder.askYesNo("Are you sure you want to remove this armor?");
+
+        // If the user confirms, remove the armor from the armors available
+        if (confirm) this.armorsAvailable.remove(answer);
+        else MenuBuilder.alert("Operation Canceled", "The armor has not been removed.");        
+    }
+
+    // Method to show the armors
+    private void showArmors() {
+        // Create the armors data table
+        String[] data = new String[this.armorsAvailable.size()];
+        
+        // Fill the data array with the armors
+        for (int i = 0; i < this.armorsAvailable.size(); i++) {
+            Armor armor = this.armorsAvailable.get(i);
+            data[i] = armor.getName() + " --> Defense: " + armor.getDefense() + " | Attack: " + armor.getAttack();
+        }
+
+        // Print the armors
+        MenuBuilder.doc("Armors", data);
     }
 
     // Method to manage the weapons
     private void manageWeapons() {
-        System.out.println("Managing Weapons...");
-        // TODO: Implement the manageWeapons method
+        while (true) {
+            String[] options = new String[] { "Add Weapon", "Remove Weapon", "Show Weapons", "Back" };
+            int answer = MenuBuilder.menu("Manage Weapons", options);
+
+            if (answer == 1)
+                this.addWeapon();
+            else if (answer == 2)
+                this.removeWeapon();
+            else if (answer == 3)
+                this.showWeapons();
+            else
+                break;
+        }
+    }
+
+    // Method to add a weapon
+    private void addWeapon() {
+        String[] labels = { "Name", "Defense Modifier", "Attack Modifier", "Hands Required" };
+        String[] dataInput = MenuBuilder.form("Add Weapon", labels);
+
+        // Create the new weapon
+        Weapon weapon = new Weapon(dataInput[0], Integer.parseInt(dataInput[1]), Integer.parseInt(dataInput[2]), Integer.parseInt(dataInput[3]));
+
+        // Ask for user confirmation
+        boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this weapon?");
+
+        // If the user confirms, add the new weapon to the weapons available
+        if (answer) this.weaponsAvailable.add(weapon);
+        else MenuBuilder.alert("Operation Canceled", "The weapon has not been added.");
+    }
+
+    // Method to remove a weapon
+    private void removeWeapon() {
+        // Prepare the options, print the menu and get the answer
+        String[] options = new String[this.weaponsAvailable.size()];
+        for (int i = 0; i < this.weaponsAvailable.size(); i++) {
+            options[i] = this.weaponsAvailable.get(i).getName();
+        }
+        int answer = MenuBuilder.menu("Remove Weapon", options) - 1;
+
+        // Ask for user confirmation
+        boolean confirm = MenuBuilder.askYesNo("Are you sure you want to remove this weapon?");
+
+        // If the user confirms, remove the weapon from the weapons available
+        if (confirm) this.weaponsAvailable.remove(answer);
+        else MenuBuilder.alert("Operation Canceled", "The weapon has not been removed.");
+    }
+
+    // Method to show the weapons
+    private void showWeapons() {
+        // Create the weapons data table
+        String[] data = new String[this.weaponsAvailable.size()];
+
+        // Fill the data array with the weapons
+        for (int i = 0; i < this.weaponsAvailable.size(); i++) {
+            Weapon weapon = this.weaponsAvailable.get(i);
+            data[i] = weapon.getName() + " --> Defense: " + weapon.getDefense() + " | Attack: " + weapon.getAttack() + " | Hands Required: " + weapon.getHandsRequired();
+        }
+
+        // Print the weapons
+        MenuBuilder.doc("Weapons", data);
     }
 
     // Method to manage the challenges

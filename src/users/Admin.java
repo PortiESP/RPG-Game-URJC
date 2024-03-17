@@ -26,7 +26,7 @@ public class Admin extends User {
     // Method to manage a challenge
     public void manageChallenge(Challenge challenge) {
         boolean opt = MenuBuilder.askYesNo(String.format("Do you want to manage the challenge beween %s and %s?",
-                challenge.getChallengerPlayer(), challenge.getChallengedPlayer()));
+                challenge.getChallengerPlayer().getName(), challenge.getChallengedPlayer().getName()));
         // If the admin does not want to manage this challenge, return
         if (!opt) {
             return;

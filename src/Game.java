@@ -155,6 +155,7 @@ public class Game {
     private void notLoggedMenu() {
         // Prepare the options, print the menu and get the answer
         String[] options = { "Login", "Register", "Exit" };
+        MenuBuilder.setConfigLastAsZero(true);
         int answer = MenuBuilder.menu("Welcome to RPG Game", options);
 
         // Determine the action to take depending on the answer
@@ -694,7 +695,7 @@ public class Game {
         while (true) {
             String[] options = new String[] { "Manage Armors", "Manage Weapons", "Back" };
             int answer = MenuBuilder.menu("Manage Equipment", options);
-    
+
             if (answer == 1)
                 this.manageArmors();
             else if (answer == 2)
@@ -752,15 +753,17 @@ public class Game {
         boolean confirm = MenuBuilder.askYesNo("Are you sure you want to remove this armor?");
 
         // If the user confirms, remove the armor from the armors available
-        if (confirm) this.armorsAvailable.remove(answer);
-        else MenuBuilder.alert("Operation Canceled", "The armor has not been removed.");        
+        if (confirm)
+            this.armorsAvailable.remove(answer);
+        else
+            MenuBuilder.alert("Operation Canceled", "The armor has not been removed.");
     }
 
     // Method to show the armors
     private void showArmors() {
         // Create the armors data table
         String[] data = new String[this.armorsAvailable.size()];
-        
+
         // Fill the data array with the armors
         for (int i = 0; i < this.armorsAvailable.size(); i++) {
             Armor armor = this.armorsAvailable.get(i);
@@ -794,14 +797,17 @@ public class Game {
         String[] dataInput = MenuBuilder.form("Add Weapon", labels);
 
         // Create the new weapon
-        Weapon weapon = new Weapon(dataInput[0], Integer.parseInt(dataInput[1]), Integer.parseInt(dataInput[2]), Integer.parseInt(dataInput[3]));
+        Weapon weapon = new Weapon(dataInput[0], Integer.parseInt(dataInput[1]), Integer.parseInt(dataInput[2]),
+                Integer.parseInt(dataInput[3]));
 
         // Ask for user confirmation
         boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this weapon?");
 
         // If the user confirms, add the new weapon to the weapons available
-        if (answer) this.weaponsAvailable.add(weapon);
-        else MenuBuilder.alert("Operation Canceled", "The weapon has not been added.");
+        if (answer)
+            this.weaponsAvailable.add(weapon);
+        else
+            MenuBuilder.alert("Operation Canceled", "The weapon has not been added.");
     }
 
     // Method to remove a weapon
@@ -817,8 +823,10 @@ public class Game {
         boolean confirm = MenuBuilder.askYesNo("Are you sure you want to remove this weapon?");
 
         // If the user confirms, remove the weapon from the weapons available
-        if (confirm) this.weaponsAvailable.remove(answer);
-        else MenuBuilder.alert("Operation Canceled", "The weapon has not been removed.");
+        if (confirm)
+            this.weaponsAvailable.remove(answer);
+        else
+            MenuBuilder.alert("Operation Canceled", "The weapon has not been removed.");
     }
 
     // Method to show the weapons
@@ -829,7 +837,8 @@ public class Game {
         // Fill the data array with the weapons
         for (int i = 0; i < this.weaponsAvailable.size(); i++) {
             Weapon weapon = this.weaponsAvailable.get(i);
-            data[i] = weapon.getName() + " --> Defense: " + weapon.getDefense() + " | Attack: " + weapon.getAttack() + " | Hands Required: " + weapon.getHandsRequired();
+            data[i] = weapon.getName() + " --> Defense: " + weapon.getDefense() + " | Attack: " + weapon.getAttack()
+                    + " | Hands Required: " + weapon.getHandsRequired();
         }
 
         // Print the weapons
@@ -898,10 +907,11 @@ public class Game {
      * 
      */
     private void manageAccount() {
-        int answer = 0;
+        int answer = -1;
 
-        while (answer != 4 && this.loggedUser != null) {
+        while (answer != 0 && this.loggedUser != null) {
             String[] options = { "Change Nick", "Change Password", "Delete Account", "Back" };
+            MenuBuilder.setConfigLastAsZero(true);
             answer = MenuBuilder.menu("Account Settings", options);
             if (answer == 1)
                 this.changeNick();

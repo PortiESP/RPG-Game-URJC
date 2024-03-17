@@ -100,11 +100,6 @@ public abstract class Character {
         return true;
     }
 
-<<<<<<< HEAD
-    // ============================================================================================[ Abstracts Methods ]>>>
-    abstract int calculateAttackPower(SpecialAbility specialAbility, Weapon weapon, Armor armor);
-    abstract int calculateDefensePower(SpecialAbility specialAbility,Weapon weapon, Armor armor);
-=======
     public int calcEquipmentAttack() {
 
         int cumPower = 0;
@@ -114,7 +109,6 @@ public abstract class Character {
 
         return cumPower;
     }
->>>>>>> challenge
 
     public int calcEquipmentDefense() {
         int cumDefense = 0;

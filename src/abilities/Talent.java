@@ -1,6 +1,6 @@
 package src.abilities;
 
-public class Talent implements SpecialAbility {
+public class Talent extends SpecialAbility {
 
   @Override
   public int getAttack() {

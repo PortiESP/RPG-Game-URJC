@@ -2,12 +2,6 @@ package src.characters;
 
 //Import Statements
 import src.abilities.*;
-<<<<<<< HEAD
-import src.equipment.*;
-import src.minions.Minion;
-import src.modifiers.Modifier;
-=======
->>>>>>> challenge
 
 public class Hunter extends Character {
     private int willpower;
@@ -23,23 +17,6 @@ public class Hunter extends Character {
         this.loadSpecial();
         this.loadMinions();
     }
-<<<<<<< HEAD
-    
-    // ============================================================================================[ Private Methods ]>>>
-
-    int calculateAttackPower(SpecialAbility talent, Weapon weapons, Armor armor){
-        int totalPower = talent.getAttack() + willpower + getPower() + 
-                        weapons.getAttackModifier() + armor.getAttackModifier();
-        return totalPower;
-    }
-
-    int calculateDefensePower(SpecialAbility talent, Weapon weapons, Armor armor){
-        int totalDefense = talent.getDefense() + willpower + getPower() + 
-                        weapons.getDefenseModifier() + armor.getDefenseModifier();
-        return totalDefense;
-    }
-    // Getters & Setters ==================================================================================================
-=======
 
     // ============================================================================================[ Public Methods ]>>>
 
@@ -55,7 +32,6 @@ public class Hunter extends Character {
     }
 
     // ============================================================================================[ Getters & Setters ]>>>
->>>>>>> challenge
 
     public int getWillpower() {
         return willpower;
@@ -73,5 +49,4 @@ public class Hunter extends Character {
         this.talent = talent;
     }
 
-    
 }

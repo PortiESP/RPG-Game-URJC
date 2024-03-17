@@ -1,6 +1,6 @@
 package src.abilities;
 
-public class Discipline implements SpecialAbility {
+public class Discipline extends SpecialAbility {
 
   @Override
   public int getAttack() {

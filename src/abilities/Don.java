@@ -1,6 +1,6 @@
 package src.abilities;
 
-public class Don implements SpecialAbility {
+public class Don extends SpecialAbility {
 
   @Override
   public int getAttack() {

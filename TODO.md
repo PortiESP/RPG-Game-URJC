@@ -22,7 +22,7 @@
   - [X] Change nickname.
 - [ ] Implement Player menu.
   - [ ] Challenge a player.
-  - [ ] Modify active equipment.
+  - [X] Modify active equipment.
   - [X] Change character.
   - [X] Check battle history.
   - [X] Check ranking.

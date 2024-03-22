@@ -99,8 +99,89 @@ public class Player extends User {
     }
 
     // Manage the equipment
-    public void manageEquipment() {
-        // TODO: Implement
+    public void manageEquipment(List<Armor> armorsAvailable, List<Weapon> weaponsAvailable) {
+        // Show the current equipment
+        this.showEquipment();
+
+        // Ask the user what he wants to do
+        String[] options = {
+            "Change armor",
+            "Change weapon 1",
+            "Change weapon 2",
+            "Exit"
+        };
+
+        MenuBuilder.setConfigLastAsZero(true);
+        int option = MenuBuilder.menu("Equipment", options);
+
+        // Manage the option
+        if (option == 1) {
+            this.changeArmor(armorsAvailable);
+        } else if (option == 2) {
+            this.changeWeapon(0, weaponsAvailable);
+        } else if (option == 3) {
+            this.changeWeapon(1, weaponsAvailable);
+        }
+        
+    }
+
+    // Method to show the equipment
+    public void showEquipment() {
+        // Generate the data to show
+        String[] data = {
+                    "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
+                    "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
+                    "Weapon 2: " + (this.weapons[1] != null ? this.weapons[1].getName() : "None"),
+                };
+                
+        // Show the data
+        MenuBuilder.doc("Equipment", data);
+    }
+
+    // Method to change the armor
+    public void changeArmor(List<Armor> armorsAvailable) {
+        // Show the available armors
+        String[] options = new String[armorsAvailable.size()];
+        for (int i = 0; i < armorsAvailable.size(); i++) {
+            options[i] = armorsAvailable.get(i).toString();
+        }
+
+        // Ask the user what armor he wants
+        int option = MenuBuilder.menu("Choose an armor", options) - 1;
+        this.armor = armorsAvailable.get(option);
+
+        // Show confirmation message
+        String message = "You have equipped the " + this.armor.getName() + " armor.";
+        MenuBuilder.alert("Armor equipped", message);
+    }
+
+    // Method to change a weapon
+    public void changeWeapon(int weaponIndex, List<Weapon> weaponsAvailable) {
+        // Show the available weapons
+        String[] options = new String[weaponsAvailable.size()];
+        for (int i = 0; i < weaponsAvailable.size(); i++) {
+            options[i] = weaponsAvailable.get(i).toString();
+        }
+
+        // Ask the user what weapon he wants
+        int option = MenuBuilder.menu("Choose a weapon", options) - 1;
+        Weapon weaponSelected = weaponsAvailable.get(option);
+
+
+        // Check if the total hands required are less than or equal to the hands available
+        if (
+            this.weapons[1 - weaponIndex] != null ||
+            this.weapons[1 - weaponIndex].getHandsRequired() + weaponSelected.getHandsRequired() > 2
+        ){
+            MenuBuilder.alert("Error", "You need to unequip the other weapon first to equip this one.");
+            return;
+        }
+
+        // Equip the weapon
+        this.weapons[weaponIndex] = weaponSelected;
+        // Show confirmation message
+        String message = "You have equipped the " + weaponSelected.getName() + " weapon.";
+        MenuBuilder.alert("Weapon equipped", message);
     }
 
     // Notify the player about a challenge

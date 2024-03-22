@@ -220,7 +220,7 @@ public class Game {
      * This method will print the menu for admins currently logged in. <br/>
      * The options are:
      * <ul>
-     * <li>{@link #manageUsers() Manage Users}</li>
+     * <li>{@link #managePlayers() Manage Players}</li>
      * <li>{@link #manageEquipment() Manage Equipment}</li>
      * <li>{@link #manageChallenges() Manage Challenges}</li>
      * <li>{@link #checkRanking() Ranking}</li>
@@ -231,7 +231,7 @@ public class Game {
      */
     private void loggedAdminMenu() {
         // Prepare the options, print the menu and get the answer
-        String[] options = { "Manage Users", "Manage Equipment", "Manage Challenges", "Check Ranking",
+        String[] options = { "Manage Players", "Manage Equipment", "Manage Challenges", "Check Ranking",
                 "Manage Account", "Log Out" };
         String nickName = this.loggedUser.getNick();
         MenuBuilder.setConfigLastAsZero(true);
@@ -239,7 +239,7 @@ public class Game {
 
         // Determine the action to take depending on the answer
         if (answer == 1)
-            this.manageUsers();
+            this.managePlayers();
         else if (answer == 2)
             this.manageEquipment();
         else if (answer == 3)
@@ -686,10 +686,60 @@ public class Game {
     }
 
     // ============================================================================================[ Logged Admin Methods ]>>>
-    // Method to manage the users
-    private void manageUsers() {
-        System.out.println("Managing Users...");
-        // TODO: Implement the manageUsers method
+    // Method to manage the players
+    private void managePlayers() {
+        while (true) {
+            Player[] players = this.getPlayers();
+            String[] playersData = new String[players.length];
+            for (int i = 0; i < players.length; i++) {
+                playersData[i] = players[i].getNick() + " #" + players[i].getId();
+            }
+            int answer = MenuBuilder.menu("Select a Player", playersData) - 1;
+
+            String[] options = new String[] { "Ban Player", "Unban Player", "Show Player Info", "Back" };
+            MenuBuilder.setConfigLastAsZero(true);
+            int action = MenuBuilder.menu("Manage Player", options);
+
+            if (action == 1) {
+                this.banPlayer(answer, players);
+            } else if (action == 2) {
+                this.unbanPlayer(answer, players);
+            } else if (action == 3) {
+                this.showPlayerInfo(answer, players);
+            } else {
+                break;
+            }
+        }
+    }
+
+    // Method to ban a user
+    private void banPlayer(int index, Player[] players) {
+        boolean confirm = MenuBuilder.askYesNo("Are you sure you want to ban this player?");
+        if (confirm) {
+            Player player = players[index];
+            player.ban();
+            MenuBuilder.alert("Player Banned", "The player has been banned.");
+        } else {
+            MenuBuilder.alert("Operation Canceled", "The player has not been banned.");
+        }
+    }
+
+    // Method to unban a user
+    private void unbanPlayer(int index, Player[] players) {
+        boolean confirm = MenuBuilder.askYesNo("Are you sure you want to unban this player?");
+        if (confirm) {
+            Player player = players[index];
+            player.unban();
+            MenuBuilder.alert("Player Unbanned", "The player has been unbanned.");
+        } else {
+            MenuBuilder.alert("Operation Canceled", "The player has not been unbanned.");
+        }
+    }
+
+    // Method to show the user info
+    private void showPlayerInfo(int index, Player[] players) {
+        Player player = players[index];
+        player.showInfo();
     }
 
     // Method to manage the equipment
@@ -699,12 +749,13 @@ public class Game {
             MenuBuilder.setConfigLastAsZero(true);
             int answer = MenuBuilder.menu("Manage Equipment", options);
     
-            if (answer == 1)
+            if (answer == 1) {
                 this.manageArmors();
-            else if (answer == 2)
+            } else if (answer == 2) {
                 this.manageWeapons();
-            else
+            } else {
                 break;
+            }
         }
     }
 

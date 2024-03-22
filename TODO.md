@@ -29,7 +29,7 @@
   - [X] Manage account settings.
   - [X] Sign off.
 - [ ] Implement Admin menu.
-  - [ ] Manage users.
+  - [X] Manage players.
   - [X] Manage equipment.
   - [ ] Manage challenges.
   - [X] Check ranking.

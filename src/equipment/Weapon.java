@@ -13,6 +13,12 @@ public class Weapon extends Equipment {
         this.handsRequired = handsRequired;
     }
 
+    // ============================================================================================[ Public Methods ]>>>
+    @Override
+    public String toString() {
+        return super.toString() + " ( Hands Required: " + this.handsRequired + ")";
+    }
+
     // ============================================================================================[ Getters & Setters ]>>>
     public int getHandsRequired() {
         return handsRequired;

@@ -15,6 +15,10 @@ public abstract class Equipment {
         this.defense = defense;
     }
 
+    public String toString() {
+        return this.name + " ( Attack: " + this.attack + ", Defense: " + this.defense + " )";
+    }
+
     // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
         return name;

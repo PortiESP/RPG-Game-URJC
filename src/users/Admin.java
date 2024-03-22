@@ -2,6 +2,8 @@ package src.users;
 
 import src.challenges.Challenge;
 import utils.MenuBuilder;
+import src.equipment.*;
+import java.util.List;
 
 public class Admin extends User {
 
@@ -36,7 +38,7 @@ public class Admin extends User {
     }
 
     // Method to manage a challenge
-    public void manageChallenge(Challenge challenge) {
+    public void manageChallenge(Challenge challenge, List<Armor> armors, List<Weapon> weapons) {
         boolean opt = MenuBuilder.askYesNo(String.format("Do you want to manage the challenge beween %s and %s?",
                 challenge.getChallengerPlayer().getName(), challenge.getChallengedPlayer().getName()));
         // If the admin does not want to manage this challenge, return
@@ -59,8 +61,8 @@ public class Admin extends User {
         }
 
         // Edit the equipment of the players
-        player1.manageEquipment();
-        player2.manageEquipment();
+        player1.manageEquipment(armors, weapons);
+        player2.manageEquipment(armors, weapons);
 
         // Adjust the gold of the challenge
         if (!player2.canAfford(challenge.getGold())) {

@@ -74,8 +74,29 @@ public class Game {
         Game game = FileManager.readFile(Const.DATA_PATH);
 
         // Replace the game settings
-        if (game != null)
+        if (game != null) {
             this.replaceSettings(game);
+        } else {
+            // Load the default game settings
+            this.loadDefaultSettings();
+        }
+    }
+
+    /**
+     * Method to load the default game settings
+     * 
+     * <p>
+     * This method will load the default game settings. It will create the default armors and weapons available.
+     * </p>
+     * 
+     * @see #loadArmors()
+     * @see #loadWeapons()
+     */
+
+    private void loadDefaultSettings() {
+        // Load the default armors and weapons
+        this.armorsAvailable = Const.ARMORS;
+        this.weaponsAvailable = Const.WEAPONS;
     }
 
     /**
@@ -96,11 +117,11 @@ public class Game {
      */
     private void replaceSettings(Game game) {
         // Set the game attributes
-        users = game.users;
-        challenges = game.challenges;
-        armorsAvailable = game.armorsAvailable;
-        weaponsAvailable = game.weaponsAvailable;
-        lastId = game.lastId;
+        this.users = game.users;
+        this.challenges = game.challenges;
+        this.armorsAvailable = game.armorsAvailable;
+        this.weaponsAvailable = game.weaponsAvailable;
+        this.lastId = game.lastId;
     }
 
     /**

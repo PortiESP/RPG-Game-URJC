@@ -6,8 +6,8 @@
 
 ## TODOs
 
-- [ ] Search a way to offer a default weapons set.
-- [ ] Search a way to offer a default armor set.
+- [X] Search a way to offer a default weapons set.
+- [X] Search a way to offer a default armor set.
 - [X] Make a player to select a character selection when registering.
 - [ ] Implement battle system.
   - [X] Challenge part 1 (created, unverified)

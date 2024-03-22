@@ -23,6 +23,9 @@ public abstract class User {
     // Abstract method to get the score
     public abstract int getScore();
 
+    // Abstract method to show the user information
+    public abstract void showInfo();
+
     // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
         return name;

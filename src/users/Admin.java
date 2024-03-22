@@ -23,6 +23,18 @@ public class Admin extends User {
         return 0;
     }
 
+    // Method to show the user information
+    public void showInfo() {
+        // Generate the data to show
+        String[] data = {
+                "Nick: " + this.getNick(),
+                "Name: " + this.getName(),
+        };
+
+        // Show the data
+        MenuBuilder.doc("Player: " + this.getName(), data);
+    }
+
     // Method to manage a challenge
     public void manageChallenge(Challenge challenge) {
         boolean opt = MenuBuilder.askYesNo(String.format("Do you want to manage the challenge beween %s and %s?",

@@ -59,6 +59,25 @@ public class Player extends User {
         return this.gold;
     }
 
+    // Method to show the user information
+    public void showInfo() {
+        // Generate the data to show
+        String[] data = {
+                    "Nick: " + this.getNick(),
+                    "Name: " + this.getName(),
+                    "Gold: " + this.gold,
+                    "Banned: " + this.banned,
+                    "Character: " + this.currentCharacter.name(),
+                    "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
+                    "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
+                    "Weapon 2: " + (this.weapons[1] != null ? this.weapons[0].getName() : "None"),
+                    "Pending challenge: " + (this.pendingChallenge != null ? "Yes" : "No"),
+                };
+                
+        // Show the data
+        MenuBuilder.doc("Player: " + this.getName(), data);
+    }
+
     // Return if the user has been defeated in the last 24 hours
     public boolean defeatedRecently() {
         long dayInMillis = 24 * 60 * 60 * 1000;
@@ -72,6 +91,11 @@ public class Player extends User {
         // Remove all pending challenges and notifications
         this.pendingChallenge = null;
         this.pendingNotification = false;
+    }
+
+    // Unban player
+    public void unban() {
+        this.banned = false;
     }
 
     // Manage the equipment

@@ -8,6 +8,7 @@
 - Rename `registerUser()` method to `register()` method.
 - Rename `loginUser()` method to `login()` method.
 - Rename`deleteUser()` method to `deleteAccount()` method.
+- Rename `manageUsers()` method to `managePlayers()` method.
 - Added submenus to the `menu()` method.
 - Added private methods:
     - `notLoggedMenu()`
@@ -24,3 +25,6 @@
 ## User Class Changes
 - Added `challenges` attribute to the `Player` class.
 - Added `hasChallenges()` method to the `Player` class.
+- Added `ban()` method to the `Player` class.
+- Added `unban()` method to the `Player` class.
+- Added `showInfo()` abstract method to the `User` class.

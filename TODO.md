@@ -14,7 +14,7 @@
   - [X] Challenge part 2 (verified, waiting for acceptance)
   - [ ] Challenge part 3 (accepted or not, finished)
   - [ ] Implement the notification system.
-  - [ ] Check if the user have active challenges on login.
+  - [ ] Check if the user has active challenges on login.
 - [ ] Check the way the score is calculated.
 - [X] Implement a way to manage account settings.
   - [X] Change password.

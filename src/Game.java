@@ -624,7 +624,7 @@ public class Game {
     // Method to modify the active equipment
     private void modifyActiveEquipment() {
         Player currPlayer = (Player) this.loggedUser;
-        currPlayer.manageEquipment();
+        currPlayer.manageEquipment(this.armorsAvailable, this.weaponsAvailable);
     }
 
     /**
@@ -949,7 +949,7 @@ public class Game {
         for (Challenge challenge : this.challenges) {
             if (!challenge.isApproved()) {
                 Admin admin = (Admin) this.loggedUser;
-                admin.manageChallenge(challenge);
+                admin.manageChallenge(challenge, this.armorsAvailable, this.weaponsAvailable);
             }
         }
 

@@ -575,12 +575,12 @@ public class Game {
         String title = "Choose a player to challenge";
         String[] options = new String[players.length];
         for (int i = 0; i < players.length; i++) {
-            options[i] = players[i].getNick();
+            options[i] = players[i].getNick() + " #" + players[i].getId();
         }
-        int answer = MenuBuilder.menu(title, options);
+        int answer = MenuBuilder.menu(title, options) - 1;
 
         // Get the opponent selected from the menu
-        Player opponent = (Player) players[answer - 1];
+        Player opponent = (Player) players[answer];
 
         // Ask the user the ammount of gold to bet
         int gold = MenuBuilder.readInt("Enter the ammount of gold to bet");
@@ -608,7 +608,6 @@ public class Game {
 
         // Add the challenge to the challenges list
         this.challenges.add(challenge);
-
     }
 
     private Player[] getPlayers() {

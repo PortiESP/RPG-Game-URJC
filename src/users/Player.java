@@ -63,17 +63,17 @@ public class Player extends User {
     public void showInfo() {
         // Generate the data to show
         String[] data = {
-                    "Nick: " + this.getNick(),
-                    "Name: " + this.getName(),
-                    "Gold: " + this.gold,
-                    "Banned: " + (this.banned ? "Yes" : "No"),
-                    "Character: " + this.currentCharacter.name().toLowerCase(),
-                    "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
-                    "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
-                    "Weapon 2: " + (this.weapons[1] != null ? this.weapons[0].getName() : "None"),
-                    "Pending challenge: " + (this.pendingChallenge != null ? "Yes" : "No"),
-                };
-                
+                "Nick: " + this.getNick(),
+                "Name: " + this.getName(),
+                "Gold: " + this.gold,
+                "Banned: " + (this.banned ? "Yes" : "No"),
+                "Character: " + this.currentCharacter.name().toLowerCase(),
+                "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
+                "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
+                "Weapon 2: " + (this.weapons[1] != null ? this.weapons[0].getName() : "None"),
+                "Pending challenge: " + (this.pendingChallenge != null ? "Yes" : "No"),
+        };
+
         // Show the data
         MenuBuilder.doc("Player: " + this.getName(), data);
     }
@@ -105,10 +105,10 @@ public class Player extends User {
 
         // Ask the user what he wants to do
         String[] options = {
-            "Change armor",
-            "Change weapon 1",
-            "Change weapon 2",
-            "Exit"
+                "Change armor",
+                "Change weapon 1",
+                "Change weapon 2",
+                "Exit"
         };
 
         MenuBuilder.setConfigLastAsZero(true);
@@ -122,18 +122,18 @@ public class Player extends User {
         } else if (option == 3) {
             this.changeWeapon(1, weaponsAvailable);
         }
-        
+
     }
 
     // Method to show the equipment
     public void showEquipment() {
         // Generate the data to show
         String[] data = {
-                    "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
-                    "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
-                    "Weapon 2: " + (this.weapons[1] != null ? this.weapons[1].getName() : "None"),
-                };
-                
+                "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
+                "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
+                "Weapon 2: " + (this.weapons[1] != null ? this.weapons[1].getName() : "None"),
+        };
+
         // Show the data
         MenuBuilder.doc("Equipment", data);
     }
@@ -167,12 +167,9 @@ public class Player extends User {
         int option = MenuBuilder.menu("Choose a weapon", options) - 1;
         Weapon weaponSelected = weaponsAvailable.get(option);
 
-
         // Check if the total hands required are less than or equal to the hands available
-        if (
-            this.weapons[1 - weaponIndex] != null ||
-            this.weapons[1 - weaponIndex].getHandsRequired() + weaponSelected.getHandsRequired() > 2
-        ){
+        if (this.weapons[1 - weaponIndex] != null &&
+                this.weapons[1 - weaponIndex].getHandsRequired() + weaponSelected.getHandsRequired() > 2) {
             MenuBuilder.alert("Error", "You need to unequip the other weapon first to equip this one.");
             return;
         }
@@ -199,7 +196,7 @@ public class Player extends User {
         }
 
         // If the player has a pending challenge:
-        
+
         // Get the opponent
         Player opponent = this.pendingChallenge.getOpponent(this);
 
@@ -208,11 +205,11 @@ public class Player extends User {
         MenuBuilder.alert("Challenge Notification", message);
 
         String[] challengeData = {
-            "Opponent: " + opponent.getName(),
-            "Gold: " + this.pendingChallenge.getGold(),
+                "Opponent: " + opponent.getName(),
+                "Gold: " + this.pendingChallenge.getGold(),
         };
         MenuBuilder.doc("Challenge", challengeData);
-        
+
         // Ask if he wants to accept it
         message = "Do you want to accept the challenge from " + opponent.getName() + "?";
         boolean yORn = MenuBuilder.askYesNo(message);

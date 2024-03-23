@@ -1,24 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="20.0.2" class="java.beans.XMLDecoder">
  <object class="src.Game" id="Game0">
+  <void property="armorsAvailable">
+   <void method="add">
+    <object class="src.equipment.Armor">
+     <void property="defense">
+      <int>10</int>
+     </void>
+     <void property="name">
+      <string>Leather Armor</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="src.equipment.Armor">
+     <void property="attack">
+      <int>10</int>
+     </void>
+     <void property="defense">
+      <int>20</int>
+     </void>
+     <void property="name">
+      <string>Chainmail Armor</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="src.equipment.Armor">
+     <void property="attack">
+      <int>15</int>
+     </void>
+     <void property="defense">
+      <int>30</int>
+     </void>
+     <void property="name">
+      <string>Plate Armor</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="src.equipment.Armor">
+     <void property="attack">
+      <int>20</int>
+     </void>
+     <void property="defense">
+      <int>40</int>
+     </void>
+     <void property="name">
+      <string>Dragon Armor</string>
+     </void>
+    </object>
+   </void>
+  </void>
   <void property="lastId">
    <string>A0AA0</string>
   </void>
   <void property="loggedUser">
    <object class="src.users.Player" id="Player0">
-    <void property="armor">
-     <object class="src.equipment.Armor">
-      <void property="attack">
-       <int>15</int>
-      </void>
-      <void property="defense">
-       <int>30</int>
-      </void>
-      <void property="name">
-       <string>Plate Armor</string>
-      </void>
-     </object>
-    </void>
     <void property="currentCharacter">
      <object class="java.lang.Enum" method="valueOf">
       <class>src.characters.CharacterSelection</class>
@@ -32,37 +70,82 @@
      <string>A0AA0</string>
     </void>
     <void property="name">
-     <string>A</string>
+     <string>1</string>
     </void>
     <void property="nick">
-     <string>A</string>
+     <string>1</string>
     </void>
     <void property="password">
-     <string>A</string>
-    </void>
-    <void property="weapons">
-     <void index="0">
-      <object class="src.equipment.Weapon">
-       <void property="attack">
-        <int>20</int>
-       </void>
-       <void property="defense">
-        <int>40</int>
-       </void>
-       <void property="handsRequired">
-        <int>2</int>
-       </void>
-       <void property="name">
-        <string>Dragon Slayer</string>
-       </void>
-      </object>
-     </void>
+     <string>1</string>
     </void>
    </object>
   </void>
   <void property="users">
    <void method="add">
     <object idref="Player0"/>
+   </void>
+  </void>
+  <void property="weaponsAvailable">
+   <void method="add">
+    <object class="src.equipment.Weapon">
+     <void property="defense">
+      <int>10</int>
+     </void>
+     <void property="handsRequired">
+      <int>1</int>
+     </void>
+     <void property="name">
+      <string>Dagger</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="src.equipment.Weapon">
+     <void property="attack">
+      <int>10</int>
+     </void>
+     <void property="defense">
+      <int>20</int>
+     </void>
+     <void property="handsRequired">
+      <int>1</int>
+     </void>
+     <void property="name">
+      <string>Sword</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="src.equipment.Weapon">
+     <void property="attack">
+      <int>15</int>
+     </void>
+     <void property="defense">
+      <int>30</int>
+     </void>
+     <void property="handsRequired">
+      <int>2</int>
+     </void>
+     <void property="name">
+      <string>Axe</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="src.equipment.Weapon">
+     <void property="attack">
+      <int>20</int>
+     </void>
+     <void property="defense">
+      <int>40</int>
+     </void>
+     <void property="handsRequired">
+      <int>2</int>
+     </void>
+     <void property="name">
+      <string>Dragon Slayer</string>
+     </void>
+    </object>
    </void>
   </void>
  </object>

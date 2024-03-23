@@ -198,15 +198,31 @@ public class Player extends User {
             return;
         }
 
-        // If the player has a pending challenge, ask if he wants to accept it
-        String message = "You have a pending challenge. Do you want to accept it?";
-        boolean yORn = utils.MenuBuilder.askYesNo(message);
+        // If the player has a pending challenge:
+        
+        // Get the opponent
+        Player opponent = this.pendingChallenge.getOpponent(this);
+
+        // Show the notification
+        String message = "You have a pending challenge from " + opponent.getName();
+        MenuBuilder.alert("Challenge Notification", message);
+
+        String[] challengeData = {
+            "Opponent: " + opponent.getName(),
+            "Gold: " + this.pendingChallenge.getGold(),
+        };
+        MenuBuilder.doc("Challenge", challengeData);
+        
+        // Ask if he wants to accept it
+        message = "Do you want to accept the challenge from " + opponent.getName() + "?";
+        boolean yORn = MenuBuilder.askYesNo(message);
+
         if (yORn) {
             this.pendingChallenge.accept();
             this.pendingChallenge.startFight();
         } else {
             String msg = "The challenge has been rejected. You will have to pay a 10% fee of the bet.";
-            MenuBuilder.alert("Challenge warning", msg);
+            MenuBuilder.alert("Challenge Warning", msg);
             this.pendingChallenge.reject();
         }
 

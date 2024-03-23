@@ -47,6 +47,12 @@ public class Game {
 
         // Main Loop
         while (true) {
+            // If the user is a player, manage the notifications
+            if (this.loggedUser instanceof Player) {
+                Player player = (Player) this.loggedUser;
+                player.manageNotifications();
+            }
+
             // Print the menu
             this.menu();
 

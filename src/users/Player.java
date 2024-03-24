@@ -227,6 +227,9 @@ public class Player extends User {
             this.pendingChallenge.reject();
         }
 
+        // Reset the notification
+        this.pendingNotification = false;
+
     }
 
     public void goldTransaction(int amount, Player player) {

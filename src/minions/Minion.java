@@ -11,6 +11,10 @@ public abstract class Minion {
         this.health = health;
     }
 
+    // ============================================================================================[ Public Methods ]>>>
+
+    // TODO DANI 2: LoadFromArray
+
     // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
         return name;

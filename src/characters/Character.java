@@ -42,6 +42,7 @@ public abstract class Character {
     public abstract void loadMinions();
 
     // ============================================================================================[ Public Methods ]>>>
+    // TODO Set some methods as private
     public int getAttackPower() {
         int success = 0;
         int attackPower = calcAttackPower();
@@ -129,8 +130,17 @@ public abstract class Character {
     }
 
     public int calcModifiersAttack() {
-        Strength s = (Strength) this.modifiers[0];
-        return s.getEffectiveness();
+        int sum = 0;
+        for (Modifier m : this.modifiers) {
+            if (m == null) {
+                continue;
+            }
+            if (m instanceof Strength) {
+                Strength s = (Strength) m;
+                sum += s.getEffectiveness();
+            }
+        }
+        return sum;
     }
 
     public int calcMinionsDefense() {
@@ -159,10 +169,16 @@ public abstract class Character {
         int cumDef = 0;
 
         cumDef += calcEquipmentDefense();
+        cumDef += calcModifiersDefense();
         cumDef += calcMinionsDefense();
         cumDef += this.special.getDefense();
 
         return cumDef;
+    }
+
+    private int calcModifiersDefense() {
+        // TODO DANI 6: Implement the method
+        return -1;
     }
 
     // Calculate total attack power of the character

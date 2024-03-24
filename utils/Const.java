@@ -25,4 +25,5 @@ public class Const {
         { "Axe", "3", "4", "2" },
         { "Dragon Slayer", "6", "1", "2" },
     };
+    // TODO DANI 1: Add a constant for the modifiers, minions, special abilities.
 }

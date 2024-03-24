@@ -1,6 +1,7 @@
 package src.minions;
 
 public class Devil extends Minion {
+
     private String covenant;
     private Minion[] minions;
 
@@ -27,5 +28,4 @@ public class Devil extends Minion {
     public void setMinions(Minion[] minions) {
         this.minions = minions;
     }
-
 }

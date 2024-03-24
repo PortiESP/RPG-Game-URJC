@@ -4,6 +4,7 @@ package src.characters;
 import src.abilities.*;
 
 public class Lycanthrope extends Character {
+
     private int rage;
     private Don don;
 
@@ -29,7 +30,6 @@ public class Lycanthrope extends Character {
     @Override
     public void loadSpecial() {
         this.special = new Don();
-
     }
 
     // ============================================================================================[ Getters & Setters ]>>>
@@ -48,5 +48,4 @@ public class Lycanthrope extends Character {
     public void setDon(Don don) {
         this.don = don;
     }
-
 }

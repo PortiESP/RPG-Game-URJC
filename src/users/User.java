@@ -1,6 +1,7 @@
 package src.users;
 
 public abstract class User {
+
     private String name;
     private String nick;
     private String password;
@@ -8,8 +9,7 @@ public abstract class User {
     // ============================================================================================[ Constructor ]>>>
 
     // Zero Constructor
-    public User() {
-    }
+    public User() {}
 
     // Constructor with parameters
     public User(String name, String nick, String password) {

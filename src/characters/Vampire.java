@@ -4,6 +4,7 @@ package src.characters;
 import src.abilities.*;
 
 public class Vampire extends Character {
+
     private int age;
     private int blood;
     private Discipline discipline;
@@ -68,5 +69,4 @@ public class Vampire extends Character {
     public void setDiscipline(Discipline discipline) {
         this.discipline = discipline;
     }
-
 }

@@ -1,6 +1,7 @@
 package src.minions;
 
 public class Human extends Minion {
+
     private LoyaltyEnum loyalty;
 
     // ============================================================================================[ Constructor ]>>>
@@ -17,5 +18,4 @@ public class Human extends Minion {
     public void setLoyalty(LoyaltyEnum loyalty) {
         this.loyalty = loyalty;
     }
-
 }

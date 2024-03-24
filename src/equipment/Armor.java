@@ -22,5 +22,4 @@ public class Armor extends Equipment {
 
         return armors;
     }
-
 }

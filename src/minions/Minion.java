@@ -1,6 +1,7 @@
 package src.minions;
 
 public abstract class Minion {
+
     private String name;
     private int health;
 
@@ -26,5 +27,4 @@ public abstract class Minion {
     public void setHealth(int health) {
         this.health = health;
     }
-
 }

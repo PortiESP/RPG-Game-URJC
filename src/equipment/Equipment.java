@@ -1,13 +1,13 @@
 package src.equipment;
 
 public abstract class Equipment {
+
     private String name;
     private int attack;
     private int defense;
 
     // ============================================================================================[ Constructor ]>>>
-    public Equipment() {
-    }
+    public Equipment() {}
 
     public Equipment(String name, int attack, int defense) {
         this.name = name;

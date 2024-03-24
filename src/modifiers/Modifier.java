@@ -1,11 +1,11 @@
 package src.modifiers;
 
 public abstract class Modifier {
+
     private String name;
 
     // ============================================================================================[ Constructor ]>>>
-    public Modifier() {
-    }
+    public Modifier() {}
 
     public Modifier(String name) {
         this.name = name;
@@ -19,5 +19,4 @@ public abstract class Modifier {
     public void setName(String name) {
         this.name = name;
     }
-
 }

@@ -35,35 +35,9 @@ public abstract class Character {
     public abstract void loadMinions();
 
     // Modify the character's attributes --> To be implemented in subclasses
-    public static void modifyAttributes() { };
+    public static void modifyAttributes() {}
 
     // ============================================================================================[ Public Methods ]>>>
-    // TODO Set some methods as private
-    public int getAttackPower() {
-        int success = 0;
-        int attackPower = calcAttackPower();
-        for (int i = 0; i < attackPower; i++) {
-            int roll = rollDice();
-            if (roll >= 5) {
-                success++;
-            }
-        }
-
-        return success;
-    }
-
-    public int getDefensePower() {
-        int success = 0;
-        int defensePower = calcDefensePower();
-        for (int i = 0; i < defensePower; i++) {
-            int roll = rollDice();
-            if (roll >= 5) {
-                success++;
-            }
-        }
-
-        return success;
-    }
 
     public int getHit(Character target) {
         int damage = target.getAttackPower();
@@ -82,26 +56,60 @@ public abstract class Character {
         return (damage - defense);
     }
 
-    // Get a random number between 1 and 6
-    public int rollDice() {
-        return (int) (Math.random() * 6) + 1;
-    }
-
+    // Check if the character is dead
     public boolean isDead() {
         return health == 0;
     }
 
+    public void assignEquipment(Player player) {
+        Equipment[] weapons = player.getWeapons();
+        this.equipment[0] = weapons[0];
+        this.equipment[1] = weapons[1];
+        this.equipment[2] = player.getArmor();
+    }
+
+    // ============================================================================================[ Private methods ]>>>
+
+
+    // Get a random number between 1 and 6
+    private int rollDice() {
+        return (int) (Math.random() * 6) + 1;
+    }
+
+    private int getAttackPower() {
+        int success = 0;
+        int attackPower = calcAttackPower();
+        for (int i = 0; i < attackPower; i++) {
+            int roll = rollDice();
+            if (roll >= 5) {
+                success++;
+            }
+        }
+
+        return success;
+    }
+
+    private int getDefensePower() {
+        int success = 0;
+        int defensePower = calcDefensePower();
+        for (int i = 0; i < defensePower; i++) {
+            int roll = rollDice();
+            if (roll >= 5) {
+                success++;
+            }
+        }
+
+        return success;
+    }
+
     // Load the character's modifiers
-    public void loadModifiers() {
+    private void loadModifiers() {
         Modifier[] mods = { new Strength(), new Weakness() };
         this.modifiers = mods;
     }
 
-    public boolean hasActiveEquipment() {
-        return true;
-    }
-
-    public int calcEquipmentAttack() {
+    // Calculate the attack power provided by the equipment
+    private int calcEquipmentAttack() {
         int cumPower = 0;
         for (Equipment e : this.equipment) {
             if (e == null) {
@@ -113,7 +121,7 @@ public abstract class Character {
         return cumPower;
     }
 
-    public int calcEquipmentDefense() {
+    private int calcEquipmentDefense() {
         int cumDefense = 0;
         for (Equipment e : this.equipment) {
             if (e == null) {
@@ -125,7 +133,7 @@ public abstract class Character {
         return cumDefense;
     }
 
-    public int calcModifiersAttack() {
+    private int calcModifiersAttack() {
         int sum = 0;
         for (Modifier m : this.modifiers) {
             if (m == null) {
@@ -134,12 +142,15 @@ public abstract class Character {
             if (m instanceof Strength) {
                 Strength s = (Strength) m;
                 sum += s.getEffectiveness();
+            } else if (m instanceof Weakness) {
+                Weakness w = (Weakness) m;
+                sum -= w.getSensitivity();
             }
         }
         return sum;
     }
 
-    public int calcMinionsDefense() {
+    private int calcMinionsDefense() {
         int cumHealth = 0;
         for (Minion m : this.minions) {
             if (m == null) {
@@ -151,7 +162,8 @@ public abstract class Character {
         return cumHealth;
     }
 
-    public int calcBaseAttackPower() {
+    // ============================================================================================[ Protected Methods ]>>>
+    protected int calcBaseAttackPower() {
         int cumAtt = 0;
 
         cumAtt += calcEquipmentAttack();
@@ -161,37 +173,24 @@ public abstract class Character {
         return cumAtt;
     }
 
-    public int calcBaseDefensePower() {
+    protected int calcBaseDefensePower() {
         int cumDef = 0;
 
         cumDef += calcEquipmentDefense();
-        cumDef += calcModifiersDefense();
         cumDef += calcMinionsDefense();
         cumDef += this.special.getDefense();
 
         return cumDef;
     }
 
-    private int calcModifiersDefense() {
-        // TODO DANI 6: Implement the method
-        return -1;
-    }
-
     // Calculate total attack power of the character
-    public int calcAttackPower() {
+    protected int calcAttackPower() {
         return calcBaseAttackPower();
     }
 
     // Calculate total defense power of the character
-    public int calcDefensePower() {
+    protected int calcDefensePower() {
         return calcBaseDefensePower();
-    }
-
-    public void assignEquipment(Player player) {
-        Equipment[] weapons = player.getWeapons();
-        this.equipment[0] = weapons[0];
-        this.equipment[1] = weapons[1];
-        this.equipment[2] = player.getArmor();
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

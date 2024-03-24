@@ -10,6 +10,7 @@ import utils.Const;
 import utils.MenuBuilder;
 
 public class Player extends User {
+
     private String id;
     private Challenge pendingChallenge;
     private boolean pendingNotification;
@@ -24,8 +25,7 @@ public class Player extends User {
     // ============================================================================================[ Constructor ]>>>
 
     // Zero Constructor
-    public Player() {
-    }
+    public Player() {}
 
     // Constructor with parameters
     public Player(String name, String nick, String password, String id) {
@@ -45,7 +45,7 @@ public class Player extends User {
     // ============================================================================================[ Public Methods ]>>>
 
     // Method to add a challenge
-    public void addChallenge(Challenge challenge) {
+    public void addChallengeToHistory(Challenge challenge) {
         this.challenges.add(challenge);
     }
 
@@ -63,15 +63,15 @@ public class Player extends User {
     public void showInfo() {
         // Generate the data to show
         String[] data = {
-                "Nick: " + this.getNick(),
-                "Name: " + this.getName(),
-                "Gold: " + this.gold,
-                "Banned: " + (this.banned ? "Yes" : "No"),
-                "Character: " + this.currentCharacter.name().toLowerCase(),
-                "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
-                "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
-                "Weapon 2: " + (this.weapons[1] != null ? this.weapons[0].getName() : "None"),
-                "Pending challenge: " + (this.pendingChallenge != null ? "Yes" : "No"),
+            "Nick: " + this.getNick(),
+            "Name: " + this.getName(),
+            "Gold: " + this.gold,
+            "Banned: " + (this.banned ? "Yes" : "No"),
+            "Character: " + this.currentCharacter.name().toLowerCase(),
+            "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
+            "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
+            "Weapon 2: " + (this.weapons[1] != null ? this.weapons[0].getName() : "None"),
+            "Pending challenge: " + (this.pendingChallenge != null ? "Yes" : "No"),
         };
 
         // Show the data
@@ -104,18 +104,13 @@ public class Player extends User {
         this.showEquipment();
 
         // Ask the user what he wants to do
-        String[] options = {
-                "Change armor",
-                "Change weapon 1",
-                "Change weapon 2",
-                "Exit"
-        };
+        String[] options = { "Change armor", "Change weapon 1", "Change weapon 2", "Exit" };
 
         // Loop until the user wants to exit
         while (true) {
             MenuBuilder.setConfigLastAsZero(true);
             int option = MenuBuilder.menu("Equipment", options);
-    
+
             // Manage the option
             if (option == 1) {
                 this.changeArmor(armorsAvailable);
@@ -125,7 +120,7 @@ public class Player extends User {
                 this.changeWeapon(1, weaponsAvailable);
             } else {
                 break;
-            }   
+            }
         }
     }
 
@@ -133,9 +128,9 @@ public class Player extends User {
     public void showEquipment() {
         // Generate the data to show
         String[] data = {
-                "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
-                "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
-                "Weapon 2: " + (this.weapons[1] != null ? this.weapons[1].getName() : "None"),
+            "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
+            "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
+            "Weapon 2: " + (this.weapons[1] != null ? this.weapons[1].getName() : "None"),
         };
 
         // Show the data
@@ -172,8 +167,7 @@ public class Player extends User {
         Weapon weaponSelected = weaponsAvailable.get(option);
 
         // Check if the total hands required are less than or equal to the hands available
-        if (this.weapons[1 - weaponIndex] != null &&
-                this.weapons[1 - weaponIndex].getHandsRequired() + weaponSelected.getHandsRequired() > 2) {
+        if (this.weapons[1 - weaponIndex] != null && this.weapons[1 - weaponIndex].getHandsRequired() + weaponSelected.getHandsRequired() > 2) {
             MenuBuilder.alert("Error", "You need to unequip the other weapon first to equip this one.");
             return;
         }
@@ -193,7 +187,6 @@ public class Player extends User {
 
     // Method to manage the notifications
     public void manageNotifications() {
-
         // If the player has no pending notifications, do nothing
         if (!this.pendingNotification) {
             return;
@@ -208,10 +201,7 @@ public class Player extends User {
         String message = "You have a pending challenge from " + opponent.getName();
         MenuBuilder.alert("Challenge Notification", message);
 
-        String[] challengeData = {
-                "Opponent: " + opponent.getName(),
-                "Gold: " + this.pendingChallenge.getGold(),
-        };
+        String[] challengeData = { "Opponent: " + opponent.getName(), "Gold: " + this.pendingChallenge.getGold() };
         MenuBuilder.doc("Challenge", challengeData);
 
         // Ask if he wants to accept it
@@ -219,8 +209,7 @@ public class Player extends User {
         boolean yORn = MenuBuilder.askYesNo(message);
 
         if (yORn) {
-            this.pendingChallenge.accept();
-            this.pendingChallenge.startFight();
+            this.acceptChallenge();
         } else {
             String msg = "The challenge has been rejected. You will have to pay a 10% fee of the bet.";
             MenuBuilder.alert("Challenge Warning", msg);
@@ -229,7 +218,6 @@ public class Player extends User {
 
         // Reset the notification
         this.pendingNotification = false;
-
     }
 
     public void goldTransaction(int amount, Player player) {
@@ -239,6 +227,23 @@ public class Player extends User {
 
     public boolean canAfford(int amount) {
         return this.gold >= amount;
+    }
+
+    public void acceptChallenge() {
+        Challenge challenge = this.pendingChallenge;
+
+        challenge.accept();
+        challenge.manageFight();
+
+        Player winner = challenge.getWinner();
+        String msg = "";
+        if (winner == challenge.getChallengedPlayer()) {
+            msg = "You have won the fight!";
+        } else {
+            msg = "You have lost the fight!";
+            this.lastLostFight = System.currentTimeMillis();
+        }
+        MenuBuilder.alert("Fight Result", msg);
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

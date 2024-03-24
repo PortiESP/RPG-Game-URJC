@@ -1,12 +1,14 @@
 package src.characters;
 
-// Import statements
-import src.modifiers.*;
-import src.minions.*;
 import src.abilities.SpecialAbility;
 import src.equipment.*;
+import src.minions.*;
+// Import statements
+import src.modifiers.*;
+import src.users.Player;
 
 public abstract class Character {
+
     private String name;
     private int health;
     private int power;
@@ -64,12 +66,14 @@ public abstract class Character {
         }
 
         return success;
-
     }
 
-    public int attack(Character target) {
-        int damage = getAttackPower();
-        int defense = target.getDefensePower();
+    public int getHit(Character target) {
+        int damage = target.getAttackPower();
+        int defense = getDefensePower();
+        if (defense > damage) {
+            defense = damage;
+        }
         int remainingHealth = health - (damage - defense);
 
         if (remainingHealth < 0) {
@@ -78,7 +82,7 @@ public abstract class Character {
             health = remainingHealth;
         }
 
-        return health;
+        return (damage - defense);
     }
 
     // Get a random number between 1 and 6
@@ -101,9 +105,11 @@ public abstract class Character {
     }
 
     public int calcEquipmentAttack() {
-
         int cumPower = 0;
         for (Equipment e : this.equipment) {
+            if (e == null) {
+                continue;
+            }
             cumPower += e.getAttack();
         }
 
@@ -113,6 +119,9 @@ public abstract class Character {
     public int calcEquipmentDefense() {
         int cumDefense = 0;
         for (Equipment e : this.equipment) {
+            if (e == null) {
+                continue;
+            }
             cumDefense += e.getDefense();
         }
 
@@ -127,6 +136,9 @@ public abstract class Character {
     public int calcMinionsDefense() {
         int cumHealth = 0;
         for (Minion m : this.minions) {
+            if (m == null) {
+                continue;
+            }
             cumHealth += m.getHealth();
         }
 
@@ -161,6 +173,13 @@ public abstract class Character {
     // Calculate total defense power of the character
     public int calcDefensePower() {
         return calcBaseDefensePower();
+    }
+
+    public void assignEquipment(Player player) {
+        Equipment[] weapons = player.getWeapons();
+        this.equipment[0] = weapons[0];
+        this.equipment[1] = weapons[1];
+        this.equipment[2] = player.getArmor();
     }
 
     // ============================================================================================[ Getters & Setters ]>>>
@@ -211,5 +230,4 @@ public abstract class Character {
     public void setEquipment(Equipment[] equipment) {
         this.equipment = equipment;
     }
-
 }

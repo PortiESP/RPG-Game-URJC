@@ -1,17 +1,16 @@
 package src.challenges;
 
-// Import statements
-import src.users.Player;
-
 import java.util.ArrayList;
-
 import src.characters.Character;
 import src.characters.CharacterSelection;
 import src.characters.Hunter;
 import src.characters.Lycanthrope;
 import src.characters.Vampire;
+// Import statements
+import src.users.Player;
 
 public class Fight {
+
     private int rounds;
     private String date;
     private Player winner;
@@ -32,8 +31,7 @@ public class Fight {
         this.start();
     }
 
-    public Fight() {
-    }
+    public Fight() {}
 
     // ============================================================================================[ Public Methods ]>>>
     public Player getWinner() {
@@ -43,26 +41,27 @@ public class Fight {
     // ============================================================================================[ Private Methods ]>>>
     // Method to generate a fight between two players and return the winner
     private void start() {
-        int round = 0;
+        int round = 1;
 
-        while (checkFightEnd()) {
+        log.add("Fight started between " + c1.getName() + " and " + c2.getName());
+        log.add("");
+
+        while (!checkFightEnd()) {
             // Get the damage from each character
-            int damage1 = c1.attack(c2);
-            int damage2 = c2.attack(c1);
+            int damage1 = c2.getHit(c1);
+            int damage2 = c1.getHit(c2);
 
             // Log the fight
             String msg1 = String.format("Round [%d]", round, c1.getName(), c1.getHealth());
-            String msg2 = String.format("%s attacks %s inflicting (%d) points of damage",
-                    c1.getName(), c2.getName(), damage1);
-            String msg3 = String.format("%s attacks %s inflicting (%d) points of damage",
-                    c2.getName(), c1.getName(), damage2);
-            String msg4 = String.format("Round %d status: [%s](%d HP) vs [%s](%d HP)", round, c1.getName(),
-                    c1.getHealth(), c2.getName(), c2.getHealth());
+            String msg2 = String.format(" | %s attacks %s inflicting (%d) points of damage", c1.getName(), c2.getName(), damage1);
+            String msg3 = String.format(" | %s attacks %s inflicting (%d) points of damage", c2.getName(), c1.getName(), damage2);
+            String msg4 = String.format(" └ Fight status: [%s](%d HP) vs [%s](%d HP)", c1.getName(), c1.getHealth(), c2.getName(), c2.getHealth());
 
             log.add(msg1);
             log.add(msg2);
             log.add(msg3);
             log.add(msg4);
+            log.add("");
 
             // Increment the round counter
             round++;
@@ -89,24 +88,33 @@ public class Fight {
         // Get the character attributes from the player
         character.setName(player.getName());
 
+        // Load the character's special ability
+        character.loadSpecial();
+
+        // Load the character's minions
+        character.loadMinions();
+
+        // Assign player weapons to the character
+        character.assignEquipment(player);
+
         return character;
     }
 
     private boolean checkFightEnd() {
-        if (c1.isDead() || c2.isDead()) {
-            return true;
-        } else {
-            return false;
-        }
+        return c1.isDead() || c2.isDead();
     }
 
     private void chooseWinner() {
+        log.add("");
         if (c1.isDead() && c2.isDead()) {
             winner = null;
+            log.add("The fight ended in a draw");
         } else if (c1.isDead()) {
             winner = players[1];
+            log.add("The winner is " + c2.getName());
         } else {
             winner = players[0];
+            log.add("The winner is " + c1.getName());
         }
     }
 

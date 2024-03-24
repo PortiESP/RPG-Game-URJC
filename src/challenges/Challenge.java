@@ -1,10 +1,12 @@
 package src.challenges;
 
+import java.util.ArrayList;
 // Import statements
 import src.users.Player;
 import utils.MenuBuilder;
 
 public class Challenge {
+
     private int gold;
     private boolean accepted;
     private boolean approved;
@@ -13,8 +15,7 @@ public class Challenge {
     private Player winner;
 
     // ============================================================================================[ Constructor ]>>>
-    public Challenge() {
-    }
+    public Challenge() {}
 
     public Challenge(Player player1, Player player2, int gold) {
         this.gold = gold;
@@ -56,8 +57,7 @@ public class Challenge {
         }
         // Check if the opponent has recently battled
         else if (opponent.defeatedRecently()) {
-            boolean yORn = MenuBuilder
-                    .askYesNo("The opponent has recently lost a battle, are you sure you want to continue?");
+            boolean yORn = MenuBuilder.askYesNo("The opponent has recently lost a battle, are you sure you want to continue?");
             if (!yORn) {
                 return false;
             }
@@ -107,6 +107,35 @@ public class Challenge {
     public void startFight() {
         this.result = new Fight(this.players[0], this.players[1]);
         this.winner = this.result.getWinner();
+    }
+
+    // Print the challenge
+    public void printResult() {
+        ArrayList<String> log = this.result.getLog();
+        String[] fixedLog = log.toArray(String[]::new);
+
+        MenuBuilder.doc("Challenge Result", fixedLog);
+    }
+
+    public void manageFight() {
+        this.startFight();
+        this.printResult();
+
+        Player p1 = this.players[0];
+        Player p2 = this.players[1];
+
+        // Reset the pending challenges
+        p1.setPendingChallenge(null);
+        p2.setPendingChallenge(null);
+
+        // Add the fight to the history
+        p1.addChallengeToHistory(this);
+        p2.addChallengeToHistory(this);
+    }
+
+    public void finishChallenge() {
+        this.getChallengerPlayer().setPendingChallenge(null);
+        this.getChallengedPlayer().setPendingChallenge(null);
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

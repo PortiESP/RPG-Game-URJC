@@ -471,12 +471,11 @@ public class Game {
     // ============================================================================================[ Logged Player Methods ]>>>
 
     /**
-     * Handle the process of challenging another player. From the process of selecting the opponent to the process of creating the challenge.
+     * Prints a list of players to the user and asks the user to select an opponent to challenge.
+     *
+     * @return The player selected from the list.
      */
-    private void challenge() {
-        // Get the current player object
-        Player currPlayer = (Player) this.loggedUser;
-
+    private Player askPlayerFromPlayersList() {
         // Get the players available to challenge
         Player[] players = this.getPlayers();
 
@@ -489,7 +488,18 @@ public class Game {
         int answer = MenuBuilder.menu(title, options) - 1;
 
         // Get the opponent selected from the menu
-        Player opponent = (Player) players[answer];
+        return (Player) players[answer];
+    }
+
+    /**
+     * Handle the process of challenging another player. From the process of selecting the opponent to the process of creating the challenge.
+     */
+    private void challenge() {
+        // Get the current player object
+        Player currPlayer = (Player) this.loggedUser;
+
+        // Ask the user to select the opponent
+        Player opponent = this.askPlayerFromPlayersList();
 
         // Ask the user the ammount of gold to bet
         int gold = MenuBuilder.readInt("Enter the ammount of gold to bet");
@@ -519,6 +529,11 @@ public class Game {
         this.challenges.add(challenge);
     }
 
+    /**
+     * Retrieves all the players from the users list and returns them in an array.
+     *
+     * @return An array of players.
+     */
     private Player[] getPlayers() {
         List<Player> players = new ArrayList<>();
         for (User user : this.users) {
@@ -526,24 +541,21 @@ public class Game {
                 players.add((Player) user);
             }
         }
+
         return players.toArray(new Player[players.size()]);
     }
 
-    // Method to modify the active equipment
+    /**
+     * Prints the manage equipment menu of current player.
+     */
     private void modifyActiveEquipment() {
         Player currPlayer = (Player) this.loggedUser;
         currPlayer.manageEquipment(this.armorsAvailable, this.weaponsAvailable);
     }
 
     /**
-     * Method to change the character
-     *
-     * <p>
-     * This method will change the character of the player. It will print the current character selection and then print a menu to select the new character. <br/>
-     * </p>
-     *
+     * Change the character of the player. It will print the current character selection and then print a menu to select the new character.
      */
-    // Method to change the character
     private void changeCharacter() {
         // Get the current player object
         Player player = (Player) this.loggedUser;
@@ -573,18 +585,7 @@ public class Game {
     }
 
     /**
-     * Method to check the battle history
-     *
-     * <p>
-     * This method will check the battle history of the player. It will print the battle history of the player.
-     * </p>
-     *
-     * @see Player#hasChallenges()
-     * @see Player#getChallenges()
-     * @see Challenge#getOpponent(Player)
-     * @see Challenge#getWinner()
-     * @see MenuBuilder#doc(String, String[])
-     *
+     * Prints the history of the battles of the current player.
      */
     private void checkBattleHistory() {
         // Get the current player object
@@ -621,37 +622,37 @@ public class Game {
     }
 
     // ============================================================================================[ Logged Admin Methods ]>>>
-    // Method to manage the players
+    /**
+     * Prints a list of players to the user and asks the user to select a player to manage. Then it will print the manage menu for that player
+     */
     private void managePlayers() {
         while (true) {
-            Player[] players = this.getPlayers();
-            String[] playersData = new String[players.length];
-            for (int i = 0; i < players.length; i++) {
-                playersData[i] = players[i].getNick() + " #" + players[i].getId();
-            }
-            int answer = MenuBuilder.menu("Select a Player", playersData) - 1;
+            Player player = this.askPlayerFromPlayersList();
 
             String[] options = new String[] { "Ban Player", "Unban Player", "Show Player Info", "Back" };
             MenuBuilder.setConfigLastAsZero(true);
             int action = MenuBuilder.menu("Manage Player", options);
 
             if (action == 1) {
-                this.banPlayer(answer, players);
+                this.banPlayer(player);
             } else if (action == 2) {
-                this.unbanPlayer(answer, players);
+                this.unbanPlayer(player);
             } else if (action == 3) {
-                this.showPlayerInfo(answer, players);
+                this.showPlayerInfo(player);
             } else {
                 break;
             }
         }
     }
 
-    // Method to ban a user
-    private void banPlayer(int index, Player[] players) {
+    /**
+     * Prints a verification message before banning a player.
+     *
+     * @param player The player to ban.
+     */
+    private void banPlayer(Player player) {
         boolean confirm = MenuBuilder.askYesNo("Are you sure you want to ban this player?");
         if (confirm) {
-            Player player = players[index];
             player.ban();
             MenuBuilder.alert("Player Banned", "The player has been banned.");
         } else {
@@ -659,11 +660,14 @@ public class Game {
         }
     }
 
-    // Method to unban a user
-    private void unbanPlayer(int index, Player[] players) {
+    /**
+     * Prints a verification message before unbanning a player.
+     *
+     * @param player The player to unban.
+     */
+    private void unbanPlayer(Player player) {
         boolean confirm = MenuBuilder.askYesNo("Are you sure you want to unban this player?");
         if (confirm) {
-            Player player = players[index];
             player.unban();
             MenuBuilder.alert("Player Unbanned", "The player has been unbanned.");
         } else {
@@ -671,13 +675,18 @@ public class Game {
         }
     }
 
-    // Method to show the user info
-    private void showPlayerInfo(int index, Player[] players) {
-        Player player = players[index];
+    /**
+     * Prints the player information to the user.
+     *
+     * @param player The player to show the information.
+     */
+    private void showPlayerInfo(Player player) {
         player.showInfo();
     }
 
-    // Method to manage the equipment
+    /**
+     * Prints the manage equipment (1=Armors, 2=Weapons) menu for the current user.
+     */
     private void manageEquipment() {
         while (true) {
             String[] options = new String[] { "Manage Armors", "Manage Weapons", "Back" };
@@ -694,7 +703,9 @@ public class Game {
         }
     }
 
-    // Method to manage the armors
+    /**
+     * Prints the manage armors menu for the admin.
+     */
     private void manageArmors() {
         while (true) {
             String[] options = new String[] { "Add Armor", "Remove Armor", "Show Armors", "Back" };
@@ -713,7 +724,9 @@ public class Game {
         }
     }
 
-    // Method to add an armor
+    /**
+     * Add an armor to the armors available.
+     */
     private void addArmor() {
         String[] labels = { "Name", "Defense Modifier", "Attack Modifier" };
         String[] dataInput = MenuBuilder.form("Add Armor", labels);
@@ -722,6 +735,8 @@ public class Game {
         int attackModifier = 0;
 
         // Check if the defense and attack modifiers are integers
+        // If the defense and attack modifiers are integers -> Create the new armor and add it to the armors available
+        // If the defense and attack modifiers are not integers -> Alert the user and ask for the data again
         try {
             defenseModifier = Integer.parseInt(dataInput[1]);
             attackModifier = Integer.parseInt(dataInput[2]);
@@ -738,14 +753,15 @@ public class Game {
             } else {
                 MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
             }
-            // If the defense and attack modifiers are not integers, alert the user and ask for the data again
         } catch (NumberFormatException e) {
             MenuBuilder.alert("Invalid Input", "The defense and attack modifiers must be integers.");
-            this.addArmor();
+            this.addArmor(); // Recursive call to ask for the data again
         }
     }
 
-    // Method to remove an armor
+    /**
+     * Remove an armor from the armors available.
+     */
     private void removeArmor() {
         // Prepare the options, print the menu and get the answer
         String[] options = new String[this.armorsAvailable.size()];
@@ -765,7 +781,9 @@ public class Game {
         }
     }
 
-    // Method to show the armors
+    /**
+     * Print the armors available to the user.
+     */
     private void showArmors() {
         // Create the armors data table
         String[] data = new String[this.armorsAvailable.size()];
@@ -780,7 +798,9 @@ public class Game {
         MenuBuilder.doc("Armors", data);
     }
 
-    // Method to manage the weapons
+    /**
+     * Prints the manage weapons menu for the admin.
+     */
     private void manageWeapons() {
         while (true) {
             String[] options = new String[] { "Add Weapon", "Remove Weapon", "Show Weapons", "Back" };
@@ -799,7 +819,9 @@ public class Game {
         }
     }
 
-    // Method to add a weapon
+    /**
+     * Add a weapon to the weapons available.
+     */
     private void addWeapon() {
         String[] labels = { "Name", "Defense Modifier", "Attack Modifier", "Hands Required" };
         String[] dataInput = MenuBuilder.form("Add Weapon", labels);
@@ -809,6 +831,8 @@ public class Game {
         int handsRequired = 0;
 
         // Check if the defense, attack modifiers and hands required are integers
+        // If the defense, attack modifiers and hands required are integers -> Create the new weapon and add it to the weapons available
+        // If the defense, attack modifiers and hands required are not integers -> alert the user and ask for the data again
         try {
             defenseModifier = Integer.parseInt(dataInput[1]);
             attackModifier = Integer.parseInt(dataInput[2]);
@@ -826,14 +850,15 @@ public class Game {
             } else {
                 MenuBuilder.alert("Operation Canceled", "The weapon has not been added.");
             }
-            // If the defense, attack modifiers and hands required are not integers, alert the user and ask for the data again
         } catch (NumberFormatException e) {
             MenuBuilder.alert("Invalid Input", "The defense, attack modifiers and hands required must be integers.");
             this.addWeapon();
         }
     }
 
-    // Method to remove a weapon
+    /**
+     * Remove a weapon from the weapons available.
+     */
     private void removeWeapon() {
         // Prepare the options, print the menu and get the answer
         String[] options = new String[this.weaponsAvailable.size()];
@@ -853,7 +878,9 @@ public class Game {
         }
     }
 
-    // Method to show the weapons
+    /**
+     * Print the weapons available to the user.
+     */
     private void showWeapons() {
         // Create the weapons data table
         String[] data = new String[this.weaponsAvailable.size()];
@@ -868,11 +895,15 @@ public class Game {
         MenuBuilder.doc("Weapons", data);
     }
 
-    // Method to manage the challenges
+    /**
+     * Iterate over the challenges and print ask the admin if he wants to manage each challenge.
+     */
     private void manageChallenges() {
+        Admin admin = (Admin) this.loggedUser;
+
         for (Challenge challenge : this.challenges) {
+            // If the challenge is not approved yet, print the manage the challenge
             if (!challenge.isApproved()) {
-                Admin admin = (Admin) this.loggedUser;
                 admin.manageChallenge(challenge, this.armorsAvailable, this.weaponsAvailable);
             }
         }

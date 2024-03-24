@@ -1,5 +1,8 @@
 package src.minions;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Devil extends Minion {
 
     private String covenant;
@@ -12,6 +15,15 @@ public class Devil extends Minion {
         this.minions = minions;
     }
 
+    // ============================================================================================[ Static Methods ]>>>
+    public static ArrayList<Devil> loadFromArray(String[][] devilsArr) {
+        //TODO - reimplement this method 
+        ArrayList<Devil> devils = new ArrayList<>();
+        for (String[] devil : devilsArr) {
+            // devils.add(new Devil(devil[0], Integer.parseInt(devil[1]), devil[2], Minion.loadFromArray(devil[3])));
+        }
+      return devils;
+    }
     // ============================================================================================[ Getters & Setters ]>>>
     public String getCovenant() {
         return covenant;

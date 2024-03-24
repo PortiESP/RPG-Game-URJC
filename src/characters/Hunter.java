@@ -5,6 +5,7 @@ import src.abilities.*;
 import src.equipment.Equipment;
 import src.minions.Minion;
 import src.modifiers.Modifier;
+import utils.MenuBuilder;
 
 public class Hunter extends Character {
 
@@ -50,8 +51,30 @@ public class Hunter extends Character {
 
     // Method to modify the attributes of the hunter
     public static void modifyAttributes() {
-        // TODO Auto-generated method stub
+        while (true) {
+            String[] options = { "Alter Max Health", "Alter Max Power", "Alter Max Willpower", "Alter Initial Minions", "Exit" };
+            int opt = MenuBuilder.menu("Modify Hunter", options);
 
+            if (opt < options.length) {
+                alterAttr(opt);
+            } else {
+                break;
+            }
+        }
+    }
+
+    // Method to alter health
+    public static void alterAttr(int opt) {
+        String[] attributes = { "Max Health", "Max Power", "Max Willpower", "Initial Minions"};
+        String msg = "Enter the new value for the " + attributes[opt] + "(Positive Value)";
+        int value = MenuBuilder.readInt(msg, 0, 1000); 
+
+        switch (opt) {
+            case 1 -> MAX_HEALTH = value;
+            case 2 -> MAX_POWER = value;
+            case 3 -> MAX_WILLPOWER = value;
+            case 4 -> INIT_MINIONS = value;
+        }
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

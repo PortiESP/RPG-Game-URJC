@@ -5,6 +5,7 @@ import src.abilities.*;
 import src.equipment.Equipment;
 import src.minions.Minion;
 import src.modifiers.Modifier;
+import utils.MenuBuilder;
 
 public class Vampire extends Character {
 
@@ -13,8 +14,8 @@ public class Vampire extends Character {
     private Discipline discipline;
 
     // CONSTANTS
-    public final int MAX_BLOOD = 10;
-    public final int MIN_BLOOD = 1;
+    public static int MAX_BLOOD = 10;
+    public static int MIN_BLOOD = 1;
     public static int MAX_HEALTH = 5;
     public static int MAX_POWER = 5;
     public static int MIN_POWER = 1;
@@ -62,8 +63,30 @@ public class Vampire extends Character {
 
     // Method to modify the attributes of the vampire
     public static void modifyAttributes() {
-        // TODO Auto-generated method stub
+        while (true) {
+            String[] options = { "Alter Max Health", "Alter Max Power", "Alter Max Blood", "Alter Initial Minions", "Exit" };
+            int opt = MenuBuilder.menu("Modify Hunter", options);
 
+            if (opt < options.length) {
+                alterAttr(opt);
+            } else {
+                break;
+            }
+        }
+    }
+
+    // Method to alter health
+    public static void alterAttr(int opt) {
+        String[] attributes = { "Max Health", "Max Power", "Max Blood", "Initial Minions"};
+        String msg = "Enter the new value for the " + attributes[opt] + "(Positive Value)";
+        int value = MenuBuilder.readInt(msg, 0, 1000); 
+
+        switch (opt) {
+            case 1 -> MAX_HEALTH = value;
+            case 2 -> MAX_POWER = value;
+            case 3 -> MAX_BLOOD = value;
+            case 4 -> INIT_MINIONS = value;
+        }
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

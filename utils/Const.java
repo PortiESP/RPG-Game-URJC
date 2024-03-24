@@ -39,4 +39,9 @@ public class Const {
         { "Holy Water", "3" },
         { "Sunlight", "4" } 
     };
+    public static final String[][] DONES = {
+       { " ", " " }, 
+       { " ", " " }, 
+       { " ", " " }, 
+    };
 }

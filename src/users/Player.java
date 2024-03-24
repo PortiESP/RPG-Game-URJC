@@ -111,18 +111,22 @@ public class Player extends User {
                 "Exit"
         };
 
-        MenuBuilder.setConfigLastAsZero(true);
-        int option = MenuBuilder.menu("Equipment", options);
-
-        // Manage the option
-        if (option == 1) {
-            this.changeArmor(armorsAvailable);
-        } else if (option == 2) {
-            this.changeWeapon(0, weaponsAvailable);
-        } else if (option == 3) {
-            this.changeWeapon(1, weaponsAvailable);
+        // Loop until the user wants to exit
+        while (true) {
+            MenuBuilder.setConfigLastAsZero(true);
+            int option = MenuBuilder.menu("Equipment", options);
+    
+            // Manage the option
+            if (option == 1) {
+                this.changeArmor(armorsAvailable);
+            } else if (option == 2) {
+                this.changeWeapon(0, weaponsAvailable);
+            } else if (option == 3) {
+                this.changeWeapon(1, weaponsAvailable);
+            } else {
+                break;
+            }   
         }
-
     }
 
     // Method to show the equipment

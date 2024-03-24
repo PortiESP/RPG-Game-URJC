@@ -2,7 +2,6 @@ package src.abilities;
 
 import java.util.ArrayList;
 
-import src.equipment.Discipline;
 
 public class Don extends SpecialAbility {
     private int minRage;

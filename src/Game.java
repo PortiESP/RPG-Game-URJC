@@ -131,14 +131,7 @@ public class Game {
     }
 
     /**
-     * Method to save the game
-     *
-     * <p>
-     * This method will save the game to a file determined by the {@Code Const.DATA_PATH} constant.
-     * </p>
-     *
-     * @see FileManager#saveFile(Game)
-     *
+     * Saves the current state of the game in the {@code game.xml} file.
      */
     private void save() {
         // Save the game to the file
@@ -146,33 +139,21 @@ public class Game {
     }
 
     /**
-     * Method to print the main menu
-     *
-     * <p>
-     * This method will print the main menu of the game. The options of the menu will depend on the user type.
-     * </p>
-     *
-     * @see #notLoggedMenu()
-     * @see #loggedPlayerMenu()
-     * @see #loggedAdminMenu()
-     *
+     * Prints the corresponding menu depending on the user logged in.
+     * - TODO: Consider inplementing the function as a state pattern.
      */
     private void menu() {
-        if (this.loggedUser == null) this.notLoggedMenu(); else if (this.loggedUser instanceof Player) this.loggedPlayerMenu(); else if (this.loggedUser instanceof Admin) this.loggedAdminMenu();
+        if (this.loggedUser == null) {
+            this.notLoggedMenu();
+        } else if (this.loggedUser instanceof Player) {
+            this.loggedPlayerMenu();
+        } else if (this.loggedUser instanceof Admin) {
+            this.loggedAdminMenu();
+        }
     }
 
     /**
-     * Method to print the not logged menu options
-     *
-     * <p>
-     * This method will print the menu for users not currently logged in. The options are: Login, Register, and Exit.
-     * </p>
-     *
-     * @see MenuBuilder#menu(String, String[])
-     * @see #login()
-     * @see #register()
-     * @see System#exit(int)
-     *
+     * Prints the menu options for users not logged in
      */
     private void notLoggedMenu() {
         // Prepare the options, print the menu and get the answer
@@ -180,7 +161,10 @@ public class Game {
         MenuBuilder.setConfigLastAsZero(true);
         int answer = MenuBuilder.menu("Welcome to RPG Game", options);
 
-        // Determine the action to take depending on the answer
+        // Menu options:
+        // 1 -> Login
+        // 2 -> Register
+        // 0 -> Exit
         if (answer == 1) {
             this.login();
             if (loggedUser instanceof Player) {
@@ -195,21 +179,6 @@ public class Game {
 
     /**
      * Method to print the logged player menu options
-     *
-     * <p>
-     * This method will print the menu for players currently logged in. <br/>
-     * The options are:
-     * <ul>
-     * <li>{@link #challenge() Challenge}</li>
-     * <li>{@link #modifyActiveEquipment() Modify Active Equipment}</li>
-     * <li>{@link #changeCharacter() Change Character}</li>
-     * <li>{@link #checkBattleHistory() Battle History}</li>
-     * <li>{@link #checkRanking() Ranking}</li>
-     * <li>{@link #manageAccount() Manage Account}</li>
-     * <li>{@link #logOut() Log Out}</li>
-     * </ul>
-     * </p>
-     *
      */
     private void loggedPlayerMenu() {
         // Prepare the options, print the menu and get the answer
@@ -218,7 +187,14 @@ public class Game {
         MenuBuilder.setConfigLastAsZero(true);
         int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
 
-        // Determine the action to take depending on the answer
+        // Logged Player Menu Options:
+        // 1 -> Challenge another player
+        // 2 -> Modify Active Equipment
+        // 3 -> Change Character (Lycanthrope, Vampire, Hunter)
+        // 4 -> Battle History
+        // 5 -> Ranking
+        // 6 -> Manage Account (Change Password, Delete Account, ...)
+        // 0 -> Log Out
         if (answer == 1) {
             this.challenge();
         } else if (answer == 2) {
@@ -238,19 +214,6 @@ public class Game {
 
     /**
      * Method to print the logged admin menu options
-     *
-     * <p>
-     * This method will print the menu for admins currently logged in. <br/>
-     * The options are:
-     * <ul>
-     * <li>{@link #managePlayers() Manage Players}</li>
-     * <li>{@link #manageEquipment() Manage Equipment}</li>
-     * <li>{@link #manageChallenges() Manage Challenges}</li>
-     * <li>{@link #checkRanking() Ranking}</li>
-     * <li>{@link #manageAccount() Manage Account}</li>
-     * <li>{@link #logOut() Log Out}</li>
-     * </ul>
-     * </p>
      */
     private void loggedAdminMenu() {
         // Prepare the options, print the menu and get the answer
@@ -259,7 +222,13 @@ public class Game {
         MenuBuilder.setConfigLastAsZero(true);
         int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
 
-        // Determine the action to take depending on the answer
+        // Logged Admin Menu Options:
+        // 1 -> Manage Players
+        // 2 -> Manage Equipment
+        // 3 -> Manage Challenges
+        // 4 -> Check Ranking
+        // 5 -> Manage Account (Change Password, Delete Account, ...)
+        // 0 -> Log Out
         if (answer == 1) {
             this.managePlayers();
         } else if (answer == 2) {
@@ -278,76 +247,53 @@ public class Game {
     // ============================================================================================[ Login Methods ]>>>
 
     /**
-     * Method to login the user by credentials
-     *
-     * <p>
-     * This method will ask the user for the credentials and then retrieve the user by credentials. <br/>
-     * If the credentials are invalid, it will alert the user and ask if they want to try again. <br/>
-     * If the credentials are valid, it will set the attribute {@Code loggedUser} with the user retrieved.
-     * </p>
-     *
-     * @see #getUserCredentials()
-     * @see #retrUser(String, String)
-     * @see #validateUser(User, String, String)
-     * @see MenuBuilder#alert(String, String)
-     * @see MenuBuilder#askYesNo(String)
-     *
+     * Main loop for the logging in process. The user will be asked to enter their credentials until they are logged in.
      */
     private void login() {
         // Loop until the user is logged
         while (this.loggedUser == null) {
-            // Get the user credentials
-            String[] credentials = this.getUserCredentials();
+            // Print the user a menu to enter his credentials
+            String[] credentials = this.askUserCredentials();
 
-            // Retrieve the user by credentials
+            // Retrieve the user from the users list by the provided credentials
             User user = this.retrUser(credentials[0], credentials[1]);
 
             // Check the user credentials
-            if (user == null) { // Alert the user and ask if they want to try again
+            // User is null -> Alert the user and ask if they want to try again
+            // User is a player and is banned -> Alert the user and return
+            // User is a player -> Set the logged user
+            if (user == null) {
                 MenuBuilder.alert("Invalid Credentials", "The username or password are invalid. Please try again.");
                 boolean answer = MenuBuilder.askYesNo("Do you want to try again?");
                 if (!answer) {
                     return;
                 }
-            }
-            // If the user has been banned, alert the user and return
-            else if (user instanceof Player && ((Player) user).isBanned()) {
+            } else if (user instanceof Player && ((Player) user).isBanned()) {
                 String msg = "You have been banned. Please contact the admin for more information.";
                 MenuBuilder.alert("Banned User", msg);
                 return;
-            }
-            // Set the logged user
-            else {
+            } else {
                 this.setLoggedUser(user);
             }
         }
     }
 
     /**
-     * Method to read the user credentials
-     *
-     * <p>
-     * This method will ask the user for the credentials, <em>username</em> and <em>password</em>, and return them as an array of strings.
-     * </p>
+     * Print the user a menu to enter their credentials
      *
      * @return An array of strings with the user credentials: {@Code [username, password]}.
      */
-    private String[] getUserCredentials() {
+    private String[] askUserCredentials() {
         String[] labels = { "Username", "Password" };
         return MenuBuilder.form("Login", labels);
     }
 
     /**
-     * Method to retrieve the logged user by its credentials
-     *
-     * <p>
-     * This method will look for the user by its credentials. If the user is found, it will return the user. If the user is not found, it will return null.
-     * </p>
+     * Look for the user from the users list that matches the provided credentials and retrieve the user object. If the user is not found, it will return null.
      *
      * @param username Username of the user we want to retrieve
      * @param password Password of the user we want to retrieve
      * @return The user retrieved by its credentials. If the user is not found, it will return null.
-     * @see #validateUser(User, String, String)
      */
     private User retrUser(String username, String password) {
         for (User user : this.users) {
@@ -360,11 +306,7 @@ public class Game {
     }
 
     /**
-     * Method to validate the user credentials
-     *
-     * <p>
-     * This method will validate the user credentials. It will check if the username and password entered by the input, match the given user credentials.
-     * </p>
+     * Check if the username and password match the user credentials
      *
      * @param user The user to validate
      * @param username The username to validate against the user
@@ -378,23 +320,10 @@ public class Game {
     // ============================================================================================[ Register Methods ]>>>
 
     /**
-     * Method to register a new user
+     * Print the register form to the user and after some validations, it will create the new user.
      *
-     * <p>
-     * This method will ask the user for the data to register a new user. <br/>
-     * It will check if the username is already taken. If the username is already taken, it will alert the user and ask for the data again. <br/>
-     * If the username is not taken, it will ask for the user type, create the user, and add it to the users list.
-     * </p>
-     *
-     * @see #isUsernameTaken(String)
-     * @see #createUser(String[], int)
-     * @see #generatePlayerId()
-     * @see #readUserData()
-     * @see #readUserType()
-     * @see MenuBuilder#alert(String, String)
-     * @see MenuBuilder#form(String, String[])
-     * @see MenuBuilder#menu(String, String[])
-     *
+     * If the user is a player, it will ask the user to choose the character.
+     * Then it will add the new user to the users list and log the user in.
      */
     private void register() {
         // Read the new user data from the input
@@ -422,17 +351,11 @@ public class Game {
 
         // Add the new user to the users list
         this.users.add(user);
-
-        // Log the user in
-        this.setLoggedUser(user);
     }
 
     /**
-     * Method print and validate the form to register a new user
+     * Prints the user a form where he must enter his registration credentials
      *
-     * <p>
-     * This method will print a form to register a new user and then validate the data entered by the user if the password and confirm password match.
-     * </p>
      * @return An array of strings with the user data: {@Code [username, nick, password, confirm password]}.
      */
     private String[] readUserData() {
@@ -450,11 +373,7 @@ public class Game {
     }
 
     /**
-     * Method to check if the username is already taken
-     *
-     * <p>
-     * This method will check if the username is already taken. It will look for the username in the users list.
-     * </p>
+     * Check if the username is already taken by another user
      *
      * @param username The username to check if it is already taken
      * @return True if the username is already taken. False otherwise.
@@ -468,27 +387,17 @@ public class Game {
     }
 
     /**
-     * Method to print a menu to select the user type
-     *
-     * <p>
-     * This method will print a menu to select the user type among two options: Player (1) or Admin (2), and return the answer.
-     * </p>
+     * Prints a menu to select the user type among two options: Player (1) or Admin (2), and return the answer.
      *
      * @return The user type selected: Player (1) or Admin (2).
      */
-    // Method to get the user type Player (1) || Admin (2)
     private int readUserType() {
         String[] options = { "Player", "Admin" };
         return MenuBuilder.menu("Select User Type", options);
     }
 
     /**
-     * Method to create a new user
-     *
-     * <p>
-     * This method will create a new user depending on the user type selected. <br/>
-     * If the user type is 1, it will create a new player. If the user type is 2, it will create a new admin.
-     * </p>
+     * Create a the user object with the provided data and user typed selected.
      *
      * @param userData The user data to create the user {@Code [username, nick, password]}
      * @param userType The user type to create the user {@Code 1: Player, 2: Admin}
@@ -496,15 +405,15 @@ public class Game {
      * @see #generatePlayerId()
      */
     private User createUser(String[] userData, int userType) {
-        if (userType == 1) return new Player(userData[0], userData[1], userData[2], this.generatePlayerId()); else return new Admin(userData[0], userData[1], userData[2]);
+        if (userType == 1) {
+            return new Player(userData[0], userData[1], userData[2], this.generatePlayerId());
+        } else {
+            return new Admin(userData[0], userData[1], userData[2]);
+        }
     }
 
     /**
-     * Method to generate the player id
-     *
-     * <p>
-     * This method will generate the player id. The id format is: LNLLN (L: Letter, N: Number).
-     * </p>
+     * Generate the player id. The id format is: LNLLN (L: Letter, N: Number).
      *
      * @return The new player id generated.
      */
@@ -561,9 +470,14 @@ public class Game {
 
     // ============================================================================================[ Logged Player Methods ]>>>
 
-    // Method to challenge another player
+    /**
+     * Handle the process of challenging another player. From the process of selecting the opponent to the process of creating the challenge.
+     */
     private void challenge() {
+        // Get the current player object
         Player currPlayer = (Player) this.loggedUser;
+
+        // Get the players available to challenge
         Player[] players = this.getPlayers();
 
         // Set the menu title and options
@@ -684,7 +598,7 @@ public class Game {
 
         // Create the battle history report
         String[] data = new String[player.getChallenges().size()];
-        
+
         // Fill the data array with the battle history
         for (int i = 0; i < player.getChallenges().size(); i++) {
             // Get a certain challenge
@@ -824,7 +738,6 @@ public class Game {
             } else {
                 MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
             }
-
             // If the defense and attack modifiers are not integers, alert the user and ask for the data again
         } catch (NumberFormatException e) {
             MenuBuilder.alert("Invalid Input", "The defense and attack modifiers must be integers.");

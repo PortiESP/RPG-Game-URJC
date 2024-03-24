@@ -93,13 +93,17 @@ public class Challenge {
         this.winner = this.getChallengerPlayer();
         Player loser = this.getChallengedPlayer();
         int fee = (int) (this.gold * 0.1);
+
+        // Check if the loser can afford the fee
+        // Can afford -> Pay the fee
+        // Cannot afford -> Pay all the gold (this scenario should not happen, but it's here just in case)
         if (loser.canAfford(fee)) {
-            this.winner.payGoldTo(fee, loser);
+            loser.payGoldTo(fee, this.winner);
         } else {
             String msg = "The challenged player does not have enough funds to pay the fee. The player will be banned.";
             MenuBuilder.alert("Insufficient funds", msg);
-            this.winner.payGoldTo(loser.getGold(), loser);
-            loser.ban();
+            int gold = loser.getGold();
+            loser.payGoldTo(gold, this.winner);
         }
     }
 

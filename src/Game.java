@@ -913,7 +913,9 @@ public class Game {
 
     // ============================================================================================[ General Logged Methods ]>>>
 
-    // Method to check the ranking
+    /**
+     * Print the ranking of the players.
+     */
     private void checkRanking() {
         // Sort the users by their score
         this.users.sort((u1, u2) -> u2.getScore() - u1.getScore());
@@ -945,17 +947,7 @@ public class Game {
     }
 
     /**
-     * Method to manage the account settings
-     *
-     * <p>
-     * This method will print a menu to manage the account settings. The options are: Change Nick, Change Password, Delete Account, and Back.
-     * </p>
-     *
-     * @see #changeNick()
-     * @see #changePassword()
-     * @see #deleteAccount()
-     * @see MenuBuilder#menu(String, String[])
-     *
+     * Print the manage account menu for the current user. The menu will allow the user to change the nick, password or delete the account.
      */
     private void manageAccount() {
         int answer = -1;
@@ -964,6 +956,7 @@ public class Game {
             String[] options = { "Change Nick", "Change Password", "Delete Account", "Back" };
             MenuBuilder.setConfigLastAsZero(true);
             answer = MenuBuilder.menu("Account Settings", options);
+
             if (answer == 1) {
                 this.changeNick();
             } else if (answer == 2) {
@@ -975,11 +968,7 @@ public class Game {
     }
 
     /**
-     * Method to change the nick of the user
-     *
-     * <p>
-     * This method will change the nick of the user. It will ask the user for the new nick and then set the new nick to the user.
-     * </p>
+     * Print a string input prompt to the user to change the nick of the user.
      */
     private void changeNick() {
         String data = MenuBuilder.readString("Change Nick");
@@ -991,11 +980,7 @@ public class Game {
     }
 
     /**
-     * Method to change the password of the user
-     *
-     * <p>
-     * This method will change the password of the user. It will ask the user for the new password and then set the new password to the user.
-     * </p>
+     * Print a password input prompt to the user to change the password of the user.
      */
     private void changePassword() {
         String[] labels = { "New Password", "Confirm Password" };
@@ -1011,14 +996,7 @@ public class Game {
     }
 
     /**
-     * Method to delete the account
-     *
-     * <p>
-     * This method will delete the account of the user. It will ask the user if they are sure they want to delete the account. <br/>
-     * If the user is sure, it will remove the user from the users list and then log out the user.
-     * </p>
-     *
-     * @see #logOut()
+     * Print a verification message before deleting the account.
      */
     private void deleteAccount() {
         boolean answer = MenuBuilder.askYesNo("Are you sure you want to delete your account?");
@@ -1031,11 +1009,7 @@ public class Game {
     }
 
     /**
-     * Method to log out the user
-     *
-     * <p>
-     * This method will log out the user. It will set the attribute {@Code loggedUser} to null.
-     * </p>
+     * Log out the current user by setting the logged user to null.
      */
     private void logOut() {
         this.loggedUser = null;

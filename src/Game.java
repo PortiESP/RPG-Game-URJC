@@ -608,6 +608,7 @@ public class Game {
 
         // Create the new challenge
         currPlayer.setPendingChallenge(challenge);
+        opponent.setPendingChallenge(challenge);
 
         // Alert the user that the challenge has been created
         MenuBuilder.alert("Challenge Created", "The challenge has been created successfully.");

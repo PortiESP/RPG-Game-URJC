@@ -107,20 +107,6 @@ public class Challenge {
         }
     }
 
-    // Start the fight
-    public void startFight() {
-        this.result = new Fight(this.players[0], this.players[1]);
-        this.winner = this.result.getWinner();
-    }
-
-    // Print the challenge
-    public void printResult() {
-        ArrayList<String> log = this.result.getLog();
-        String[] fixedLog = log.toArray(String[]::new);
-
-        MenuBuilder.doc("Challenge Result", fixedLog);
-    }
-
     public void manageFight() {
         this.startFight();
         this.printResult();
@@ -128,7 +114,22 @@ public class Challenge {
         this.finishChallenge();
     }
 
-    public void finishChallenge() {
+    // ============================================================================================[ Private Methods ]>>>
+    // Start the fight
+    private void startFight() {
+        this.result = new Fight(this.players[0], this.players[1]);
+        this.winner = this.result.getWinner();
+    }
+
+    // Print the challenge
+    private void printResult() {
+        ArrayList<String> log = this.result.getLog();
+        String[] fixedLog = log.toArray(String[]::new);
+
+        MenuBuilder.doc("Challenge Result", fixedLog);
+    }
+
+    private void finishChallenge() {
         Player p1 = this.players[0];
         Player p2 = this.players[1];
 

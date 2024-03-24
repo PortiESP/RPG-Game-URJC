@@ -563,14 +563,9 @@ public class Game {
         // Get the current player object
         Player player = (Player) this.loggedUser;
 
-        // Generate the character options [LYCANTHROPE, VAMPIRE, HUNTER]
-        String[] options = new String[CharacterSelection.values().length];
-        for (int i = 0; i < CharacterSelection.values().length; i++) {
-            options[i] = CharacterSelection.values()[i].toString();
-        }
-        // Set menu title
+        // Print the character selection menu and get the answer.
         String title = "Change Character";
-        // Print the character selection menu and get the answer
+        String[] options = CharacterSelection.allToString(); // Generate the character options [LYCANTHROPE, VAMPIRE, HUNTER]
         int answer = MenuBuilder.menu(title, options);
 
         // Get the character selected from the menu

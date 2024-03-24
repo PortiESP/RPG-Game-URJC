@@ -70,10 +70,6 @@ public abstract class Character {
 
     // ============================================================================================[ Private methods ]>>>
 
-    private int calcModifiersDefense() {
-        // TODO DANI 6: Implement the method
-        return -1;
-    }
 
     // Get a random number between 1 and 6
     private int rollDice() {
@@ -181,7 +177,6 @@ public abstract class Character {
         int cumDef = 0;
 
         cumDef += calcEquipmentDefense();
-        cumDef += calcModifiersDefense();
         cumDef += calcMinionsDefense();
         cumDef += this.special.getDefense();
 

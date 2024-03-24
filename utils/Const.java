@@ -26,4 +26,17 @@ public class Const {
         { "Dragon Slayer", "6", "1", "2" },
     };
     // TODO DANI 1: Add a constant for the modifiers, minions, special abilities.
+    public static final String[][] STRENGHTS = {
+        { "Moonlight","4" },
+        { "Darkness", "3" },
+        { "Fire", "1" },
+        { "Magic", "2" }
+
+    };
+    public static final String[][] WEAKNESSES = {
+        {"Garlic","3"},
+        { "Silver", "2" },
+        { "Holy Water", "3" },
+        { "Sunlight", "4" } 
+    };
 }

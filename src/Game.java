@@ -5,6 +5,7 @@ import java.util.*;
 import src.challenges.*;
 import src.characters.*;
 import src.equipment.*;
+import src.modifiers.*;
 import src.users.*;
 import utils.*;
 
@@ -22,6 +23,7 @@ public class Game {
     private List<Challenge> challenges = new ArrayList<>();
     private List<Armor> armorsAvailable = new ArrayList<>();
     private List<Weapon> weaponsAvailable = new ArrayList<>();
+    private List<Modifier> modifiersAviable = new ArrayList<>();
     // TODO DANI 3: Minions available, special habilities and modifiers (as ArrayLists)
     private String lastId = null;
 
@@ -104,6 +106,7 @@ public class Game {
         // Load the default armors and weapons
         this.armorsAvailable = Armor.loadFromArray(Const.ARMORS);
         this.weaponsAvailable = Weapon.loadFromArray(Const.WEAPONS);
+        this.modifiersAviable = Modifier.loadFromArray(Const.STRENGHTS, Const.WEAKNESSES);
         // TODO DANI 4: Load minions, special habilities and modfiers
     }
 
@@ -130,6 +133,7 @@ public class Game {
         this.armorsAvailable = game.armorsAvailable;
         this.weaponsAvailable = game.weaponsAvailable;
         this.lastId = game.lastId;
+        this.modifiersAviable = game.modifiersAviable;
         // TODO DANI 5: Set the minions, special habilities and modifiers
     }
 

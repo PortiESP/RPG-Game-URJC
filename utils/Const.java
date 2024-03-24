@@ -27,10 +27,10 @@ public class Const {
     };
     // TODO DANI 1: Add a constant for the modifiers, minions, special abilities.
     public static final String[][] STRENGHTS = {
-        {"Moonlight","4"},
+        { "Moonlight","4" },
         { "Darkness", "3" },
         { "Fire", "1" },
-        { "Magic", "2" },
+        { "Magic", "2" }
 
     };
     public static final String[][] WEAKNESSES = {

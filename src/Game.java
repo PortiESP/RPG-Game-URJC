@@ -183,7 +183,9 @@ public class Game {
         // Determine the action to take depending on the answer
         if (answer == 1) {
             this.login();
-            if (loggedUser instanceof Player) ((Player) loggedUser).manageNotifications();
+            if (loggedUser instanceof Player) {
+                ((Player) loggedUser).manageNotifications();
+            }
         } else if (answer == 2) {
             this.register();
         } else {
@@ -258,9 +260,19 @@ public class Game {
         int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
 
         // Determine the action to take depending on the answer
-        if (answer == 1) this.managePlayers(); else if (answer == 2) this.manageEquipment(); else if (answer == 3) this.manageChallenges(); else if (answer == 4) this.checkRanking(); else if (
-            answer == 5
-        ) this.manageAccount(); else this.logOut();
+        if (answer == 1) {
+            this.managePlayers();
+        } else if (answer == 2) {
+            this.manageEquipment();
+        } else if (answer == 3) {
+            this.manageChallenges();
+        } else if (answer == 4) {
+            this.checkRanking();
+        } else if (answer == 5) {
+            this.manageAccount();
+        } else {
+            this.logOut();
+        }
     }
 
     // ============================================================================================[ Login Methods ]>>>

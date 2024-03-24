@@ -62,5 +62,26 @@ public class Const {
         { "Backstab", "2", "3" },
         { "Assassinate", "1", "2" }
     };
-
+    public static final String[][] GHOULS = {
+        // Name, Health, Dependency
+        { "Ghoul", "1", "1" },
+        { "Vampire", "1", "2" },
+        { "Werewolf", "2", "3" },
+        { "Zombie", "2", "4" }
+    };
+    public static final String[][] HUMANS = { //los vampiros no pueden tener esbirros humanos
+        // Name, Health, Loyalty
+        { "Knight", "1", "HIGH" },
+        { "Archer", "1", "LOW" },
+        { "Mage", "2", "REGULAR" },
+        { "Peasant", "2", "LOW" },
+        { "Rogue", "1", "HIGH" }
+    };
+    public static final String[][] DEVIL = {
+        // Name, Health, Devils
+        {"Lucifer", "3", "..."},
+        {"Beelzebub", "3", "..."},
+        {"Mephistopheles", "4", "..."},
+        {"Satan", "4", "..."}
+    };
 }

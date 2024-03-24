@@ -33,7 +33,8 @@
 - [x] Implement Admin menu.
   - [X] Manage players.
   - [X] Manage equipment.
-  - [X] Manage challenges.
+  - [ ] Manage challenges.
+    - [ ] Implement modify characters.
   - [X] Check ranking.
   - [X] Manage account settings.
   - [X] Sign off.

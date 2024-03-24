@@ -51,3 +51,4 @@
 ## Syntax and format
 
 - Don't write onliner statements without curly brackets.
+- Comment all the methods and classes.

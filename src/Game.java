@@ -684,6 +684,7 @@ public class Game {
 
         // Create the battle history report
         String[] data = new String[player.getChallenges().size()];
+        
         // Fill the data array with the battle history
         for (int i = 0; i < player.getChallenges().size(); i++) {
             // Get a certain challenge
@@ -786,7 +787,15 @@ public class Game {
             MenuBuilder.setConfigLastAsZero(true);
             int answer = MenuBuilder.menu("Manage Armors", options);
 
-            if (answer == 1) this.addArmor(); else if (answer == 2) this.removeArmor(); else if (answer == 3) this.showArmors(); else break;
+            if (answer == 1) {
+                this.addArmor();
+            } else if (answer == 2) {
+                this.removeArmor();
+            } else if (answer == 3) {
+                this.showArmors();
+            } else {
+                break;
+            }
         }
     }
 
@@ -810,7 +819,12 @@ public class Game {
             boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this armor?");
 
             // If the user confirms, add the new armor to the armors available
-            if (answer) this.armorsAvailable.add(armor); else MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
+            if (answer) {
+                this.armorsAvailable.add(armor);
+            } else {
+                MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
+            }
+
             // If the defense and attack modifiers are not integers, alert the user and ask for the data again
         } catch (NumberFormatException e) {
             MenuBuilder.alert("Invalid Input", "The defense and attack modifiers must be integers.");
@@ -831,7 +845,11 @@ public class Game {
         boolean confirm = MenuBuilder.askYesNo("Are you sure you want to remove this armor?");
 
         // If the user confirms, remove the armor from the armors available
-        if (confirm) this.armorsAvailable.remove(answer); else MenuBuilder.alert("Operation Canceled", "The armor has not been removed.");
+        if (confirm) {
+            this.armorsAvailable.remove(answer);
+        } else {
+            MenuBuilder.alert("Operation Canceled", "The armor has not been removed.");
+        }
     }
 
     // Method to show the armors
@@ -856,7 +874,15 @@ public class Game {
             MenuBuilder.setConfigLastAsZero(true);
             int answer = MenuBuilder.menu("Manage Weapons", options);
 
-            if (answer == 1) this.addWeapon(); else if (answer == 2) this.removeWeapon(); else if (answer == 3) this.showWeapons(); else break;
+            if (answer == 1) {
+                this.addWeapon();
+            } else if (answer == 2) {
+                this.removeWeapon();
+            } else if (answer == 3) {
+                this.showWeapons();
+            } else {
+                break;
+            }
         }
     }
 
@@ -882,7 +908,11 @@ public class Game {
             boolean answer = MenuBuilder.askYesNo("Are you sure you want to add this weapon?");
 
             // If the user confirms, add the new weapon to the weapons available
-            if (answer) this.weaponsAvailable.add(weapon); else MenuBuilder.alert("Operation Canceled", "The weapon has not been added.");
+            if (answer) {
+                this.weaponsAvailable.add(weapon);
+            } else {
+                MenuBuilder.alert("Operation Canceled", "The weapon has not been added.");
+            }
             // If the defense, attack modifiers and hands required are not integers, alert the user and ask for the data again
         } catch (NumberFormatException e) {
             MenuBuilder.alert("Invalid Input", "The defense, attack modifiers and hands required must be integers.");
@@ -903,7 +933,11 @@ public class Game {
         boolean confirm = MenuBuilder.askYesNo("Are you sure you want to remove this weapon?");
 
         // If the user confirms, remove the weapon from the weapons available
-        if (confirm) this.weaponsAvailable.remove(answer); else MenuBuilder.alert("Operation Canceled", "The weapon has not been removed.");
+        if (confirm) {
+            this.weaponsAvailable.remove(answer);
+        } else {
+            MenuBuilder.alert("Operation Canceled", "The weapon has not been removed.");
+        }
     }
 
     // Method to show the weapons
@@ -986,7 +1020,13 @@ public class Game {
             String[] options = { "Change Nick", "Change Password", "Delete Account", "Back" };
             MenuBuilder.setConfigLastAsZero(true);
             answer = MenuBuilder.menu("Account Settings", options);
-            if (answer == 1) this.changeNick(); else if (answer == 2) this.changePassword(); else if (answer == 3) this.deleteAccount();
+            if (answer == 1) {
+                this.changeNick();
+            } else if (answer == 2) {
+                this.changePassword();
+            } else if (answer == 3) {
+                this.deleteAccount();
+            }
         }
     }
 

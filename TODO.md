@@ -12,26 +12,28 @@
 - [ ] Implement battle system.
   - [X] Challenge part 1 (created, unverified)
   - [X] Challenge part 2 (verified, waiting for acceptance)
-  - [ ] Challenge part 3 (accepted or not, finished)
-  - [ ] Implement the notification system.
-  - [ ] Check if the user has active challenges on login.
+  - [X] Challenge part 3 (accepted or not, finished)
+  - [X] Implement the notification system.
+  - [X] Check if the user has active challenges on login.
+  - [ ] Implement Minions functionality.
+  - [ ] Implement Special Abilities functionality.
 - [ ] Check the way the score is calculated.
 - [X] Implement a way to manage account settings.
   - [X] Change password.
   - [X] Change name.
   - [X] Change nickname.
-- [ ] Implement Player menu.
-  - [ ] Challenge a player.
+- [x] Implement Player menu.
+  - [X] Challenge a player.
   - [X] Modify active equipment.
   - [X] Change character.
   - [X] Check battle history.
   - [X] Check ranking.
   - [X] Manage account settings.
   - [X] Sign off.
-- [ ] Implement Admin menu.
+- [x] Implement Admin menu.
   - [X] Manage players.
   - [X] Manage equipment.
-  - [ ] Manage challenges.
+  - [X] Manage challenges.
   - [X] Check ranking.
   - [X] Manage account settings.
   - [X] Sign off.

@@ -38,6 +38,7 @@
   - [X] Check ranking.
   - [X] Manage account settings.
   - [X] Sign off.
+- [ ] attack and deffense values of the equipment must be between 1-3
   
 ## Refactor for review
 

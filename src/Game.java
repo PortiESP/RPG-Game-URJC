@@ -695,7 +695,9 @@ public class Game {
                 result = challenge.getWinner() == player ? "WIN" : "LOSE";
             }
 
-            String msg = String.format("- [%d] %s VS %s ==> YOU %s!", i + 1, challenge.getChallengerPlayer(), challenge.getChallengedPlayer(), result);
+            String name1 = challenge.getChallengerPlayer().getName();
+            String name2 = challenge.getChallengedPlayer().getName();
+            String msg = String.format("- [%d] %s VS %s ==> YOU %s!", i + 1, name1, name2, result);
             data[i] = msg;
         }
 
@@ -978,9 +980,9 @@ public class Game {
      *
      */
     private void manageAccount() {
-        int answer = 0;
+        int answer = -1;
 
-        while (answer != 4 && this.loggedUser != null) {
+        while (answer != 0 && this.loggedUser != null) {
             String[] options = { "Change Nick", "Change Password", "Delete Account", "Back" };
             MenuBuilder.setConfigLastAsZero(true);
             answer = MenuBuilder.menu("Account Settings", options);

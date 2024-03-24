@@ -220,9 +220,9 @@ public class Player extends User {
         this.pendingNotification = false;
     }
 
-    public void goldTransaction(int amount, Player player) {
-        this.gold += amount;
-        player.gold -= amount;
+    public void payGoldTo(int amount, Player player) {
+        this.gold -= amount;
+        player.gold += amount;
     }
 
     public boolean canAfford(int amount) {

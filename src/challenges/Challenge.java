@@ -94,11 +94,11 @@ public class Challenge {
         Player loser = this.getChallengedPlayer();
         int fee = (int) (this.gold * 0.1);
         if (loser.canAfford(fee)) {
-            this.winner.goldTransaction(fee, loser);
+            this.winner.payGoldTo(fee, loser);
         } else {
             String msg = "The challenged player does not have enough funds to pay the fee. The player will be banned.";
             MenuBuilder.alert("Insufficient funds", msg);
-            this.winner.goldTransaction(loser.getGold(), loser);
+            this.winner.payGoldTo(loser.getGold(), loser);
             loser.ban();
         }
     }
@@ -121,6 +121,10 @@ public class Challenge {
         this.startFight();
         this.printResult();
 
+        this.finishChallenge();
+    }
+
+    public void finishChallenge() {
         Player p1 = this.players[0];
         Player p2 = this.players[1];
 
@@ -131,11 +135,13 @@ public class Challenge {
         // Add the fight to the history
         p1.addChallengeToHistory(this);
         p2.addChallengeToHistory(this);
-    }
 
-    public void finishChallenge() {
-        this.getChallengerPlayer().setPendingChallenge(null);
-        this.getChallengedPlayer().setPendingChallenge(null);
+        // Update the gold
+        if (this.winner == p1) {
+            p2.payGoldTo(this.gold, p1);
+        } else {
+            p1.payGoldTo(this.gold, p2);
+        }
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

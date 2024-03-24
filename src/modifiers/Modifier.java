@@ -2,7 +2,6 @@ package src.modifiers;
 
 import java.util.ArrayList;
 
-import src.equipment.Armor;
 
 public abstract class Modifier {
 

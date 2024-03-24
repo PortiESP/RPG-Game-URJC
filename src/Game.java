@@ -5,6 +5,7 @@ import java.util.*;
 import src.challenges.*;
 import src.characters.*;
 import src.equipment.*;
+import src.minions.*;
 import src.modifiers.*;
 import src.users.*;
 import src.abilities.*;
@@ -28,6 +29,9 @@ public class Game {
     private List<Talent> talentsAvailable = new ArrayList<>();
     private List<Don> donesAvailable = new ArrayList<>();
     private List<Discipline> disciplinesAvailable = new ArrayList<>();
+    private List<Ghoul> ghoulsAvailable = new ArrayList<>();
+    private List<Human> humansAvailable = new ArrayList<>();
+    private List<Devil> devilsAvailable = new ArrayList<>();
     // TODO DANI 3: Minions available, special habilities and modifiers (as ArrayLists)
     private String lastId = null;
 
@@ -114,6 +118,9 @@ public class Game {
         this.talentsAvailable = Talent.loadFromArray(Const.TALENTS);
         this.donesAvailable = Don.loadFromArray(Const.DONES);
         this.disciplinesAvailable = Discipline.loadFromArray(Const.DISCIPLINES);
+        this.ghoulsAvailable = Ghoul.loadFromArray(Const.GHOULS);
+        this.humansAvailable = Human.loadFromArray(Const.HUMANS);
+        this.devilsAvailable = Devil.loadFromArray(Const.DEVILS);
         // TODO DANI 4: Load minions, special habilities and modfiers
     }
 
@@ -144,6 +151,9 @@ public class Game {
         this.talentsAvailable = game.talentsAvailable;
         this.donesAvailable = game.donesAvailable;
         this.disciplinesAvailable = game.disciplinesAvailable;
+        this.ghoulsAvailable = game.ghoulsAvailable;
+        this.humansAvailable = game.humansAvailable;
+        this.devilsAvailable = game.devilsAvailable;
 
         // TODO DANI 5: Set the minions, special habilities and modifiers
     }

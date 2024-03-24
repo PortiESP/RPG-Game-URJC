@@ -77,7 +77,7 @@ public class Const {
         { "Peasant", "2", "LOW" },
         { "Rogue", "1", "HIGH" }
     };
-    public static final String[][] DEVIL = {
+    public static final String[][] DEVILS = {
         // Name, Health, Devils
         {"Lucifer", "3", "..."},
         {"Beelzebub", "3", "..."},

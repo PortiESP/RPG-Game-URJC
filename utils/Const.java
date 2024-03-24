@@ -27,6 +27,7 @@ public class Const {
     };
     // TODO DANI 1: Add a constant for the modifiers, minions, special abilities.
     public static final String[][] STRENGHTS = {
+        //Name, modifier
         { "Moonlight","4" },
         { "Darkness", "3" },
         { "Fire", "1" },
@@ -34,14 +35,32 @@ public class Const {
 
     };
     public static final String[][] WEAKNESSES = {
+        //Name, modifier
         {"Garlic","3"},
         { "Silver", "2" },
         { "Holy Water", "3" },
         { "Sunlight", "4" } 
     };
     public static final String[][] DONES = {
-       { " ", " " }, 
-       { " ", " " }, 
-       { " ", " " }, 
+        // Name, Attack Modifier, Defense Modifier, Cost
+        { "Claw", "1", "1", "2" },
+        { "Bite", "2", "2", "3" },
+        { "Tail", "2", "3", "4" },
+        { "Roar", "1", "2", "5" }
     };
+    public static final String[][] DISCIPLINES = {
+        // Name, Attack Modifier, Defense Modifier, Cost
+        { "Bloodlust", "1", "3", "2" },
+        { "Frenzy", "2", "1", "3" },
+        { "Rage", "3", "2", "4" },
+        { "Vampirism", "1", "3", "5" }
+    };
+    public static final String[][] TALENTS = {
+        // Name, Attack Modifier, Defense Modifier, Cost
+        { "Sneak", "1", "1" },
+        { "Hide", "2", "2" },
+        { "Backstab", "2", "3" },
+        { "Assassinate", "1", "2" }
+    };
+
 }

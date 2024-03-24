@@ -2,6 +2,9 @@ package src.characters;
 
 //Import Statements
 import src.abilities.*;
+import src.equipment.Equipment;
+import src.minions.Minion;
+import src.modifiers.Modifier;
 
 public class Vampire extends Character {
 
@@ -12,12 +15,14 @@ public class Vampire extends Character {
     // CONSTANTS
     public final int MAX_BLOOD = 10;
     public final int MIN_BLOOD = 1;
+    public static int MAX_HEALTH = 5;
+    public static int MAX_POWER = 5;
+    public static int MIN_POWER = 1;
+    public static int INIT_MINIONS = 3;
 
     // ============================================================================================[ Constructor ]>>>
     public Vampire() {
         super();
-        age = 0;
-        blood = MAX_BLOOD;
         this.loadSpecial();
         this.loadMinions();
     }
@@ -42,6 +47,23 @@ public class Vampire extends Character {
     @Override
     public void loadSpecial() {
         this.special = new Discipline();
+    }
+
+    @Override
+    public void loadInitialValues() {
+        this.setHealth(MAX_HEALTH);
+        this.setPower(MAX_POWER);
+        this.setModifiers(new Modifier[2]);
+        this.setMinions(new Minion[INIT_MINIONS]);
+        this.setEquipment(new Equipment[3]);
+        this.setAge(0);
+        this.setBlood(MAX_BLOOD);
+    }
+
+    // Method to modify the attributes of the vampire
+    public static void modifyAttributes() {
+        // TODO Auto-generated method stub
+
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

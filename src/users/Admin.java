@@ -2,6 +2,8 @@ package src.users;
 
 import java.util.List;
 import src.challenges.Challenge;
+import src.characters.CharacterSelection;
+import src.characters.*;
 import src.equipment.*;
 import utils.MenuBuilder;
 
@@ -58,8 +60,7 @@ public class Admin extends User {
         }
 
         // Edit the equipment of the players
-        player1.manageEquipment(armors, weapons);
-        player2.manageEquipment(armors, weapons);
+        this.manageRules(challenge, player1, player2, armors, weapons);
 
         // Adjust the gold of the challenge
         if (!player2.canAfford(challenge.getGold())) {
@@ -73,5 +74,45 @@ public class Admin extends User {
 
         // Notify the challenged player
         player2.notifyChallenge(challenge);
+    }
+
+    // Method to manage the rules of the challenge
+    private void manageRules(Challenge challenge, Player player1, Player player2, List<Armor> armors, List<Weapon> weapons) {
+        String[] options = { "Manage Player 1", "Manage Player 2", "Exit" };
+        int opt = MenuBuilder.menu("Manage Challenge", options);
+
+        if (opt == 1) {
+            this.managePlayer(player1, armors, weapons);
+        } else if (opt == 2) {
+            this.managePlayer(player2, armors, weapons);
+        } else {
+            return;
+        }
+    }
+
+    // Method to manage a player
+    private void managePlayer(Player player, List<Armor> armors, List<Weapon> weapons) {
+        String[] options = { "Manage Equipment", "Modify Character", "Exit" };
+        int opt = MenuBuilder.menu("Manage Player", options);
+
+        if (opt == 1) {
+            player.manageEquipment(armors, weapons);
+        } else if (opt == 2) {
+            this.modifyCharacter(player);
+        } else {
+            return;
+        }
+    }
+
+    // Method to modify a character given a player
+    private void modifyCharacter(Player player) {
+        CharacterSelection character = player.getCurrentCharacter();
+        if (character == CharacterSelection.LYCANTHROPE) {
+            Lycanthrope.modifyAttributes();
+        } else if (character == CharacterSelection.VAMPIRE) {
+            Vampire.modifyAttributes();
+        } else {
+            Hunter.modifyAttributes();
+        }
     }
 }

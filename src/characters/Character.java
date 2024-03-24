@@ -17,29 +17,25 @@ public abstract class Character {
     protected Equipment[] equipment;
     protected SpecialAbility special;
 
-    // CONSTANTS
-    public final int MAX_HEALTH = 5;
-    public final int MAX_POWER = 5;
-    public final int MIN_POWER = 1;
-    public final int INIT_MINIONS = 3;
-
     // ============================================================================================[ Constructor ]>>>
     public Character() {
-        health = MAX_HEALTH;
-        power = MAX_POWER;
-        modifiers = new Modifier[2];
-        minions = new Minion[INIT_MINIONS];
-        equipment = new Equipment[3];
-        loadModifiers();
+        this.loadInitialValues();
+        this.loadModifiers();
     }
 
     // ============================================================================================[ Abstract Methods ]>>>
+
+    // Load initial values for the character
+    public abstract void loadInitialValues();
 
     // Load the character's special ability
     public abstract void loadSpecial();
 
     // Load the character's minions
     public abstract void loadMinions();
+
+    // Modify the character's attributes --> To be implemented in subclasses
+    public static void modifyAttributes() { };
 
     // ============================================================================================[ Public Methods ]>>>
     // TODO Set some methods as private

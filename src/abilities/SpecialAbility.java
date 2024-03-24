@@ -1,6 +1,7 @@
 package src.abilities;
 
 public abstract class SpecialAbility {
+
     private String name;
     private int attack;
     private int defense;
@@ -29,5 +30,4 @@ public abstract class SpecialAbility {
     public void setDefense(int defense) {
         this.defense = defense;
     }
-
 }

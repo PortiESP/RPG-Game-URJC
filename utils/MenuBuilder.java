@@ -242,8 +242,7 @@ public class MenuBuilder {
             resetSettings();
             // Return the value
             return val;
-        } // If the input is not a number, show an alert and try again
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) { // If the input is not a number, show an alert and try again
             alert(WARN, MUST_BE_A_NUMBER);
             return readInt(prompt);
         }

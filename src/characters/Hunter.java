@@ -4,6 +4,7 @@ package src.characters;
 import src.abilities.*;
 
 public class Hunter extends Character {
+
     private int willpower;
     private Talent talent;
 
@@ -48,5 +49,4 @@ public class Hunter extends Character {
     public void setTalent(Talent talent) {
         this.talent = talent;
     }
-
 }

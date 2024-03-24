@@ -3,6 +3,7 @@ package src.equipment;
 import java.util.ArrayList;
 
 public class Weapon extends Equipment {
+
     private int handsRequired;
 
     // ============================================================================================[ Constructor ]>>>
@@ -25,8 +26,7 @@ public class Weapon extends Equipment {
     public static ArrayList<Weapon> loadFromArray(String[][] arr) {
         ArrayList<Weapon> weapons = new ArrayList<>();
         for (String[] weapon : arr) {
-            weapons.add(new Weapon(weapon[0], Integer.parseInt(weapon[1]), Integer.parseInt(weapon[2]),
-                    Integer.parseInt(weapon[3])));
+            weapons.add(new Weapon(weapon[0], Integer.parseInt(weapon[1]), Integer.parseInt(weapon[2]), Integer.parseInt(weapon[3])));
         }
 
         return weapons;

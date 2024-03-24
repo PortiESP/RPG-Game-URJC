@@ -1,17 +1,16 @@
 package src.users;
 
-import src.challenges.Challenge;
-import utils.MenuBuilder;
-import src.equipment.*;
 import java.util.List;
+import src.challenges.Challenge;
+import src.equipment.*;
+import utils.MenuBuilder;
 
 public class Admin extends User {
 
     // ============================================================================================[ Constructor ]>>>
 
     // Zero Constructor
-    public Admin() {
-    }
+    public Admin() {}
 
     // Constructor with parameters
     public Admin(String name, String nick, String password) {
@@ -28,10 +27,7 @@ public class Admin extends User {
     // Method to show the user information
     public void showInfo() {
         // Generate the data to show
-        String[] data = {
-                "Nick: " + this.getNick(),
-                "Name: " + this.getName(),
-        };
+        String[] data = { "Nick: " + this.getNick(), "Name: " + this.getName() };
 
         // Show the data
         MenuBuilder.doc("Player: " + this.getName(), data);
@@ -39,8 +35,9 @@ public class Admin extends User {
 
     // Method to manage a challenge
     public void manageChallenge(Challenge challenge, List<Armor> armors, List<Weapon> weapons) {
-        boolean opt = MenuBuilder.askYesNo(String.format("Do you want to manage the challenge beween %s and %s?",
-                challenge.getChallengerPlayer().getName(), challenge.getChallengedPlayer().getName()));
+        boolean opt = MenuBuilder.askYesNo(
+            String.format("Do you want to manage the challenge beween %s and %s?", challenge.getChallengerPlayer().getName(), challenge.getChallengedPlayer().getName())
+        );
         // If the admin does not want to manage this challenge, return
         if (!opt) {
             return;
@@ -76,6 +73,5 @@ public class Admin extends User {
 
         // Notify the challenged player
         player2.notifyChallenge(challenge);
-
     }
 }

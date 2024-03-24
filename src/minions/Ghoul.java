@@ -1,6 +1,7 @@
 package src.minions;
 
 public class Ghoul extends Minion {
+
     private int dependency;
 
     // ============================================================================================[ Constructor ]>>>
@@ -17,5 +18,4 @@ public class Ghoul extends Minion {
     public void setDependency(int dependency) {
         this.dependency = dependency;
     }
-
 }

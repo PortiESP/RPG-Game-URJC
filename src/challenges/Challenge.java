@@ -76,6 +76,7 @@ public class Challenge {
         return this.players[0];
     }
 
+    // TODO - Consider using the observer pattern to notify the players
     // Approve the challenge
     public void approve() {
         this.approved = true;

@@ -14,6 +14,7 @@ public abstract class Character {
     private int power;
     private Modifier[] modifiers;
     private Minion[] minions;
+    private int minionsHealth;
     protected Equipment[] equipment;
     protected SpecialAbility special;
 
@@ -32,6 +33,7 @@ public abstract class Character {
     public abstract void loadSpecial();
 
     // Load the character's minions
+    // TODO DANI: Loading the minions implies calculating the defense they provide and storing it in the minionsHealth attribute
     public abstract void loadMinions();
 
     // Modify the character's attributes --> To be implemented in subclasses
@@ -45,7 +47,21 @@ public abstract class Character {
         if (defense > damage) {
             defense = damage;
         }
-        int remainingHealth = health - (damage - defense);
+
+        int finalAttackValue = damage - defense;
+
+        // Remove minions health
+        if (minionsHealth > 0) {
+            if (minionsHealth >= finalAttackValue) {
+                minionsHealth -= finalAttackValue;
+                finalAttackValue = 0;
+            } else {
+                finalAttackValue -= minionsHealth;
+                minionsHealth = 0;
+            }
+        }
+
+        int remainingHealth = health - finalAttackValue;
 
         if (remainingHealth < 0) {
             health = 0;
@@ -69,7 +85,6 @@ public abstract class Character {
     }
 
     // ============================================================================================[ Private methods ]>>>
-
 
     // Get a random number between 1 and 6
     private int rollDice() {
@@ -151,15 +166,7 @@ public abstract class Character {
     }
 
     private int calcMinionsDefense() {
-        int cumHealth = 0;
-        for (Minion m : this.minions) {
-            if (m == null) {
-                continue;
-            }
-            cumHealth += m.getHealth();
-        }
-
-        return cumHealth;
+        return this.minionsHealth;
     }
 
     // ============================================================================================[ Protected Methods ]>>>

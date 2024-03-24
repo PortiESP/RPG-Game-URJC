@@ -6,10 +6,20 @@ public abstract class SpecialAbility {
     private int attack;
     private int defense;
 
+    // ============================================================================================[ Constructor ]>>>
+    public SpecialAbility() {}
+
+    public SpecialAbility(String name, int attack, int defense) {
+        this.name = name;
+        this.attack = attack;
+        this.defense = defense;
+    }
+
     // Getters & Setters ==================================================================================================
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;

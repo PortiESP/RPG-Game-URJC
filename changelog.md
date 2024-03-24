@@ -28,3 +28,14 @@
 - Added `ban()` method to the `Player` class.
 - Added `unban()` method to the `Player` class.
 - Added `showInfo()` abstract method to the `User` class.
+- Added `changeArmor()` method to the `Player` class.
+- Added `changeWeapon()` method to the `Player` class.
+- Added `manageNotifications()` method to the `Player` class.
+
+## Weapon & Armor Class Changes
+- Added `loadFromArray()` method to the `Weapon` & `Armor` classes in order to load default weapons from Constants class.
+- Overrided `toString()` method.
+
+## Constants Class Changes
+- Added `WEAPONS` constant to allow players to choose weapons even if the admin has not added them.
+- Added `ARMORS` constant to allow players to choose armors even if the admin has not added them.

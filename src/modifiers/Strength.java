@@ -1,5 +1,8 @@
 package src.modifiers;
 
+/**
+ * Class that represents the Strength modifier.
+ */
 public class Strength extends Modifier {
 
     private int effectiveness;

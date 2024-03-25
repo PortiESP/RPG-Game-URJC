@@ -1,5 +1,8 @@
 package src.modifiers;
 
+/**
+ * Class that represents the Weakness modifier.
+ */
 public class Weakness extends Modifier {
 
     private int sensitivity;

@@ -2,6 +2,9 @@ package src.minions;
 
 import java.util.ArrayList;
 
+/**
+ * Class that represents the Devil minion.
+ */
 public class Devil extends Minion {
 
     private String covenant;
@@ -15,6 +18,10 @@ public class Devil extends Minion {
     }
 
     // ============================================================================================[ Private Methods ]>>>
+    /**
+     * Generate recursive minions for the Devil.
+     * The Devil has a 20% chance of generating a new Devil minion. The new Devil minion will also have a 20% chance of generating a new Devil minion, and so on.
+     */
     private void generateRecursiveMinions() {
         int randomNum = (int) (Math.random() * 10);
         if (randomNum > 8) {
@@ -23,14 +30,21 @@ public class Devil extends Minion {
     }
 
     // ============================================================================================[ Static Methods ]>>>
+    /**
+     * Load devils from a multidimensional array
+     *
+     * @param devilsArr 2D array with devils data as strings (name, health, covenant)
+     * @return ArrayList of Devil objects
+     */
     public static ArrayList<Devil> loadFromArray(String[][] devilsArr) {
-
         ArrayList<Devil> devils = new ArrayList<>();
         for (String[] devil : devilsArr) {
-            devils.add(new Devil(devil[0], Integer.parseInt(devil[1]),devil[2]));
+            devils.add(new Devil(devil[0], Integer.parseInt(devil[1]), devil[2]));
         }
-      return devils;
+
+        return devils;
     }
+
     // ============================================================================================[ Getters & Setters ]>>>
     public String getCovenant() {
         return covenant;

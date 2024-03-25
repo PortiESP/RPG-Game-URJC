@@ -2,6 +2,9 @@ package src.minions;
 
 import java.util.ArrayList;
 
+/**
+ * Class that represents the Human minion.
+ */
 public class Human extends Minion {
 
     private LoyaltyEnum loyalty;
@@ -13,6 +16,12 @@ public class Human extends Minion {
     }
 
     // ============================================================================================[ Static Methods ]>>>
+    /**
+     * Load humans from a multidimensional array
+     *
+     * @param humansArr 2D array with humans data as strings (name, health, loyalty)
+     * @return ArrayList of Human objects
+     */
     public static ArrayList<Human> loadFromArray(String[][] humansArr) {
         ArrayList<Human> humans = new ArrayList<>();
         for (String[] human : humansArr) {

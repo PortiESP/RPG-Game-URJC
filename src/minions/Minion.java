@@ -1,5 +1,8 @@
 package src.minions;
 
+/**
+ * Abstract class that represents a Minion.
+ */
 public abstract class Minion {
 
     private String name;
@@ -10,9 +13,6 @@ public abstract class Minion {
         this.name = name;
         this.health = health;
     }
-
-    // ============================================================================================[ Public Methods ]>>>
-
 
     // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {

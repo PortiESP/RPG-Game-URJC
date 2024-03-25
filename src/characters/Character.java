@@ -1,6 +1,5 @@
 package src.characters;
 
-import java.util.ArrayList;
 
 import src.abilities.SpecialAbility;
 import src.equipment.*;
@@ -36,7 +35,6 @@ public abstract class Character {
     public abstract void loadSpecial();
     
     // Load the character's minions
-    // TODO DANI: Loading the minions implies calculating the defense they provide and storing it in the minionsHealth attribute
     public abstract void loadMinions();
     
     // Modify the character's attributes --> To be implemented in subclasses

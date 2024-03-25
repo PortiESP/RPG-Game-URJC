@@ -32,7 +32,6 @@ public class Game {
     public static List<Ghoul> ghoulsAvailable = new ArrayList<>();
     public static List<Human> humansAvailable = new ArrayList<>();
     public static List<Devil> devilsAvailable = new ArrayList<>();
-    // TODO DANI 3: Minions available, special habilities and modifiers (as ArrayLists)
     private String lastId = null;
 
     // ============================================================================================[ Constructor ]>>>
@@ -118,10 +117,9 @@ public class Game {
         this.talentsAvailable = Talent.loadFromArray(Const.TALENTS);
         this.donesAvailable = Don.loadFromArray(Const.DONES);
         this.disciplinesAvailable = Discipline.loadFromArray(Const.DISCIPLINES);
-        this.ghoulsAvailable = Ghoul.loadFromArray(Const.GHOULS);
-        this.humansAvailable = Human.loadFromArray(Const.HUMANS);
-        this.devilsAvailable = Devil.loadFromArray(Const.DEVILS);
-        // TODO DANI 4: Load minions, special habilities and modfiers
+        Game.ghoulsAvailable = Ghoul.loadFromArray(Const.GHOULS);
+        Game.humansAvailable = Human.loadFromArray(Const.HUMANS);
+        Game.devilsAvailable = Devil.loadFromArray(Const.DEVILS);
     }
 
     /**
@@ -151,11 +149,11 @@ public class Game {
         this.talentsAvailable = game.talentsAvailable;
         this.donesAvailable = game.donesAvailable;
         this.disciplinesAvailable = game.disciplinesAvailable;
-        this.ghoulsAvailable = game.ghoulsAvailable;
-        this.humansAvailable = game.humansAvailable;
-        this.devilsAvailable = game.devilsAvailable;
+        // since the following variable are static, they are automatically loaded when the file is readed
+        // Game.ghoulsAvailable = game.ghoulsAvailable;
+        // Game.humansAvailable = game.humansAvailable;
+        // Game.devilsAvailable = game.devilsAvailable;
 
-        // TODO DANI 5: Set the minions, special habilities and modifiers
     }
 
     /**

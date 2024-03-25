@@ -1,6 +1,5 @@
 package src.characters;
 
-import java.util.ArrayList;
 
 import src.Game;
 //Import Statements

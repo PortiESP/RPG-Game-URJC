@@ -319,7 +319,6 @@ public class Player extends User {
         this.weapons = weapons;
     }
 
-    // TODO: Implement as an iterator
     public List<Challenge> getChallenges() {
         return challenges;
     }

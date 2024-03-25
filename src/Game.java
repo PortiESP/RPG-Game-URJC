@@ -2,13 +2,13 @@ package src;
 
 // Import statements
 import java.util.*;
+import src.abilities.*;
 import src.challenges.*;
 import src.characters.*;
 import src.equipment.*;
 import src.minions.*;
 import src.modifiers.*;
 import src.users.*;
-import src.abilities.*;
 import utils.*;
 
 /**
@@ -166,7 +166,6 @@ public class Game {
 
     /**
      * Prints the corresponding menu depending on the user logged in.
-     * - TODO: Consider inplementing the function as a state pattern.
      */
     private void menu() {
         if (this.loggedUser == null) {

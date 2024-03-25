@@ -208,12 +208,10 @@ public class Challenge {
         p1.addChallengeToHistory(this);
         p2.addChallengeToHistory(this);
 
-        // Update the gold
-        if (this.winner == p1) {
-            p2.payGoldTo(this.gold, p1);
-        } else {
-            p1.payGoldTo(this.gold, p2);
-        }
+        // Loser pays the gold to the winner and sets the last lost fight
+        Player loser = this.getOpponent(this.winner);
+        loser.payGoldTo(this.gold, winner);
+        loser.setLastLostFight(System.currentTimeMillis());
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

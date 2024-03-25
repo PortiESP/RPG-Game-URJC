@@ -23,6 +23,7 @@ public class Game {
     private List<User> users = new ArrayList<>();
     private User loggedUser = null;
     private List<Challenge> challenges = new ArrayList<>();
+    // TODO: change the following attributes as static
     private List<Armor> armorsAvailable = new ArrayList<>();
     private List<Weapon> weaponsAvailable = new ArrayList<>();
     private List<Modifier> modifiersAviable = new ArrayList<>();

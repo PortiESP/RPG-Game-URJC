@@ -1,5 +1,8 @@
 package src.users;
 
+/**
+ * Abstract class that represents a user.
+ */
 public abstract class User {
 
     private String name;
@@ -22,9 +25,6 @@ public abstract class User {
 
     // Abstract method to get the score
     public abstract int getScore();
-
-    // Abstract method to show the user information
-    public abstract void showInfo();
 
     // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {

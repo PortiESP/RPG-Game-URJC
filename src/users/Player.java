@@ -9,6 +9,9 @@ import src.equipment.Weapon;
 import utils.Const;
 import utils.MenuBuilder;
 
+/**
+ * Class that represents the Player user.
+ */
 public class Player extends User {
 
     private String id;
@@ -44,22 +47,48 @@ public class Player extends User {
 
     // ============================================================================================[ Public Methods ]>>>
 
-    // Method to add a challenge
+    /**
+     * Adds a challenge to the history of the player. The history of challenges is stored in <code>challenges</code> attribute.
+     * @param challenge Challenge to manage
+     */
     public void addChallengeToHistory(Challenge challenge) {
         this.challenges.add(challenge);
     }
 
-    // Method to check if the player has at least one challenge
+    /**
+     * Checks if the player has challenges in the history.
+     * @return <code>true</code> if the player has challenges, <code>false</code> otherwise.
+     */
     public boolean hasChallenges() {
         return !this.challenges.isEmpty();
     }
 
-    // Method to get the score
+    /**
+     * Gets the player's score. The score is the amount of gold the player has.
+     *
+     * @return The amount of gold the player has.
+     */
     public int getScore() {
         return this.gold;
     }
 
-    // Method to show the user information
+    /**
+     * Shows the player's information.
+     *
+     * <p>The information shown is:
+     * <ul>
+     *  <li>Nick</li>
+     *  <li>Name</li>
+     *  <li>Gold</li>
+     *  <li>Banned</li>
+     *  <li>Character</li>
+     *  <li>Armor</li>
+     *  <li>Weapon 1</li>
+     *  <li>Weapon 2</li>
+     *  <li>Pending challenge</li>
+     * </ul>
+     * </p>
+     */
     public void showInfo() {
         // Generate the data to show
         String[] data = {
@@ -78,27 +107,48 @@ public class Player extends User {
         MenuBuilder.doc("Player: " + this.getName(), data);
     }
 
-    // Return if the user has been defeated in the last 24 hours
+    /**
+     * Checks if the player has been defeated recently. A player is considered to have been defeated recently if the time elapsed since the last lost fight is less than 24 hours.
+     * @return <code>true</code> if the player has been defeated recently, <code>false</code> otherwise.
+     */
     public boolean defeatedRecently() {
         long dayInMillis = 24 * 60 * 60 * 1000;
         return (System.currentTimeMillis() - this.lastLostFight) < dayInMillis;
     }
 
-    // Ban player
+    /**
+     * Bans the player.
+     */
     public void ban() {
         this.banned = true;
 
-        // Remove all pending challenges and notifications
+        // Remove all pending challenges and notifications (just in case)
         this.pendingChallenge = null;
         this.pendingNotification = false;
     }
 
-    // Unban player
+    /**
+     * Remove the player's ban.
+     */
     public void unban() {
         this.banned = false;
     }
 
-    // Manage the equipment
+    /**
+     * Prints a menu to manage the player's equipment.
+     *
+     * <p>The options are:
+     * <ul>
+     * <li>Change armor
+     * <li>Change weapon 1
+     * <li>Change weapon 2
+     * <li>Exit
+     * </ul>
+     * </p>
+     * <br>
+     * @param armorsAvailable List of armors available to equip.
+     * @param weaponsAvailable List of weapons available to equip.
+     */
     public void manageEquipment(List<Armor> armorsAvailable, List<Weapon> weaponsAvailable) {
         // Show the current equipment
         this.showEquipment();
@@ -124,7 +174,17 @@ public class Player extends User {
         }
     }
 
-    // Method to show the equipment
+    /**
+     * Shows the equipment of the player.
+     *
+     * <p>The equipment shown is:
+     * <ul>
+     *  <li>Armor</li>
+     *  <li>Weapon 1</li>
+     *  <li>Weapon 2</li>
+     * </ul>
+     * </p>
+     */
     public void showEquipment() {
         // Generate the data to show
         String[] data = {
@@ -137,7 +197,10 @@ public class Player extends User {
         MenuBuilder.doc("Equipment", data);
     }
 
-    // Method to change the armor
+    /**
+     * Changes the armor of the player.
+     * @param armorsAvailable List of armors available to equip.
+     */
     public void changeArmor(List<Armor> armorsAvailable) {
         // Show the available armors
         String[] options = new String[armorsAvailable.size()];
@@ -154,7 +217,11 @@ public class Player extends User {
         MenuBuilder.alert("Armor equipped", message);
     }
 
-    // Method to change a weapon
+    /**
+     * Changes the weapon of the player.
+     * @param weaponIndex Index of the weapon to change (0 or 1).
+     * @param weaponsAvailable List of weapons available to equip.
+     */
     public void changeWeapon(int weaponIndex, List<Weapon> weaponsAvailable) {
         // Show the available weapons
         String[] options = new String[weaponsAvailable.size()];
@@ -179,13 +246,20 @@ public class Player extends User {
         MenuBuilder.alert("Weapon equipped", message);
     }
 
-    // Notify the player about a challenge
+    /**
+     * Notifies the player of a challenge. This method is used once the admin has <i>approved</i> the challenge to let the challenged player know that he has a pending challenge.
+     *
+     * @param challenge Challenge created by the challenger.
+     */
     public void notifyChallenge(Challenge challenge) {
         this.pendingNotification = true;
         this.pendingChallenge = challenge;
     }
 
-    // Method to manage the notifications
+    /**
+     * Manages the notifications of the player. This method is called when the player logs in.
+     * If the player has a pending notification, it will show a message to the player asking if he wants to accept the challenge.
+     */
     public void manageNotifications() {
         // If the player has no pending notifications, do nothing
         if (!this.pendingNotification) {
@@ -220,28 +294,47 @@ public class Player extends User {
         this.pendingNotification = false;
     }
 
+    /**
+     * Pays gold to another player.
+     *
+     * @param amount Amount of gold to pay.
+     * @param player Player to pay the gold to.
+     */
     public void payGoldTo(int amount, Player player) {
         this.gold -= amount;
         player.gold += amount;
     }
 
+    /**
+     * Checks if the player can afford a certain amount of gold.
+     *
+     * @param amount Amount of gold to check.
+     * @return <code>true</code> if the player can afford the amount, <code>false</code> otherwise.
+     */
     public boolean canAfford(int amount) {
         return this.gold >= amount;
     }
 
+    /**
+     * Accepts the pending challenge. This method is called when the player decides to <strong>accept</strong> the challenge.
+     * The challenge is accepted, the fight is managed (<em>started, runned and finished</em>) and the result is shown to the player.
+     */
     public void acceptChallenge() {
+        // Get the pending challenge
         Challenge challenge = this.pendingChallenge;
 
+        // Accept the challenge
         challenge.accept();
+        // Manage the fight
         challenge.manageFight();
 
+        // Show the result
         Player winner = challenge.getWinner();
         String msg = "";
         if (winner == challenge.getChallengedPlayer()) {
             msg = "You have won the fight!";
         } else {
             msg = "You have lost the fight!";
-            this.lastLostFight = System.currentTimeMillis();
         }
         MenuBuilder.alert("Fight Result", msg);
     }

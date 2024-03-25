@@ -87,7 +87,7 @@ public class Fight {
 
         // Get the character attributes from the player
         character.setName(player.getName());
-        
+
         // Assign player weapons to the character
         character.assignEquipment(player);
 

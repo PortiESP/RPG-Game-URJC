@@ -2,8 +2,11 @@ package src.abilities;
 
 import java.util.ArrayList;
 
-
+/**
+ * Class that represents a Don special ability of a character.
+ */
 public class Don extends SpecialAbility {
+
     private int minRage;
 
     // ============================================================================================[ Constructors ]>>>
@@ -15,7 +18,14 @@ public class Don extends SpecialAbility {
         super(name, attack, defense);
         this.minRage = minRage;
     }
+
     // ============================================================================================[ Static Methods ]>>>
+    /**
+     * Load dons from a multidimensional array
+     *
+     * @param donsArr 2D array with dons data as strings (name, attack, defense, minRage)
+     * @return ArrayList of Don objects
+     */
     public static ArrayList<Don> loadFromArray(String[][] donsArr) {
         ArrayList<Don> dons = new ArrayList<>();
         for (String[] don : donsArr) {
@@ -32,5 +42,5 @@ public class Don extends SpecialAbility {
 
     public void setMinRage(int minRage) {
         this.minRage = minRage;
-    }  
+    }
 }

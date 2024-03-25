@@ -1,10 +1,24 @@
 package src.challenges;
 
 import java.util.ArrayList;
-// Import statements
 import src.users.Player;
 import utils.MenuBuilder;
 
+/**
+ * Class that represents a challenge between two players.
+ *
+ * <ol>
+ *  <li>A player can challenge another player to a fight. The challenger will set the gold amount for the challenge.</li>
+ *  <li>An admin must approve the challenge in order to be valid. The challenged player will be notified.</li>
+ *  <li>The challenged player can accept or reject the challenge. If accepted, a fight will be started.</li>
+ * </ol>
+ *
+ * <ul>
+ *  <li>The winner will receive the gold from the challenge.</li>
+ *  <li>The loser will pay a fee to the winner.</li>
+ *  <li>The challenge will be added to the history of both players.</li>
+ * </ul>
+ */
 public class Challenge {
 
     private int gold;
@@ -29,7 +43,12 @@ public class Challenge {
 
     // ============================================================================================[ Public Methods ]>>>
 
-    // Method to get the opponent
+    /**
+     * Get the opponent of a given player in the challenge.
+     *
+     * @param player Player to get the opponent from
+     * @return Opponent player
+     */
     public Player getOpponent(Player player) {
         if (player.equals(this.players[0])) {
             return this.players[1];
@@ -38,7 +57,20 @@ public class Challenge {
         }
     }
 
-    // Verify if the challenge is valid
+    /**
+     * Check if the challenge is valid. If the challenge is not valid, an alert will be shown.
+     *
+     * <ul>
+     * <li>The opponent is not the same as the logged user.</li>
+     * <li>The opponent has not been challenged.</li>
+     * <li>The opponent is not banned.</li>
+     * <li>The opponent has not recently battled.</li>
+     * </ul>
+     *
+     * @param loggedUser Player that is logged in
+     * @param opponent Player that is being challenged
+     * @return True if the challenge is valid, false otherwise
+     */
     public boolean isValid(Player loggedUser, Player opponent) {
         // Check if the opponent is the same as the logged user
         if (opponent == loggedUser) {
@@ -66,28 +98,44 @@ public class Challenge {
         return true;
     }
 
-    // Get the challenged player
+    /**
+     * Get the challenged player.
+     *
+     * @return Challenged player
+     */
     public Player getChallengedPlayer() {
         return this.players[1];
     }
 
-    // Get the challenger player
+    /**
+     * Get the challenger player.
+     *
+     * @return Challenger player
+     */
     public Player getChallengerPlayer() {
         return this.players[0];
     }
 
-    // Approve the challenge
+    /**
+     * Set the approved status of the challenge to true and set the pending challenge of the challenged player. This method is called by an admin.
+     */
     public void approve() {
         this.approved = true;
         this.getChallengedPlayer().setPendingChallenge(this);
     }
 
-    // Accept the challenge
+    /**
+     * Set the accepted status of the challenge to true. This method is called by the challenged player.
+     */
     public void accept() {
         this.accepted = true;
     }
 
-    // Decline the challenge
+    /**
+     * Set the accepted status of the challenge to false and set the winner to the challenger player.
+     * The challenged player will pay a fee to the challenger player.
+     * This method is called by the challenged player.
+     */
     public void reject() {
         this.accepted = false;
         this.winner = this.getChallengerPlayer();
@@ -107,6 +155,10 @@ public class Challenge {
         }
     }
 
+    /**
+     * Manage the fight between the players. The fight will be started, the result will be printed, and the challenge will be finished.
+     * This method is called by the challenged player after calling the {@Code accept()} method.
+     */
     public void manageFight() {
         this.startFight();
         this.printResult();
@@ -115,13 +167,18 @@ public class Challenge {
     }
 
     // ============================================================================================[ Private Methods ]>>>
-    // Start the fight
+    /**
+     * Instantiate a fight between the players. This action will trigger the fight.
+     * The winner will be set and the result of the fight will be stored.
+     */
     private void startFight() {
         this.result = new Fight(this.players[0], this.players[1]);
         this.winner = this.result.getWinner();
     }
 
-    // Print the challenge
+    /**
+     * Print the log of the fight.
+     */
     private void printResult() {
         ArrayList<String> log = this.result.getLog();
         String[] fixedLog = log.toArray(String[]::new);
@@ -129,6 +186,16 @@ public class Challenge {
         MenuBuilder.doc("Challenge Result", fixedLog);
     }
 
+    /**
+     * This method will be called after the fight is finished.
+     *
+     * The following actions will be performed:
+     * <ul>
+     * <li>Reset the pending challenges of the players.</li>
+     * <li>Add the fight to the history of both players.</li>
+     * <li>Update the gold of the players.</li>
+     * </ul>
+     */
     private void finishChallenge() {
         Player p1 = this.players[0];
         Player p2 = this.players[1];

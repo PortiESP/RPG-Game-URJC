@@ -1,5 +1,8 @@
 package src.abilities;
 
+/**
+ * Abstract class that represents a special ability of a character.
+ */
 public abstract class SpecialAbility {
 
     private String name;
@@ -19,7 +22,6 @@ public abstract class SpecialAbility {
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;

@@ -87,13 +87,7 @@ public class Fight {
 
         // Get the character attributes from the player
         character.setName(player.getName());
-
-        // Load the character's special ability
-        character.loadSpecial();
-
-        // Load the character's minions
-        character.loadMinions();
-
+        
         // Assign player weapons to the character
         character.assignEquipment(player);
 

@@ -29,9 +29,9 @@ public class Game {
     private List<Talent> talentsAvailable = new ArrayList<>();
     private List<Don> donesAvailable = new ArrayList<>();
     private List<Discipline> disciplinesAvailable = new ArrayList<>();
-    private List<Ghoul> ghoulsAvailable = new ArrayList<>();
-    private List<Human> humansAvailable = new ArrayList<>();
-    private List<Devil> devilsAvailable = new ArrayList<>();
+    public static List<Ghoul> ghoulsAvailable = new ArrayList<>();
+    public static List<Human> humansAvailable = new ArrayList<>();
+    public static List<Devil> devilsAvailable = new ArrayList<>();
     // TODO DANI 3: Minions available, special habilities and modifiers (as ArrayLists)
     private String lastId = null;
 

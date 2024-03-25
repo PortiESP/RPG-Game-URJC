@@ -15,9 +15,9 @@
   - [X] Challenge part 3 (accepted or not, finished)
   - [X] Implement the notification system.
   - [X] Check if the user has active challenges on login.
-  - [ ] Implement Minions functionality.
+  - [X] Implement Minions functionality.
   - [ ] Implement Special Abilities functionality.
-- [ ] Check the way the score is calculated.
+- [X] Check the way the score is calculated.
 - [X] Implement a way to manage account settings.
   - [X] Change password.
   - [X] Change name.

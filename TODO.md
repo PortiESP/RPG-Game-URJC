@@ -40,14 +40,12 @@
   - [X] Sign off.
 - [ ] attack and deffense values of the equipment must be between 1-3
 - [X] intoduce minions array in the const DEVILS
+- [ ] Replace the {@Code Some code} comments to <code>Some code</code>
+- [ ] Explain the attributes of the classes in class JavaDoc comment.
   
 ## Refactor for review
 
 > 📆 Review the following TODOs in the code `// TODO` and decide what to do
-
-- [ ] In `Game` class, implement `menu` method using the **State** pattern.
-- [ ] In the `Game` class, the `manageChallenge` and similar methods such as `accept` or `approve` should be moved to the `Admin` class, or managed using the **State** pattern.
-- [ ] Use the **Prototype** pattern to create a default set of weapons, armor, characters and minions.
 
 ## Syntax and format
 

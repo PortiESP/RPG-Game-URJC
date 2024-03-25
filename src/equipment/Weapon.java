@@ -19,10 +19,16 @@ public class Weapon extends Equipment {
     // ============================================================================================[ Public Methods ]>>>
     @Override
     public String toString() {
-        return super.toString() + " ( Hands Required: " + this.handsRequired + ")";
+        return super.toString() + " (Hands Required: " + this.handsRequired + ")";
     }
 
     // ============================================================================================[ Static Methods ]>>>
+    /**
+     * Load weapons from a multidimensional array
+     *
+     * @param arr 2D array with weapons data as strings (name, attack, defense, hands required)
+     * @return ArrayList of Weapon objects
+     */
     public static ArrayList<Weapon> loadFromArray(String[][] arr) {
         ArrayList<Weapon> weapons = new ArrayList<>();
         for (String[] weapon : arr) {

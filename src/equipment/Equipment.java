@@ -1,5 +1,8 @@
 package src.equipment;
 
+/**
+ * Class that represents the Equipment.
+ */
 public abstract class Equipment {
 
     private String name;

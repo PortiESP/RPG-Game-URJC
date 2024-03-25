@@ -8,6 +8,9 @@ import src.minions.Minion;
 import src.modifiers.Modifier;
 import utils.MenuBuilder;
 
+/**
+ * Class that represents the Vampire character.
+ */
 public class Vampire extends Character {
 
     private int age;
@@ -31,6 +34,9 @@ public class Vampire extends Character {
 
     // ============================================================================================[ Public Methods ]>>>
 
+    /**
+     * Calculate the attack power of the vampire. This method overrides the parent's method to add a bonus if the vampire has more than 5 blood points.
+     */
     @Override
     public int calcAttackPower() {
         if (blood >= 5) {
@@ -40,6 +46,9 @@ public class Vampire extends Character {
         }
     }
 
+    /**
+     * Load the minions for the vampire. The vampire will can't have humans as minions.
+     */
     @Override
     public void loadMinions() {
         int health = 0;
@@ -49,20 +58,28 @@ public class Vampire extends Character {
             int index = i % 2;
             if (index == 0) {
                 minions[i] = Game.ghoulsAvailable.get(i % Game.ghoulsAvailable.size());
-            }else{
+            } else {
                 minions[i] = Game.devilsAvailable.get(i % Game.devilsAvailable.size());
             }
 
             health += minions[i].getHealth();
         }
+
         this.setMinionsHealth(health);
+        this.setMinions(minions);
     }
 
+    /**
+     * Load the special ability of the vampire, the discipline.
+     */
     @Override
     public void loadSpecial() {
         this.special = new Discipline();
     }
 
+    /**
+     * Load the initial values of the vampire.
+     */
     @Override
     public void loadInitialValues() {
         this.setHealth(MAX_HEALTH);
@@ -74,12 +91,17 @@ public class Vampire extends Character {
         this.setBlood(MAX_BLOOD);
     }
 
-    // Method to modify the attributes of the vampire
+    /**
+     * Modify the attributes of the vampire. This method is used by the admin to alter the vampire's attributes.
+     */
     public static void modifyAttributes() {
+        // Print the menu until the user decides to exit
         while (true) {
+            // Prepare the menu options and ask the user to select an option
             String[] options = { "Alter Max Health", "Alter Max Power", "Alter Max Blood", "Alter Initial Minions", "Exit" };
             int opt = MenuBuilder.menu("Modify Hunter", options);
 
+            // Alter the attribute selected by the user, if the user decides to exit, break the loop
             if (opt < options.length) {
                 alterAttr(opt);
             } else {
@@ -88,12 +110,18 @@ public class Vampire extends Character {
         }
     }
 
-    // Method to alter health
+    /**
+     * Prompt the user to enter a new value for the attribute selected.
+     * @param opt Option selected by the user.
+     */
     public static void alterAttr(int opt) {
-        String[] attributes = { "Max Health", "Max Power", "Max Blood", "Initial Minions"};
+        // String array with the attributes to be altered (not for the menu, but for the message to the user)
+        String[] attributes = { "Max Health", "Max Power", "Max Blood", "Initial Minions" };
+        // Ask the user to enter a new value for the attribute selected
         String msg = "Enter the new value for the " + attributes[opt] + "(Positive Value)";
-        int value = MenuBuilder.readInt(msg, 0, 1000); 
+        int value = MenuBuilder.readInt(msg, 0, 1000);
 
+        // Alter the attribute selected by the user with the new value entered
         switch (opt) {
             case 1 -> MAX_HEALTH = value;
             case 2 -> MAX_POWER = value;

@@ -20,6 +20,8 @@ public class Fight {
     private Player[] players;
 
     // ============================================================================================[ Constructor ]>>>
+    public Fight() {}
+
     public Fight(Player player1, Player player2) {
         this.players = new Player[2];
         this.players[0] = player1;
@@ -31,15 +33,50 @@ public class Fight {
         this.start();
     }
 
-    public Fight() {}
+    // ============================================================================================[ Private Methods ]>>>
+    /**
+     * Create a character based on the player's data.
+     *
+     * @param player Player to create the character from
+     * @return Character created
+     */
+    private Character createCharacter(Player player) {
+        Character character;
 
-    // ============================================================================================[ Public Methods ]>>>
-    public Player getWinner() {
-        return winner;
+        // Instantiate the character based on the player's current character
+        CharacterSelection cs = player.getCurrentCharacter();
+        if (cs == CharacterSelection.HUNTER) {
+            character = new Hunter();
+        } else if (cs == CharacterSelection.LYCANTHROPE) {
+            character = new Lycanthrope();
+        } else if (cs == CharacterSelection.VAMPIRE) {
+            character = new Vampire();
+        } else {
+            throw new IllegalArgumentException("Invalid character type");
+        }
+
+        // Get the character attributes from the player
+        character.setName(player.getName());
+
+        // Assign player weapons to the character
+        character.assignEquipment(player);
+
+        return character;
     }
 
-    // ============================================================================================[ Private Methods ]>>>
-    // Method to generate a fight between two players and return the winner
+    /**
+     * Start the fight between the two players.
+     *
+     * <p>The workflow of the fight is as follows:
+     * <ol>
+     * <li>Get the damage from each character.</li>
+     * <li>Log the actions made on this round.</li>
+     * <li>Increment the round counter.</li>
+     * </ol>
+     * </p>
+     *
+     * <p>The fight will continue until one of the characters is dead.</p>
+     */
     private void start() {
         int round = 1;
 
@@ -70,34 +107,20 @@ public class Fight {
         chooseWinner();
     }
 
-    private Character createCharacter(Player player) {
-        Character character;
-
-        // Type of character
-        CharacterSelection cs = player.getCurrentCharacter();
-        if (cs == CharacterSelection.HUNTER) {
-            character = new Hunter();
-        } else if (cs == CharacterSelection.LYCANTHROPE) {
-            character = new Lycanthrope();
-        } else if (cs == CharacterSelection.VAMPIRE) {
-            character = new Vampire();
-        } else {
-            throw new IllegalArgumentException("Invalid character type");
-        }
-
-        // Get the character attributes from the player
-        character.setName(player.getName());
-
-        // Assign player weapons to the character
-        character.assignEquipment(player);
-
-        return character;
-    }
-
+    /**
+     * Check if the fight has ended.
+     *
+     * @return True if the fight has ended, false otherwise
+     */
     private boolean checkFightEnd() {
         return c1.isDead() || c2.isDead();
     }
 
+    /**
+     * Choose the winner of the fight.
+     *
+     * <p>The winner will be stored in the <code>winner</code> attribute. If the fight ended in a draw, the winner will be null.</p>
+     */
     private void chooseWinner() {
         log.add("");
         if (c1.isDead() && c2.isDead()) {
@@ -128,6 +151,10 @@ public class Fight {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Player getWinner() {
+        return winner;
     }
 
     public void setWinner(Player winner) {

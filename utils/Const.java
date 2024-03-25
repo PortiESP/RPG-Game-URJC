@@ -25,6 +25,8 @@ public class Const {
         { "Axe", "3", "4", "2" },
         { "Dragon Slayer", "6", "1", "2" },
     };
+
+    // Default Available Strenghts
     public static final String[][] STRENGHTS = {
         //Name, modifier
         { "Moonlight","4" },
@@ -33,6 +35,8 @@ public class Const {
         { "Magic", "2" }
 
     };
+
+    // Default Available Weaknesses
     public static final String[][] WEAKNESSES = {
         //Name, modifier
         {"Garlic","3"},
@@ -40,6 +44,8 @@ public class Const {
         { "Holy Water", "3" },
         { "Sunlight", "4" } 
     };
+
+    // Default Available Dones
     public static final String[][] DONES = {
         // Name, Attack Modifier, Defense Modifier, Cost
         { "Claw", "1", "1", "2" },
@@ -47,6 +53,8 @@ public class Const {
         { "Tail", "2", "3", "4" },
         { "Roar", "1", "2", "5" }
     };
+
+    // Default Available Disciplines
     public static final String[][] DISCIPLINES = {
         // Name, Attack Modifier, Defense Modifier, Cost
         { "Bloodlust", "1", "3", "2" },
@@ -54,6 +62,8 @@ public class Const {
         { "Rage", "3", "2", "4" },
         { "Vampirism", "1", "3", "5" }
     };
+
+    // Default Available Talents
     public static final String[][] TALENTS = {
         // Name, Attack Modifier, Defense Modifier, Cost
         { "Sneak", "1", "1" },
@@ -61,6 +71,8 @@ public class Const {
         { "Backstab", "2", "3" },
         { "Assassinate", "1", "2" }
     };
+
+    // Default Available Ghouls
     public static final String[][] GHOULS = {
         // Name, Health, Dependency
         { "Ghoul", "1", "1" },
@@ -68,7 +80,9 @@ public class Const {
         { "Werewolf", "2", "3" },
         { "Zombie", "2", "4" }
     };
-    public static final String[][] HUMANS = { //los vampiros no pueden tener esbirros humanos
+
+    // Default Available Humans
+    public static final String[][] HUMANS = {
         // Name, Health, Loyalty
         { "Knight", "1", "HIGH" },
         { "Archer", "1", "LOW" },
@@ -76,6 +90,8 @@ public class Const {
         { "Peasant", "2", "LOW" },
         { "Rogue", "1", "HIGH" }
     };
+
+    // Default Available Devils
     public static final String[][] DEVILS = {
         // Name, Health, Devils
         {"Lucifer", "3", "..."},

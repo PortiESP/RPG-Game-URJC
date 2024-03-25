@@ -1,5 +1,6 @@
 package src.characters;
 
+import src.Game;
 //Import Statements
 import src.abilities.*;
 import src.equipment.Equipment;
@@ -41,8 +42,20 @@ public class Vampire extends Character {
 
     @Override
     public void loadMinions() {
-        // TODO Auto-generated method stub
+        int health = 0;
+        Minion[] minions = new Minion[INIT_MINIONS];
 
+        for (int i = 0; i < INIT_MINIONS; i++) {
+            int index = i % 2;
+            if (index == 0) {
+                minions[i] = Game.ghoulsAvailable.get(i % Game.ghoulsAvailable.size());
+            }else{
+                minions[i] = Game.devilsAvailable.get(i % Game.devilsAvailable.size());
+            }
+
+            health += minions[i].getHealth();
+        }
+        this.setMinionsHealth(health);
     }
 
     @Override

@@ -49,8 +49,6 @@ public class Hunter extends Character {
             health += minions[i].getHealth();
         }
         this.setMinionsHealth(health);
-        // TODO Auto-generated method stub
-
     }
 
     @Override

@@ -1,10 +1,8 @@
 package src.users;
 
-import java.util.List;
 import src.challenges.Challenge;
 import src.characters.*;
 import src.characters.CharacterSelection;
-import src.equipment.*;
 import utils.MenuBuilder;
 
 /**
@@ -35,10 +33,8 @@ public class Admin extends User {
      * Method to manage a challenge between two players.
      *
      * @param challenge Challenge to manage
-     * @param armors List of armors
-     * @param weapons List of weapons
      */
-    public void manageChallenge(Challenge challenge, List<Armor> armors, List<Weapon> weapons) {
+    public void manageChallenge(Challenge challenge) {
         // Ask the admin if they want to manage the challenge
         String msg1 = String.format("Do you want to manage the challenge beween %s and %s?", challenge.getChallengerPlayer().getName(), challenge.getChallengedPlayer().getName());
         boolean opt = MenuBuilder.askYesNo(msg1);
@@ -63,7 +59,7 @@ public class Admin extends User {
         }
 
         // Edit the equipment of the players
-        this.manageRules(challenge, player1, player2, armors, weapons);
+        this.manageRules(challenge, player1, player2);
 
         // Adjust the gold of the challenge
         if (!player2.canAfford(challenge.getGold())) {
@@ -92,17 +88,15 @@ public class Admin extends User {
      * @param challenge Challenge to manage
      * @param player1 Player 1
      * @param player2 Player 2
-     * @param armors List of armors
-     * @param weapons List of weapons
      */
-    private void manageRules(Challenge challenge, Player player1, Player player2, List<Armor> armors, List<Weapon> weapons) {
+    private void manageRules(Challenge challenge, Player player1, Player player2) {
         String[] options = { "Manage Player 1", "Manage Player 2", "Exit" };
         int opt = MenuBuilder.menu("Manage Challenge", options);
 
         if (opt == 1) {
-            this.managePlayer(player1, armors, weapons);
+            this.managePlayer(player1);
         } else if (opt == 2) {
-            this.managePlayer(player2, armors, weapons);
+            this.managePlayer(player2);
         } else {
             return;
         }
@@ -122,12 +116,12 @@ public class Admin extends User {
      * @param armors List of armors
      * @param weapons List of weapons
      */
-    private void managePlayer(Player player, List<Armor> armors, List<Weapon> weapons) {
+    private void managePlayer(Player player) {
         String[] options = { "Manage Equipment", "Modify Character", "Exit" };
         int opt = MenuBuilder.menu("Manage Player", options);
 
         if (opt == 1) {
-            player.manageEquipment(armors, weapons);
+            player.manageEquipment();
         } else if (opt == 2) {
             this.modifyCharacter(player.getCurrentCharacter());
         } else {

@@ -8,6 +8,7 @@ import src.equipment.Armor;
 import src.equipment.Weapon;
 import utils.Const;
 import utils.MenuBuilder;
+import src.Game;
 
 /**
  * Class that represents the Player user.
@@ -149,7 +150,7 @@ public class Player extends User {
      * @param armorsAvailable List of armors available to equip.
      * @param weaponsAvailable List of weapons available to equip.
      */
-    public void manageEquipment(List<Armor> armorsAvailable, List<Weapon> weaponsAvailable) {
+    public void manageEquipment() {
         // Show the current equipment
         this.showEquipment();
 
@@ -163,11 +164,11 @@ public class Player extends User {
 
             // Manage the option
             if (option == 1) {
-                this.changeArmor(armorsAvailable);
+                this.changeArmor();
             } else if (option == 2) {
-                this.changeWeapon(0, weaponsAvailable);
+                this.changeWeapon(0);
             } else if (option == 3) {
-                this.changeWeapon(1, weaponsAvailable);
+                this.changeWeapon(1);
             } else {
                 break;
             }
@@ -201,7 +202,9 @@ public class Player extends User {
      * Changes the armor of the player.
      * @param armorsAvailable List of armors available to equip.
      */
-    public void changeArmor(List<Armor> armorsAvailable) {
+    public void changeArmor() {
+        List<Armor> armorsAvailable = Game.armorsAvailable;
+
         // Show the available armors
         String[] options = new String[armorsAvailable.size()];
         for (int i = 0; i < armorsAvailable.size(); i++) {
@@ -222,7 +225,9 @@ public class Player extends User {
      * @param weaponIndex Index of the weapon to change (0 or 1).
      * @param weaponsAvailable List of weapons available to equip.
      */
-    public void changeWeapon(int weaponIndex, List<Weapon> weaponsAvailable) {
+    public void changeWeapon(int weaponIndex) {
+        List<Weapon> weaponsAvailable = Game.weaponsAvailable;
+
         // Show the available weapons
         String[] options = new String[weaponsAvailable.size()];
         for (int i = 0; i < weaponsAvailable.size(); i++) {

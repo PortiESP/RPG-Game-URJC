@@ -22,18 +22,17 @@ public class Game {
 
     private List<User> users = new ArrayList<>();
     private User loggedUser = null;
+    private String lastId = null;
     private List<Challenge> challenges = new ArrayList<>();
-    // TODO: change the following attributes as static
-    private List<Armor> armorsAvailable = new ArrayList<>();
-    private List<Weapon> weaponsAvailable = new ArrayList<>();
-    private List<Modifier> modifiersAviable = new ArrayList<>();
-    private List<Talent> talentsAvailable = new ArrayList<>();
-    private List<Don> donesAvailable = new ArrayList<>();
-    private List<Discipline> disciplinesAvailable = new ArrayList<>();
+    public static List<Armor> armorsAvailable = new ArrayList<>();
+    public static List<Weapon> weaponsAvailable = new ArrayList<>();
+    public static List<Modifier> modifiersAviable = new ArrayList<>();
+    public static List<Talent> talentsAvailable = new ArrayList<>();
+    public static List<Don> donesAvailable = new ArrayList<>();
+    public static List<Discipline> disciplinesAvailable = new ArrayList<>();
     public static List<Ghoul> ghoulsAvailable = new ArrayList<>();
     public static List<Human> humansAvailable = new ArrayList<>();
     public static List<Devil> devilsAvailable = new ArrayList<>();
-    private String lastId = null;
 
     // ============================================================================================[ Constructor ]>>>
     public Game() {}
@@ -112,12 +111,12 @@ public class Game {
 
     private void loadDefaultSettings() {
         // Load the default armors and weapons
-        this.armorsAvailable = Armor.loadFromArray(Const.ARMORS);
-        this.weaponsAvailable = Weapon.loadFromArray(Const.WEAPONS);
-        this.modifiersAviable = Modifier.loadFromArray(Const.STRENGHTS, Const.WEAKNESSES);
-        this.talentsAvailable = Talent.loadFromArray(Const.TALENTS);
-        this.donesAvailable = Don.loadFromArray(Const.DONES);
-        this.disciplinesAvailable = Discipline.loadFromArray(Const.DISCIPLINES);
+        Game.armorsAvailable = Armor.loadFromArray(Const.ARMORS);
+        Game.weaponsAvailable = Weapon.loadFromArray(Const.WEAPONS);
+        Game.modifiersAviable = Modifier.loadFromArray(Const.STRENGHTS, Const.WEAKNESSES);
+        Game.talentsAvailable = Talent.loadFromArray(Const.TALENTS);
+        Game.donesAvailable = Don.loadFromArray(Const.DONES);
+        Game.disciplinesAvailable = Discipline.loadFromArray(Const.DISCIPLINES);
         Game.ghoulsAvailable = Ghoul.loadFromArray(Const.GHOULS);
         Game.humansAvailable = Human.loadFromArray(Const.HUMANS);
         Game.devilsAvailable = Devil.loadFromArray(Const.DEVILS);
@@ -142,15 +141,15 @@ public class Game {
     private void replaceSettings(Game game) {
         // Set the game attributes
         this.users = game.users;
-        this.challenges = game.challenges;
-        this.armorsAvailable = game.armorsAvailable;
-        this.weaponsAvailable = game.weaponsAvailable;
         this.lastId = game.lastId;
-        this.modifiersAviable = game.modifiersAviable;
-        this.talentsAvailable = game.talentsAvailable;
-        this.donesAvailable = game.donesAvailable;
-        this.disciplinesAvailable = game.disciplinesAvailable;
-        // since the following variable are static, they are automatically loaded when the file is readed
+        this.challenges = game.challenges;
+        // Since the following variable are static, they are automatically loaded when the file is readed
+        // Game.armorsAvailable = game.armorsAvailable;
+        // Game.weaponsAvailable = game.weaponsAvailable;
+        // Game.modifiersAviable = game.modifiersAviable;
+        // Game.talentsAvailable = game.talentsAvailable;
+        // Game.donesAvailable = game.donesAvailable;
+        // Game.disciplinesAvailable = game.disciplinesAvailable;
         // Game.ghoulsAvailable = game.ghoulsAvailable;
         // Game.humansAvailable = game.humansAvailable;
         // Game.devilsAvailable = game.devilsAvailable;
@@ -576,7 +575,7 @@ public class Game {
      */
     private void modifyActiveEquipment() {
         Player currPlayer = (Player) this.loggedUser;
-        currPlayer.manageEquipment(this.armorsAvailable, this.weaponsAvailable);
+        currPlayer.manageEquipment();
     }
 
     /**
@@ -770,7 +769,7 @@ public class Game {
 
             // If the user confirms, add the new armor to the armors available
             if (answer) {
-                this.armorsAvailable.add(armor);
+                Game.armorsAvailable.add(armor);
             } else {
                 MenuBuilder.alert("Operation Canceled", "The armor has not been added.");
             }
@@ -785,9 +784,9 @@ public class Game {
      */
     private void removeArmor() {
         // Prepare the options, print the menu and get the answer
-        String[] options = new String[this.armorsAvailable.size()];
-        for (int i = 0; i < this.armorsAvailable.size(); i++) {
-            options[i] = this.armorsAvailable.get(i).getName();
+        String[] options = new String[Game.armorsAvailable.size()];
+        for (int i = 0; i < Game.armorsAvailable.size(); i++) {
+            options[i] = Game.armorsAvailable.get(i).getName();
         }
         int answer = MenuBuilder.menu("Remove Armor", options) - 1;
 
@@ -796,7 +795,7 @@ public class Game {
 
         // If the user confirms, remove the armor from the armors available
         if (confirm) {
-            this.armorsAvailable.remove(answer);
+            Game.armorsAvailable.remove(answer);
         } else {
             MenuBuilder.alert("Operation Canceled", "The armor has not been removed.");
         }
@@ -807,11 +806,11 @@ public class Game {
      */
     private void showArmors() {
         // Create the armors data table
-        String[] data = new String[this.armorsAvailable.size()];
+        String[] data = new String[Game.armorsAvailable.size()];
 
         // Fill the data array with the armors
-        for (int i = 0; i < this.armorsAvailable.size(); i++) {
-            Armor armor = this.armorsAvailable.get(i);
+        for (int i = 0; i < Game.armorsAvailable.size(); i++) {
+            Armor armor = Game.armorsAvailable.get(i);
             data[i] = armor.getName() + " --> Defense: " + armor.getDefense() + " | Attack: " + armor.getAttack();
         }
 
@@ -867,7 +866,7 @@ public class Game {
 
             // If the user confirms, add the new weapon to the weapons available
             if (answer) {
-                this.weaponsAvailable.add(weapon);
+                Game.weaponsAvailable.add(weapon);
             } else {
                 MenuBuilder.alert("Operation Canceled", "The weapon has not been added.");
             }
@@ -882,9 +881,9 @@ public class Game {
      */
     private void removeWeapon() {
         // Prepare the options, print the menu and get the answer
-        String[] options = new String[this.weaponsAvailable.size()];
-        for (int i = 0; i < this.weaponsAvailable.size(); i++) {
-            options[i] = this.weaponsAvailable.get(i).getName();
+        String[] options = new String[Game.weaponsAvailable.size()];
+        for (int i = 0; i < Game.weaponsAvailable.size(); i++) {
+            options[i] = Game.weaponsAvailable.get(i).getName();
         }
         int answer = MenuBuilder.menu("Remove Weapon", options) - 1;
 
@@ -893,7 +892,7 @@ public class Game {
 
         // If the user confirms, remove the weapon from the weapons available
         if (confirm) {
-            this.weaponsAvailable.remove(answer);
+            Game.weaponsAvailable.remove(answer);
         } else {
             MenuBuilder.alert("Operation Canceled", "The weapon has not been removed.");
         }
@@ -904,11 +903,11 @@ public class Game {
      */
     private void showWeapons() {
         // Create the weapons data table
-        String[] data = new String[this.weaponsAvailable.size()];
+        String[] data = new String[Game.weaponsAvailable.size()];
 
         // Fill the data array with the weapons
-        for (int i = 0; i < this.weaponsAvailable.size(); i++) {
-            Weapon weapon = this.weaponsAvailable.get(i);
+        for (int i = 0; i < Game.weaponsAvailable.size(); i++) {
+            Weapon weapon = Game.weaponsAvailable.get(i);
             data[i] = weapon.getName() + " --> Defense: " + weapon.getDefense() + " | Attack: " + weapon.getAttack() + " | Hands Required: " + weapon.getHandsRequired();
         }
 
@@ -925,7 +924,7 @@ public class Game {
         for (Challenge challenge : this.challenges) {
             // If the challenge is not approved yet, print the manage the challenge
             if (!challenge.isApproved()) {
-                admin.manageChallenge(challenge, this.armorsAvailable, this.weaponsAvailable);
+                admin.manageChallenge(challenge);
             }
         }
 
@@ -1059,22 +1058,6 @@ public class Game {
 
     public void setChallenges(List<Challenge> challenges) {
         this.challenges = challenges;
-    }
-
-    public List<Armor> getArmorsAvailable() {
-        return armorsAvailable;
-    }
-
-    public void setArmorsAvailable(List<Armor> armorsAvailable) {
-        this.armorsAvailable = armorsAvailable;
-    }
-
-    public List<Weapon> getWeaponsAvailable() {
-        return weaponsAvailable;
-    }
-
-    public void setWeaponsAvailable(List<Weapon> weaponsAvailable) {
-        this.weaponsAvailable = weaponsAvailable;
     }
 
     public String getLastId() {

@@ -40,7 +40,7 @@
   - [X] Sign off.
 - [ ] attack and deffense values of the equipment must be between 1-3
 - [X] intoduce minions array in the const DEVILS
-- [ ] Replace the {@Code Some code} comments to <code>Some code</code>
+- [X] Replace the {@Code Some code} comments to <code>Some code</code>
 - [ ] Explain the attributes of the classes in class JavaDoc comment.
   
 ## Refactor for review

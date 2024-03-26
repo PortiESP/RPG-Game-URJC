@@ -2,13 +2,13 @@ package src.users;
 
 // Import statements
 import java.util.*;
+import src.Game;
 import src.challenges.Challenge;
 import src.characters.CharacterSelection;
 import src.equipment.Armor;
 import src.equipment.Weapon;
 import utils.Const;
 import utils.MenuBuilder;
-import src.Game;
 
 /**
  * Class that represents the Player user.
@@ -147,8 +147,6 @@ public class Player extends User {
      * </ul>
      * </p>
      * <br>
-     * @param armorsAvailable List of armors available to equip.
-     * @param weaponsAvailable List of weapons available to equip.
      */
     public void manageEquipment() {
         // Show the current equipment
@@ -200,7 +198,6 @@ public class Player extends User {
 
     /**
      * Changes the armor of the player.
-     * @param armorsAvailable List of armors available to equip.
      */
     public void changeArmor() {
         List<Armor> armorsAvailable = Game.armorsAvailable;
@@ -223,7 +220,6 @@ public class Player extends User {
     /**
      * Changes the weapon of the player.
      * @param weaponIndex Index of the weapon to change (0 or 1).
-     * @param weaponsAvailable List of weapons available to equip.
      */
     public void changeWeapon(int weaponIndex) {
         List<Weapon> weaponsAvailable = Game.weaponsAvailable;

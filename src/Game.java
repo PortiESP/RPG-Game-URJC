@@ -135,8 +135,6 @@ public class Game {
      *
      * @see #setUsers(List)
      * @see #setChallenges(List)
-     * @see #setArmorsAvailable(List)
-     * @see #setWeaponsAvailable(List)
      */
     private void replaceSettings(Game game) {
         // Set the game attributes

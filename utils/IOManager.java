@@ -9,28 +9,28 @@ import java.util.Scanner;
  *
  * <h4>Language</h4>
  * <p>
- * The language of the game is loaded from the {@code LANGUAGES_PATH} directory. Use the method {@Code setLAGUAGE_PATH(String)} to change its value. The default language is {@code "English"}.
+ * The language of the game is loaded from the <code>LANGUAGES_PATH</code> directory. Use the method <code>setLAGUAGE_PATH(String)</code> to change its value. The default language is <code>"English"</code>.
  * </p>
  * <p>
  * Every message will be tried to be loaded from the language file. If the message is not found, the message id will be printed instead.
  * </p>
  * <p>
- * The language of the game can be changed with the method {@code setLanguage(String language)}. The language must be the filename of one of the language files in the {@code LANGUAGES_PATH} directory.
+ * The language of the game can be changed with the method <code>setLanguage(String language)</code>. The language must be the filename of one of the language files in the <code>LANGUAGES_PATH</code> directory.
  * </p>
  *
  * <h4>Message padding</h4>
  * <p>
- * The printed values are <strong>padded</strong> with {@code PRINT_PADDING} to make the output more readable and stand out from the rest of the terminal lines.
+ * The printed values are <strong>padded</strong> with <code>PRINT_PADDING</code> to make the output more readable and stand out from the rest of the terminal lines.
  * </p>
  *
  * <h4>Debug messages</h4>
  * <p>
- * The debug messages are printed to the standard output only if the {@code debug} flag is set to {@code true}.
+ * The debug messages are printed to the standard output only if the <code>debug</code> flag is set to <code>true</code>.
  * </p>
  *
  * <h4>Class foundations</h4>
  * <p>
- *  The class uses the the method {@code print(String msg)} as the foundation of all the other methods. This method is a wrapper for {@code System.out.print()} and prints a message to the standard output.
+ *  The class uses the the method <code>print(String msg)</code> as the foundation of all the other methods. This method is a wrapper for <code>System.out.print()</code> and prints a message to the standard output.
  * </p>
  *
  */
@@ -41,7 +41,7 @@ public class IOManager implements Serializable {
     private static String PRINT_PADDING = "|    "; // Padding for the printed messages
 
     /**
-     * Print a raw message (<em>without checking the messages map</em>), basically a wrapper for {@code System.out.print()}.
+     * Print a raw message (<em>without checking the messages map</em>), basically a wrapper for <code>System.out.print()</code>.
      *
      * @param msg The message to print
      */
@@ -53,7 +53,7 @@ public class IOManager implements Serializable {
      * Clears the screen.
      *
      * <p>
-     * <strong>NOTE:</strong> This method uses the {@code "os.name"} property to check if the operating system is Windows. If it is, it will use the {@code "cls"} command to clear the screen. Otherwise, it will use the ANSI escape code {@code "\033[H\033[2J"}.
+     * <strong>NOTE:</strong> This method uses the <code>"os.name"</code> property to check if the operating system is Windows. If it is, it will use the <code>"cls"</code> command to clear the screen. Otherwise, it will use the ANSI escape code <code>"\033[H\033[2J"</code>.
      * </p>
      */
     public static void cls() {
@@ -72,10 +72,10 @@ public class IOManager implements Serializable {
     }
 
     /**
-     * Move the cursor up {@code lines} lines.
+     * Move the cursor up <code>lines</code> lines.
      *
      * <p>
-     * <strong>NOTE:</strong> This method uses the ANSI escape code {@code "\033[A"} to move the cursor up.
+     * <strong>NOTE:</strong> This method uses the ANSI escape code <code>"\033[A"</code> to move the cursor up.
      * </p>
      *
      * @param lines
@@ -85,10 +85,10 @@ public class IOManager implements Serializable {
     }
 
     /**
-     * Move the cursor down {@code lines} lines.
+     * Move the cursor down <code>lines</code> lines.
      *
      * <p>
-     * <strong>NOTE:</strong> This method uses the ANSI escape code {@code "\033[B"} to move the cursor down.
+     * <strong>NOTE:</strong> This method uses the ANSI escape code <code>"\033[B"</code> to move the cursor down.
      * </p>
      *
      * @param lines The number of lines to move the cursor down.
@@ -117,7 +117,7 @@ public class IOManager implements Serializable {
      * Pause the program until the user presses the enter key.
      *
      * <p>
-     * <strong>NOTE:</strong> This method uses the ANSI escape code {@code "\033[8m\033[?25l"} to hide the cursor and disable echo. After the user presses the enter key, it will use the ANSI escape code {@code "\033[28m\033[?25h"} to reset the cursor and enable echo.
+     * <strong>NOTE:</strong> This method uses the ANSI escape code <code>"\033[8m\033[?25l"</code> to hide the cursor and disable echo. After the user presses the enter key, it will use the ANSI escape code <code>"\033[28m\033[?25h"</code> to reset the cursor and enable echo.
      * </p>
      *
      */
@@ -129,7 +129,7 @@ public class IOManager implements Serializable {
     }
 
     /**
-     * Read an input (integer). This method is a wrapper for {@code readInt(prompt)}.
+     * Read an input (integer). This method is a wrapper for <code>readInt(prompt)</code>.
      *
      * @return The number typed by the user.
      * @throws NumberFormatException If the input is not a number.
@@ -157,7 +157,7 @@ public class IOManager implements Serializable {
     }
 
     /**
-     * Read an input (integer) within a range. This method is similar to {@code readInt()}, but it prints a prompt before reading the input and checks if the input is within a range.
+     * Read an input (integer) within a range. This method is similar to <code>readInt()</code>, but it prints a prompt before reading the input and checks if the input is within a range.
      *
      * @param prompt The message ID that will be printed before reading the input.
      * @param min The minimum value of the input.
@@ -211,13 +211,13 @@ public class IOManager implements Serializable {
      * Print a debug message to the standard output.
      *
      * <p>
-     * <strong>NOTE 1:</strong> This method will only print the message if the {@code debug} flag is set to {@code true}.
+     * <strong>NOTE 1:</strong> This method will only print the message if the <code>debug</code> flag is set to <code>true</code>.
      * </p>
      * <p>
-     * <strong>NOTE 2:</strong> This method doesn't use the {@code print()} method.
+     * <strong>NOTE 2:</strong> This method doesn't use the <code>print()</code> method.
      * </p>
      *
-     * @param message The message to print (<em>can be any object, so the {@code toString()} method will be called</em>).
+     * @param message The message to print (<em>can be any object, so the <code>toString()</code> method will be called</em>).
      */
     public static void log(Object message) {
         if (IOManager.debug) {

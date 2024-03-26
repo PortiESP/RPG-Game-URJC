@@ -12,11 +12,11 @@ import java.util.Arrays;
  * <p>
  * <h4>Attributes</h4>
  * <ul>
- * <li>{@code clean}: If true, the screen will be cleared before printing the menu.</li>
- * <li>{@code MENU_WIDTH}: Width of the menus.</li>
- * <li>{@code formValues}: Used to store the values of the last form.</li>
- * <li>{@code configFormUniqueValues}: If true, the form will not allow repeated values.</li>
- * <li>{@code configLastAsZero}: If true, the last option of the menus will be 0 instead of N.</li>
+ * <li><code>clean</code>: If true, the screen will be cleared before printing the menu.</li>
+ * <li><code>MENU_WIDTH</code>: Width of the menus.</li>
+ * <li><code>formValues</code>: Used to store the values of the last form.</li>
+ * <li><code>configFormUniqueValues</code>: If true, the form will not allow repeated values.</li>
+ * <li><code>configLastAsZero</code>: If true, the last option of the menus will be 0 instead of N.</li>
  * </ul>
  * <p>
  */
@@ -48,7 +48,7 @@ public class MenuBuilder {
      * <p>
      *
      * <p>
-     * The options will be numbered from 1 to N, where N is the number of options. If the setting {@code configLastAsZero} is set to true, then the last option will be 0 instead of N.
+     * The options will be numbered from 1 to N, where N is the number of options. If the setting <code>configLastAsZero</code> is set to true, then the last option will be 0 instead of N.
      * <p>
      *
      * @param title The title of the menu (translated if posible).

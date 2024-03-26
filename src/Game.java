@@ -15,7 +15,7 @@ import utils.*;
  * Main class of the game.
  *
  * <p>
- * Its main purpose is to create a new Game object and call the {@Code play()} method to start the game.
+ * Its main purpose is to create a new Game object and call the <code>play()</code> method to start the game.
  * </p>
  */
 public class Game {
@@ -78,7 +78,7 @@ public class Game {
      * Method to load the game
      *
      * <p>
-     * This method will read the game from a file determined by the {@Code Const.DATA_PATH} constant.
+     * This method will read the game from a file determined by the <code>Const.DATA_PATH</code> constant.
      * If the file does not exist, it will create a new game. If the file exists, it will replace the game settings.
      * </p>
      *
@@ -128,7 +128,7 @@ public class Game {
      *
      * <p>
      * This method will replace the game settings with the settings of the game passed as a parameter.
-     * This method is used after loading the game from a file, this method will take the {@Code game} object
+     * This method is used after loading the game from a file, this method will take the <code>game</code> object
      * readed from the file and replace the settings of the current game with the settings of the readed game.
      * </p>
      *
@@ -158,7 +158,7 @@ public class Game {
     }
 
     /**
-     * Saves the current state of the game in the {@code game.xml} file.
+     * Saves the current state of the game in the <code>game.xml</code> file.
      */
     private void save() {
         // Save the game to the file
@@ -307,7 +307,7 @@ public class Game {
     /**
      * Print the user a menu to enter their credentials
      *
-     * @return An array of strings with the user credentials: {@Code [username, password]}.
+     * @return An array of strings with the user credentials: <code>[username, password]</code>.
      */
     private String[] askUserCredentials() {
         String[] labels = { "Username", "Password" };
@@ -382,7 +382,7 @@ public class Game {
     /**
      * Prints the user a form where he must enter his registration credentials
      *
-     * @return An array of strings with the user data: {@Code [username, nick, password, confirm password]}.
+     * @return An array of strings with the user data: <code>[username, nick, password, confirm password]</code>.
      */
     private String[] readUserData() {
         // Get basic user data
@@ -425,8 +425,8 @@ public class Game {
     /**
      * Create a the user object with the provided data and user typed selected.
      *
-     * @param userData The user data to create the user {@Code [username, nick, password]}
-     * @param userType The user type to create the user {@Code 1: Player, 2: Admin}
+     * @param userData The user data to create the user <code>[username, nick, password]</code>
+     * @param userType The user type to create the user <code>1: Player, 2: Admin</code>
      * @return The new user created.
      * @see #generatePlayerId()
      */

@@ -157,7 +157,7 @@ public class Challenge {
 
     /**
      * Manage the fight between the players. The fight will be started, the result will be printed, and the challenge will be finished.
-     * This method is called by the challenged player after calling the {@Code accept()} method.
+     * This method is called by the challenged player after calling the <code>accept()</code> method.
      */
     public void manageFight() {
         this.startFight();

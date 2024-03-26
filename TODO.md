@@ -17,6 +17,7 @@
   - [X] Check if the user has active challenges on login.
   - [X] Implement Minions functionality.
   - [ ] Implement Special Abilities functionality.
+  - [ ] Modifiers of the characters must be managed by the admin.
 - [X] Check the way the score is calculated.
 - [X] Implement a way to manage account settings.
   - [X] Change password.

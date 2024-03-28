@@ -36,6 +36,10 @@ public abstract class Modifier {
         return modifiers;
     }
 
+    public String toString() {
+        return this.name;
+    }
+
     // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
         return this.name;

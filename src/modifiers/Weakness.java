@@ -15,6 +15,10 @@ public class Weakness extends Modifier {
         this.sensitivity = sensitivity;
     }
 
+    public String toString() {
+        return String.format("%s (-%d)", this.getName(), this.sensitivity);
+    }
+
     // ============================================================================================[ Getters & Setters ]>>>
     public int getSensitivity() {
         return sensitivity;

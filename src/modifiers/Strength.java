@@ -15,6 +15,10 @@ public class Strength extends Modifier {
         this.effectiveness = effectiveness;
     }
 
+    public String toString() {
+        return String.format("%s (+%d)", this.getName(), this.effectiveness);
+    }
+
     // ============================================================================================[ Getters & Setters ]>>>
     public int getEffectiveness() {
         return effectiveness;

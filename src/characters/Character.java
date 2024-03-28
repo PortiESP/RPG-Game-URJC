@@ -171,7 +171,6 @@ public abstract class Character {
      * Load the modifiers for the character.
      */
     private void loadModifiers() {
-        // TODO: Implement this method
         Modifier[] mods = { new Strength(), new Weakness() };
         this.modifiers = mods;
     }

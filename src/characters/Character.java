@@ -116,7 +116,7 @@ public abstract class Character {
     }
 
     public void assignSpecial(Player player) {
-        this.special = player.getSpecialAbilities();
+        this.special = player.getSpecialAbility();
     }
 
     // ============================================================================================[ Private methods ]>>>

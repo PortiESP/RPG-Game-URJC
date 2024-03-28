@@ -30,7 +30,7 @@ public class Player extends User {
     private Armor armor;
     private Weapon[] weapons = new Weapon[2];
     private Modifier[] modifiers = new Modifier[2];
-    private SpecialAbility[] specialAbilities = new SpecialAbility[2];
+    private SpecialAbility specialAbility;
     private List<Challenge> challenges = new ArrayList<>();
 
     // ============================================================================================[ Constructor ]>>>
@@ -104,8 +104,7 @@ public class Player extends User {
             "Weapon 2: " + (this.weapons[1] != null ? this.weapons[0].getName() : "None"),
             "Modifier 1" + (this.modifiers[0] != null ? this.modifiers[0].getName() : "None"),
             "Modifier 2" + (this.modifiers[1] != null ? this.modifiers[1].getName() : "None"),
-            "Special Ability 1" + (this.specialAbilities[0] != null ? this.specialAbilities[0].getName() : "None"),
-            "Special Ability 2" + (this.specialAbilities[1] != null ? this.specialAbilities[1].getName() : "None"),
+            "Special Ability" + (this.specialAbility != null ? this.specialAbility.getName() : "None"),
             "Pending challenge: " + (this.pendingChallenge != null ? "Yes" : "No"),
         };
 
@@ -218,9 +217,7 @@ public class Player extends User {
 
             // Manage the option
             if (option == 1) {
-                this.changeSpecialAbility(0);
-            } else if (option == 2) {
-                this.changeSpecialAbility(1);
+                this.changeSpecialAbility();
             } else {
                 break;
             }
@@ -230,7 +227,7 @@ public class Player extends User {
     /**
      * Changes the special ability of the player in the specified index.
      */
-    public void changeSpecialAbility(int specialAbilityIndex) {
+    public void changeSpecialAbility() {
         String[] options;
         int characterAbility;
 
@@ -260,7 +257,7 @@ public class Player extends User {
         }
 
         // Equip the special ability
-        this.specialAbilities[specialAbilityIndex] = specialAbilitySelected;
+        this.specialAbility = specialAbilitySelected;
 
         // Show confirmation message
         String message = "You have equipped the " + specialAbilitySelected.getName() + " special ability.";
@@ -273,8 +270,7 @@ public class Player extends User {
     public void showSpecialAbilities() {
         // Generate the data to show
         String[] data = {
-            "Special Ability 1: " + (this.specialAbilities[0] != null ? this.specialAbilities[0].getName() : "None"),
-            "Special Ability 2: " + (this.specialAbilities[1] != null ? this.specialAbilities[1].getName() : "None"),
+            "Special Ability:" + (this.specialAbility != null ? this.specialAbility.getName() : "None"),
         };
 
         // Show the data
@@ -572,18 +568,18 @@ public class Player extends User {
     }
 
     public Modifier[] getModifiers() {
-        return modifiers;
+        return this.modifiers;
     }
 
     public void setModifiers(Modifier[] modifiers) {
         this.modifiers = modifiers;
     }
 
-    public SpecialAbility[] getSpecialAbilities() {
-        return specialAbilities;
+    public SpecialAbility getSpecialAbility() {
+        return this.specialAbility;
     }
 
-    public void setSpecialAbilities(SpecialAbility[] specialAbilities) {
-        this.specialAbilities = specialAbilities;
+    public void setSpecialAbilities(SpecialAbility specialAbility) {
+        this.specialAbility = specialAbility;
     }
 }

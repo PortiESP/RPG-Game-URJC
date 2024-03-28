@@ -20,7 +20,7 @@ public class Vampire extends Character {
 
     // CONSTANTS
     public static int MAX_BLOOD = 10;
-    public static int MIN_BLOOD = 1;
+    public static int MIN_BLOOD = 0;
     public static int MAX_HEALTH = 5;
     public static int MAX_POWER = 5;
     public static int MIN_POWER = 1;
@@ -80,7 +80,7 @@ public class Vampire extends Character {
         this.setMinions(new Minion[INIT_MINIONS]);
         this.setEquipment(new Equipment[3]);
         this.setAge(0);
-        this.setBlood(MAX_BLOOD);
+        this.setBlood(MIN_BLOOD);
     }
 
     /**
@@ -132,6 +132,14 @@ public class Vampire extends Character {
         String[] attributes = { "Max Health: " + MAX_HEALTH, "Max Power: " + MAX_POWER, "Max Blood: " + MAX_BLOOD, "Initial Minions: " + INIT_MINIONS };
 
         MenuBuilder.doc("Vampire Attributes", attributes);
+    }
+
+    public void successAtack() {
+        this.blood += 4;
+
+        if (this.blood > MAX_BLOOD) {
+            this.blood = MAX_BLOOD;
+        }
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

@@ -243,6 +243,25 @@ public abstract class Character {
         return this.minionsHealth;
     }
 
+    /*
+     * Calculate the attack power provided by the special ability.
+     */
+    private int calcSpecialAttack() {
+        if (this.special != null) {
+            return 0;
+        }
+
+        return this.special.abilityAttack();
+    }
+
+    private int calcSpecialDefense() {
+        if (this.special != null) {
+            return 0;
+        }
+
+        return this.special.abilityDefense();
+    }
+
     // ============================================================================================[ Protected Methods ]>>>
     /**
      * Calculate the base attack power of the character. The base attack power is the sum of the attack power provided by the equipment and the modifiers.
@@ -254,7 +273,7 @@ public abstract class Character {
 
         cumAtt += calcEquipmentAttack();
         cumAtt += calcModifiersAttack();
-        cumAtt += this.special != null ? this.special.getAttack() : 0;
+        cumAtt += calcSpecialAttack();
 
         return cumAtt;
     }
@@ -270,8 +289,7 @@ public abstract class Character {
         cumDef += calcEquipmentDefense();
         cumDef += calcModifiersDefense();
         cumDef += calcMinionsDefense();
-        cumDef += this.special != null ? this.special.getDefense() : 0;
-
+        cumDef += calcSpecialDefense();
         return cumDef;
     }
 

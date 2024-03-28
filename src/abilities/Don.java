@@ -2,6 +2,8 @@ package src.abilities;
 
 import java.util.ArrayList;
 
+import src.Game;
+
 /**
  * Class that represents a Don special ability of a character.
  */
@@ -33,6 +35,21 @@ public class Don extends SpecialAbility {
         }
 
         return dons;
+    }
+
+    public String toString() {
+        return super.toString() + String.format(" ( Min Rage: %d )", this.minRage);
+    }
+
+    public static String[] listAvailableDones() {
+        String[] dones = new String[Game.donesAvailable.size()];
+
+        for (int i = 0; i < Game.donesAvailable.size(); i++) {
+            Don don = Game.donesAvailable.get(i);
+            dones[i] = don.toString();
+        }
+
+        return dones;
     }
 
     // Getters & Setters ==================================================================================================

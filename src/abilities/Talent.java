@@ -2,6 +2,8 @@ package src.abilities;
 
 import java.util.ArrayList;
 
+import src.Game;
+
 /**
  * Class that represents a Talent special ability of a character.
  */
@@ -27,6 +29,17 @@ public class Talent extends SpecialAbility {
         ArrayList<Talent> talents = new ArrayList<>();
         for (String[] talent : talentsArr) {
             talents.add(new Talent(talent[0], Integer.parseInt(talent[1]), Integer.parseInt(talent[2])));
+        }
+
+        return talents;
+    }
+
+    public static String[] listAvailableTalents() {
+        String[] talents = new String[Game.talentsAvailable.size()];
+
+        for (int i = 0; i < Game.talentsAvailable.size(); i++) {
+            Talent talent = Game.talentsAvailable.get(i);
+            talents[i] = talent.toString();
         }
 
         return talents;

@@ -18,6 +18,10 @@ public abstract class SpecialAbility {
         this.defense = defense;
     }
 
+    public String toString() {
+        return String.format("%s (Attack: %d, Defense: %d)", name, attack, defense);
+    }
+
     // Getters & Setters ==================================================================================================
     public String getName() {
         return name;

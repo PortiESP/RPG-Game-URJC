@@ -112,11 +112,11 @@ public abstract class Character {
     }
 
     public void assignModifiers(Player player) {
-        // TODO: Implement this method
+        this.modifiers = player.getModifiers();
     }
 
     public void assignSpecial(Player player) {
-        // TODO: Implement this method
+        this.special = player.getSpecialAbilities();
     }
 
     // ============================================================================================[ Private methods ]>>>

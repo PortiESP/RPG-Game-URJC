@@ -184,21 +184,18 @@ public class Player extends User {
 
         // Equip the modifier
         this.modifiers[modifierIndex] = modifierSelected;
-        
+
         // Show confirmation message
         String message = "You have equipped the " + modifierSelected.getName() + " modifier.";
         MenuBuilder.alert("Modifier equipped", message);
     }
-        
+
     /**
      * Prints the active modifiers of the player.
-    */
+     */
     public void showModifiers() {
         // Generate the data to show
-        String[] data = {
-            "Modifier 1: " + (this.modifiers[0] != null ? this.modifiers[0].getName() : "None"),
-            "Modifier 2: " + (this.modifiers[1] != null ? this.modifiers[1].getName() : "None"),
-        };
+        String[] data = { "Modifier 1: " + (this.modifiers[0] != null ? this.modifiers[0].getName() : "None"), "Modifier 2: " + (this.modifiers[1] != null ? this.modifiers[1].getName() : "None") };
 
         // Show the data
         MenuBuilder.doc("Modifiers", data);
@@ -206,7 +203,7 @@ public class Player extends User {
 
     /**
      * Manages the player's special abilities. This method is called when the player wants to manage his special abilities.
-    */
+     */
     public void manageSpecialAbilities() {
         // Show the current special abilities
         this.showSpecialAbilities();
@@ -232,7 +229,7 @@ public class Player extends User {
 
     /**
      * Changes the special ability of the player in the specified index.
-    */
+     */
     public void changeSpecialAbility(int specialAbilityIndex) {
         String[] options;
         int characterAbility;
@@ -262,10 +259,9 @@ public class Player extends User {
             specialAbilitySelected = Game.talentsAvailable.get(option);
         }
 
-
         // Equip the special ability
         this.specialAbilities[specialAbilityIndex] = specialAbilitySelected;
-        
+
         // Show confirmation message
         String message = "You have equipped the " + specialAbilitySelected.getName() + " special ability.";
         MenuBuilder.alert("Special Ability equipped", message);
@@ -273,7 +269,7 @@ public class Player extends User {
 
     /**
      * Prints the active special abilities of the player.
-    */
+     */
     public void showSpecialAbilities() {
         // Generate the data to show
         String[] data = {

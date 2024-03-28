@@ -30,6 +30,7 @@ public class Vampire extends Character {
     public Vampire(Player player) {
         super(player);
         this.loadMinions();
+        this.discipline = (Discipline) this.special;
     }
 
     // ============================================================================================[ Public Methods ]>>>
@@ -81,6 +82,17 @@ public class Vampire extends Character {
         this.setEquipment(new Equipment[3]);
         this.setAge(0);
         this.setBlood(MIN_BLOOD);
+    }
+
+    @Override
+    protected int calcSpecialAttack() {
+        if (this.blood >= discipline.getCost()) {
+            int value = discipline.abilityAttack(blood);
+            this.blood -= discipline.getCost();
+            return value;
+        } else {
+            return 0;
+        }
     }
 
     /**

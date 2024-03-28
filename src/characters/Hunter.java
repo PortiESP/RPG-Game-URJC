@@ -28,6 +28,7 @@ public class Hunter extends Character {
     public Hunter(Player player) {
         super(player);
         this.loadMinions();
+        this.talent = (Talent) this.special;
     }
 
     // ============================================================================================[ Public Methods ]>>>

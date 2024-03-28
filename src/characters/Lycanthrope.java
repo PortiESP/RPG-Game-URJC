@@ -29,6 +29,7 @@ public class Lycanthrope extends Character {
         super(player);
         rage = 0;
         this.loadMinions();
+        this.don = (Don) this.special;
     }
 
     // ============================================================================================[ Public Methods ]>>>

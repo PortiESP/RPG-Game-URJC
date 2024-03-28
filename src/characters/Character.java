@@ -212,7 +212,22 @@ public abstract class Character {
             if (m instanceof Strength) {
                 Strength s = (Strength) m;
                 sum += s.getEffectiveness();
-            } else if (m instanceof Weakness) {
+            }
+        }
+        return sum;
+    }
+
+    /**
+     * Calculate the attack power provided by the modifiers.
+     * @return Attack power provided by the modifiers
+     */
+    private int calcModifiersDefense() {
+        int sum = 0;
+        for (Modifier m : this.modifiers) {
+            if (m == null) {
+                continue;
+            }
+            if (m instanceof Weakness) {
                 Weakness w = (Weakness) m;
                 sum -= w.getSensitivity();
             }
@@ -253,6 +268,7 @@ public abstract class Character {
         int cumDef = 0;
 
         cumDef += calcEquipmentDefense();
+        cumDef += calcModifiersDefense();
         cumDef += calcMinionsDefense();
         cumDef += this.special.getDefense();
 

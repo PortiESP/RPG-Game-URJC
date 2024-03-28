@@ -1,7 +1,6 @@
 package src.abilities;
 
 import java.util.ArrayList;
-
 import src.Game;
 
 /**
@@ -50,6 +49,14 @@ public class Discipline extends SpecialAbility {
         }
 
         return disciplines;
+    }
+
+    public int abilityAttack(int blood) {
+        if (blood >= this.cost) {
+            return super.getAttack();
+        } else {
+            return 0;
+        }
     }
 
     // Getters & Setters ==================================================================================================

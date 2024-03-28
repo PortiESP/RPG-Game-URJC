@@ -18,11 +18,21 @@ public abstract class SpecialAbility {
         this.defense = defense;
     }
 
+    // ============================================================================================[ Public Methods ]>>>
+
     public String toString() {
         return String.format("%s (Attack: %d, Defense: %d)", name, attack, defense);
     }
 
-    // Getters & Setters ==================================================================================================
+    public int abilityAttack() {
+        return this.attack;
+    }
+
+    public int abilityDefense() {
+        return this.defense;
+    }
+
+    // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
         return name;
     }

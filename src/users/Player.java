@@ -3,10 +3,15 @@ package src.users;
 // Import statements
 import java.util.*;
 import src.Game;
+import src.abilities.Discipline;
+import src.abilities.Don;
+import src.abilities.SpecialAbility;
+import src.abilities.Talent;
 import src.challenges.Challenge;
 import src.characters.CharacterSelection;
 import src.equipment.Armor;
 import src.equipment.Weapon;
+import src.modifiers.Modifier;
 import utils.Const;
 import utils.MenuBuilder;
 
@@ -24,6 +29,8 @@ public class Player extends User {
     private CharacterSelection currentCharacter;
     private Armor armor;
     private Weapon[] weapons = new Weapon[2];
+    private Modifier[] modifiers = new Modifier[2];
+    private SpecialAbility[] specialAbilities = new SpecialAbility[2];
     private List<Challenge> challenges = new ArrayList<>();
 
     // ============================================================================================[ Constructor ]>>>
@@ -35,15 +42,9 @@ public class Player extends User {
     public Player(String name, String nick, String password, String id) {
         super(name, nick, password);
         this.id = id;
-        this.pendingChallenge = null;
         this.pendingNotification = false;
         this.banned = false;
         this.gold = Const.INITIAL_GOLD;
-        this.lastLostFight = 0;
-        this.currentCharacter = null;
-        this.armor = null;
-        this.weapons[0] = null;
-        this.weapons[1] = null;
     }
 
     // ============================================================================================[ Public Methods ]>>>
@@ -101,6 +102,10 @@ public class Player extends User {
             "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
             "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
             "Weapon 2: " + (this.weapons[1] != null ? this.weapons[0].getName() : "None"),
+            "Modifier 1" + (this.modifiers[0] != null ? this.modifiers[0].getName() : "None"),
+            "Modifier 2" + (this.modifiers[1] != null ? this.modifiers[1].getName() : "None"),
+            "Special Ability 1" + (this.specialAbilities[0] != null ? this.specialAbilities[0].getName() : "None"),
+            "Special Ability 2" + (this.specialAbilities[1] != null ? this.specialAbilities[1].getName() : "None"),
             "Pending challenge: " + (this.pendingChallenge != null ? "Yes" : "No"),
         };
 
@@ -133,6 +138,151 @@ public class Player extends User {
      */
     public void unban() {
         this.banned = false;
+    }
+
+    /**
+     * Manages the player's modifiers. This method is called when the player wants to manage his modifiers.
+     */
+    public void manageModifiers() {
+        // Show the current modifiers
+        this.showModifiers();
+
+        // Ask the user what he wants to do
+        String[] options = { "Change modifier 1", "Change modifier 2", "Exit" };
+
+        // Loop until the user wants to exit
+        while (true) {
+            MenuBuilder.setConfigLastAsZero(true);
+            int option = MenuBuilder.menu("Modifiers", options);
+
+            // Manage the option
+            if (option == 1) {
+                this.changeModifier(0);
+            } else if (option == 2) {
+                this.changeModifier(1);
+            } else {
+                break;
+            }
+        }
+    }
+
+    /**
+     * Changes the modifier of the player in the specified index.
+     */
+    public void changeModifier(int modifierIndex) {
+        List<Modifier> modifiersAvailable = Game.modifiersAvailable;
+
+        // Show the available modifiers
+        String[] options = new String[modifiersAvailable.size()];
+        for (int i = 0; i < modifiersAvailable.size(); i++) {
+            options[i] = modifiersAvailable.get(i).toString();
+        }
+
+        // Ask the user what modifier he wants
+        int option = MenuBuilder.menu("Choose a modifier", options) - 1;
+        Modifier modifierSelected = modifiersAvailable.get(option);
+
+        // Equip the modifier
+        this.modifiers[modifierIndex] = modifierSelected;
+        
+        // Show confirmation message
+        String message = "You have equipped the " + modifierSelected.getName() + " modifier.";
+        MenuBuilder.alert("Modifier equipped", message);
+    }
+        
+    /**
+     * Prints the active modifiers of the player.
+    */
+    public void showModifiers() {
+        // Generate the data to show
+        String[] data = {
+            "Modifier 1: " + (this.modifiers[0] != null ? this.modifiers[0].getName() : "None"),
+            "Modifier 2: " + (this.modifiers[1] != null ? this.modifiers[1].getName() : "None"),
+        };
+
+        // Show the data
+        MenuBuilder.doc("Modifiers", data);
+    }
+
+    /**
+     * Manages the player's special abilities. This method is called when the player wants to manage his special abilities.
+    */
+    public void manageSpecialAbilities() {
+        // Show the current special abilities
+        this.showSpecialAbilities();
+
+        // Ask the user what he wants to do
+        String[] options = { "Change special ability 1", "Change special ability 2", "Exit" };
+
+        // Loop until the user wants to exit
+        while (true) {
+            MenuBuilder.setConfigLastAsZero(true);
+            int option = MenuBuilder.menu("Special Abilities", options);
+
+            // Manage the option
+            if (option == 1) {
+                this.changeSpecialAbility(0);
+            } else if (option == 2) {
+                this.changeSpecialAbility(1);
+            } else {
+                break;
+            }
+        }
+    }
+
+    /**
+     * Changes the special ability of the player in the specified index.
+    */
+    public void changeSpecialAbility(int specialAbilityIndex) {
+        String[] options;
+        int characterAbility;
+
+        // Get the available special abilities depending on the character
+        if (this.currentCharacter == CharacterSelection.VAMPIRE) {
+            options = Discipline.listAvailableDisciplines();
+            characterAbility = 0;
+        } else if (this.currentCharacter == CharacterSelection.LYCANTHROPE) {
+            options = Don.listAvailableDones();
+            characterAbility = 1;
+        } else {
+            options = Talent.listAvailableTalents();
+            characterAbility = 2;
+        }
+
+        // Ask the user what special ability he wants
+        int option = MenuBuilder.menu("Choose a special ability", options) - 1;
+
+        // Get the special ability selected
+        SpecialAbility specialAbilitySelected;
+        if (characterAbility == 0) {
+            specialAbilitySelected = Game.donesAvailable.get(option);
+        } else if (characterAbility == 1) {
+            specialAbilitySelected = Game.disciplinesAvailable.get(option);
+        } else {
+            specialAbilitySelected = Game.talentsAvailable.get(option);
+        }
+
+
+        // Equip the special ability
+        this.specialAbilities[specialAbilityIndex] = specialAbilitySelected;
+        
+        // Show confirmation message
+        String message = "You have equipped the " + specialAbilitySelected.getName() + " special ability.";
+        MenuBuilder.alert("Special Ability equipped", message);
+    }
+
+    /**
+     * Prints the active special abilities of the player.
+    */
+    public void showSpecialAbilities() {
+        // Generate the data to show
+        String[] data = {
+            "Special Ability 1: " + (this.specialAbilities[0] != null ? this.specialAbilities[0].getName() : "None"),
+            "Special Ability 2: " + (this.specialAbilities[1] != null ? this.specialAbilities[1].getName() : "None"),
+        };
+
+        // Show the data
+        MenuBuilder.doc("Special Abilities", data);
     }
 
     /**
@@ -423,5 +573,21 @@ public class Player extends User {
 
     public boolean hasPendingChallenge() {
         return this.pendingChallenge != null;
+    }
+
+    public Modifier[] getModifiers() {
+        return modifiers;
+    }
+
+    public void setModifiers(Modifier[] modifiers) {
+        this.modifiers = modifiers;
+    }
+
+    public SpecialAbility[] getSpecialAbilities() {
+        return specialAbilities;
+    }
+
+    public void setSpecialAbilities(SpecialAbility[] specialAbilities) {
+        this.specialAbilities = specialAbilities;
     }
 }

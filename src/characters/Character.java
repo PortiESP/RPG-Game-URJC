@@ -254,7 +254,7 @@ public abstract class Character {
 
         cumAtt += calcEquipmentAttack();
         cumAtt += calcModifiersAttack();
-        cumAtt += this.special.getAttack();
+        cumAtt += this.special != null ? this.special.getAttack() : 0;
 
         return cumAtt;
     }
@@ -270,7 +270,7 @@ public abstract class Character {
         cumDef += calcEquipmentDefense();
         cumDef += calcModifiersDefense();
         cumDef += calcMinionsDefense();
-        cumDef += this.special.getDefense();
+        cumDef += this.special != null ? this.special.getDefense() : 0;
 
         return cumDef;
     }

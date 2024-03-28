@@ -194,34 +194,13 @@ public class Player extends User {
      */
     public void showModifiers() {
         // Generate the data to show
-        String[] data = { "Modifier 1: " + (this.modifiers[0] != null ? this.modifiers[0].getName() : "None"), "Modifier 2: " + (this.modifiers[1] != null ? this.modifiers[1].getName() : "None") };
+        String[] data = {
+            "Modifier 1: " + (this.modifiers[0] != null ? this.modifiers[0].getName() : "None"),
+            "Modifier 2: " + (this.modifiers[1] != null ? this.modifiers[1].getName() : "None")
+        };
 
         // Show the data
         MenuBuilder.doc("Modifiers", data);
-    }
-
-    /**
-     * Manages the player's special abilities. This method is called when the player wants to manage his special abilities.
-     */
-    public void manageSpecialAbilities() {
-        // Show the current special abilities
-        this.showSpecialAbilities();
-
-        // Ask the user what he wants to do
-        String[] options = { "Change special ability 1", "Change special ability 2", "Exit" };
-
-        // Loop until the user wants to exit
-        while (true) {
-            MenuBuilder.setConfigLastAsZero(true);
-            int option = MenuBuilder.menu("Special Abilities", options);
-
-            // Manage the option
-            if (option == 1) {
-                this.changeSpecialAbility();
-            } else {
-                break;
-            }
-        }
     }
 
     /**
@@ -249,9 +228,9 @@ public class Player extends User {
         // Get the special ability selected
         SpecialAbility specialAbilitySelected;
         if (characterAbility == 0) {
-            specialAbilitySelected = Game.donesAvailable.get(option);
-        } else if (characterAbility == 1) {
             specialAbilitySelected = Game.disciplinesAvailable.get(option);
+        } else if (characterAbility == 1) {
+            specialAbilitySelected = Game.donesAvailable.get(option);
         } else {
             specialAbilitySelected = Game.talentsAvailable.get(option);
         }
@@ -295,7 +274,10 @@ public class Player extends User {
         this.showEquipment();
 
         // Ask the user what he wants to do
-        String[] options = { "Change armor", "Change weapon 1", "Change weapon 2", "Exit" };
+        String[] options = {
+                        "Change armor", "Change weapon 1", "Change weapon 2", "Change Special Ability",
+                        "Change Modifiers", "Exit"
+                    };
 
         // Loop until the user wants to exit
         while (true) {
@@ -309,6 +291,10 @@ public class Player extends User {
                 this.changeWeapon(0);
             } else if (option == 3) {
                 this.changeWeapon(1);
+            } else if (option == 4) {
+                this.changeSpecialAbility();
+            } else if (option == 5) {
+                this.manageModifiers();
             } else {
                 break;
             }
@@ -332,6 +318,9 @@ public class Player extends User {
             "Armor: " + (this.armor != null ? this.armor.getName() : "None"),
             "Weapon 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None"),
             "Weapon 2: " + (this.weapons[1] != null ? this.weapons[1].getName() : "None"),
+            "Special Ability: " + (this.specialAbility != null ? this.specialAbility.getName() : "None"),
+            "Modifier 1: " + (this.modifiers[0] != null ? this.modifiers[0].getName() : "None"),
+            "Modifier 2: " + (this.modifiers[1] != null ? this.modifiers[1].getName() : "None")
         };
 
         // Show the data

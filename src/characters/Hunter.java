@@ -6,6 +6,7 @@ import src.abilities.*;
 import src.equipment.Equipment;
 import src.minions.Minion;
 import src.modifiers.Modifier;
+import src.users.Player;
 import utils.MenuBuilder;
 
 /**
@@ -24,9 +25,8 @@ public class Hunter extends Character {
     public static int INIT_MINIONS = 3;
 
     // ============================================================================================[ Constructor ]>>>
-    public Hunter() {
-        super();
-        this.loadSpecial();
+    public Hunter(Player player) {
+        super(player);
         this.loadMinions();
     }
 
@@ -63,14 +63,6 @@ public class Hunter extends Character {
     }
 
     /**
-     * Load the special ability of the hunter, the talent.
-     */
-    @Override
-    public void loadSpecial() {
-        this.special = new Talent();
-    }
-
-    /**
      * Load the initial values of the hunter.
      */
     @Override
@@ -94,7 +86,7 @@ public class Hunter extends Character {
         while (true) {
             // Print the current values of the attributes
             showAttributes();
-            
+
             // Prepare the menu options and ask the user to select an option
             String[] options = { "Alter Max Health", "Alter Max Power", "Alter Max Willpower", "Alter Initial Minions", "Exit" };
             int opt = MenuBuilder.menu("Modify Hunter", options);
@@ -132,12 +124,7 @@ public class Hunter extends Character {
      * Show the attributes of the hunter.
      */
     public static void showAttributes() {
-        String[] attributes = {
-                "Max Health: " + MAX_HEALTH,
-                "Max Power: " + MAX_POWER,
-                "Max Willpower: " + MAX_WILLPOWER,
-                "Initial Minions: " + INIT_MINIONS
-        };
+        String[] attributes = { "Max Health: " + MAX_HEALTH, "Max Power: " + MAX_POWER, "Max Willpower: " + MAX_WILLPOWER, "Initial Minions: " + INIT_MINIONS };
 
         MenuBuilder.doc("Hunter Attributes", attributes);
     }

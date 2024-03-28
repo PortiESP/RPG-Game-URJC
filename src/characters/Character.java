@@ -22,18 +22,18 @@ public abstract class Character {
     protected SpecialAbility special;
 
     // ============================================================================================[ Constructor ]>>>
-    public Character() {
+    public Character(Player player) {
         this.loadInitialValues();
-        this.loadModifiers();
+        // Assign player's weapons and armor to the character
+        this.assignEquipment(player);
+        this.assignModifiers(player);
+        this.assignSpecial(player);
     }
 
     // ============================================================================================[ Abstract Methods ]>>>
 
     // Load initial values for the character
     public abstract void loadInitialValues();
-
-    // Load the character's special ability
-    public abstract void loadSpecial();
 
     // Load the character's minions
     public abstract void loadMinions();
@@ -165,14 +165,6 @@ public abstract class Character {
         }
 
         return success;
-    }
-
-    /**
-     * Load the modifiers for the character.
-     */
-    private void loadModifiers() {
-        Modifier[] mods = { new Strength(), new Weakness() };
-        this.modifiers = mods;
     }
 
     /**

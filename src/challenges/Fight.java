@@ -46,22 +46,17 @@ public class Fight {
         // Instantiate the character based on the player's current character
         CharacterSelection cs = player.getCurrentCharacter();
         if (cs == CharacterSelection.HUNTER) {
-            character = new Hunter();
+            character = new Hunter(player);
         } else if (cs == CharacterSelection.LYCANTHROPE) {
-            character = new Lycanthrope();
+            character = new Lycanthrope(player);
         } else if (cs == CharacterSelection.VAMPIRE) {
-            character = new Vampire();
+            character = new Vampire(player);
         } else {
             throw new IllegalArgumentException("Invalid character type");
         }
 
         // Get the character attributes from the player
         character.setName(player.getName());
-
-        // Assign player's weapons and armor to the character
-        character.assignEquipment(player);
-        character.assignModifiers(player);
-        character.assignSpecial(player);
 
         return character;
     }

@@ -8,6 +8,7 @@ import src.characters.Lycanthrope;
 import src.characters.Vampire;
 // Import statements
 import src.users.Player;
+import utils.MenuBuilder;
 
 public class Fight {
 
@@ -18,6 +19,8 @@ public class Fight {
     private Character c1;
     private Character c2;
     private Player[] players;
+
+    private final int MAX_ROUNDS = 100;
 
     // ============================================================================================[ Constructor ]>>>
     public Fight() {}
@@ -80,7 +83,7 @@ public class Fight {
         log.add("Fight started between " + c1.getName() + " and " + c2.getName());
         log.add("");
 
-        while (!checkFightEnd()) {
+        while (!checkFightEnd() && round <= MAX_ROUNDS) {
             // Get the damage from each character
             int damage1 = c2.getHit(c1);
             int damage2 = c1.getHit(c2);
@@ -99,6 +102,10 @@ public class Fight {
 
             // Increment the round counter
             round++;
+        }
+
+        if (round > MAX_ROUNDS) {
+            MenuBuilder.alert("Fight alert", "The fight ended due to the maximum number of rounds being reached.");
         }
 
         chooseWinner();
@@ -120,15 +127,15 @@ public class Fight {
      */
     private void chooseWinner() {
         log.add("");
-        if (c1.isDead() && c2.isDead()) {
-            winner = null;
-            log.add("The fight ended in a draw");
+        if (c2.isDead()) {
+            winner = players[0];
+            log.add("The winner is " + c1.getName());
         } else if (c1.isDead()) {
             winner = players[1];
             log.add("The winner is " + c2.getName());
         } else {
-            winner = players[0];
-            log.add("The winner is " + c1.getName());
+            winner = null;
+            log.add("The fight ended in a draw");
         }
     }
 

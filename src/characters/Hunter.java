@@ -92,6 +92,9 @@ public class Hunter extends Character {
     public static void modifyAttributes() {
         // Print the menu until the user decides to exit
         while (true) {
+            // Print the current values of the attributes
+            showAttributes();
+            
             // Prepare the menu options and ask the user to select an option
             String[] options = { "Alter Max Health", "Alter Max Power", "Alter Max Willpower", "Alter Initial Minions", "Exit" };
             int opt = MenuBuilder.menu("Modify Hunter", options);
@@ -123,6 +126,20 @@ public class Hunter extends Character {
             case 3 -> MAX_WILLPOWER = value;
             case 4 -> INIT_MINIONS = value;
         }
+    }
+
+    /**
+     * Show the attributes of the hunter.
+     */
+    public static void showAttributes() {
+        String[] attributes = {
+                "Max Health: " + MAX_HEALTH,
+                "Max Power: " + MAX_POWER,
+                "Max Willpower: " + MAX_WILLPOWER,
+                "Initial Minions: " + INIT_MINIONS
+        };
+
+        MenuBuilder.doc("Hunter Attributes", attributes);
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

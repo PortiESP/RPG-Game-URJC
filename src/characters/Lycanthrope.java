@@ -91,6 +91,9 @@ public class Lycanthrope extends Character {
     public static void modifyAttributes() {
         // Print the menu until the user decides to exit
         while (true) {
+            // Print the current values of the attributes
+            showAttributes();
+
             // Prepare the menu options and ask the user to select an option
             String[] options = { "Alter Max Health", "Alter Max Power", "Alter Max Rage", "Alter Initial Minions", "Exit" };
             int opt = MenuBuilder.menu("Modify Lycanthrope", options);
@@ -122,6 +125,20 @@ public class Lycanthrope extends Character {
             case 3 -> MAX_RAGE = value;
             case 4 -> INIT_MINIONS = value;
         }
+    }
+
+    /**
+     * Show the attributes of the lycanthrope.
+     */
+    public static void showAttributes() {
+        String[] attributes = { 
+            "Max Health: " + MAX_HEALTH, 
+            "Max Power: " + MAX_POWER, 
+            "Max Rage: " + MAX_RAGE, 
+            "Initial Minions: " + INIT_MINIONS 
+        };
+
+        MenuBuilder.doc("Lycanthrope Attributes", attributes);
     }
 
     // ============================================================================================[ Getters & Setters ]>>>

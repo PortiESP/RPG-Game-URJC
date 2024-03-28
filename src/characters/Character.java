@@ -111,6 +111,14 @@ public abstract class Character {
         this.equipment[2] = player.getArmor();
     }
 
+    public void assignModifiers(Player player) {
+        // TODO: Implement this method
+    }
+
+    public void assignSpecial(Player player) {
+        // TODO: Implement this method
+    }
+
     // ============================================================================================[ Private methods ]>>>
 
     /**

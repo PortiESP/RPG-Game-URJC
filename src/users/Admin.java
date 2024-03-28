@@ -109,6 +109,8 @@ public class Admin extends User {
      * <ul>
      * <li>Manage Equipment
      * <li>Modify Character
+     * <li>Alter Modifiers
+     * <li>Modify Special Ability
      * <li>Exit
      * </ul>
      *
@@ -117,7 +119,7 @@ public class Admin extends User {
      * @param weapons List of weapons
      */
     private void managePlayer(Player player) {
-        String[] options = { "Manage Equipment", "Modify Character", "Alter Modifiers", "Modify Special Abilites", "Exit" };
+        String[] options = { "Manage Equipment", "Modify Character", "Alter Modifiers", "Modify Special Ability", "Exit" };
 
         while (true) {
             MenuBuilder.setConfigLastAsZero(true);
@@ -130,7 +132,7 @@ public class Admin extends User {
             } else if (opt == 3) {
                 player.manageModifiers();
             } else if (opt == 4) {
-                player.manageSpecialAbilities();
+                player.changeSpecialAbility();
             } else {
                 break;
             }

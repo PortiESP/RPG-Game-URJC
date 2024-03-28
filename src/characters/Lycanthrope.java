@@ -6,6 +6,7 @@ import src.abilities.*;
 import src.equipment.Equipment;
 import src.minions.Minion;
 import src.modifiers.Modifier;
+import src.users.Player;
 import utils.MenuBuilder;
 
 /**
@@ -24,10 +25,9 @@ public class Lycanthrope extends Character {
     public static int INIT_MINIONS = 3;
 
     // ============================================================================================[ Constructor ]>>>
-    public Lycanthrope() {
-        super();
+    public Lycanthrope(Player player) {
+        super(player);
         rage = 0;
-        this.loadSpecial();
         this.loadMinions();
     }
 
@@ -61,14 +61,6 @@ public class Lycanthrope extends Character {
         // Set the health of the minions and the minions array
         this.setMinionsHealth(health);
         this.setMinions(minions);
-    }
-
-    /**
-     * Load the special ability of the lycanthrope, the don.
-     */
-    @Override
-    public void loadSpecial() {
-        this.special = new Don();
     }
 
     /**
@@ -131,12 +123,7 @@ public class Lycanthrope extends Character {
      * Show the attributes of the lycanthrope.
      */
     public static void showAttributes() {
-        String[] attributes = { 
-            "Max Health: " + MAX_HEALTH, 
-            "Max Power: " + MAX_POWER, 
-            "Max Rage: " + MAX_RAGE, 
-            "Initial Minions: " + INIT_MINIONS
-        };
+        String[] attributes = { "Max Health: " + MAX_HEALTH, "Max Power: " + MAX_POWER, "Max Rage: " + MAX_RAGE, "Initial Minions: " + INIT_MINIONS };
 
         MenuBuilder.doc("Lycanthrope Attributes", attributes);
     }

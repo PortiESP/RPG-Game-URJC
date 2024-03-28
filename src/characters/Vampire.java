@@ -6,6 +6,7 @@ import src.abilities.*;
 import src.equipment.Equipment;
 import src.minions.Minion;
 import src.modifiers.Modifier;
+import src.users.Player;
 import utils.MenuBuilder;
 
 /**
@@ -26,9 +27,8 @@ public class Vampire extends Character {
     public static int INIT_MINIONS = 3;
 
     // ============================================================================================[ Constructor ]>>>
-    public Vampire() {
-        super();
-        this.loadSpecial();
+    public Vampire(Player player) {
+        super(player);
         this.loadMinions();
     }
 
@@ -67,14 +67,6 @@ public class Vampire extends Character {
 
         this.setMinionsHealth(health);
         this.setMinions(minions);
-    }
-
-    /**
-     * Load the special ability of the vampire, the discipline.
-     */
-    @Override
-    public void loadSpecial() {
-        this.special = new Discipline();
     }
 
     /**
@@ -137,12 +129,7 @@ public class Vampire extends Character {
      * Show the attributes of the vampire.
      */
     public static void showAttributes() {
-        String[] attributes = {
-                "Max Health: " + MAX_HEALTH,
-                "Max Power: " + MAX_POWER,
-                "Max Blood: " + MAX_BLOOD,
-                "Initial Minions: " + INIT_MINIONS
-        };
+        String[] attributes = { "Max Health: " + MAX_HEALTH, "Max Power: " + MAX_POWER, "Max Blood: " + MAX_BLOOD, "Initial Minions: " + INIT_MINIONS };
 
         MenuBuilder.doc("Vampire Attributes", attributes);
     }

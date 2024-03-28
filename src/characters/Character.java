@@ -22,18 +22,18 @@ public abstract class Character {
     protected SpecialAbility special;
 
     // ============================================================================================[ Constructor ]>>>
-    public Character() {
+    public Character(Player player) {
         this.loadInitialValues();
-        this.loadModifiers();
+        // Assign player's weapons and armor to the character
+        this.assignEquipment(player);
+        this.assignModifiers(player);
+        this.assignSpecial(player);
     }
 
     // ============================================================================================[ Abstract Methods ]>>>
 
     // Load initial values for the character
     public abstract void loadInitialValues();
-
-    // Load the character's special ability
-    public abstract void loadSpecial();
 
     // Load the character's minions
     public abstract void loadMinions();
@@ -168,15 +168,6 @@ public abstract class Character {
     }
 
     /**
-     * Load the modifiers for the character.
-     */
-    private void loadModifiers() {
-        // TODO: Implement this method
-        Modifier[] mods = { new Strength(), new Weakness() };
-        this.modifiers = mods;
-    }
-
-    /**
      * Calculate the attack power provided by the equipment.
      * @return Attack power provided by the equipment
      */
@@ -221,7 +212,22 @@ public abstract class Character {
             if (m instanceof Strength) {
                 Strength s = (Strength) m;
                 sum += s.getEffectiveness();
-            } else if (m instanceof Weakness) {
+            }
+        }
+        return sum;
+    }
+
+    /**
+     * Calculate the attack power provided by the modifiers.
+     * @return Attack power provided by the modifiers
+     */
+    private int calcModifiersDefense() {
+        int sum = 0;
+        for (Modifier m : this.modifiers) {
+            if (m == null) {
+                continue;
+            }
+            if (m instanceof Weakness) {
                 Weakness w = (Weakness) m;
                 sum -= w.getSensitivity();
             }
@@ -248,7 +254,7 @@ public abstract class Character {
 
         cumAtt += calcEquipmentAttack();
         cumAtt += calcModifiersAttack();
-        cumAtt += this.special.getAttack();
+        cumAtt += this.special != null ? this.special.getAttack() : 0;
 
         return cumAtt;
     }
@@ -262,8 +268,9 @@ public abstract class Character {
         int cumDef = 0;
 
         cumDef += calcEquipmentDefense();
+        cumDef += calcModifiersDefense();
         cumDef += calcMinionsDefense();
-        cumDef += this.special.getDefense();
+        cumDef += this.special != null ? this.special.getDefense() : 0;
 
         return cumDef;
     }

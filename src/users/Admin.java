@@ -117,15 +117,23 @@ public class Admin extends User {
      * @param weapons List of weapons
      */
     private void managePlayer(Player player) {
-        String[] options = { "Manage Equipment", "Modify Character", "Exit" };
-        int opt = MenuBuilder.menu("Manage Player", options);
+        String[] options = { "Manage Equipment", "Modify Character", "Alter Modifiers", "Modify Special Abilites", "Exit" };
 
-        if (opt == 1) {
-            player.manageEquipment();
-        } else if (opt == 2) {
-            this.modifyCharacter(player.getCurrentCharacter());
-        } else {
-            return;
+        while (true) {
+            MenuBuilder.setConfigLastAsZero(true);
+            int opt = MenuBuilder.menu("Manage Player", options);
+    
+            if (opt == 1) {
+                player.manageEquipment();
+            } else if (opt == 2) {
+                this.modifyCharacter(player.getCurrentCharacter());
+            } else if (opt == 3) {
+                player.manageModifiers();
+            } else if (opt == 4) {
+                player.manageSpecialAbilities();
+            } else {
+                break;
+            }
         }
     }
 

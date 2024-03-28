@@ -129,9 +129,9 @@ public abstract class Character {
      */
     private int getAttackPower() {
         int success = 0;
-        int attackPower = calcAttackPower();
+        int attackPower = this.calcAttackPower();
         for (int i = 0; i < attackPower; i++) {
-            int roll = rollDice();
+            int roll = this.rollDice();
             if (roll >= 5) {
                 success++;
             }

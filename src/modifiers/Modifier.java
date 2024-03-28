@@ -38,7 +38,7 @@ public abstract class Modifier {
 
     // ============================================================================================[ Getters & Setters ]>>>
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {

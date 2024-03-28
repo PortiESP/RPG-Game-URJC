@@ -135,7 +135,7 @@ public class Lycanthrope extends Character {
             "Max Health: " + MAX_HEALTH, 
             "Max Power: " + MAX_POWER, 
             "Max Rage: " + MAX_RAGE, 
-            "Initial Minions: " + INIT_MINIONS 
+            "Initial Minions: " + INIT_MINIONS
         };
 
         MenuBuilder.doc("Lycanthrope Attributes", attributes);

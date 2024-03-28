@@ -26,7 +26,7 @@ public class Game {
     private List<Challenge> challenges = new ArrayList<>();
     public static List<Armor> armorsAvailable = new ArrayList<>();
     public static List<Weapon> weaponsAvailable = new ArrayList<>();
-    public static List<Modifier> modifiersAviable = new ArrayList<>();
+    public static List<Modifier> modifiersAvailable = new ArrayList<>();
     public static List<Talent> talentsAvailable = new ArrayList<>();
     public static List<Don> donesAvailable = new ArrayList<>();
     public static List<Discipline> disciplinesAvailable = new ArrayList<>();
@@ -113,7 +113,7 @@ public class Game {
         // Load the default armors and weapons
         Game.armorsAvailable = Armor.loadFromArray(Const.ARMORS);
         Game.weaponsAvailable = Weapon.loadFromArray(Const.WEAPONS);
-        Game.modifiersAviable = Modifier.loadFromArray(Const.STRENGHTS, Const.WEAKNESSES);
+        Game.modifiersAvailable = Modifier.loadFromArray(Const.STRENGHTS, Const.WEAKNESSES);
         Game.talentsAvailable = Talent.loadFromArray(Const.TALENTS);
         Game.donesAvailable = Don.loadFromArray(Const.DONES);
         Game.disciplinesAvailable = Discipline.loadFromArray(Const.DISCIPLINES);

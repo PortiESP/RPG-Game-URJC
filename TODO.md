@@ -9,7 +9,7 @@
 - [X] Search a way to offer a default weapons set.
 - [X] Search a way to offer a default armor set.
 - [X] Make a player to select a character selection when registering.
-- [ ] Implement battle system.
+- [X] Implement battle system.
   - [X] Challenge part 1 (created, unverified)
   - [X] Challenge part 2 (verified, waiting for acceptance)
   - [X] Challenge part 3 (accepted or not, finished)
@@ -39,8 +39,8 @@
   - [X] Check ranking.
   - [X] Manage account settings.
   - [X] Sign off.
-- [ ] attack and deffense values of the equipment must be between 1-3
-- [X] intoduce minions array in the const DEVILS
+- [X] Attack and deffense values of the equipment must be between 1-3
+- [X] Introduce minions array in the const DEVILS
 - [X] Replace the {@Code Some code} comments to <code>Some code</code>
 - [ ] Explain the attributes of the classes in class JavaDoc comment.
   

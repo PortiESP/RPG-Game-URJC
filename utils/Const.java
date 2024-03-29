@@ -14,7 +14,7 @@ public class Const {
         { "Leather Armor", "0", "1" },
         { "Chainmail Armor", "0", "2" },
         { "Plate Armor", "0", "3" },
-        { "Dragon Armor", "1", "4" },
+        { "Dragon Armor", "1", "3" },
     };
 
     // Default Available Weapons
@@ -22,8 +22,8 @@ public class Const {
         // Name, Attack Modifier, Defense Modifier, Hands
         { "Dagger", "1", "1", "1" },
         { "Sword", "2", "2", "1" },
-        { "Axe", "3", "4", "2" },
-        { "Dragon Slayer", "6", "1", "2" },
+        { "Axe", "3", "1", "2" },
+        { "Dragon Slayer", "3", "2", "2" },
     };
 
     // Default Available Strenghts

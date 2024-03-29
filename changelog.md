@@ -21,6 +21,7 @@
     - `checkBattleHistory()`
     - `checkRanking()`
 - Added some private methods for modularization
+- Added methods to save static data to `state` file.
 
 ## User Class Changes
 - Added `challenges` attribute to the `Player` class.
@@ -36,6 +37,5 @@
 - Added `loadFromArray()` method to the `Weapon` & `Armor` classes in order to load default weapons from Constants class.
 - Overrided `toString()` method.
 
-## Constants Class Changes
-- Added `WEAPONS` constant to allow players to choose weapons even if the admin has not added them.
-- Added `ARMORS` constant to allow players to choose armors even if the admin has not added them.
+## Consts Class Changes
+- Added default game data to the `Consts` class in order to load default game dependencies even if the admin does not add any data.

@@ -11,6 +11,10 @@ public class Devil extends Minion {
     private ArrayList<Minion> minions = new ArrayList<>();
 
     // ============================================================================================[ Constructor ]>>>
+    public Devil() {
+        super();
+    }
+
     public Devil(String name, int health, String covenant) {
         super(name, health);
         this.covenant = covenant;

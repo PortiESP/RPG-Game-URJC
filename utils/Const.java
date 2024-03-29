@@ -4,6 +4,7 @@ public class Const {
 
     // Constants for the file paths
     public static final String DATA_PATH = "/data/game.xml";
+    public static final String STATE_PATH = "/data/state.xml";
 
     // Constants for the game rules
     public static final int INITIAL_GOLD = 500;

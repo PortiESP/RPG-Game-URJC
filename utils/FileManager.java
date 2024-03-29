@@ -3,18 +3,15 @@ package utils;
 import java.beans.*;
 import java.io.*;
 /*
-    Auxiliary class containing the methods to save and read files
-    - saveFile: Method to save a game in a file
-    - readFile: Method to read a game from a file
+    Auxiliary class containing the methods to save and read files in XML format
+    - saveFile: Method to save a data in a file
+    - readFile: Method to read a data from a file
 */
-
-import src.Game;
 
 public class FileManager {
 
-    public static void saveFile(Game game) {
+    public static void saveFile(Object data, String filePath) {
         // Create finalPath with actualDate
-        String filePath = Const.DATA_PATH;
         String finalPath = getFilePath(filePath);
 
         // Try to save the file
@@ -27,14 +24,14 @@ public class FileManager {
             XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(finalPath)));
 
             // Save the object
-            encoder.writeObject(game);
+            encoder.writeObject(data);
             encoder.close();
         } catch (IOException e) {
             System.out.println("Error trying to save the file");
         }
     }
 
-    public static Game readFile(String filePath) {
+    public static Object readFile(String filePath) {
         // Create finalPath with fileName
         String finalPath = getFilePath(filePath);
 
@@ -44,9 +41,10 @@ public class FileManager {
             XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(finalPath)));
 
             // Read the object
-            Game game = (Game) decoder.readObject();
+            Object data = decoder.readObject();
             decoder.close();
-            return game;
+            return data;
+
         } catch (IOException e) {
             return null;
         }

@@ -10,6 +10,10 @@ public class Human extends Minion {
     private LoyaltyEnum loyalty;
 
     // ============================================================================================[ Constructor ]>>>
+    public Human() {
+        super();
+    }
+
     public Human(String name, int health, LoyaltyEnum loyalty) {
         super(name, health);
         this.loyalty = loyalty;

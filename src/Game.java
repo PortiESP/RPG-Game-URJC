@@ -53,18 +53,21 @@ public class Game {
     public void play() {
         // Load the game
         this.load();
-        System.out.println("Playing...");
+
+        // Save the game for the first time
+        this.save();
 
         // Main Loop
-        while (true) {
+        boolean exit = false;
+        while (!exit) {
             // If the user is a player, manage the notifications
             if (this.loggedUser instanceof Player) {
                 Player player = (Player) this.loggedUser;
                 player.manageNotifications();
             }
 
-            // Print the menu
-            this.menu();
+            // Print the menu and get the exit status
+            exit = this.menu();
 
             // Save the game
             this.save();
@@ -87,7 +90,7 @@ public class Game {
      */
     private void load() {
         // Load the game from the file
-        Game game = FileManager.readFile(Const.DATA_PATH);
+        Game game = (Game) FileManager.readFile(Const.DATA_PATH);
 
         // Replace the game settings
         if (game != null) {
@@ -108,7 +111,6 @@ public class Game {
      * @see #loadArmors()
      * @see #loadWeapons()
      */
-
     private void loadDefaultSettings() {
         // Load the default armors and weapons
         Game.armorsAvailable = Armor.loadFromArray(Const.ARMORS);
@@ -120,6 +122,40 @@ public class Game {
         Game.ghoulsAvailable = Ghoul.loadFromArray(Const.GHOULS);
         Game.humansAvailable = Human.loadFromArray(Const.HUMANS);
         Game.devilsAvailable = Devil.loadFromArray(Const.DEVILS);
+    }
+
+    /**
+     * Method to create the game static state
+     * <p>
+     * This method will create the game static state. The game static state is a map with the game static attributes.
+     * </p>
+     * @return The game static state
+     */
+    private Map<String, Object> createStaticState() {
+        Map<String, Object> state = new HashMap<>();
+        state.put("armorsAvailable", Game.armorsAvailable);
+        state.put("weaponsAvailable", Game.weaponsAvailable);
+        state.put("modifiersAvailable", Game.modifiersAvailable);
+        state.put("talentsAvailable", Game.talentsAvailable);
+        state.put("donesAvailable", Game.donesAvailable);
+        state.put("disciplinesAvailable", Game.disciplinesAvailable);
+        state.put("ghoulsAvailable", Game.ghoulsAvailable);
+        state.put("humansAvailable", Game.humansAvailable);
+        state.put("devilsAvailable", Game.devilsAvailable);
+        return state;
+    }
+
+    /**
+     * Method to retrieve the game static state
+     * <p>
+     * This method will retrieve the game static state from a file determined by the <code>Const.STATE_PATH</code> constant.
+     * </p>
+     * @return The game static state
+     * @see FileManager#readFile(String)
+     */
+    @SuppressWarnings("unchecked")
+    private Map<String, Object> retrieveStaticState() {
+        return (Map<String, Object>) FileManager.readFile(Const.STATE_PATH);
     }
 
     /**
@@ -136,22 +172,24 @@ public class Game {
      * @see #setUsers(List)
      * @see #setChallenges(List)
      */
+    @SuppressWarnings("unchecked")
     private void replaceSettings(Game game) {
         // Set the game attributes
         this.users = game.users;
         this.lastId = game.lastId;
         this.challenges = game.challenges;
-        // Since the following variable are static, they are automatically loaded when the file is readed
-        // Game.armorsAvailable = game.armorsAvailable;
-        // Game.weaponsAvailable = game.weaponsAvailable;
-        // Game.modifiersAviable = game.modifiersAviable;
-        // Game.talentsAvailable = game.talentsAvailable;
-        // Game.donesAvailable = game.donesAvailable;
-        // Game.disciplinesAvailable = game.disciplinesAvailable;
-        // Game.ghoulsAvailable = game.ghoulsAvailable;
-        // Game.humansAvailable = game.humansAvailable;
-        // Game.devilsAvailable = game.devilsAvailable;
 
+        // Set the game static state
+        Map<String, Object> state = game.retrieveStaticState();
+        Game.armorsAvailable = (List<Armor>) state.get("armorsAvailable");
+        Game.weaponsAvailable = (List<Weapon>) state.get("weaponsAvailable");
+        Game.modifiersAvailable = (List<Modifier>) state.get("modifiersAvailable");
+        Game.talentsAvailable = (List<Talent>) state.get("talentsAvailable");
+        Game.donesAvailable = (List<Don>) state.get("donesAvailable");
+        Game.disciplinesAvailable = (List<Discipline>) state.get("disciplinesAvailable");
+        Game.ghoulsAvailable = (List<Ghoul>) state.get("ghoulsAvailable");
+        Game.humansAvailable = (List<Human>) state.get("humansAvailable");
+        Game.devilsAvailable = (List<Devil>) state.get("devilsAvailable");
     }
 
     /**
@@ -159,26 +197,33 @@ public class Game {
      */
     private void save() {
         // Save the game to the file
-        FileManager.saveFile(this);
+        FileManager.saveFile(this, Const.DATA_PATH);
+
+        // Save the game state to the file
+        FileManager.saveFile(this.createStaticState(), Const.STATE_PATH);
     }
 
     /**
      * Prints the corresponding menu depending on the user logged in.
      */
-    private void menu() {
+    private boolean menu() {
+        boolean exit = false;
+
         if (this.loggedUser == null) {
-            this.notLoggedMenu();
+            exit = this.notLoggedMenu();
         } else if (this.loggedUser instanceof Player) {
             this.loggedPlayerMenu();
         } else if (this.loggedUser instanceof Admin) {
             this.loggedAdminMenu();
         }
+
+        return exit;
     }
 
     /**
      * Prints the menu options for users not logged in
      */
-    private void notLoggedMenu() {
+    private boolean notLoggedMenu() {
         // Prepare the options, print the menu and get the answer
         String[] options = { "Login", "Register", "Exit" };
         MenuBuilder.setConfigLastAsZero(true);
@@ -196,8 +241,10 @@ public class Game {
         } else if (answer == 2) {
             this.register();
         } else {
-            System.exit(0);
+            return true;
         }
+
+        return false;
     }
 
     /**

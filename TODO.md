@@ -42,8 +42,7 @@
 - [X] Attack and deffense values of the equipment must be between 1-3
 - [X] Introduce minions array in the const DEVILS
 - [X] Replace the {@Code Some code} comments to <code>Some code</code>
-- [ ] Explain the attributes of the classes in class JavaDoc comment.
-- [ ] Check Player class doc (some comments mention to change or select the *player* attributes but actually are the *character* attributes)
+- [X] Explain the attributes of the classes in class JavaDoc comment.
   
 ## Refactor for review
 

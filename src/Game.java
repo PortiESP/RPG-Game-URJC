@@ -646,7 +646,10 @@ public class Game {
         MenuBuilder.alert(title, output);
 
         // Set the new character selection
-        player.setCurrentCharacter(selectedCharacter);
+        if (selectedCharacter != player.getCurrentCharacter()) {
+            player.setCurrentCharacter(selectedCharacter);
+            player.setSpecialAbilities(null);
+        }
     }
 
     /**

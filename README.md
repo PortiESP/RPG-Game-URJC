@@ -1,27 +1,30 @@
-# 🕹️ Terminal Based RPG Game
+# 🕹️ RPG Game
+
 
 <br/>
 
-## 👥 Team Members
 
-| Name                     | Avatar                                                                        |
-| ------------------------ | ----------------------------------------------------------------------------- |
-| **Jaime Portillo Pérez** | <img src="https://avatars.githubusercontent.com/u/47105148?v=4" width="100">  |
-| **Diego Sánchez Rincón** | <img src="https://avatars.githubusercontent.com/u/121297520?v=4" width="100"> |
-| **Daniel Santos López**  | <img src="https://avatars.githubusercontent.com/u/146845008?v=4" width="100"> |
-| **Luis Abril Andreu**    | <img src="https://avatars.githubusercontent.com/u/146706969?v=4" width="100"> |
+## 📟 Terminal Based RPG Game
 
-## 📂 Repository
+#### This application is developed in Java with the following features:
 
-#### You can find our project repository [here](https://github.com/PortiESP/proyecto-juego-rpg).
+1. 💻 **Terminal Based** - The application runs in the terminal for easy access and control.
 
----
+2. 🧑‍💻 **Users System** - The game allows multiple users to play by registering and logging in.
+
+3. 🏆 **Ranking System** - The game keeps track of the players' scores and displays them in a ranking.
+
+#### Be the most recognized player! 🎉
+   
+
+<br/>
+
 
 ## 🚀 How to Install and Run
 
 #### Follow these steps to get started:
 
-1. 📥 **Download** - Get the latest release from the [GitHub Repository](https://github.com/PortiESP/proyecto-juego-rpg).
+1. 📥 **Download** - Get the latest release from the [GitHub Repository](https://github.com/PortiESP/RPG-Game-URJC).
 
 2. 📂 **Unzip** - Extract the downloaded file.
 
@@ -34,3 +37,84 @@
     java Launcher
      ```
 
+
+<br/>
+
+
+## 🎮 How to Play or Administrate a game
+
+#### Follow these steps to get started:
+
+1. 📝 **Register in** - Create a new user account to start playing or administrating the game.
+
+2. 🔑 **Log in** - Enter your username and password to access the game.
+
+3. 📚 **Follow the screen instructions** - The game will guide you through the different options available.
+
+4. 👮‍♂️ **Perform your role** - Play the game as a player or administrate it as an admin.
+
+<br/>
+
+
+## 🧑‍💻 For Developers
+
+### 📂 Game Data
+
+ - 📁 **Data Files** - The `data` folder contains all the game's data files.
+
+ - 📄 **Game File** - The `game.xml` file stores all game saved data.
+
+ - 📄 **Static File** - The `state.xml` file stores the static atributes required by the game.
+
+#### Here's what you need to know:
+
+- 🚫 **Never Delete** - This folder should never be deleted.
+
+<br/>
+
+### 🛠️ Configuring Game Settings
+
+#### Here's what you need to know:
+
+- 🔧 **Game Parameters** - The `Const.java` file is a Java class that contains all game parameters and configurations.
+
+- 🔄 **Modifying Parameters** - If you need to change any game parameter, this is the place to do it.
+
+- 🎛️ **Default Values** - This file includes default values for all the game's parameters (specialAbilities, weapons, etc).
+
+
+<br/>
+
+
+## 📋 Requirements
+
+#### To run this application, you'll need:
+
+- ☕ **Java 8** or higher installed on your machine.
+
+
+<br/>
+
+
+## 🙌 Credits
+
+#### This project was developed by:
+
+| Name           | GitHub                                      | Email                 |
+| -------------- | ------------------------------------------- | --------------------- |
+| Diego Sánchez  | [CuB1z](https://github.com/CuB1z)           | cubizdev@gmail.com    |
+| Jaime Portillo | [PortiESP](https://github.com/PortiESP)     |                       |
+| Daniel Santos  | [Danisntoss](https://github.com/danisntoss) | danisntos00@gmail.com |
+| Luis Abril     | [LuisAbril](https://github.com/LuisAbril)   |                       |
+
+
+<br/>
+
+
+---
+
+
+<br/>
+
+
+© 2024. All rights reserved.

@@ -11,7 +11,7 @@ This project is a game developed for URJC University for the subject: Programmin
 
 1. 💻 **Terminal Based** - The application runs in the terminal for easy access and control.
 
-2. 🧑‍💻 **Users System** - The game allows multiple users to play by registering and logging in.
+2. 🧑🏻 **Users System** - The game allows multiple users to play by registering and logging in.
 
 3. 🏆 **Ranking System** - The game keeps track of the players' scores and displays them in a ranking.
 

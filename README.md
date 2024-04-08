@@ -1,5 +1,6 @@
 # 🕹️ RPG Game
 
+This project is a game developed for URJC University for the subject: Programming Methodology. Its main goal is to develop a simple RPG game. The game's code is one of the four parts of the main project (Analysis, Design, Coding, and Testing) intended to follow the engineering process.
 
 <br/>
 

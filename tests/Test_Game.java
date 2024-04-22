@@ -1,44 +1,43 @@
 package tests;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Disabled;
 
 class Test_Game {
 
     @Test
-    void play() {
-    }
+    @Disabled
+    void play() {}
 
     @Test
-    void getUsers() {
-    }
+    @Disabled
+    void getUsers() {}
 
     @Test
-    void setUsers() {
-    }
+    @Disabled
+    void setUsers() {}
 
     @Test
-    void getLoggedUser() {
-    }
+    @Disabled
+    void getLoggedUser() {}
 
     @Test
-    void setLoggedUser() {
-    }
+    @Disabled
+    void setLoggedUser() {}
 
     @Test
-    void getChallenges() {
-    }
+    @Disabled
+    void getChallenges() {}
 
     @Test
-    void setChallenges() {
-    }
+    @Disabled
+    void setChallenges() {}
 
     @Test
-    void getLastId() {
-    }
+    @Disabled
+    void getLastId() {}
 
     @Test
-    void setLastId() {
-    }
+    @Disabled
+    void setLastId() {}
 }

@@ -6,11 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 import src.equipment.Weapon;
 
 public class Test_Weapon {
 
     @Test
+    @Disabled
     public void testToString() {}
 
     @Test

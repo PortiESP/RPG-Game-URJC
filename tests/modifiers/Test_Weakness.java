@@ -1,7 +1,5 @@
 package tests.modifiers;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 class Test_Weakness {

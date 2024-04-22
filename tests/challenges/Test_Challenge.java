@@ -1,14 +1,12 @@
 package tests.challenges;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
-import src.challenges.Challenge;
-import src.users.Player;
+import org.junit.jupiter.api.Disabled;
 
 public class Test_Challenge {
 
     @Test
+    @Disabled
     public void getOpponent() {
         //TODO: dont know how to test this
         // Player test1 = new Player("test1","test1","test1","xxxxx");
@@ -18,36 +16,47 @@ public class Test_Challenge {
     }
 
     @Test
+    @Disabled
     void isValid() {}
 
     @Test
+    @Disabled
     void getChallengedPlayer() {}
 
     @Test
+    @Disabled
     void getChallengerPlayer() {}
 
     @Test
+    @Disabled
     void approve() {}
 
     @Test
+    @Disabled
     void accept() {}
 
     @Test
+    @Disabled
     void reject() {}
 
     @Test
+    @Disabled
     void manageFight() {}
 
     @Test
+    @Disabled
     void getGold() {}
 
     @Test
+    @Disabled
     void setGold() {}
 
     @Test
+    @Disabled
     void isAccepted() {}
 
     @Test
+    @Disabled
     void setAccepted() {}
 
     @Test

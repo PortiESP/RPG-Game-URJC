@@ -3,6 +3,7 @@ package tests.users;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 import org.mockito.Mockito;
 import src.users.Admin;
 

@@ -1,192 +1,146 @@
-package tests;
-
-import org.junit.Test;
+package tests.users;
 
 import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 class Test_Player {
 
     @Test
-    void addChallengeToHistory() {
-    }
+    void addChallengeToHistory() {}
 
     @Test
-    void hasChallenges() {
-    }
+    void hasChallenges() {}
 
     @Test
-    void getScore() {
-    }
+    void getScore() {}
 
     @Test
-    void showInfo() {
-    }
+    void showInfo() {}
 
     @Test
-    void defeatedRecently() {
-    }
+    void defeatedRecently() {}
 
     @Test
-    void ban() {
-    }
+    void ban() {}
 
     @Test
-    void unban() {
-    }
+    void unban() {}
 
     @Test
-    void manageModifiers() {
-    }
+    void manageModifiers() {}
 
     @Test
-    void changeModifier() {
-    }
+    void changeModifier() {}
 
     @Test
-    void showModifiers() {
-    }
+    void showModifiers() {}
 
     @Test
-    void changeSpecialAbility() {
-    }
+    void changeSpecialAbility() {}
 
     @Test
-    void showSpecialAbilities() {
-    }
+    void showSpecialAbilities() {}
 
     @Test
-    void manageEquipment() {
-    }
+    void manageEquipment() {}
 
     @Test
-    void showEquipment() {
-    }
+    void showEquipment() {}
 
     @Test
-    void changeArmor() {
-    }
+    void changeArmor() {}
 
     @Test
-    void changeWeapon() {
-    }
+    void changeWeapon() {}
 
     @Test
-    void notifyChallenge() {
-    }
+    void notifyChallenge() {}
 
     @Test
-    void manageNotifications() {
-    }
+    void manageNotifications() {}
 
     @Test
-    void payGoldTo() {
-    }
+    void payGoldTo() {}
 
     @Test
-    void canAfford() {
-    }
+    void canAfford() {}
 
     @Test
-    void acceptChallenge() {
-    }
+    void acceptChallenge() {}
 
     @Test
-    void getId() {
-    }
+    void getId() {}
 
     @Test
-    void setId() {
-    }
+    void setId() {}
 
     @Test
-    void getPendingChallenge() {
-    }
+    void getPendingChallenge() {}
 
     @Test
-    void setPendingChallenge() {
-    }
+    void setPendingChallenge() {}
 
     @Test
-    void isPendingNotification() {
-    }
+    void isPendingNotification() {}
 
     @Test
-    void setPendingNotification() {
-    }
+    void setPendingNotification() {}
 
     @Test
-    void isBanned() {
-    }
+    void isBanned() {}
 
     @Test
-    void setBanned() {
-    }
+    void setBanned() {}
 
     @Test
-    void getGold() {
-    }
+    void getGold() {}
 
     @Test
-    void setGold() {
-    }
+    void setGold() {}
 
     @Test
-    void getLastLostFight() {
-    }
+    void getLastLostFight() {}
 
     @Test
-    void setLastLostFight() {
-    }
+    void setLastLostFight() {}
 
     @Test
-    void getCurrentCharacter() {
-    }
+    void getCurrentCharacter() {}
 
     @Test
-    void setCurrentCharacter() {
-    }
+    void setCurrentCharacter() {}
 
     @Test
-    void getArmor() {
-    }
+    void getArmor() {}
 
     @Test
-    void setArmor() {
-    }
+    void setArmor() {}
 
     @Test
-    void getWeapons() {
-    }
+    void getWeapons() {}
 
     @Test
-    void setWeapons() {
-    }
+    void setWeapons() {}
 
     @Test
-    void getChallenges() {
-    }
+    void getChallenges() {}
 
     @Test
-    void setChallenges() {
-    }
+    void setChallenges() {}
 
     @Test
-    void hasPendingChallenge() {
-    }
+    void hasPendingChallenge() {}
 
     @Test
-    void getModifiers() {
-    }
+    void getModifiers() {}
 
     @Test
-    void setModifiers() {
-    }
+    void setModifiers() {}
 
     @Test
-    void getSpecialAbility() {
-    }
+    void getSpecialAbility() {}
 
     @Test
-    void setSpecialAbilities() {
-    }
+    void setSpecialAbilities() {}
 }

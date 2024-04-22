@@ -1,8 +1,8 @@
-package tests;
+package tests.users;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.junit.Test;
 import src.users.Admin;
 
 public class Test_Admin {
@@ -15,7 +15,7 @@ public class Test_Admin {
 
     @Test
     public void manageChallenge() {
-        // TODO Implement this test 
+        // TODO Implement this test
 
     }
 }

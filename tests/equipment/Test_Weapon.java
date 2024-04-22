@@ -1,43 +1,25 @@
-package tests;
-
-import org.junit.Test;
+package tests.equipment;
 
 import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 class Test_Weapon {
 
     @Test
-    void testToString() {
-    }
+    void testToString() {}
 
     @Test
     public void loadFromArray() {
-        String[][] ArmorArr1 = {
-            {"TestWeapon", "1", "1"},
-            {"TestWeapon2", "2", "2"},
-            {"TestWeapon3", "3", "3"}
-        };
-        
-        String[][] ArmorArr2 = {
-            {"TestWeapon1", "1", "1"},
-            {"TestWeapon2", "2", "2"},
-            {"TestWeapon3", "3", "3"},
-            {"TestWeapon4", "4", "4"}
-        };
+        String[][] ArmorArr1 = { { "TestWeapon", "1", "1" }, { "TestWeapon2", "2", "2" }, { "TestWeapon3", "3", "3" } };
 
-        String[][] ArmorArr3 = {
-            {"TestWeapon1", "1", "1"},
-            {"TestWeapon2", "2", "2"},
-            {"TestWeapon3", "3", "3"},
-            {"TestWeapon4", "4", "4"},
-            {"TestWeapon5", "5", "5"}
-        };
+        String[][] ArmorArr2 = { { "TestWeapon1", "1", "1" }, { "TestWeapon2", "2", "2" }, { "TestWeapon3", "3", "3" }, { "TestWeapon4", "4", "4" } };
+
+        String[][] ArmorArr3 = { { "TestWeapon1", "1", "1" }, { "TestWeapon2", "2", "2" }, { "TestWeapon3", "3", "3" }, { "TestWeapon4", "4", "4" }, { "TestWeapon5", "5", "5" } };
 
         String[][] ArmorArr4 = new String[0][0];
 
-        ArrayList<String[][]> dataInput = new ArrayList<>(
-            List.of(WeaponArr1, WeaponArr2, WeaponArr3, WeaponArr4)
-        );
+        ArrayList<String[][]> dataInput = new ArrayList<>(List.of(WeaponArr1, WeaponArr2, WeaponArr3, WeaponArr4));
 
         for (String[][] weaponArr : dataInput) {
             ArrayList<Weapon> weapons = Weapon.loadFromArray(weaponArr);
@@ -47,7 +29,7 @@ class Test_Weapon {
                 assertEquals(Integer.parseInt(weaponArr[i][1]), weapon.get(i).getAttack());
                 assertEquals(Integer.parseInt(weaponArr[i][2]), weapon.get(i).getDefense());
             }
-        }        
+        }
     }
 
     @Test

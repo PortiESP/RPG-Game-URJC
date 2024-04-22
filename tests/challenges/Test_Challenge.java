@@ -1,11 +1,10 @@
-package tests;
-
-import org.junit.Test;
-
-import src.challenges.Challenge;
-import src.users.Player;
+package tests.challenges;
 
 import static org.junit.Assert.*;
+
+import org.junit.Test;
+import src.challenges.Challenge;
+import src.users.Player;
 
 public class Test_Challenge {
 
@@ -19,79 +18,59 @@ public class Test_Challenge {
     }
 
     @Test
-    void isValid() {
-        
-    }
+    void isValid() {}
 
     @Test
-    void getChallengedPlayer() {
-    }
+    void getChallengedPlayer() {}
 
     @Test
-    void getChallengerPlayer() {
-    }
+    void getChallengerPlayer() {}
 
     @Test
-    void approve() {
-    }
+    void approve() {}
 
     @Test
-    void accept() {
-    }
+    void accept() {}
 
     @Test
-    void reject() {
-    }
+    void reject() {}
 
     @Test
-    void manageFight() {
-    }
+    void manageFight() {}
 
     @Test
-    void getGold() {
-    }
+    void getGold() {}
 
     @Test
-    void setGold() {
-    }
+    void setGold() {}
 
     @Test
-    void isAccepted() {
-    }
+    void isAccepted() {}
 
     @Test
-    void setAccepted() {
-    }
+    void setAccepted() {}
 
     @Test
-    void isApproved() {
-    }
+    void isApproved() {}
 
     @Test
-    void setApproved() {
-    }
+    void setApproved() {}
 
     @Test
-    void getPlayers() {
-    }
+    void getPlayers() {}
 
     @Test
-    void setPlayers() {
-    }
+    void setPlayers() {}
 
     @Test
-    void getResult() {
-    }
+    void getResult() {}
 
     @Test
-    void setResult() {
-    }
+    void setResult() {}
 
     @Test
-    void getWinner() {
-    }
+    void getWinner() {}
 
     @Test
-    void setWinner() {
-    }
+    void setWinner() {}
 }

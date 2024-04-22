@@ -2,16 +2,25 @@ package tests;
 
 import org.junit.Test;
 
+import src.challenges.Challenge;
+import src.users.Player;
+
 import static org.junit.Assert.*;
 
-class Test_Challenge {
+public class Test_Challenge {
 
     @Test
-    void getOpponent() {
+    public void getOpponent() {
+        //TODO: dont know how to test this
+        // Player test1 = new Player("test1","test1","test1","xxxxx");
+        // Player test2 = new Player("test2","test2","test2","xxxxx");
+        // Challenge challenge = new Challenge(test1, test2, 1);
+        // assertEquals(test2, challenge.getOpponent(test1));
     }
 
     @Test
     void isValid() {
+        
     }
 
     @Test

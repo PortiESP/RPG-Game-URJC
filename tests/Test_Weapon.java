@@ -2,36 +2,59 @@ package tests;
 
 import org.junit.Test;
 
-import src.equipment.Weapon;
-
 import static org.junit.Assert.*;
-
-import java.util.ArrayList;
 
 class Test_Weapon {
 
     @Test
-    public void testToString() {
-        return super.toString() + " (Hands Required: " + this.handsRequired + ")";
+    void testToString() {
     }
 
     @Test
-    public static ArrayList<Weapon> loadFromArray(String[][] arr) {
-        ArrayList<Weapon> weapons = new ArrayList<>();
-        for (String[] weapon : arr) {
-            weapons.add(new Weapon(weapon[0], Integer.parseInt(weapon[1]), Integer.parseInt(weapon[2]), Integer.parseInt(weapon[3])));
-        }
+    public void loadFromArray() {
+        String[][] ArmorArr1 = {
+            {"TestWeapon", "1", "1"},
+            {"TestWeapon2", "2", "2"},
+            {"TestWeapon3", "3", "3"}
+        };
+        
+        String[][] ArmorArr2 = {
+            {"TestWeapon1", "1", "1"},
+            {"TestWeapon2", "2", "2"},
+            {"TestWeapon3", "3", "3"},
+            {"TestWeapon4", "4", "4"}
+        };
 
-        return weapons;
+        String[][] ArmorArr3 = {
+            {"TestWeapon1", "1", "1"},
+            {"TestWeapon2", "2", "2"},
+            {"TestWeapon3", "3", "3"},
+            {"TestWeapon4", "4", "4"},
+            {"TestWeapon5", "5", "5"}
+        };
+
+        String[][] ArmorArr4 = new String[0][0];
+
+        ArrayList<String[][]> dataInput = new ArrayList<>(
+            List.of(WeaponArr1, WeaponArr2, WeaponArr3, WeaponArr4)
+        );
+
+        for (String[][] weaponArr : dataInput) {
+            ArrayList<Weapon> weapons = Weapon.loadFromArray(weaponArr);
+
+            for (int i = 0; i < weaponArr.length; i++) {
+                assertEquals(weaponArr[i][0], weapon.get(i).getName());
+                assertEquals(Integer.parseInt(weaponArr[i][1]), weapon.get(i).getAttack());
+                assertEquals(Integer.parseInt(weaponArr[i][2]), weapon.get(i).getDefense());
+            }
+        }        
     }
 
     @Test
-    public int getHandsRequired() {
-        return handsRequired;
+    void getHandsRequired() {
     }
 
     @Test
-    public void setHandsRequired(int handsRequired) {
-        this.handsRequired = handsRequired;
+    void setHandsRequired() {
     }
 }

@@ -51,10 +51,17 @@ class Test_Weapon {
     }
 
     @Test
-    void getHandsRequired() {
+    public void getHandsRequired() {
+        Weapon weapon = new Weapon("Sword", 10, 5, 2);
+        int expectedHandsRequired = 2;
+        int actualHandsRequired = weapon.getHandsRequired();
+        assertEquals(expectedHandsRequired, actualHandsRequired, "Incorrect hands required value");
     }
 
     @Test
-    void setHandsRequired() {
+    public void testSetHandsRequired() {
+        Weapon weapon = new Weapon();
+        weapon.setHandsRequired(2);
+        assertEquals(2, weapon.getHandsRequired());
     }
 }

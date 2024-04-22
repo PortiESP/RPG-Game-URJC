@@ -3,13 +3,19 @@ package tests;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-class Test_Admin {
+import src.users.Admin;
+
+public class Test_Admin {
 
     @Test
-    void getScore() {
+    public void getScore() {
+        Admin admin = new Admin();
+        assertEquals(0, admin.getScore());
     }
 
     @Test
-    void manageChallenge() {
+    public void manageChallenge() {
+        // TODO Implement this test 
+
     }
 }

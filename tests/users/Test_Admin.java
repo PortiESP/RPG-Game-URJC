@@ -16,7 +16,8 @@ public class Test_Admin {
     }
 
     @Test
-    public void testManageChallenge() {
+    public void testManageChallenge() { //TODO modificar estos tests
+
         // Create a mock challenge
         Challenge challenge = Mockito.mock(Challenge.class);
 

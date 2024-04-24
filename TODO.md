@@ -10,7 +10,7 @@
   - [ ] Abilities
     - [X] SpecialAbility (Abstract class)
     - [X] Discipline    // Diego
-    - [ ] Don           // Daniel
+    - [X] Don           // Daniel
     - [X] Talent        // Diego
   - [ ] Challenges
     - [ ] Challenge     // Diego

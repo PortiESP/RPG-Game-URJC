@@ -13,6 +13,27 @@ import src.abilities.Don;
 public class Test_Don {
 
     @Test
+    public void testDon() {
+        Don don = new Don();
+
+        Object[][] dataInput = {
+            { "Test1", 1, 1, 1 },
+            { "     ", 2, 2, 2 },
+            { "*****", 3, 3, 3 },
+            { "Test4", 4, 4, 4 }
+        };
+
+        for (Object[] data : dataInput) {
+            don = new Don((String) data[0], (int) data[1], (int) data[2], (int) data[3]);
+
+            assertEquals(data[0], don.getName());
+            assertEquals(data[1], don.getAttack());
+            assertEquals(data[2], don.getDefense());
+            assertEquals(data[3], don.getMinRage());
+        }
+    }
+
+    @Test
     public void testDonLoadFromArray() {
 
         String[][] donesArr1 = { { "TestDon1", "1", "1", "1" }, { "TestDon2", "2", "2", "2" }, { "TestDon3", "3", "3", "3" } };
@@ -52,7 +73,42 @@ public class Test_Don {
             don = new Don((String) data[0], (int) data[1], (int) data[2], (int) data[3]);
 
             assertEquals(data[0] + " (Attack: " + data[1] + ", Defense: " + data[2] + ") ( Min Rage: " + data[3] + " )", don.toString());
-        }}
+        }
+    }
+    
+    @Test
+    public void testDonAbilityAttack() {
+        Don don = new Don();
+
+        Object[][] dataInput = {
+            { "Test1", 1, 1, 1 },
+            { "     ", 2, 2, 2 },
+            { "*****", 3, 3, 3 },
+            { "Test4", 4, 4, 4 }
+        };
+        for (Object[] data : dataInput) {
+            don = new Don((String) data[0], (int) data[1], (int) data[2], (int) data[3]);
+            assertEquals(data[1], don.abilityAttack());
+  
+        }
+    }
+    
+    @Test
+    public void testDonAbilityDefense() {
+        Don don = new Don();
+
+        Object[][] dataInput = {
+            { "Test1", 1, 1, 1 },
+            { "     ", 2, 2, 2 },
+            { "*****", 3, 3, 3 },
+            { "Test4", 4, 4, 4 }
+        };
+        for (Object[] data : dataInput) {
+            don = new Don((String) data[0], (int) data[1], (int) data[2], (int) data[3]);
+            assertEquals(data[2], don.abilityDefense());
+  
+        }
+    }
 
     @Test
     public void testDonListAvailableDones() {

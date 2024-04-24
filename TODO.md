@@ -22,8 +22,8 @@
     - [ ] Vampire
   - [ ] Equipments
     - [X] Equipment (Abstract class)
-    - [ ] Armor
-    - [ ] Weapon
+    - [X] Armor         // Daniel
+    - [X] Weapon        // No se quien lo hizo
   - [ ] Minions
     - [x] Minion (Abstract class)
     - [X] LoyaltyEnum (Enum)

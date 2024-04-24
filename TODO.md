@@ -36,7 +36,7 @@
     - [ ] Admin
   - [ ] Modifiers
     - [X] Modifier (Abstract class)
-    - [ ] Strength
+    - [ ] Strength      // Daniel
     - [ ] Weakness
   - [ ] Game
     - [ ] Game

@@ -65,7 +65,8 @@ public class Test_Don {
     }
 
     @Test
-    public void testDonToString() {Don don = new Don();
+    public void testDonToString() {
+        Don don = new Don();
 
         Object[][] dataInput = { { "TestDon1", 1, 1, 1 }, { "               ", 2, 2, 2 }, { "***************", 3, 3, 3 }, { "TestDon4", 4, 4, 4 } };
 

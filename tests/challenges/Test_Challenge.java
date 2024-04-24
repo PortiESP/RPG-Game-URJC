@@ -1,85 +1,145 @@
 package tests.challenges;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
+
+import src.challenges.Challenge;
+import src.users.Player;
+import utils.TestingUtils;
 
 public class Test_Challenge {
 
     @Test
-    @Disabled
-    public void getOpponent() {
-        //TODO: dont know how to test this
-        // Player test1 = new Player("test1","test1","test1","xxxxx");
-        // Player test2 = new Player("test2","test2","test2","xxxxx");
-        // Challenge challenge = new Challenge(test1, test2, 1);
-        // assertEquals(test2, challenge.getOpponent(test1));
+    public void testChallenge() {
+        Challenge challenge = new Challenge();
+        assertNotNull(challenge);
+
+        Object[][] dataInput = {
+            { new Player("1", "1", "1", "9999"), new Player("2", "2", "2", "9999"), 1 },
+            { new Player("3", "3", "3", "9999"), new Player("4", "4", "4", "9999"), 2 },
+            { new Player("5", "5", "5", "9999"), new Player("6", "6", "6", "9999"), 3 },
+            { new Player("7", "7", "7", "9999"), new Player("8", "8", "8", "9999"), 4 }
+        };
+
+        for (Object[] data : dataInput) {
+            Player player1 = (Player) data[0];
+            Player player2 = (Player) data[1];
+            int gold = (int) data[2];
+
+            challenge = new Challenge(player1, player2, gold);
+
+            assertEquals(gold, challenge.getGold());
+            assertEquals(false, challenge.isAccepted());
+            assertEquals(false, challenge.isApproved());
+            assertEquals(player1, challenge.getPlayers()[0]);
+            assertEquals(player2, challenge.getPlayers()[1]);
+            assertEquals(null, challenge.getResult());
+            assertEquals(null, challenge.getWinner());
+        }
     }
 
     @Test
-    @Disabled
-    void isValid() {}
+    public void testGetOpponent() {
+        Challenge challenge = new Challenge();
+
+        Object[][] dataInput = {
+                { new Player("1", "1", "1", "9999"), new Player("2", "2", "2", "9999"), 1 },
+                { new Player("3", "3", "3", "9999"), new Player("4", "4", "4", "9999"), 2 },
+                { new Player("5", "5", "5", "9999"), new Player("6", "6", "6", "9999"), 3 },
+                { new Player("7", "7", "7", "9999"), new Player("8", "8", "8", "9999"), 4 }
+        };
+
+        for (Object[] data : dataInput) {
+            Player player1 = (Player) data[0];
+            Player player2 = (Player) data[1];
+            int gold = (int) data[2];
+
+            challenge = new Challenge(player1, player2, gold);
+
+            assertEquals(player2, challenge.getOpponent(player1));
+            assertEquals(player1, challenge.getOpponent(player2));
+        }
+    }
 
     @Test
-    @Disabled
-    void getChallengedPlayer() {}
+    // TODO: Fix this test
+    public void testIsValid() {
+        Player auxPlayer = new Player("1", "1", "1", "9999");
+        Object[][] dataInput = {
+            { new Player("1", "1", "1", "9999"), new Player("2", "2", "2", "9999"), 1, true, false, true },
+            { new Player("3", "3", "3", "9999"), new Player("4", "4", "4", "9999"), 2, false, false, false },
+            { new Player("5", "5", "5", "9999"), new Player("6", "6", "6", "9999"), 3, true, true, true },
+            { auxPlayer, auxPlayer, 4, false, true, false }
+        };
 
-    @Test
-    @Disabled
-    void getChallengerPlayer() {}
+        Challenge auxChallenge = new Challenge();
 
-    @Test
-    @Disabled
-    void approve() {}
+        for (Object[] data : dataInput) {
+            Player loggedUser = (Player) data[0];
+            Player opponent = (Player) data[1];
+            if ((boolean) data[3]) {
+                opponent.setPendingChallenge(auxChallenge);
+            }
+            opponent.setBanned((boolean) data[4]);
 
-    @Test
-    @Disabled
-    void accept() {}
+            if ((boolean) data[5]) {
+                opponent.setLastLostFight(System.currentTimeMillis() - 22 * 60 * 60 * 1000);
+            } else {
+                opponent.setLastLostFight(System.currentTimeMillis() - 25 * 60 * 60 * 1000);
+            }
 
-    @Test
-    @Disabled
-    void reject() {}
+            int gold = (int) data[2];
+            Challenge challenge = new Challenge(loggedUser, opponent, gold);
 
-    @Test
-    @Disabled
-    void manageFight() {}
+            boolean result = true;
+            result = result && !((Player) data[0] == (Player) data[1]);
+            result = result && !opponent.hasPendingChallenge();
+            result = result && !opponent.isBanned();
+            result = result && !opponent.defeatedRecently();
 
-    @Test
-    @Disabled
-    void getGold() {}
+            if (!result) {
+                if (opponent.defeatedRecently()) {
+                    TestingUtils.setInput("1");
+                } else {
+                    TestingUtils.setInput(" ");
+                }
+            }
 
-    @Test
-    @Disabled
-    void setGold() {}
+            assertEquals(result, challenge.isValid(loggedUser, opponent));
+        }
+    }
 
-    @Test
-    @Disabled
-    void isAccepted() {}
+    // @Test
+    // void getChallengedPlayer() {}
 
-    @Test
-    @Disabled
-    void setAccepted() {}
+    // @Test
+    // void getChallengerPlayer() {}
 
-    @Test
-    void isApproved() {}
+    // @Test
+    // void approve() {}
 
-    @Test
-    void setApproved() {}
+    // @Test
+    // void accept() {}
 
-    @Test
-    void getPlayers() {}
+    // @Test
+    // void reject() {}
 
-    @Test
-    void setPlayers() {}
+    // @Test
+    // void manageFight() {}
 
-    @Test
-    void getResult() {}
+    // @Test
+    // void getGold() {}
 
-    @Test
-    void setResult() {}
+    // @Test
+    // void setGold() {}
 
-    @Test
-    void getWinner() {}
+    // @Test
+    // void isAccepted() {}
 
-    @Test
-    void setWinner() {}
+    // @Test
+    // void setAccepted() {}
+
+    // @Test
+    // void isApproved() {}
 }

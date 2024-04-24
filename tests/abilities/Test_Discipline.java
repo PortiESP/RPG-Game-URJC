@@ -14,7 +14,12 @@ public class Test_Discipline {
     public void testDiscipline() {
         Discipline discipline = new Discipline();
 
-        Object[][] dataInput = { { "TestDiscipline1", 1, 1, 1 }, { "               ", 2, 2, 2 }, { "***************", 3, 3, 3 }, { "TestDiscipline4", 4, 4, 4 } };
+        Object[][] dataInput = {
+            { "Test1", 1, 1, 1 },
+            { "     ", 2, 2, 2 },
+            { "*****", 3, 3, 3 },
+            { "Test4", 4, 4, 4 }
+        };
 
         for (Object[] data : dataInput) {
             discipline = new Discipline((String) data[0], (int) data[1], (int) data[2], (int) data[3]);
@@ -30,7 +35,12 @@ public class Test_Discipline {
     public void testDisciplineToString() {
         Discipline discipline = new Discipline();
 
-        Object[][] dataInput = { { "TestDiscipline1", 1, 1, 1 }, { "               ", 2, 2, 2 }, { "***************", 3, 3, 3 }, { "TestDiscipline4", 4, 4, 4 } };
+        Object[][] dataInput = {
+            { "Test1", 1, 1, 1 },
+            { "     ", 2, 2, 2 },
+            { "*****", 3, 3, 3 },
+            { "Test4", 4, 4, 4 }
+        };
 
         for (Object[] data : dataInput) {
             discipline = new Discipline((String) data[0], (int) data[1], (int) data[2], (int) data[3]);
@@ -43,7 +53,12 @@ public class Test_Discipline {
     public void testDisciplineAbilityAttack() {
         Discipline discipline = new Discipline();
 
-        Object[][] dataInput = { { "TestDiscipline1", 1, 1, 1 }, { "               ", 2, 2, 2 }, { "***************", 3, 3, 3 }, { "TestDiscipline4", 4, 4, 4 } };
+        Object[][] dataInput = {
+            { "Test1", 1, 1, 1 },
+            { "     ", 2, 2, 2 },
+            { "*****", 3, 3, 3 },
+            { "Test4", 4, 4, 4 }
+        };
 
         for (Object[] data : dataInput) {
             discipline = new Discipline((String) data[0], (int) data[1], (int) data[2], (int) data[3]);
@@ -59,9 +74,18 @@ public class Test_Discipline {
 
     @Test
     public void testDisciplineLoadFromArray() {
-        String[][] disciplinesArr1 = { { "TestDiscipline1", "1", "1", "1" }, { "TestDiscipline2", "2", "2", "2" }, { "TestDiscipline3", "3", "3", "3" } };
+        String[][] disciplinesArr1 = {
+            { "TestDiscipline1", "1", "1", "1" },
+            { "TestDiscipline2", "2", "2", "2" },
+            { "TestDiscipline3", "3", "3", "3" }
+        };
 
-        String[][] disciplinesArr2 = { { "TestDiscipline1", "1", "1", "1" }, { "TestDiscipline2", "2", "2", "2" }, { "TestDiscipline3", "3", "3", "3" }, { "TestDiscipline4", "4", "4", "4" } };
+        String[][] disciplinesArr2 = {
+            { "TestDiscipline1", "1", "1", "1" },
+            { "TestDiscipline2", "2", "2", "2" },
+            { "TestDiscipline3", "3", "3", "3" },
+            { "TestDiscipline4", "4", "4", "4" }
+        };
 
         String[][] disciplinesArr3 = {
             { "TestDiscipline1", "1", "1", "1" },
@@ -89,9 +113,18 @@ public class Test_Discipline {
 
     @Test
     public void testDisciplineListAvailableDisciplines() {
-        String[][] disciplinesArr1 = { { "TestDiscipline1", "1", "1", "1" }, { "TestDiscipline2", "2", "2", "2" }, { "TestDiscipline3", "3", "3", "3" } };
+        String[][] disciplinesArr1 = {
+            { "TestDiscipline1", "1", "1", "1" },
+            { "TestDiscipline2", "2", "2", "2" },
+            { "TestDiscipline3", "3", "3", "3" }
+        };
 
-        String[][] disciplinesArr2 = { { "TestDiscipline1", "1", "1", "1" }, { "TestDiscipline2", "2", "2", "2" }, { "TestDiscipline3", "3", "3", "3" }, { "TestDiscipline4", "4", "4", "4" } };
+        String[][] disciplinesArr2 = {
+            { "TestDiscipline1", "1", "1", "1" },
+            { "TestDiscipline2", "2", "2", "2" },
+            { "TestDiscipline3", "3", "3", "3" },
+            { "TestDiscipline4", "4", "4", "4" }
+        };
 
         String[][] disciplinesArr3 = {
             { "TestDiscipline1", "1", "1", "1" },
@@ -111,7 +144,10 @@ public class Test_Discipline {
             String[] availableDisciplines = Discipline.listAvailableDisciplines();
 
             for (int i = 0; i < disciplinesArr.length; i++) {
-                assertEquals(disciplinesArr[i][0] + " (Attack: " + disciplinesArr[i][1] + ", Defense: " + disciplinesArr[i][2] + ") ( Cost: " + disciplinesArr[i][3] + " )", availableDisciplines[i]);
+                assertEquals(
+                    disciplinesArr[i][0] + " (Attack: " + disciplinesArr[i][1] + ", Defense: " + disciplinesArr[i][2] + ") ( Cost: " + disciplinesArr[i][3] + " )",
+                    availableDisciplines[i]
+                );
             }
         }
     }

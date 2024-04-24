@@ -11,11 +11,11 @@ public class Test_Armor {
 
     @Test
     public void loadFromArray() {
-        String[][] ArmorArr1 = { { "TestDiscipline1", "1", "1" }, { "TestDiscipline2", "2", "2" }, { "TestDiscipline3", "3", "3" } };
+        String[][] ArmorArr1 = { { "Test1", "1", "1" }, { "Test2", "2", "2" }, { "Test3", "3", "3" } };
 
-        String[][] ArmorArr2 = { { "TestDiscipline1", "1", "1" }, { "TestDiscipline2", "2", "2" }, { "TestDiscipline3", "3", "3" }, { "TestDiscipline4", "4", "4" } };
+        String[][] ArmorArr2 = { { "Test1", "1", "1" }, { "Test2", "2", "2" }, { "Test3", "3", "3" }, { "Test4", "4", "4" } };
 
-        String[][] ArmorArr3 = { { "TestDiscipline1", "1", "1" }, { "TestDiscipline2", "2", "2" }, { "TestDiscipline3", "3", "3" }, { "TestDiscipline4", "4", "4" }, { "TestDiscipline5", "5", "5" } };
+        String[][] ArmorArr3 = { { "Test1", "1", "1" }, { "Test2", "2", "2" }, { "Test3", "3", "3" }, { "Test4", "4", "4" }, { "Test5", "5", "5" } };
 
         String[][] ArmorArr4 = new String[0][0];
 

@@ -74,6 +74,23 @@ public class Test_Discipline {
     }
 
     @Test
+    public void testDisciplineAbilityDefense() {
+        Discipline discipline = new Discipline();
+
+        Object[][] dataInput = {
+            { "Test1", 1, 1, 1 },
+            { "     ", 2, 2, 2 },
+            { "*****", 3, 3, 3 },
+            { "Test4", 4, 4, 4 }
+        };
+
+        for (Object[] data : dataInput) {
+            discipline = new Discipline((String) data[0], (int) data[1], (int) data[2], (int) data[3]);
+            assertEquals(data[2], discipline.abilityDefense());
+        }
+    }
+
+    @Test
     public void testDisciplineLoadFromArray() {
         String[][] disciplinesArr1 = {
             { "TestDiscipline1", "1", "1", "1" },

@@ -10,7 +10,7 @@
   - [ ] Abilities
     - [X] SpecialAbility (Abstract class)
     - [X] Discipline    // Diego
-    - [ ] Don           // Daniel
+    - [X] Don           // Daniel
     - [X] Talent        // Diego
   - [ ] Challenges
     - [ ] Challenge     // Diego
@@ -22,8 +22,8 @@
     - [ ] Vampire
   - [ ] Equipments
     - [X] Equipment (Abstract class)
-    - [ ] Armor
-    - [ ] Weapon
+    - [X] Armor         // Daniel
+    - [X] Weapon        // No se quien lo hizo
   - [ ] Minions
     - [x] Minion (Abstract class)
     - [X] LoyaltyEnum (Enum)

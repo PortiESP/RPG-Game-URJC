@@ -6,6 +6,41 @@
 
 ## TODOs
 
+- [ ] Implement TESTs for the following classes:
+  - [ ] Abilities
+    - [X] SpecialAbility (Abstract class)
+    - [X] Discipline
+    - [ ] Don
+    - [ ] Talent
+  - [ ] Challenges
+    - [ ] Challenge
+    - [ ] Fight
+  - [ ] Characters
+    - [X] Character (Abstract class)
+    - [ ] Hunter
+    - [ ] Lycanthrope
+    - [ ] Vampire
+  - [ ] Equipments
+    - [X] Equipment (Abstract class)
+    - [ ] Armor
+    - [ ] Weapon
+  - [ ] Minions
+    - [x] Minion (Abstract class)
+    - [X] LoyaltyEnum (Enum)
+    - [ ] Devil
+    - [ ] Ghoul
+    - [ ] Human
+  - [ ] Users
+    - [X] User (Abstract class)
+    - [ ] Player
+    - [ ] Admin
+  - [ ] Modifiers
+    - [X] Modifier (Abstract class)
+    - [ ] Strength
+    - [ ] Weakness
+  - [ ] Game
+    - [ ] Game
+
 - [X] Search a way to offer a default weapons set.
 - [X] Search a way to offer a default armor set.
 - [X] Make a player to select a character selection when registering.

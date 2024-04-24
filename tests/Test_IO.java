@@ -6,9 +6,7 @@ import utils.IOManager;
 import utils.MenuBuilder;
 
 import static org.junit.Assert.*;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import utils.TestingUtils;
 
 public class Test_IO {
 
@@ -30,7 +28,7 @@ public class Test_IO {
      */
     public void testIOManager() {
         // Inputs are read from the standard input
-        setInput("0", "1", "hola");
+        TestingUtils.setInput("0", "1", "hola");
 
         // Read the inputs
         // 0
@@ -50,7 +48,7 @@ public class Test_IO {
      */
     public void testMenuBuilder_Menu() {
         // Inputs are read from the standard input
-        setInput("1", "0", "", "2");
+        TestingUtils.setInput("1", "0", "", "2", "");
 
         // Test menu
         String options[] = { "Option 1", "Option 2", "Option 3" };
@@ -64,20 +62,6 @@ public class Test_IO {
 
     //  --------------------- Utils ---------------------
 
-    public void setInput(String input) {
-        input += "\n";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-    }
-
-    public void setInput(String... input) {
-        String buffString = "";
-        for (String str : input) {
-            buffString += str;
-            buffString += "\n";
-        }
-        InputStream in = new ByteArrayInputStream(buffString.getBytes());
-        System.setIn(in);
-    }
+    
 
 }

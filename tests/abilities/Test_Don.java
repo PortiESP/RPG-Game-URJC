@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
 
 import src.Game;
 import src.abilities.Don;
@@ -93,13 +92,11 @@ public class Test_Don {
         }
     }
 
-    @Test
-    @Disabled
-    void getMinRage() {
+    // @Test
+    // void getMinRage() {
         
-    }
+    // }
 
-    @Test
-    @Disabled
-    void setMinRage() {}
+    // @Test
+    // void setMinRage() {}
 }

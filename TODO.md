@@ -11,7 +11,7 @@
     - [X] SpecialAbility (Abstract class)
     - [X] Discipline    // Diego
     - [ ] Don           // Daniel
-    - [ ] Talent        // Diego
+    - [X] Talent        // Diego
   - [ ] Challenges
     - [ ] Challenge
     - [ ] Fight

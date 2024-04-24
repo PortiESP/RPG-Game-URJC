@@ -9,9 +9,9 @@
 - [ ] Implement TESTs for the following classes:
   - [ ] Abilities
     - [X] SpecialAbility (Abstract class)
-    - [X] Discipline
-    - [ ] Don
-    - [ ] Talent
+    - [X] Discipline    // Diego
+    - [ ] Don           // Daniel
+    - [ ] Talent        // Diego
   - [ ] Challenges
     - [ ] Challenge
     - [ ] Fight

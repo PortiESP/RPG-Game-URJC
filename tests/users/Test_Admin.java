@@ -14,57 +14,27 @@ public class Test_Admin {
         assertEquals(0, admin.getScore());
     }
 
-    @Test
-    public void testManageChallenge() { //TODO modificar estos tests
+    public void testManageChallenge() {
+        // Create test objects
+        Player challenger = new Player("John");
+        Player challenged = new Player("Jane");
+        Challenge challenge = new Challenge(challenger, challenged);
+        Admin admin = new Admin();
 
-        // Create a mock challenge
-        // Challenge challenge = Mockito.mock(Challenge.class);
+        // Set up test conditions
+        challenge.setGold(100);
+        challenged.setGold(50);
 
-        // // Create a mock player
-        // Player player1 = Mockito.mock(Player.class);
-        // Player player2 = Mockito.mock(Player.class);
+        // Call the method under test
+        admin.manageChallenge(challenge);
 
-        // // Create an instance of Admin
-        // Admin admin = new Admin();
-
-        // // Mock the behavior of MenuBuilder.askYesNo
-        // Mockito.when(MenuBuilder.askYesNo(Mockito.anyString())).thenReturn(true);
-
-        // // Mock the behavior of player2.defeatedRecently
-        // Mockito.when(player2.defeatedRecently()).thenReturn(true);
-
-        // // Mock the behavior of MenuBuilder.askYesNo
-        // Mockito.when(MenuBuilder.askYesNo(Mockito.anyString())).thenReturn(true);
-
-        // // Mock the behavior of player1.canAfford
-        // Mockito.when(player2.canAfford(Mockito.anyInt())).thenReturn(false);
-        // Mockito.when(player2.getGold()).thenReturn(100);
-
-        // // Mock the behavior of MenuBuilder.menu
-        // Mockito.when(MenuBuilder.menu(Mockito.anyString(), Mockito.any())).thenReturn(1);
-
-        // // Mock the behavior of player1.manageEquipment
-        // Mockito.doNothing().when(player1).manageEquipment();
-
-        // // Mock the behavior of this.modifyCharacter
-        // Mockito.doNothing().when(admin).modifyCharacter(Mockito.any(CharacterSelection.class));
-
-        // // Mock the behavior of player2.manageModifiers
-        // Mockito.doNothing().when(player2).manageModifiers();
-
-        // // Mock the behavior of player2.changeSpecialAbility
-        // Mockito.doNothing().when(player2).changeSpecialAbility();
-
-        // // Mock the behavior of player2.notifyChallenge
-        // Mockito.doNothing().when(player2).notifyChallenge(Mockito.any(Challenge.class));
-
-        // // Call the method under test
-        // admin.manageChallenge(challenge);
-
-        // // Verify the interactions
-        // Mockito.verify(player1).ban();
-        // Mockito.verify(player2).getGold();
-        // Mockito.verify(challenge).setGold(100);
-        // Mockito.verify(player2).notifyChallenge(challenge);
+        // Assert the expected outcomes
+        assertTrue(challenge.isApproved());
+        assertEquals(50, challenge.getGold());
+        assertEquals("Do you want to manage the challenge between John and Jane?", MenuBuilder.getLastPrompt());
+        assertTrue(MenuBuilder.getLastResponse()); // Assuming the admin chooses to manage the challenge
+        assertFalse(challenger.isBanned());
+        assertEquals("The bet has been adjusted to 50", MenuBuilder.getLastAlert());
+        assertEquals(challenge, challenged.getLastNotifiedChallenge());
     }
 }

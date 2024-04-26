@@ -13,6 +13,7 @@ public class Test_Discipline {
     @Test
     public void testDiscipline() {
         Discipline discipline = new Discipline();
+        assertNotNull(discipline);
 
         Object[][] dataInput = {
             { "Test1", 1, 1, 1 },

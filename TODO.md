@@ -14,7 +14,7 @@
     - [X] Talent        // Diego
   - [ ] Challenges
     - [ ] Challenge     // Diego
-    - [ ] Fight
+    - [] Fightº         //Luis
   - [ ] Characters
     - [X] Character (Abstract class)
     - [ ] Hunter
@@ -23,7 +23,7 @@
   - [ ] Equipments
     - [X] Equipment (Abstract class)
     - [X] Armor         // Daniel
-    - [X] Weapon        // No se quien lo hizo
+    - [X] Weapon        // Luis
   - [ ] Minions
     - [x] Minion (Abstract class)
     - [X] LoyaltyEnum (Enum)

@@ -37,7 +37,7 @@
   - [ ] Modifiers
     - [X] Modifier (Abstract class)  // Tested LoadFromArray
     - [X] Strength      // Daniel
-    - [ ] Weakness
+    - [X] Weakness      // Daniel
   - [ ] Game
     - [ ] Game
 

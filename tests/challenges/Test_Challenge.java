@@ -63,15 +63,20 @@ public class Test_Challenge {
     }
 
     @Test
-    // TODO: Fix this test
     public void testIsValid() {
         Player auxPlayer = new Player("1", "1", "1", "9999");
         Object[][] dataInput = {
-            { new Player("1", "1", "1", "9999"), new Player("2", "2", "2", "9999"), 1, true, false, true },
-            { new Player("3", "3", "3", "9999"), new Player("4", "4", "4", "9999"), 2, false, false, false },
-            { new Player("5", "5", "5", "9999"), new Player("6", "6", "6", "9999"), 3, true, true, true },
-            { auxPlayer, auxPlayer, 4, false, true, false }
+            // Player 1 - Player 2 - Gold - Config1 - Config2 - Config3 - Result - TerminalInput 
+            { new Player("1", "1", "1", "X-999"), new Player("2", "2", "2", "Y-999"), 1, true, false, true, false, " "},
+            { new Player("3", "3", "3", "X-999"), new Player("4", "4", "4", "Y-999"), 2, false, false, true, true, "1" },
+            { new Player("5", "5", "5", "X-999"), new Player("6", "6", "6", "Y-999"), 3, true, true, true, false, " " },
+            { auxPlayer, auxPlayer, 4, false, true, false, false, " " }
         };
+
+        TestingUtils.setInput(
+            (String) dataInput[0][7], (String) dataInput[1][7],
+            (String) dataInput[2][7], (String) dataInput[3][7]
+        );
 
         Challenge auxChallenge = new Challenge();
 
@@ -92,20 +97,7 @@ public class Test_Challenge {
             int gold = (int) data[2];
             Challenge challenge = new Challenge(loggedUser, opponent, gold);
 
-            boolean result = true;
-            result = result && !((Player) data[0] == (Player) data[1]);
-            result = result && !opponent.hasPendingChallenge();
-            result = result && !opponent.isBanned();
-            result = result && !opponent.defeatedRecently();
-
-            if (!result) {
-                if (opponent.defeatedRecently()) {
-                    TestingUtils.setInput("1");
-                } else {
-                    TestingUtils.setInput(" ");
-                }
-            }
-
+            boolean result = (boolean) data[6];
             assertEquals(result, challenge.isValid(loggedUser, opponent));
         }
     }

@@ -111,7 +111,7 @@ public class Game {
      * @see #loadArmors()
      * @see #loadWeapons()
      */
-    private void loadDefaultSettings() {
+    public void loadDefaultSettings() {
         // Load the default armors and weapons
         Game.armorsAvailable = Armor.loadFromArray(Const.ARMORS);
         Game.weaponsAvailable = Weapon.loadFromArray(Const.WEAPONS);

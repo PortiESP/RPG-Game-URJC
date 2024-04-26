@@ -209,6 +209,9 @@ public class Challenge {
         p2.addChallengeToHistory(this);
 
         // Loser pays the gold to the winner and sets the last lost fight
+        if (this.winner == null) {
+            return;
+        }
         Player loser = this.getOpponent(this.winner);
         loser.payGoldTo(this.gold, winner);
         loser.setLastLostFight(System.currentTimeMillis());

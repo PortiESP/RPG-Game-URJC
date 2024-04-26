@@ -4,25 +4,29 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import src.Game;
+import src.abilities.*;
 import src.challenges.Challenge;
 import src.users.Player;
+import utils.Const;
+import src.characters.CharacterSelection;
 import utils.TestingUtils;
 
 public class Test_Challenge {
+
+    public static Object[][] defaultDataInput = {
+        { new Player("1", "1", "1", "9999"), new Player("2", "2", "2", "9999"), 1 },
+        { new Player("3", "3", "3", "9999"), new Player("4", "4", "4", "9999"), 2 },
+        { new Player("5", "5", "5", "9999"), new Player("6", "6", "6", "9999"), 3 },
+        { new Player("7", "7", "7", "9999"), new Player("8", "8", "8", "9999"), 4 }
+    };
 
     @Test
     public void testChallenge() {
         Challenge challenge = new Challenge();
         assertNotNull(challenge);
 
-        Object[][] dataInput = {
-            { new Player("1", "1", "1", "9999"), new Player("2", "2", "2", "9999"), 1 },
-            { new Player("3", "3", "3", "9999"), new Player("4", "4", "4", "9999"), 2 },
-            { new Player("5", "5", "5", "9999"), new Player("6", "6", "6", "9999"), 3 },
-            { new Player("7", "7", "7", "9999"), new Player("8", "8", "8", "9999"), 4 }
-        };
-
-        for (Object[] data : dataInput) {
+        for (Object[] data : Test_Challenge.defaultDataInput) {
             Player player1 = (Player) data[0];
             Player player2 = (Player) data[1];
             int gold = (int) data[2];
@@ -43,14 +47,7 @@ public class Test_Challenge {
     public void testGetOpponent() {
         Challenge challenge = new Challenge();
 
-        Object[][] dataInput = {
-                { new Player("1", "1", "1", "9999"), new Player("2", "2", "2", "9999"), 1 },
-                { new Player("3", "3", "3", "9999"), new Player("4", "4", "4", "9999"), 2 },
-                { new Player("5", "5", "5", "9999"), new Player("6", "6", "6", "9999"), 3 },
-                { new Player("7", "7", "7", "9999"), new Player("8", "8", "8", "9999"), 4 }
-        };
-
-        for (Object[] data : dataInput) {
+        for (Object[] data : Test_Challenge.defaultDataInput) {
             Player player1 = (Player) data[0];
             Player player2 = (Player) data[1];
             int gold = (int) data[2];
@@ -102,36 +99,153 @@ public class Test_Challenge {
         }
     }
 
-    // @Test
-    // void getChallengedPlayer() {}
+    @Test
+    public void getChallengedPlayer() {
+        Challenge challenge = new Challenge();
 
-    // @Test
-    // void getChallengerPlayer() {}
+        for (Object[] data : Test_Challenge.defaultDataInput) {
+            Player player1 = (Player) data[0];
+            Player player2 = (Player) data[1];
+            int gold = (int) data[2];
 
-    // @Test
-    // void approve() {}
+            challenge = new Challenge(player1, player2, gold);
 
-    // @Test
-    // void accept() {}
+            assertEquals(player2, challenge.getChallengedPlayer());
+        }
+    }
 
-    // @Test
-    // void reject() {}
+    @Test
+    public void getChallengerPlayer() {
+        Challenge challenge = new Challenge();
 
-    // @Test
-    // void manageFight() {}
+        for (Object[] data : Test_Challenge.defaultDataInput) {
+            Player player1 = (Player) data[0];
+            Player player2 = (Player) data[1];
+            int gold = (int) data[2];
 
-    // @Test
-    // void getGold() {}
+            challenge = new Challenge(player1, player2, gold);
 
-    // @Test
-    // void setGold() {}
+            assertEquals(player1, challenge.getChallengerPlayer());
+        }
+    }
 
-    // @Test
-    // void isAccepted() {}
+    @Test
+    public void approve() {
+        Challenge challenge = new Challenge();
 
-    // @Test
-    // void setAccepted() {}
+        for (Object[] data : Test_Challenge.defaultDataInput) {
+            Player player1 = (Player) data[0];
+            Player player2 = (Player) data[1];
+            int gold = (int) data[2];
 
-    // @Test
-    // void isApproved() {}
+            challenge = new Challenge(player1, player2, gold);
+
+            challenge.approve();
+            assertEquals(true, challenge.isApproved());
+        }
+    }
+
+    @Test
+    public void accept() {
+        Challenge challenge = new Challenge();
+
+        for (Object[] data : Test_Challenge.defaultDataInput) {
+            Player player1 = (Player) data[0];
+            Player player2 = (Player) data[1];
+            int gold = (int) data[2];
+
+            challenge = new Challenge(player1, player2, gold);
+
+            challenge.accept();
+            assertEquals(true, challenge.isAccepted());
+        }
+    }
+
+    @Test
+    public void reject() {
+        Challenge challenge = new Challenge();
+
+        for (Object[] data : Test_Challenge.defaultDataInput) {
+            Player player1 = (Player) data[0];
+            Player player2 = (Player) data[1];
+            int gold = (int) data[2];
+
+            challenge = new Challenge(player1, player2, gold);
+
+            challenge.reject();
+            assertEquals(false, challenge.isAccepted());
+            assertEquals(player1, challenge.getWinner());
+        }
+    }
+
+    @Test
+    public void manageFight() {
+        Challenge challenge = new Challenge();
+        TestingUtils.setInput(" ", " ", " ", " ");
+
+        for (Object[] data : Test_Challenge.defaultDataInput) {
+            
+
+            Game game = new Game();
+            game.loadDefaultSettings();
+
+            Player player1 = (Player) data[0];
+            player1.setCurrentCharacter(CharacterSelection.HUNTER);
+            player1.setSpecialAbilities(new Talent("test", 5, 5));
+
+            Player player2 = (Player) data[1];
+            player2.setCurrentCharacter(CharacterSelection.LYCANTHROPE);
+            player2.setSpecialAbilities(new Don("test", 0, 0, 0));
+
+            int gold = (int) data[2];
+
+            challenge = new Challenge(player1, player2, gold);
+            challenge.manageFight();
+
+            Player loser = null;
+            Player winner = null;
+
+            // If the challenge turns out to be a draw, return
+            if (challenge.getWinner() == null) {
+                return;
+            }
+                
+            // Continue with the test
+            if (challenge.getWinner().equals(player1)) {
+                winner = player1;
+                loser = player2;
+            } else {
+                winner = player2;
+                loser = player1;
+            }
+
+            assertNotNull(challenge.getResult().getWinner());
+            assertNull(player1.getPendingChallenge());
+            assertNull(player2.getPendingChallenge());
+
+            boolean result1 = false;
+            for (Challenge ch : player1.getChallenges()) {
+                if (ch.equals(challenge)) {
+                    result1 = true;
+                    break;
+                }
+            }
+
+            boolean result2 = false;
+            for (Challenge ch : player2.getChallenges()) {
+                if (ch.equals(challenge)) {
+                    result2 = true;
+                    break;
+                }
+            }
+
+            assertEquals(true, result1);
+            assertEquals(true, result2);
+
+            assertEquals(winner.getGold(), Const.INITIAL_GOLD + gold);
+            assertEquals(loser.getGold(), Const.INITIAL_GOLD - gold);
+        
+        }                        
+    }
+
 }

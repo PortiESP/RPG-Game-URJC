@@ -28,8 +28,8 @@
     - [x] Minion (Abstract class)
     - [X] LoyaltyEnum (Enum)
     - [ ] Devil 
-    - [ ] Ghoul
-    - [ ] Human         // Daniel
+    - [ ] Ghoul         // Daniel
+    - [X] Human         // Daniel
   - [ ] Users
     - [X] User (Abstract class)
     - [ ] Player

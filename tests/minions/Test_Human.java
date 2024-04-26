@@ -12,6 +12,14 @@ import src.minions.*;
 public class Test_Human {
 
     @Test
+    public void testHuman() {
+        Human human = new Human("TestHuman", 100, LoyaltyEnum.HIGH);
+        assertEquals("TestHuman", human.getName());
+        assertEquals(100, human.getHealth());
+        assertEquals(LoyaltyEnum.HIGH, human.getLoyalty());
+    }
+
+    @Test
     public void testHumanLoadFromArray() {
 
         String[][] humanArr1 = { 

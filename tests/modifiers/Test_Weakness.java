@@ -1,15 +1,36 @@
 package tests.modifiers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.Test;
 
-class Test_Weakness {
+import src.modifiers.Weakness;
+
+public class Test_Weakness {
+
+    @Test 
+    public void testWeakness() {
+        Weakness weakness = new Weakness();
+        assertEquals(null, weakness.getName());
+        assertEquals(0, weakness.getSensitivity());
+    }
+
 
     @Test
-    void testToString() {}
+    public void testWeaknessToString() {
+    
+        Weakness weakness = new Weakness();
 
-    @Test
-    void getSensitivity() {}
+        Object[][] dataInput = {
+            { "Test1", 1 },
+            { "               ", 2 },
+            { "***************", 3 },
+            { "Test4", 4 } 
+        };
 
-    @Test
-    void setSensitivity() {}
+        for (Object[] data : dataInput) {
+            weakness = new Weakness((String) data[0], (int) data[1]);
+            assertEquals(String.format("%s (-%d)", data[0], data[1]), weakness.toString());
+        }
+    }
 }

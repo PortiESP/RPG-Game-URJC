@@ -1,19 +1,38 @@
 package tests.modifiers;
 
+import static org.junit.Assert.assertEquals;
+
+
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
 
-class Test_Strength {
+import src.modifiers.Strength;
+
+
+public class Test_Strength {
+
+    @Test 
+    public void testStrength() {
+        Strength strength = new Strength();
+        assertEquals(null, strength.getName());
+        assertEquals(0, strength.getEffectiveness());
+    }
+
 
     @Test
-    @Disabled
-    void testToString() {}
+    public void testStrengthToString() {
+    
+        Strength strength = new Strength();
 
-    @Test
-    @Disabled
-    void getEffectiveness() {}
+        Object[][] dataInput = {
+            { "Test1", 1 },
+            { "               ", 2 },
+            { "***************", 3 },
+            { "Test4", 4 } 
+        };
 
-    @Test
-    @Disabled
-    void setEffectiveness() {}
+        for (Object[] data : dataInput) {
+            strength = new Strength((String) data[0], (int) data[1]);
+            assertEquals(String.format("%s (+%d)", data[0], data[1]), strength.toString());
+        }
+    }
 }

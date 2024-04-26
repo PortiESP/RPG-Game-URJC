@@ -27,17 +27,17 @@
   - [ ] Minions
     - [x] Minion (Abstract class)
     - [X] LoyaltyEnum (Enum)
-    - [ ] Devil
-    - [ ] Ghoul
-    - [ ] Human
+    - [ ] Devil         // Daniel
+    - [X] Ghoul         // Daniel
+    - [X] Human         // Daniel
   - [ ] Users
     - [X] User (Abstract class)
     - [ ] Player
     - [ ] Admin
   - [ ] Modifiers
-    - [X] Modifier (Abstract class)
-    - [ ] Strength
-    - [ ] Weakness
+    - [X] Modifier (Abstract class)  // Tested LoadFromArray
+    - [X] Strength      // Daniel
+    - [X] Weakness      // Daniel
   - [ ] Game
     - [ ] Game
 

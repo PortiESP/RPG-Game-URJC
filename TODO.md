@@ -35,8 +35,8 @@
     - [ ] Player
     - [ ] Admin
   - [ ] Modifiers
-    - [X] Modifier (Abstract class)
-    - [ ] Strength      // Daniel
+    - [X] Modifier (Abstract class)  // Tested LoadFromArray
+    - [X] Strength      // Daniel
     - [ ] Weakness
   - [ ] Game
     - [ ] Game

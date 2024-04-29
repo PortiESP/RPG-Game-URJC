@@ -10,7 +10,7 @@ import src.challenges.Challenge;
 import src.users.Player;
 import utils.Const;
 import src.characters.CharacterSelection;
-import utils.TestingUtils;
+import tests.TestingUtils;
 
 public class Test_Challenge {
 

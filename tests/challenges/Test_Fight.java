@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
-import utils.TestingUtils;
+import tests.TestingUtils;
 
 import src.challenges.Fight;
 import src.users.Player;

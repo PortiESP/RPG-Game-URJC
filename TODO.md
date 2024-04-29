@@ -13,8 +13,8 @@
     - [X] Don           // Daniel
     - [X] Talent        // Diego
   - [ ] Challenges
-    - [ ] Challenge     // Diego
-    - [] Fightº         //Luis
+    - [X] Challenge     // Diego
+    - [ ] Fight         //Luis
   - [ ] Characters
     - [X] Character (Abstract class)
     - [ ] Hunter

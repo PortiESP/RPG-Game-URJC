@@ -1,6 +1,6 @@
 package tests.minions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,5 +57,21 @@ public class Test_Ghoul {
             }
         }
     }
+
+    // Getters and Setters
+    @Test
+    public void testGetDependency() {
+        Ghoul ghoul = new Ghoul();
+        ghoul.setDependency(10);
+        assertEquals(10, ghoul.getDependency());
+    }
+
+    @Test
+    public void testSetDependency() {
+        Ghoul ghoul = new Ghoul();
+        ghoul.setDependency(20);
+        assertEquals(20, ghoul.getDependency());
+    }
+
 
 }

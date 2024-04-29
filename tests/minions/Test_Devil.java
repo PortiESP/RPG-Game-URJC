@@ -7,7 +7,6 @@ import src.minions.Ghoul;
 import src.minions.Minion;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

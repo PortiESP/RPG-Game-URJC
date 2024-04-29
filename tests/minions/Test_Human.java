@@ -57,4 +57,21 @@ public class Test_Human {
         }
     }
 
+    // Getters and Setters
+    @Test
+    public void testGetLoyalty() {
+        Human human = new Human("TestHuman", 100, LoyaltyEnum.HIGH);
+
+        human.setLoyalty(LoyaltyEnum.LOW);
+        assertEquals(LoyaltyEnum.LOW, human.getLoyalty());
+    }
+
+    @Test
+    public void testSetLoyalty() {
+        Human human = new Human("TestHuman", 100, LoyaltyEnum.HIGH);
+
+        human.setLoyalty(LoyaltyEnum.REGULAR);
+        assertEquals(LoyaltyEnum.REGULAR, human.getLoyalty());
+    }
+
 }

@@ -33,4 +33,16 @@ public class Test_Weakness {
             assertEquals(String.format("%s (-%d)", data[0], data[1]), weakness.toString());
         }
     }
+
+    @Test
+    public void testWeaknessGetSensitivity() {
+        Weakness weakness = new Weakness("Test", 1);
+        assertEquals(1, weakness.getSensitivity());
+    }
+
+    @Test
+    public void testWeaknessGetName() {
+        Weakness weakness = new Weakness("Test", 1);
+        assertEquals("Test", weakness.getName());
+    }
 }

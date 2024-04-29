@@ -35,4 +35,16 @@ public class Test_Strength {
             assertEquals(String.format("%s (+%d)", data[0], data[1]), strength.toString());
         }
     }
+
+    @Test
+    public void testStrengthGetEffectiveness() {
+        Strength strength = new Strength("Test", 1);
+        assertEquals(1, strength.getEffectiveness());
+    }
+
+    @Test
+    public void testStrengthGetName() {
+        Strength strength = new Strength("Test", 1);
+        assertEquals("Test", strength.getName());
+    }
 }

@@ -3,61 +3,61 @@ package tests.characters;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 
-class Test_Vampire {
+public class Test_Vampire {
 
     @Test
     @Disabled
-    void calcAttackPower() {}
+    public void calcAttackPower() {}
 
     @Test
     @Disabled
-    void loadMinions() {}
+    public void loadMinions() {}
 
     @Test
     @Disabled
-    void loadInitialValues() {}
+    public void loadInitialValues() {}
 
     @Test
     @Disabled
-    void calcSpecialAttack() {}
+    public void calcSpecialAttack() {}
 
     @Test
     @Disabled
-    void modifyAttributes() {}
+    public void modifyAttributes() {}
 
     @Test
     @Disabled
-    void alterAttr() {}
+    public void alterAttr() {}
 
     @Test
     @Disabled
-    void showAttributes() {}
+    public void showAttributes() {}
 
     @Test
     @Disabled
-    void successAtack() {}
+    public void successAtack() {}
 
     @Test
     @Disabled
-    void getAge() {}
+    public void getAge() {}
 
     @Test
     @Disabled
-    void setAge() {}
+    public void setAge() {}
 
     @Test
     @Disabled
-    void getBlood() {}
+    public void getBlood() {}
 
     @Test
     @Disabled
-    void setBlood() {}
+    public void setBlood() {}
 
     @Test
     @Disabled
-    void getDiscipline() {}
+    public void getDiscipline() {}
 
     @Test
     @Disabled
-    void setDiscipline() {}
+    public void setDiscipline() {}
 }

@@ -3,41 +3,41 @@ package tests.characters;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 
-class Test_Lychantrope {
+public class Test_Lychantrope {
 
     @Test
     @Disabled
-    void loadMinions() {}
+    public void loadMinions() {}
 
     @Test
     @Disabled
-    void loadInitialValues() {}
+    public void loadInitialValues() {}
 
     @Test
     @Disabled
-    void modifyAttributes() {}
+    public void modifyAttributes() {}
 
     @Test
     @Disabled
-    void alterAttr() {}
+    public void alterAttr() {}
 
     @Test
     @Disabled
-    void showAttributes() {}
+    public void showAttributes() {}
 
     @Test
     @Disabled
-    void getRage() {}
+    public void getRage() {}
 
     @Test
     @Disabled
-    void setRage() {}
+    public void setRage() {}
 
     @Test
     @Disabled
-    void getDon() {}
+    public void getDon() {}
 
     @Test
     @Disabled
-    void setDon() {}
+    public void setDon() {}
 }

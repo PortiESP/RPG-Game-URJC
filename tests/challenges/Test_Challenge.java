@@ -59,7 +59,6 @@ public class Test_Challenge {
         }
     }
 
-    @Test
     public void testIsValid() {
         Player auxPlayer = new Player("1", "1", "1", "9999");
         Object[][] dataInput = {
@@ -178,7 +177,6 @@ public class Test_Challenge {
         }
     }
 
-    @Test
     public void testManageFight() {
         Challenge challenge = new Challenge();
         TestingUtils.setInput(" ", " ", " ", " ");

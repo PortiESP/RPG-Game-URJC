@@ -3,125 +3,125 @@ package tests.characters;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 
-class Test_Character {
+public class Test_Character {
 
     @Test
     @Disabled
-    void loadInitialValues() {}
+    public void loadInitialValues() {}
 
     @Test
     @Disabled
-    void loadMinions() {}
+    public void loadMinions() {}
 
     @Test
     @Disabled
-    void modifyAttributes() {}
+    public void modifyAttributes() {}
 
     @Test
     @Disabled
-    void getHit() {}
+    public void getHit() {}
 
     @Test
     @Disabled
-    void isDead() {}
+    public void isDead() {}
 
     @Test
     @Disabled
-    void assignEquipment() {}
+    public void assignEquipment() {}
 
     @Test
     @Disabled
-    void assignModifiers() {}
+    public void assignModifiers() {}
 
     @Test
     @Disabled
-    void assignSpecial() {}
+    public void assignSpecial() {}
 
     @Test
     @Disabled
-    void calcSpecialAttack() {}
+    public void calcSpecialAttack() {}
 
     @Test
     @Disabled
-    void calcSpecialDefense() {}
+    public void calcSpecialDefense() {}
 
     @Test
     @Disabled
-    void calcBaseAttackPower() {}
+    public void calcBaseAttackPower() {}
 
     @Test
     @Disabled
-    void calcBaseDefensePower() {}
+    public void calcBaseDefensePower() {}
 
     @Test
     @Disabled
-    void calcAttackPower() {}
+    public void calcAttackPower() {}
 
     @Test
     @Disabled
-    void calcDefensePower() {}
+    public void calcDefensePower() {}
 
     @Test
     @Disabled
-    void getName() {}
+    public void getName() {}
 
     @Test
     @Disabled
-    void setName() {}
+    public void setName() {}
 
     @Test
     @Disabled
-    void getHealth() {}
+    public void getHealth() {}
 
     @Test
     @Disabled
-    void setHealth() {}
+    public void setHealth() {}
 
     @Test
     @Disabled
-    void getPower() {}
+    public void getPower() {}
 
     @Test
     @Disabled
-    void setPower() {}
+    public void setPower() {}
 
     @Test
     @Disabled
-    void getModifiers() {}
+    public void getModifiers() {}
 
     @Test
     @Disabled
-    void setModifiers() {}
+    public void setModifiers() {}
 
     @Test
     @Disabled
-    void getMinions() {}
+    public void getMinions() {}
 
     @Test
     @Disabled
-    void setMinions() {}
+    public void setMinions() {}
 
     @Test
     @Disabled
-    void getEquipment() {}
+    public void getEquipment() {}
 
     @Test
     @Disabled
-    void setEquipment() {}
+    public void setEquipment() {}
 
     @Test
     @Disabled
-    void getSpecial() {}
+    public void getSpecial() {}
 
     @Test
     @Disabled
-    void setSpecial() {}
+    public void setSpecial() {}
 
     @Test
     @Disabled
-    void getMinionsHealth() {}
+    public void getMinionsHealth() {}
 
     @Test
     @Disabled
-    void setMinionsHealth() {}
+    public void setMinionsHealth() {}
 }

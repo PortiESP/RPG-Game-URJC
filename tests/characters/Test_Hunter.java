@@ -3,41 +3,41 @@ package tests.characters;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 
-class Test_Hunter {
+public class Test_Hunter {
 
     @Test
     @Disabled
-    void loadMinions() {}
+    public void loadMinions() {}
 
     @Test
     @Disabled
-    void loadInitialValues() {}
+    public void loadInitialValues() {}
 
     @Test
     @Disabled
-    void modifyAttributes() {}
+    public void modifyAttributes() {}
 
     @Test
     @Disabled
-    void alterAttr() {}
+    public void alterAttr() {}
 
     @Test
     @Disabled
-    void showAttributes() {}
+    public void showAttributes() {}
 
     @Test
     @Disabled
-    void getWillpower() {}
+    public void getWillpower() {}
 
     @Test
     @Disabled
-    void setWillpower() {}
+    public void setWillpower() {}
 
     @Test
     @Disabled
-    void getTalent() {}
+    public void getTalent() {}
 
     @Test
     @Disabled
-    void setTalent() {}
+    public void setTalent() {}
 }

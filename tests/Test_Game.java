@@ -3,41 +3,41 @@ package tests;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 
-class Test_Game {
+public class Test_Game {
 
     @Test
     @Disabled
-    void play() {}
+    public void play() {}
 
     @Test
     @Disabled
-    void getUsers() {}
+    public void getUsers() {}
 
     @Test
     @Disabled
-    void setUsers() {}
+    public void setUsers() {}
 
     @Test
     @Disabled
-    void getLoggedUser() {}
+    public void getLoggedUser() {}
 
     @Test
     @Disabled
-    void setLoggedUser() {}
+    public void setLoggedUser() {}
 
     @Test
     @Disabled
-    void getChallenges() {}
+    public void getChallenges() {}
 
     @Test
     @Disabled
-    void setChallenges() {}
+    public void setChallenges() {}
 
     @Test
     @Disabled
-    void getLastId() {}
+    public void getLastId() {}
 
     @Test
     @Disabled
-    void setLastId() {}
+    public void setLastId() {}
 }

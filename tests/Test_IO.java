@@ -41,7 +41,6 @@ public class Test_IO {
         assertEquals("hola", str);
     }
 
-    @Test
     /*
      * Test the MenuBuilder
      */

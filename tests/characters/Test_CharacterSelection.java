@@ -3,21 +3,21 @@ package tests.characters;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 
-class Test_CharacterSelection {
+public class Test_CharacterSelection {
 
     @Test
     @Disabled
-    void testToString() {}
+    public void testToString() {}
 
     @Test
     @Disabled
-    void allToString() {}
+    public void allToString() {}
 
     @Test
     @Disabled
-    void values() {}
+    public void values() {}
 
     @Test
     @Disabled
-    void valueOf() {}
+    public void valueOf() {}
 }

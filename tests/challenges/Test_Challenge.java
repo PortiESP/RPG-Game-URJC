@@ -100,7 +100,7 @@ public class Test_Challenge {
     }
 
     @Test
-    public void getChallengedPlayer() {
+    public void testGetChallengedPlayer() {
         Challenge challenge = new Challenge();
 
         for (Object[] data : Test_Challenge.defaultDataInput) {
@@ -115,7 +115,7 @@ public class Test_Challenge {
     }
 
     @Test
-    public void getChallengerPlayer() {
+    public void testGetChallengerPlayer() {
         Challenge challenge = new Challenge();
 
         for (Object[] data : Test_Challenge.defaultDataInput) {
@@ -130,7 +130,7 @@ public class Test_Challenge {
     }
 
     @Test
-    public void approve() {
+    public void testApprove() {
         Challenge challenge = new Challenge();
 
         for (Object[] data : Test_Challenge.defaultDataInput) {
@@ -146,7 +146,7 @@ public class Test_Challenge {
     }
 
     @Test
-    public void accept() {
+    public void testAccept() {
         Challenge challenge = new Challenge();
 
         for (Object[] data : Test_Challenge.defaultDataInput) {
@@ -162,7 +162,7 @@ public class Test_Challenge {
     }
 
     @Test
-    public void reject() {
+    public void testReject() {
         Challenge challenge = new Challenge();
 
         for (Object[] data : Test_Challenge.defaultDataInput) {
@@ -179,7 +179,7 @@ public class Test_Challenge {
     }
 
     @Test
-    public void manageFight() {
+    public void testManageFight() {
         Challenge challenge = new Challenge();
         TestingUtils.setInput(" ", " ", " ", " ");
 
@@ -247,5 +247,4 @@ public class Test_Challenge {
         
         }                        
     }
-
 }

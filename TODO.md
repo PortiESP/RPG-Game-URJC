@@ -7,24 +7,24 @@
 ## TODOs
 
 - [ ] Implement TESTs for the following classes:
-  - [ ] Abilities
+  - [X] Abilities
     - [X] SpecialAbility (Abstract class)
     - [X] Discipline    // Diego
     - [X] Don           // Daniel
     - [X] Talent        // Diego
-  - [ ] Challenges
-    - [ ] Challenge     // Diego
-    - [] Fightº         //Luis
+  - [X] Challenges
+    - [X] Challenge     // Diego
+    - [X] Fight         //Luis
   - [ ] Characters
     - [X] Character (Abstract class)
     - [ ] Hunter
     - [ ] Lycanthrope
     - [ ] Vampire
-  - [ ] Equipments
+  - [X] Equipments
     - [X] Equipment (Abstract class)
     - [X] Armor         // Daniel
     - [X] Weapon        // Luis
-  - [ ] Minions
+  - [X] Minions
     - [x] Minion (Abstract class)
     - [X] LoyaltyEnum (Enum)
     - [X] Devil         // Daniel
@@ -34,7 +34,7 @@
     - [X] User (Abstract class)
     - [ ] Player
     - [ ] Admin
-  - [ ] Modifiers
+  - [X] Modifiers
     - [X] Modifier (Abstract class)  // Tested LoadFromArray
     - [X] Strength      // Daniel
     - [X] Weakness      // Daniel

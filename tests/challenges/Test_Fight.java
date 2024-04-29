@@ -1,131 +1,52 @@
 package tests.challenges;
 
-import java.util.ArrayList;
-
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
+import utils.TestingUtils;
 
 import src.challenges.Fight;
 import src.users.Player;
-import src.characters.Character;
-import utils.MenuBuilder;
+import src.characters.*;
+import src.minions.*;
+import src.equipment.*;
+import src.modifiers.*;
+import src.abilities.*;
+import src.Game;
 
 
 public class Test_Fight {
 
     @Test
-    public void testGetRounds() {
-        Fight fight = new Fight();
-        fight.setRounds(5);
-        Assertions.assertEquals(5, fight.getRounds());
-    }
+    public void testFight() {
+        Player player1 = new Player("player1", "p1", "123456789", "X-999");
+        player1.setCurrentCharacter(CharacterSelection.VAMPIRE);
+        player1.setArmor(new Armor("test", 1, 5));
+        player1.setWeapons(new Weapon[] { new Weapon("test", 1, 5, 1), new Weapon("test2", 2, 6, 2)});
+        player1.setModifiers(new Modifier[] { new Strength("test", 1) });
+        player1.setSpecialAbilities(new Discipline("test", 1, 2, 3));
 
-    @Test
-    public void testGetDate() {
-        Fight fight = new Fight();
-        fight.setDate("2022-01-01");
-        Assertions.assertEquals("2022-01-01", fight.getDate());
-    }
+        Player player2 = new Player("player2", "p2", "987654321", "X-998");
+        player2.setCurrentCharacter(CharacterSelection.VAMPIRE);
+        player2.setArmor(new Armor("test", 1, 5));
+        player2.setWeapons(new Weapon[] { new Weapon("test", 1, 5, 1), new Weapon("test2", 2, 6, 2)});
+        player2.setModifiers(new Modifier[] { new Strength("test", 1) });
+        player2.setSpecialAbilities(new Discipline("test", 1, 2, 3));
 
-    @Test
-    public void testGetWinner() {
-        Fight fight = new Fight();
-        Player winner = new Player();
-        fight.setWinner(winner);
-        Assertions.assertEquals(winner, fight.getWinner());
-    }
+        Game.ghoulsAvailable = new ArrayList<>(List.of(new Ghoul("test", 1, 5), new Ghoul("test2", 2, 6)));
+        Game.devilsAvailable = new ArrayList<>(List.of(new Devil("test", 1, "test"), new Devil("test", 2, "test")));
 
-    @Test
-    public void testGetLog() {
-        Fight fight = new Fight();
-        ArrayList<String> log = new ArrayList<>();
-        log.add("Round 1");
-        log.add("Round 2");
-        fight.setLog(log);
-        Assertions.assertEquals(log, fight.getLog());
-    }
+        TestingUtils.setInput(" ");
 
-    @Test
-    public void testGetC1() {
-        Fight fight = new Fight();
-        Character c1 = new Character();
-        fight.setC1(c1);
-        Assertions.assertEquals(c1, fight.getC1());
-    }
+        Fight fight = new Fight(player1, player2);
 
-    @Test
-    public void testGetC2() {
-        Fight fight = new Fight();
-        Character c2 = new Character();
-        fight.setC2(c2);
-        Assertions.assertEquals(c2, fight.getC2());
-    }
-
-    @Test
-    public void testGetPlayers() {
-        Fight fight = new Fight();
-        Player[] players = new Player[2];
-        players[0] = new Player();
-        players[1] = new Player();
-        fight.setPlayers(players);
-        Assertions.assertArrayEquals(players, fight.getPlayers());
-    }
-
-    @Test
-    public void testSetRounds() {
-        Fight fight = new Fight();
-        fight.setRounds(10);
-        Assertions.assertEquals(10, fight.getRounds());
-    }
-
-    @Test
-    public void testSetDate() {
-        Fight fight = new Fight();
-        fight.setDate("2022-02-01");
-        Assertions.assertEquals("2022-02-01", fight.getDate());
-    }
-
-    @Test
-    public void testSetWinner() {
-        Fight fight = new Fight();
-        Player winner = new Player();
-        fight.setWinner(winner);
-        Assertions.assertEquals(winner, fight.getWinner());
-    }
-
-    @Test
-    public void testSetLog() {
-        Fight fight = new Fight();
-        ArrayList<String> log = new ArrayList<>();
-        log.add("Round 1");
-        log.add("Round 2");
-        fight.setLog(log);
-        Assertions.assertEquals(log, fight.getLog());
-    }
-
-    @Test
-    public void testSetC1() {
-        Fight fight = new Fight();
-        Character c1 = new Character();
-        fight.setC1(c1);
-        Assertions.assertEquals(c1, fight.getC1());
-    }
-
-    @Test
-    public void testSetC2() {
-        Fight fight = new Fight();
-        Character c2 = new Character();
-        fight.setC2(c2);
-        Assertions.assertEquals(c2, fight.getC2());
-    }
-
-    @Test
-    public void testSetPlayers() {
-        Fight fight = new Fight();
-        Player[] players = new Player[2];
-        players[0] = new Player();
-        players[1] = new Player();
-        fight.setPlayers(players);
-        Assertions.assertArrayEquals(players, fight.getPlayers());
+        // Expecting to reach the end of the fight and log at least one round
+        Assert.assertNotNull(fight);
+        Assert.assertTrue(fight.getLog().size() > 0);
+        Assert.assertNotNull(fight.getC1());
+        Assert.assertNotNull(fight.getC2());
     }
 }

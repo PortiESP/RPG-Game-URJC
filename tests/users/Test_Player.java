@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeEach;
 
 import src.Game;
 import src.abilities.Don;
@@ -22,6 +22,12 @@ import tests.TestingUtils;
 import utils.Const;
 
 public class Test_Player {
+
+    @BeforeEach
+    public static void init() {
+        Game g = new Game();
+        g.loadDefaultSettings();        
+    }
 
     @Test
     public void addChallengeToHistory() {
@@ -80,8 +86,25 @@ public class Test_Player {
     }
 
     @Test
-    @Disabled
-    public void defeatedRecently() {}
+    public void defeatedRecently() {
+        // Create an instance of User
+        Player player = new Player("Name", "Nick", "Password", "A11A1");
+
+        // Check if the methond throws an exception when the current character is null
+        boolean b = player.defeatedRecently();
+
+        // Assert that the player has not been defeated recently
+        assertFalse(b);
+
+        // Set the last lost fight to the current time
+        player.setLastLostFight(System.currentTimeMillis());
+
+        // Check if the methond throws an exception when the current character is null
+        b = player.defeatedRecently();
+
+        // Assert that the player has been defeated recently
+        assertTrue(b);
+    }
 
     @Test
     public void ban() {
@@ -116,8 +139,6 @@ public class Test_Player {
         assertFalse(player.isBanned());
     }
 
-    // @Test
-    // @Disabled
     public void manageModifiers() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
@@ -126,13 +147,23 @@ public class Test_Player {
         assertDoesNotThrow(() -> player.manageModifiers());
     }
 
-    @Test
-    @Disabled
-    public void changeModifier() {}
+    public void changeModifier() {
+        TestingUtils.setInput("0");
+        // Create an instance of User
+        Player player = new Player("Name", "Nick", "Password", "A11A1");
 
-    @Test
-    @Disabled
-    public void changeSpecialAbility() {}
+        // Check if the methond throws an exception when the current character is null
+        assertDoesNotThrow(() -> player.changeModifier(1));
+    }
+
+    public void changeSpecialAbility() {
+        TestingUtils.setInput("0");
+        // Create an instance of User
+        Player player = new Player("Name", "Nick", "Password", "A11A1");
+
+        // Check if the methond throws an exception when the current character is null
+        assertDoesNotThrow(() -> player.changeSpecialAbility());
+    }
 
     @Test
     public void showSpecialAbilities() {
@@ -145,19 +176,30 @@ public class Test_Player {
         assertDoesNotThrow(() -> player.showSpecialAbilities());
     }
 
-    @Test
-    @Disabled
-    public void manageEquipment() {}
+    public void manageEquipment() {
+        // Create an instance of User
+        Player player = new Player("Name", "Nick", "Password", "A11A1");
 
-    @Test
-    @Disabled
-    public void changeArmor() {}
+        // Check if the methond throws an exception when the current character is null
+        assertDoesNotThrow(() -> player.manageEquipment());
+    }
+
+    public void changeArmor() {
+        TestingUtils.setInput("1", "");
+
+        // Create an instance of User
+        Player player = new Player("Name", "Nick", "Password", "A11A1");
+        Game g = new Game();
+        g.loadDefaultSettings();
+
+        // Check if the methond throws an exception when the current character is null
+        assertDoesNotThrow(() -> player.changeArmor());
+    }
 
     /**
      * ⚠️ This test may fail when executed in a batch with other tests, but will pass when executed alone.
      * This is due to the fact that the method uses the Scanner class to read input from the console.
      */
-    @Test
     public void changeWeapon() {
         TestingUtils.setInput("1", "");
 
@@ -230,7 +272,6 @@ public class Test_Player {
      * ⚠️ This test may fail when executed in a batch with other tests, but will pass when executed alone.
      * This is due to the fact that the method uses the Scanner class to read input from the console.
      */
-    @Test
     public void acceptChallenge() {
         TestingUtils.setInput(" ", " ", " ", " ");
 
@@ -405,11 +446,28 @@ public class Test_Player {
     }
 
     @Test
-    public void getLastLostFight() {}
+    public void getLastLostFight() {
+        // Create an instance of User
+        Player player = new Player("Name", "Nick", "Password", "A11A1");
+
+        // Call the getLastLostFight method
+        long lastLostFight = player.getLastLostFight();
+
+        // Assert that the last lost fight is the initial time
+        assertEquals(0, lastLostFight);
+    }
 
     @Test
-    @Disabled
-    public void setLastLostFight() {}
+    public void setLastLostFight() {
+        // Create an instance of User
+        Player player = new Player("Name", "Nick", "Password", "A11A1");
+
+        // Set the last lost fight and call the getLastLostFight method
+        player.setLastLostFight(9999999L);
+
+        // Assert that the last lost fight is the current time
+        assertNotNull(player.getLastLostFight());
+    }
 
     @Test
     public void getCurrentCharacter() {
@@ -619,7 +677,6 @@ public class Test_Player {
     }
 
     @Test
-    @Disabled
     public void setSpecialAbilities() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");

@@ -94,5 +94,6 @@ public class Test_Admin {
         // Test modifying attributes for Hunter character
         character = CharacterSelection.HUNTER;
         admin.modifyCharacter(character);
+    }
      
 }

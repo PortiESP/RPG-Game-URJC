@@ -3,12 +3,8 @@ package tests.users;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
 
-import src.challenges.Challenge;
-import src.characters.CharacterSelection;
 import src.users.Admin;
-import src.users.Player;
 
 public class Test_Admin {
 

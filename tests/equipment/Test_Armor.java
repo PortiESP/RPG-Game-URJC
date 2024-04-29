@@ -31,4 +31,12 @@ public class Test_Armor {
             }
         }
     }
+
+    @Test
+    public void testArmor() {
+        Armor armor = new Armor("TestArmor", 100, 100);
+        assertEquals("TestArmor", armor.getName());
+        assertEquals(100, armor.getAttack());
+        assertEquals(100, armor.getDefense());
+    }
 }

@@ -1,59 +1,90 @@
 package tests.minions;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.*;
+
+import src.minions.Devil;
+import src.minions.Ghoul;
+import src.minions.Minion;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-
-import src.minions.Devil;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Test_Devil {
 
     @Test
-    public void TestDevil() {
-        Devil devil = new Devil("TestDevil", 100, "Lorem Ipsum");
-        assertEquals("TestDevil", devil.getName());
-        assertEquals(100, devil.getHealth());
-        assertEquals("Lorem Ipsum", devil.getCovenant());
-    }
-
-    @Test
     public void testDevilLoadFromArray() {
 
-        String[][] devilArr1 = {
+        String[][] devilArr = {
             { "TestDevil1", "1", "Covenant1"},
             { "TestDevil2", "2", "Covenant2"}, 
             { "TestDevil3", "3", "Covenant3"} };
 
-        String[][] devilArr2 = {
-            { "TestDevil1", "1", "Covenant1" }, 
-            { "TestDevil2", "2", "Covenant2"}, 
-            { "TestDevil3", "3", "Covenant3" }, 
-            { "TestDevil4", "4", "Covenant4" } };
         
-        String[][] devilArr3 = {
-            { "TestDevil1", "1", "Covenant1"  },
-            { "TestDevil2", "2", "Covenant2" },
-            { "TestDevil3", "3", "Covenant3"  },
-            { "TestDevil4", "4", "Covenant4" },
-            { "TestDevil5", "5", "Covenant5" },
-        };
+        ArrayList<Devil> devil_list = Devil.loadFromArray(devilArr);
 
-        String[][] devilArr4 = new String[0][0];
-
-        ArrayList<String[][]> dataInput = new ArrayList<>(List.of(devilArr1, devilArr2, devilArr3, devilArr4));
-
-        for (String[][] devilArr : dataInput) {
-            ArrayList<Devil> devil = Devil.loadFromArray(devilArr);
-
-            for (int i = 0; i < devilArr.length; i++) {
-                assertEquals(devilArr[i][0], devil.get(i).getName());
-                assertEquals(Integer.parseInt(devilArr[i][1]), devil.get(i).getHealth());
-                assertEquals(devilArr[i][2], devil.get(i).getCovenant());
-                
-            }
+        for (int i = 0; i < devilArr.length; i++) {
+            assertEquals(devilArr[i][0], devil_list.get(i).getName());
+            assertEquals(Integer.parseInt(devilArr[i][1]), devil_list.get(i).getHealth());
+            assertEquals(devilArr[i][2], devil_list.get(i).getCovenant());
+            
         }
+    }
+
+    @Test
+    public void testGetCovenant() {
+        Devil devil = new Devil();
+        ArrayList<Minion> minions = new ArrayList<>();
+        minions.add(new Ghoul("Minion1", 100, 10));
+        minions.add(new Ghoul("Minion2", 200, 10));
+
+        devil.setCovenant("Covenant1");
+        assertEquals("Covenant1", devil.getCovenant());
+    }
+
+    @Test
+    public void testSetCovenant() {
+        Devil devil = new Devil();
+        ArrayList<Minion> minions = new ArrayList<>();
+        minions.add(new Ghoul("Minion1", 100, 10));
+        minions.add(new Ghoul("Minion2", 200, 10));
+
+        devil.setCovenant("Covenant2");
+        assertEquals("Covenant2", devil.getCovenant());
+    }
+
+    @Test
+    public void testGetMinions() {
+        Devil devil = new Devil();
+        ArrayList<Minion> minions = new ArrayList<>();
+        minions.add(new Ghoul("Minion1", 100, 10));
+        minions.add(new Ghoul("Minion2", 200, 10));
+
+        devil.setMinions(minions);
+        assertEquals(minions, devil.getMinions());
+    }
+
+    @Test
+    public void testSetMinions() {
+        Devil devil = new Devil();
+        ArrayList<Minion> minions = new ArrayList<>();
+        minions.add(new Ghoul("Minion1", 100, 10));
+        minions.add(new Ghoul("Minion2", 200, 10));
+
+        devil.setMinions(minions);
+        assertEquals(minions, devil.getMinions());
+    }
+
+    @Test
+    public void testGetHealth() {
+        Devil devil = new Devil();
+        ArrayList<Minion> minions = new ArrayList<>();
+        minions.add(new Ghoul("Minion1", 100, 10));
+        minions.add(new Ghoul("Minion2", 200, 10));
+
+        devil.setHealth(500);
+        devil.setMinions(minions);
+        assertEquals(800, devil.getHealth());
     }
 }

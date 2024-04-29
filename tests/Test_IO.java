@@ -6,7 +6,6 @@ import utils.IOManager;
 import utils.MenuBuilder;
 
 import static org.junit.Assert.*;
-import utils.TestingUtils;
 
 public class Test_IO {
 

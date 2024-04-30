@@ -17,6 +17,7 @@
     - [X] Fight         //Luis
   - [ ] Characters
     - [X] Character (Abstract class)
+    - [X] CharacterSelection (Enum) // Diego
     - [X] Hunter        // Diego
     - [X] Lycanthrope   // Diego
     - [X] Vampire       // Diego

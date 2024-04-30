@@ -42,6 +42,9 @@ public class Test_Admin {
             { "Test4.1", "Test4.2", "John", "Jane", "JohnPass", "JanePass", "ID-1", "ID-2", 50}
         };
         
+        // Define terminal input
+        TestingUtils.setInput("1", "3", "1", "3", "1", "3", "1", "3");
+
         for (Object[] testCase : testCases) {
             // Create test objects
             Player challenger = new Player((String) testCase[0], (String) testCase[2], (String) testCase[4], (String) testCase[6]);
@@ -51,8 +54,6 @@ public class Test_Admin {
             // Create an instance of Admin
             Admin admin = new Admin("Admin", "adminNick", "adminPass");
 
-            // Define terminal input
-            TestingUtils.setInput("1", "0", "0", " ", " ");
 
             // Call the manageChallenge method
             admin.manageChallenge(challenge);
@@ -60,7 +61,7 @@ public class Test_Admin {
             // Assert that the challenge has been managed correctly
             assertTrue(challenge.isApproved());
             assertTrue(challenged.isPendingNotification());
-            assertEquals(challenge, challenger.getPendingChallenge());
+            assertEquals(challenge, challenged.getPendingChallenge());
 
         }
     }

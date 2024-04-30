@@ -1,6 +1,5 @@
 package tests.modifiers;
 
-import src.abilities.Don;
 import src.modifiers.*;
 
 import static org.junit.Assert.assertEquals;

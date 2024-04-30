@@ -86,9 +86,13 @@ public class Vampire extends Character {
 
     @Override
     protected int calcSpecialAttack() {
-        if (this.blood >= discipline.getCost()) {
-            int value = discipline.abilityAttack(blood);
-            this.blood -= discipline.getCost();
+        if (this.discipline == null) {
+            return 0;
+        }
+        
+        if (this.blood >= this.discipline.getCost()) {
+            int value = this.discipline.abilityAttack(blood);
+            this.blood -= this.discipline.getCost();
             return value;
         } else {
             return 0;

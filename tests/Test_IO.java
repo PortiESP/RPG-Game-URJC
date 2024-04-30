@@ -57,9 +57,4 @@ public class Test_IO {
         int opt2 = MenuBuilder.menu("TITLE", options);
         assertEquals(2, opt2);
     }
-
-    //  --------------------- Utils ---------------------
-
-    
-
 }

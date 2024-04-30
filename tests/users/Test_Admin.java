@@ -1,43 +1,69 @@
 package tests.users;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
-import src.users.Admin;
+import src.users.*;
+import src.challenges.Challenge;
+import tests.TestingUtils;
 
 public class Test_Admin {
 
     @Test
-    public void getScore() {
+    public void testAdmin() {
+        Object[][] testCases = {
+            { "Test1", "john1", "password" },
+            { "Test2", "john2", "password" },
+            { "Test3", "john3", "password" },
+            { "Test4", "john4", "password" }
+        };
+
+        for (Object[] testCase : testCases) {
+            Admin admin = new Admin((String) testCase[0], (String) testCase[1], (String) testCase[2]);
+            assertNotNull(admin);
+            assertEquals((String) testCase[0], admin.getName());
+            assertEquals((String) testCase[1], admin.getNick());
+            assertEquals((String) testCase[2], admin.getPassword());
+        }
+    }
+
+    @Test
+    public void testGetScore() {
         Admin admin = new Admin();
         assertEquals(0, admin.getScore());
     }
 
-    // @Test
-    // public void manageChallenge() {
-    //     // Create test objects
-    //     Player challenger = new Player("John");
-    //     Player challenged = new Player("Jane");
-    //     Challenge challenge = new Challenge(challenger, challenged);
-    //     Admin admin = new Admin();
+    @Test
+    public void manageChallenge() {
+        Object[][] testCases = {
+            { "Test1.1", "Test1.2", "John", "Jane", "JohnPass", "JanePass", "ID-1", "ID-2", 100},
+            { "Test2.1", "Test2.2", "John", "Jane", "JohnPass", "JanePass", "ID-1", "ID-2", 15},
+            { "Test3.1", "Test3.2", "John", "Jane", "JohnPass", "JanePass", "ID-1", "ID-2", 200},
+            { "Test4.1", "Test4.2", "John", "Jane", "JohnPass", "JanePass", "ID-1", "ID-2", 50}
+        };
+        
+        for (Object[] testCase : testCases) {
+            // Create test objects
+            Player challenger = new Player((String) testCase[0], (String) testCase[2], (String) testCase[4], (String) testCase[6]);
+            Player challenged = new Player((String) testCase[1], (String) testCase[3], (String) testCase[5], (String) testCase[7]);
+            Challenge challenge = new Challenge(challenger, challenged, (int) testCase[8]);
 
-    //     // Set up test conditions
-    //     challenge.setGold(100);
-    //     challenged.setGold(50);
+            // Create an instance of Admin
+            Admin admin = new Admin("Admin", "adminNick", "adminPass");
 
-    //     // Call the method under test
-    //     admin.manageChallenge(challenge);
+            // Define terminal input
+            TestingUtils.setInput("1", "0", "0", " ", " ");
 
-    //     // Assert the expected outcomes
-    //     assertTrue(challenge.isApproved());
-    //     assertEquals(50, challenge.getGold());
-    //     assertEquals("Do you want to manage the challenge between John and Jane?", MenuBuilder.getLastPrompt());
-    //     assertTrue(MenuBuilder.getLastResponse()); // Assuming the admin chooses to manage the challenge
-    //     assertFalse(challenger.isBanned());
-    //     assertEquals("The bet has been adjusted to 50", MenuBuilder.getLastAlert());
-    //     assertEquals(challenge, challenged.getLastNotifiedChallenge());
-    // }
+            // Call the manageChallenge method
+            admin.manageChallenge(challenge);
+
+            // Assert that the challenge has been managed correctly
+            assertTrue(challenge.isApproved());
+            assertTrue(challenged.isPendingNotification());
+            assertEquals(challenge, challenger.getPendingChallenge());
+
+        }
+    }
 
     // @Test
     // public void testManageRules() {

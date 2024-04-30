@@ -7,7 +7,7 @@ import src.abilities.SpecialAbility;
 
 import static org.junit.Assert.*;
 
-public class SpecialAbilityTest {
+public class Test_SpecialAbility {
 
     @Test
     public void testToString() {

@@ -32,7 +32,7 @@
     - [X] Human         // Daniel
   - [ ] Users
     - [X] User (Abstract class)
-    - [ ] Player
+    - [X] Player
     - [ ] Admin
   - [X] Modifiers
     - [X] Modifier (Abstract class)  // Tested LoadFromArray

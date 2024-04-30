@@ -30,7 +30,22 @@ public class Test_Player {
     }
 
     @Test
-    public void addChallengeToHistory() {
+    public void testPlayer() {
+        // Create an instance of User
+        Player player = new Player("Name", "Nick", "Password", "A11A1");
+
+        // Assert that the player is not null
+        assertNotNull(player);
+
+        // Assert data is set correctly
+        assertEquals("Name", player.getName());
+        assertEquals("Nick", player.getNick());
+        assertEquals("Password", player.getPassword());
+        assertEquals("A11A1", player.getId());
+    }
+
+    @Test
+    public void testAddChallengeToHistory() {
         // Create an instance of User
         Player player1 = new Player("Name1", "Nick1", "Password1", "A11A1");
         Player player2 = new Player("Name2", "Nick2", "Password2", "A11A2");
@@ -46,7 +61,7 @@ public class Test_Player {
     }
 
     @Test
-    public void hasChallenges() {
+    public void testHasChallenges() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -62,7 +77,7 @@ public class Test_Player {
     }
 
     @Test
-    public void getScore() {
+    public void testGetScore() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -74,7 +89,7 @@ public class Test_Player {
     }
 
     @Test
-    public void showInfo() {
+    public void testShowInfo() {
         TestingUtils.setInput("");
 
         // Create an instance of User
@@ -86,7 +101,7 @@ public class Test_Player {
     }
 
     @Test
-    public void defeatedRecently() {
+    public void testDefeatedRecently() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -107,7 +122,7 @@ public class Test_Player {
     }
 
     @Test
-    public void ban() {
+    public void testBan() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -122,7 +137,7 @@ public class Test_Player {
     }
 
     @Test
-    public void unban() {
+    public void testUban() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -139,7 +154,7 @@ public class Test_Player {
         assertFalse(player.isBanned());
     }
 
-    public void manageModifiers() {
+    public void testManageModifiers() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -147,7 +162,7 @@ public class Test_Player {
         assertDoesNotThrow(() -> player.manageModifiers());
     }
 
-    public void changeModifier() {
+    public void testChangeModifier() {
         TestingUtils.setInput("0");
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
@@ -156,7 +171,7 @@ public class Test_Player {
         assertDoesNotThrow(() -> player.changeModifier(1));
     }
 
-    public void changeSpecialAbility() {
+    public void testChangeSpecialAbility() {
         TestingUtils.setInput("0");
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
@@ -166,7 +181,7 @@ public class Test_Player {
     }
 
     @Test
-    public void showSpecialAbilities() {
+    public void testShowSpecialAbilities() {
         TestingUtils.setInput("");
 
         // Create an instance of User
@@ -176,7 +191,7 @@ public class Test_Player {
         assertDoesNotThrow(() -> player.showSpecialAbilities());
     }
 
-    public void manageEquipment() {
+    public void testManageEquipment() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -184,7 +199,7 @@ public class Test_Player {
         assertDoesNotThrow(() -> player.manageEquipment());
     }
 
-    public void changeArmor() {
+    public void testChangeArmor() {
         TestingUtils.setInput("1", "");
 
         // Create an instance of User
@@ -200,7 +215,7 @@ public class Test_Player {
      * ⚠️ This test may fail when executed in a batch with other tests, but will pass when executed alone.
      * This is due to the fact that the method uses the Scanner class to read input from the console.
      */
-    public void changeWeapon() {
+    public void testChangeWeapon() {
         TestingUtils.setInput("1", "");
 
         // Create an instance of User
@@ -213,7 +228,7 @@ public class Test_Player {
     }
 
     @Test
-    public void notifyChallenge() {
+    public void testNotifyChallenge() {
         // Create an instance of User
         Player player1 = new Player("Name1", "Nick1", "Password1", "A11A1");
         Player player2 = new Player("Name2", "Nick2", "Password2", "A11A2");
@@ -229,7 +244,7 @@ public class Test_Player {
     }
 
     @Test
-    public void manageNotifications() {
+    public void testManageNotifications() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -241,7 +256,7 @@ public class Test_Player {
     }
 
     @Test
-    public void payGoldTo() {
+    public void testPayGoldTo() {
         // Create an instance of User
         Player player1 = new Player("Name1", "Nick1", "Password1", "A11A1");
         Player player2 = new Player("Name2", "Nick2", "Password2", "A11A2");
@@ -257,7 +272,7 @@ public class Test_Player {
     }
 
     @Test
-    public void canAfford() {
+    public void testCanAfford() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -272,7 +287,7 @@ public class Test_Player {
      * ⚠️ This test may fail when executed in a batch with other tests, but will pass when executed alone.
      * This is due to the fact that the method uses the Scanner class to read input from the console.
      */
-    public void acceptChallenge() {
+    public void testAcceptChallenge() {
         TestingUtils.setInput(" ", " ", " ", " ");
 
         // Create an instance of User
@@ -299,7 +314,7 @@ public class Test_Player {
     }
 
     @Test
-    public void getId() {
+    public void testGetId() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -311,7 +326,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setId() {
+    public void testSetId() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -324,7 +339,7 @@ public class Test_Player {
     }
 
     @Test
-    public void getPendingChallenge() {
+    public void testGetPendingChallenge() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -343,7 +358,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setPendingChallenge() {
+    public void testSetPendingChallenge() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -359,7 +374,7 @@ public class Test_Player {
     }
 
     @Test
-    public void isPendingNotification() {
+    public void testIsPendingNotification() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -374,7 +389,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setPendingNotification() {
+    public void testSetPendingNotification() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -389,7 +404,7 @@ public class Test_Player {
     }
 
     @Test
-    public void isBanned() {
+    public void testIsBanned() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -404,7 +419,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setBanned() {
+    public void testSetBanned() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -419,7 +434,7 @@ public class Test_Player {
     }
 
     @Test
-    public void getGold() {
+    public void testGetGold() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -431,7 +446,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setGold() {
+    public void testSetGold() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -446,7 +461,7 @@ public class Test_Player {
     }
 
     @Test
-    public void getLastLostFight() {
+    public void testGetLastLostFight() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -458,7 +473,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setLastLostFight() {
+    public void testSetLastLostFight() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -470,7 +485,7 @@ public class Test_Player {
     }
 
     @Test
-    public void getCurrentCharacter() {
+    public void testGetCurrentCharacter() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -492,7 +507,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setCurrentCharacter() {
+    public void testSetCurrentCharacter() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -508,7 +523,7 @@ public class Test_Player {
     }
 
     @Test
-    public void getArmor() {
+    public void testGetArmor() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -520,7 +535,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setArmor() {
+    public void testSetArmor() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -536,7 +551,7 @@ public class Test_Player {
     }
 
     @Test
-    public void getWeapons() {
+    public void testGetWeapons() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -560,7 +575,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setWeapons() {
+    public void testSetWeapons() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -577,7 +592,7 @@ public class Test_Player {
     }
 
     @Test
-    public void getChallenges() {
+    public void testGetChallenges() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -600,7 +615,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setChallenges() {
+    public void testSetChallenges() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -617,7 +632,7 @@ public class Test_Player {
     }
 
     @Test
-    public void hasPendingChallenge() {
+    public void testHasPendingChallenge() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -633,7 +648,7 @@ public class Test_Player {
     }
 
     @Test
-    public void getModifiers() {
+    public void testGetModifiers() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -647,7 +662,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setModifiers() {
+    public void testSetModifiers() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -665,7 +680,7 @@ public class Test_Player {
 
 
     @Test
-    public void getSpecialAbility() {
+    public void testGetSpecialAbility() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 
@@ -677,7 +692,7 @@ public class Test_Player {
     }
 
     @Test
-    public void setSpecialAbilities() {
+    public void testSetSpecialAbilities() {
         // Create an instance of User
         Player player = new Player("Name", "Nick", "Password", "A11A1");
 

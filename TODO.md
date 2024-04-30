@@ -18,7 +18,7 @@
   - [ ] Characters
     - [X] Character (Abstract class)
     - [X] Hunter        // Diego
-    - [ ] Lycanthrope
+    - [X] Lycanthrope   // Diego
     - [ ] Vampire
   - [X] Equipments
     - [X] Equipment (Abstract class)

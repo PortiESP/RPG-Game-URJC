@@ -248,7 +248,7 @@ public abstract class Character {
      * Calculate the attack power provided by the special ability.
      */
     protected int calcSpecialAttack() {
-        if (this.special != null) {
+        if (this.special == null) {
             return 0;
         }
 

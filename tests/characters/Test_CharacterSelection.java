@@ -1,23 +1,36 @@
 package tests.characters;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
+
+import src.characters.CharacterSelection;
 
 public class Test_CharacterSelection {
 
     @Test
-    @Disabled
-    public void testToString() {}
+    public void testToString() {
+        CharacterSelection characterSelection;
+
+        // Test Vampire
+        characterSelection = CharacterSelection.VAMPIRE;
+        assert(characterSelection.toString().equals("Vampire"));
+
+        // Test Hunter
+        characterSelection = CharacterSelection.HUNTER;
+        assert(characterSelection.toString().equals("Hunter"));
+
+        // Test lycanthrope
+        characterSelection = CharacterSelection.LYCANTHROPE;
+        assert(characterSelection.toString().equals("Lycanthrope"));
+    }
 
     @Test
-    @Disabled
-    public void allToString() {}
+    public void allToString() {
+        CharacterSelection[] characterSelections = CharacterSelection.values();
+        String[] expected = {"Lycanthrope", "Vampire", "Hunter"};
+        String[] output = CharacterSelection.allToString();
 
-    @Test
-    @Disabled
-    public void values() {}
-
-    @Test
-    @Disabled
-    public void valueOf() {}
+        for (CharacterSelection characterSelection : characterSelections) {
+            assert(output[characterSelection.ordinal()].equals(expected[characterSelection.ordinal()]));
+        }
+    }
 }

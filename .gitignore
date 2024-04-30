@@ -2,3 +2,4 @@
 .prettierrc
 **/game.xml
 **/state.xml
+tests/test_docs.md

@@ -33,7 +33,7 @@ public class Test_Admin {
         assertEquals(0, admin.getScore());
     }
 
-    // @Test
+    @Test
     public void manageChallenge() {
         Object[][] testCases = {
             { "Test1.1", "Test1.2", "John", "Jane", "JohnPass", "JanePass", "ID-1", "ID-2", 100},

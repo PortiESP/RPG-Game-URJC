@@ -17,7 +17,7 @@
     - [X] Fight         //Luis
   - [ ] Characters
     - [X] Character (Abstract class)
-    - [ ] Hunter
+    - [X] Hunter        // Diego
     - [ ] Lycanthrope
     - [ ] Vampire
   - [X] Equipments

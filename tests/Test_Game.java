@@ -16,7 +16,7 @@ import src.users.User;
 
 public class Test_Game {
 
-     @Test
+    @Test
     public void testLoadDefaultSettings() {
         Game game = new Game();
         game.loadDefaultSettings();
@@ -33,6 +33,27 @@ public class Test_Game {
         assertNotNull(Game.ghoulsAvailable);
         assertNotNull(Game.humansAvailable);
         assertNotNull(Game.devilsAvailable);
+    }
+
+    @Test
+    public void testPassword() {
+        String password;
+
+        // Test password with 8 characters
+        password = "password";
+        assertEquals(true, Game.isValidPassword(password));
+
+        // Test password with 7 characters
+        password = "passwor";
+        assertEquals(false, Game.isValidPassword(password));
+
+        // Test password with 9 characters
+        password = "password1";
+        assertEquals(true, Game.isValidPassword(password));
+
+        // Test password with 16 characters
+        password = "password123456789";
+        assertEquals(false, Game.isValidPassword(password));
     }
 
     @Test

@@ -124,6 +124,10 @@ public class Game {
         Game.devilsAvailable = Devil.loadFromArray(Const.DEVILS);
     }
 
+    public static boolean isValidPassword(String password) {
+        return password.length() >= 8 && password.length() <= 12;
+    }
+
     /**
      * Method to create the game static state
      * <p>
@@ -434,8 +438,8 @@ public class Game {
         String[] data = MenuBuilder.form("Register", labels);
 
         // Validate the password
-        while (!data[2].equals(data[3])) {
-            MenuBuilder.alert("Invalid Password", "The passwords do not match. Please try again.");
+        while ((!data[2].equals(data[3])) || (!Game.isValidPassword(data[2]))) {
+            MenuBuilder.alert("Invalid Password", "The passwords do not match or its length is not between 8 and 12 characters. Please try again.");
             data = MenuBuilder.form("Register", labels);
         }
 

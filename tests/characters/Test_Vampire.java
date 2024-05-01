@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import src.Game;
+import src.abilities.Discipline;
 import src.minions.*;
 import src.characters.Vampire;
 import src.users.Player;
@@ -158,5 +159,10 @@ public class Test_Vampire {
         Vampire vampire = new Vampire(new Player("Player 1", "P1", "1234", "ID-F1"));
         vampire.setDiscipline(null);
         assertNull(vampire.getDiscipline());
+
+        Discipline discipline = new Discipline("Discipline 1", 1, 1, 1);
+        vampire.setDiscipline(discipline);
+        assertNotNull(vampire.getDiscipline());
+        assertEquals(discipline, vampire.getDiscipline());
     }
 }

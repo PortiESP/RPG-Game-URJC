@@ -41,8 +41,9 @@ public class Test_Weakness {
     }
 
     @Test
-    public void testWeaknessGetName() {
+    public void testWeaknessSetSensitivity() {
         Weakness weakness = new Weakness("Test", 1);
-        assertEquals("Test", weakness.getName());
+        weakness.setSensitivity(2);
+        assertEquals(2, weakness.getSensitivity());
     }
 }

@@ -43,8 +43,9 @@ public class Test_Strength {
     }
 
     @Test
-    public void testStrengthGetName() {
+    public void testStrengthSetEffectiveness() {
         Strength strength = new Strength("Test", 1);
-        assertEquals("Test", strength.getName());
+        strength.setEffectiveness(2);
+        assertEquals(2, strength.getEffectiveness());
     }
 }

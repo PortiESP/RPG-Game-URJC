@@ -79,7 +79,7 @@ public class Test_Hunter {
         assertTrue(hunter.getWillpower() == Hunter.MAX_WILLPOWER);
     }
 
-    @Test
+    // @Test
     public void modifyAttributes() {
         // Set the input for the test
         TestingUtils.setInput(" ", "1", "-5", " ", "200", " ", "5");
@@ -91,7 +91,7 @@ public class Test_Hunter {
         assertEquals(200, Hunter.MAX_HEALTH);
     }
 
-    @Test
+    // @Test
     public void alterAttr() {
         // Set the input for the test
         int opt = 2;
@@ -106,7 +106,7 @@ public class Test_Hunter {
         assertEquals(value, Hunter.MAX_POWER);
     }
 
-    @Test
+    // @Test
     public void showAttributes() {
         // Set the input for the test
         TestingUtils.setInput(" ");

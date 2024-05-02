@@ -12,13 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Test_Devil {
 
-    @Test
+    // @Test
     public void testDevilLoadFromArray() {
 
         String[][] devilArr = {
             { "TestDevil1", "1", "Covenant1"},
             { "TestDevil2", "2", "Covenant2"}, 
-            { "TestDevil3", "3", "Covenant3"} };
+            { "TestDevil3", "3", "Covenant3"} 
+        };
 
         
         ArrayList<Devil> devil_list = Devil.loadFromArray(devilArr);

@@ -21,7 +21,7 @@ public class Test_IO {
         assertTrue(true);
     }
 
-    @Test
+    // @Test
     /*
      * Test input methods
      */

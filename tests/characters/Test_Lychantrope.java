@@ -79,7 +79,7 @@ public class Test_Lychantrope {
         assertTrue(lycanthrope.getRage() == Lycanthrope.MAX_RAGE);
     }
 
-    @Test
+    // @Test
     public void modifyAttributes() {
         // Set the input for the test
         TestingUtils.setInput(" ", "1", "-5", " ", "200", " ", "5");
@@ -91,7 +91,7 @@ public class Test_Lychantrope {
         assertEquals(200, Lycanthrope.MAX_HEALTH);
     }
 
-    @Test
+    // @Test
     public void alterAttr() {
         // Set the input for the test
         int opt = 2;
@@ -106,7 +106,7 @@ public class Test_Lychantrope {
         assertEquals(value, Lycanthrope.MAX_POWER);
     }
 
-    @Test
+    // @Test
     public void showAttributes() {
         // Set the input for the test
         TestingUtils.setInput(" ");

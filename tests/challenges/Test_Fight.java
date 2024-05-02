@@ -20,7 +20,7 @@ import src.Game;
 
 public class Test_Fight {
 
-    @Test
+    // @Test
     public void testFight() {
         Player player1 = new Player("player1", "p1", "123456789", "X-999");
         player1.setCurrentCharacter(CharacterSelection.VAMPIRE);

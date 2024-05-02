@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -21,9 +20,7 @@ import src.minions.Ghoul;
 import src.minions.Human;
 import src.minions.LoyaltyEnum;
 import src.modifiers.Strength;
-import src.modifiers.Weakness;
 import src.users.Player;
-import utils.Const;
 
 public class Test_Character {
 

@@ -101,12 +101,12 @@ This project is a game developed for URJC University for the subject: Programmin
 
 #### This project was developed by:
 
-| Name           | GitHub                                      | Email                 |
-| -------------- | ------------------------------------------- | --------------------- |
-| Diego Sánchez  | [CuB1z](https://github.com/CuB1z)           | cubizdev@gmail.com    |
-| Jaime Portillo | [PortiESP](https://github.com/PortiESP)     |                       |
-| Daniel Santos  | [Danisntoss](https://github.com/danisntoss) | danisntos00@gmail.com |
-| Luis Abril     | [LuisAbril](https://github.com/LuisAbril)   |                       |
+| Name           | GitHub                                      | LinkedIn                                                 |
+| -------------- | ------------------------------------------- | -------------------------------------------------------- |
+| Diego Sánchez  | [CuB1z](https://github.com/CuB1z)           | [Diego Sánchez](https://www.linkedin.com/in/cub1z/)      |
+| Jaime Portillo | [PortiESP](https://github.com/PortiESP)     | [Jaime Portillo](https://www.linkedin.com/in/porti/)     |
+| Daniel Santos  | [Danisntoss](https://github.com/danisntoss) | [Daniel Santos](https://www.linkedin.com/in/danisntoss/) |
+| Luis Abril     | [LuisAbril](https://github.com/LuisAbril)   | -----                                                    |
 
 
 <br/>
